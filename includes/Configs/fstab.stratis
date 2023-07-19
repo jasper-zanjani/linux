@@ -1,0 +1,1 @@
+/stratis/pool/storage     /mnt/stratis_storage  xfs     defaults,x-systemd.requires=stratisd.service 0 0

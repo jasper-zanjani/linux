@@ -1,0 +1,2 @@
+UUID=5530f7df-65b7-4fd5-8757-0e69aad14f75 /     btrfs   subvol=/@,defaults,noatime,autodefrag,compress=zstd,discard=async,ssd 0 0
+UUID=5530f7df-65b7-4fd5-8757-0e69aad14f75 /home btrfs   subvol=/@home,defaults,noatime,autodefrag,compress=zstd,discard=async,ssd 0 0

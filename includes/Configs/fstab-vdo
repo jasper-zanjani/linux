@@ -1,0 +1,1 @@
+/dev/mapper/storage     /mnt/vdo_storage        xfs     _netdev,x-systemd.device-timeout=0,x-systemd.requires=vdo.service 0 0

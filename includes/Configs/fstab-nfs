@@ -1,0 +1,1 @@
+nas:/export/storage     /mnt/nfs_storage        nfs     defaults,_netdev 0 0
