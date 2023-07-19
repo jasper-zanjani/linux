@@ -1,0 +1,1250 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://jasper-zanjani.github.io/notes/Applications/selinux/">
+      
+      
+        <link rel="prev" href="../screen/">
+      
+      
+        <link rel="next" href="../ssh/">
+      
+      <link rel="icon" href="../../img/brain.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
+    
+    
+      
+        <title>SELinux - Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.26e3688c.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../style/tooltip-width.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="yellow">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#selinux" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Notes" class="md-header__button md-logo" aria-label="Notes" data-md-component="logo">
+      
+  <img src="../../img/brain.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              SELinux
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Notes" class="md-nav__button md-logo" aria-label="Notes" data-md-component="logo">
+      
+  <img src="../../img/brain.png" alt="logo">
+
+    </a>
+    Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Linux
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Concurrency/" class="md-nav__link">
+        Concurrency
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Containers/" class="md-nav__link">
+        Containers
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Databases/" class="md-nav__link">
+        Databases
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Display/" class="md-nav__link">
+        Display
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Files/" class="md-nav__link">
+        Files
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Filters/" class="md-nav__link">
+        Filters
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../GRUB/" class="md-nav__link">
+        GRUB2
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../IAM/" class="md-nav__link">
+        Users
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Kernel/" class="md-nav__link">
+        Kernel
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Network/" class="md-nav__link">
+        Network
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Package/" class="md-nav__link">
+        Package management
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Process/" class="md-nav__link">
+        Process management
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Random/" class="md-nav__link">
+        Random
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Red-Hat/" class="md-nav__link">
+        Red Hat
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ricing/" class="md-nav__link">
+        Tiling window managers
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security/" class="md-nav__link">
+        Security
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Shell/" class="md-nav__link">
+        Shells
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Storage/" class="md-nav__link">
+        Storage
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SystemD/" class="md-nav__link">
+        SystemD
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Virtualization/" class="md-nav__link">
+        Virtualization
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_22" id="__nav_22_label" tabindex="0">
+          Applications
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_22">
+          <span class="md-nav__icon md-icon"></span>
+          Applications
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bind/" class="md-nav__link">
+        BIND
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ffmpeg/" class="md-nav__link">
+        ffmpeg
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../git/" class="md-nav__link">
+        Git
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gnome/" class="md-nav__link">
+        GNOME
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nginx/" class="md-nav__link">
+        Nginx
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pam/" class="md-nav__link">
+        PAM
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rhythmbox/" class="md-nav__link">
+        Rhythmbox
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../screen/" class="md-nav__link">
+        screen
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          SELinux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        SELinux
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contexts" class="md-nav__link">
+    Contexts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#booleans_1" class="md-nav__link">
+    Booleans
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tasks" class="md-nav__link">
+    Tasks
+  </a>
+  
+    <nav class="md-nav" aria-label="Tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#samba-share" class="md-nav__link">
+    Samba share
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting-apache" class="md-nav__link">
+    Troubleshooting Apache
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apache-home-directories" class="md-nav__link">
+    Apache home directories
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apache-port" class="md-nav__link">
+    Apache port
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commands" class="md-nav__link">
+    Commands
+  </a>
+  
+    <nav class="md-nav" aria-label="Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#audit2allow" class="md-nav__link">
+    audit2allow
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ausearch" class="md-nav__link">
+    ausearch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chcon" class="md-nav__link">
+    chcon
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getenforce" class="md-nav__link">
+    getenforce
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getsebool" class="md-nav__link">
+    getsebool
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restorecon" class="md-nav__link">
+    restorecon
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seinfo" class="md-nav__link">
+    seinfo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semanage" class="md-nav__link">
+    semanage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semodule" class="md-nav__link">
+    semodule
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sestatus" class="md-nav__link">
+    sestatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setenforce" class="md-nav__link">
+    setenforce
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setsebool" class="md-nav__link">
+    setsebool
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssh/" class="md-nav__link">
+        SSH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../syncthing/" class="md-nav__link">
+        Syncthing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vim/" class="md-nav__link">
+        Vim
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../youtube-dl/" class="md-nav__link">
+        Youtube dl
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="selinux">SELinux</h1>
+<div class="admonition info resources">
+<p class="admonition-title">Info</p>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/SELinux">SELinux (Arch Linux Wiki)</a></li>
+</ul>
+</div>
+<p>SELinux implements <strong>Mandatory Access Control (MAC)</strong> in Linux, which is distinguished from traditional Linux access controls (file permission octets, the use of sudo, etc) which constitute <strong>Discretionary Access Control (DAC)</strong>.</p>
+<p>SELinux's config is at <strong>/etc/selinux/config</strong>
+<div class="highlight"><span class="filename">Example config</span><pre><span></span><code><span class="c1"># This file controls the state of SELinux on the system.</span>
+<span class="c1"># SELINUX= can take one of these three values:</span>
+<span class="c1">#     enforcing - SELinux security policy is enforced.</span>
+<span class="c1">#     permissive - SELinux prints warnings instead of enforcing.</span>
+<span class="c1">#     disabled - No SELinux policy is loaded.</span>
+<span class="na">SELINUX</span><span class="o">=</span><span class="s">enforcing</span>
+<span class="c1"># SELINUXTYPE= can take one of these three values:</span>
+<span class="c1">#     targeted - Targeted processes are protected,</span>
+<span class="c1">#     minimum - Modification of targeted policy. Only selected processes are protected.</span>
+<span class="c1">#     mls - Multi Level Security protection.</span>
+<span class="na">SELINUXTYPE</span><span class="o">=</span><span class="s">targeted</span>
+</code></pre></div></p>
+<h4 id="contexts">Contexts</h4>
+<dl>
+<dd>
+<p>SELinux <a href="https://wiki.archlinux.org/title/SELinux"><strong>security contexts</strong></a> define access controls and are also referred to as "labels".
+All system objects have such contexts associated with them, stored in the extended attributes of the filesystem.</p>
+<p>Contexts are compared to <strong>subject</strong>, <strong>verb</strong>, and <strong>object</strong> in English sentences and have the following structure:
+<div class="highlight"><pre><span></span><code>user_u:role_r:type_t:level
+</code></pre></div></p>
+<p>The <strong>user</strong> or user identity can be associated with one or more roles. User identities are suffixed with <strong>_u</strong>, and there a eight such identities builtin. </p>
+<ul>
+<li>By default, all non-root users are mapped to <strong>unconfined_u</strong> as is root itself, which means they operate with unlimited privileges. </li>
+<li>Users labeled with <strong>user_u</strong> cannot run su or sudo or programs in their home directories.</li>
+</ul>
+<p>The <strong>role</strong> is an attribute of the RBAC security model that classifies who is allowed to access what (domains, types). It can be associated to one or more types and is suffixed with <strong>_r</strong>.</p>
+<p>The <strong>type</strong> (for file contexts) or <strong>domain</strong> (for process contexts) defines what processes or domains the user can access. Types are suffixed with <strong>_t</strong>.</p>
+<ul>
+<li>Certain files have their own types, like <strong>passwd_file_t</strong> which is associated with /etc/passwd.</li>
+<li>Builtin and user-created file contexts are stored in the <strong>file_contexts</strong> and <strong>file_contexts.local</strong> files under <strong>/etc/selinux/targeted/contexts/files/</strong>.</li>
+</ul>
+<p>A <strong>level</strong> is an attribute of Multi-Level Security and Multi-Category Security.</p>
+<p>SELinux extends existing utilities to handle contexts with the <strong>-Z</strong> flag:
+<div class="highlight"><pre><span></span><code>ps<span class="w"> </span>auxZ
+ls<span class="w"> </span>-Z
+id<span class="w"> </span>-Z
+</code></pre></div></p>
+</dd>
+</dl>
+<h4 id="booleans_1">Booleans</h4>
+<dl>
+<dd>In SELinux, <strong id="booleans">booleans</strong> refers to optional settings that can be turned on and off.</dd>
+</dl>
+<h2 id="tasks">Tasks</h2>
+<h4 id="samba-share">Samba share</h4>
+<dl>
+<dd>
+<p>Enabling a Samba file share requires setting a specific SELinux context using <strong>semanage</strong>
+<div class="highlight"><pre><span></span><code>semanage<span class="w"> </span>fcontext<span class="w"> </span>-a<span class="w"> </span>-t<span class="w"> </span>samba_share_t<span class="w"> </span><span class="s1">&#39;/samba(/.*)?&#39;</span>
+</code></pre></div></p>
+<p>The context must then be restored
+<div class="highlight"><pre><span></span><code>restorecon<span class="w"> </span>-vvFR<span class="w"> </span>/samba
+</code></pre></div></p>
+</dd>
+</dl>
+<h4 id="troubleshooting-apache">Troubleshooting Apache</h4>
+<dl>
+<dd>
+<p>In this scenario, an Apache httpd daemon fails to start due to SELinux.</p>
+<p>SELinux provides recommended commands to resolve the issue in the audit log at <strong>/var/log/messages</strong>:
+<div class="highlight"><pre><span></span><code>grep<span class="w"> </span>httpd<span class="w"> </span>/var/log/messages<span class="w"> </span><span class="p">|</span><span class="w"> </span>less
+</code></pre></div></p>
+<p>Generate and install a new <strong>policy module</strong> from the logs
+<div class="highlight"><pre><span></span><code>ausearch<span class="w"> </span>-c<span class="w"> </span>httpd<span class="w"> </span>--raw<span class="w"> </span><span class="p">|</span><span class="w"> </span>audit2allow<span class="w"> </span>-M<span class="w"> </span>my-httpd
+semodule<span class="w"> </span>-i<span class="w"> </span>my-httpd
+</code></pre></div></p>
+</dd>
+</dl>
+<h4 id="apache-home-directories">Apache home directories</h4>
+<dl>
+<dd>
+<p>A feature of Apache is that users can host personal websites from the directory named <strong>public_html</strong> in their home directories.
+When Apache policies are in effect, this directory is automatically given the <strong>http_user_content_t</strong> tag, which will allow the httpd daemon to host the website at the path <strong>/~user</strong> where "user" is the name of the user.
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>localhost/~user/index.html
+</code></pre></div></p>
+<p>However, without a specific boolean enabled, the files will not be accessible:
+<div class="highlight"><pre><span></span><code>setsebool<span class="w"> </span>-P<span class="w"> </span>httpd_enable_homedirs<span class="w"> </span><span class="m">1</span>
+</code></pre></div></p>
+</dd>
+</dl>
+<h4 id="apache-port">Apache port</h4>
+<dl>
+<dd>
+<p>Default Apache settings appear in the main config file located at <strong>/etc/httpd/conf/httpd.conf</strong>.</p>
+<p>For example, the default directory served by Apache can be changed by setting a new value for the <strong>DocumentRoot</strong> directive.
+<div class="highlight"><span class="filename">/etc/httpd/conf/httpd.conf</span><pre><span></span><code><span class="na">DocumentRoot &quot;/web&quot;</span>
+<span class="c1"># ...</span>
+<span class="na">&lt;Directory &quot;/web&quot;&gt;</span>
+</code></pre></div></p>
+<p>Create example content
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hello, World!&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/web/index.html
+</code></pre></div>
+The context for the content must be set.
+<div class="highlight"><pre><span></span><code><span class="c1"># Set context manually</span>
+chcon<span class="w"> </span>-R<span class="w"> </span>/web<span class="w"> </span>-t<span class="w"> </span>http_content_t
+
+<span class="c1"># Alternatively, set policy and restore the contexts</span>
+semanage<span class="w"> </span>-a<span class="w"> </span>-t<span class="w"> </span>httpd_sys_content_t<span class="w"> </span><span class="s1">&#39;/web(/.*)?&#39;</span>
+restorecon<span class="w"> </span>-R<span class="w"> </span>/web
+</code></pre></div></p>
+<p>The default port can also be changed with the <strong>Listen</strong> directive.
+<div class="highlight"><span class="filename">/etc/httpd/conf/httpd.conf</span><pre><span></span><code><span class="na">Listen 1000</span>
+</code></pre></div></p>
+<p>Now Apache will attempt to serve /web from port 1000, however while SELinux is enforcing policy this port will not be accessible to the daemon, and in fact Apache will exit with an error code.</p>
+<p>These errors can be inspected in a variety of ways.
+<div class="highlight"><pre><span></span><code>journalctl<span class="w"> </span>-xe
+ausearch<span class="w"> </span>-m<span class="w"> </span>AVC<span class="w"> </span>-ts<span class="w"> </span>recent
+
+<span class="c1"># Find SELinux message IDs, which provide remediation tips:</span>
+grep<span class="w"> </span>sealert<span class="w"> </span>/var/log/messages
+sealert<span class="w"> </span>-l<span class="w"> </span><span class="nv">$MESSAGE_ID</span>
+</code></pre></div></p>
+<div class="highlight"><span class="filename">Add port context</span><pre><span></span><code>semanage<span class="w"> </span>port<span class="w"> </span>-a<span class="w"> </span>-t<span class="w"> </span>http_port_t<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span><span class="m">1000</span>
+</code></pre></div>
+<p>Now starting httpd succeeds, and we can confirm that port 1000 is open:
+<div class="highlight"><pre><span></span><code>ss<span class="w"> </span>-nlt
+</code></pre></div></p>
+</dd>
+</dl>
+<h2 id="commands">Commands</h2>
+<p>SELinux commands are separated into get/set varieties similar to PowerShell cmdlets:</p>
+<table>
+<thead>
+<tr>
+<th>get</th>
+<th>set</th>
+<th>object</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#getenforce">getenforce</a></td>
+<td><a href="#setenforce">setenforce</a></td>
+<td>Operating mode</td>
+</tr>
+<tr>
+<td><a href="#getsebool">getsebool</a></td>
+<td><a href="#setsebool">setsebool</a></td>
+<td><a href="#booleans">Booleans</a></td>
+</tr>
+</tbody>
+</table>
+<p>Similarly,</p>
+<table>
+<thead>
+<tr>
+<th>restore</th>
+<th>change</th>
+<th>object</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#restorecon">restorecon</a></td>
+<td><a href="#chcon">chcon</a></td>
+<td><a href="#contexts">Contexts</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="audit2allow">audit2allow</h4>
+<dl>
+<dd><div class="highlight"><span class="filename">Generate policy module from logs of denied operations</span><pre><span></span><code>ausearch<span class="w"> </span>-c<span class="w"> </span>httpd<span class="w"> </span>--raw<span class="w"> </span><span class="p">|</span><span class="w"> </span>audit2allow<span class="w"> </span>-M<span class="w"> </span>my-httpd
+</code></pre></div></dd>
+</dl>
+<h4 id="ausearch">ausearch</h4>
+<dl>
+<dd>
+<p>Display events in a date range
+<div class="highlight"><pre><span></span><code>ausearch<span class="w"> </span>--start<span class="w"> </span><span class="nv">$STARTDATE</span><span class="w"> </span>--end<span class="w"> </span><span class="nv">$ENDDATE</span>
+</code></pre></div></p>
+<p>Search events for today for logins of UID 500
+<div class="highlight"><pre><span></span><code>ausearch<span class="w"> </span>--start<span class="w"> </span>today<span class="w"> </span>--loginuid<span class="w"> </span><span class="m">500</span>
+</code></pre></div></p>
+<p>Search for events associated with an executable.
+<div class="highlight"><pre><span></span><code>ausearch<span class="w"> </span>-c<span class="w"> </span>httpd<span class="w"> </span>--raw
+</code></pre></div></p>
+<div class="highlight"><span class="filename">Display recent (10 minutes) events</span><pre><span></span><code>ausearch<span class="w"> </span>-m<span class="w"> </span>AVC<span class="w"> </span>-ts<span class="w"> </span>recent
+</code></pre></div>
+</dd>
+</dl>
+<h4 id="chcon">chcon</h4>
+<dl>
+<dd>
+<p>Change context of a file to be hosted via httpd
+<div class="highlight"><pre><span></span><code>chcon<span class="w"> </span>system_u:object_r:httpd_sys_content_t:s0<span class="w"> </span>index.html
+chcon<span class="w"> </span>-t<span class="w"> </span>httpd_sys_content_t<span class="w"> </span>index.html<span class="w"> </span><span class="c1"># (1)</span>
+</code></pre></div></p>
+<ol>
+<li>Change only the <strong>type</strong> portion of the context.</li>
+</ol>
+</dd>
+</dl>
+<h4 id="getenforce">getenforce</h4>
+<dl>
+<dd>
+<p><strong>getenforce</strong> displays the operating <strong>mode</strong> of SELinux, which can be one of three values:</p>
+<ul>
+<li>enforcing</li>
+<li>permissive</li>
+<li>disabled</li>
+</ul>
+</dd>
+</dl>
+<h4 id="getsebool">getsebool</h4>
+<dl>
+<dd>
+<div class="highlight"><span class="filename">Display all booleans</span><pre><span></span><code>getsebool<span class="w"> </span>-a<span class="w"> </span><span class="c1"># (1)</span>
+</code></pre></div>
+<ol>
+<li>A more descriptive listing of the booleans can be displayed with <a href="#semanage"><strong>semanage</strong></a>
+<div class="highlight"><pre><span></span><code>semanage<span class="w"> </span>bool<span class="w"> </span>-l
+</code></pre></div></li>
+</ol>
+</dd>
+</dl>
+<h4 id="restorecon">restorecon</h4>
+<dl>
+<dd>Restore security context policy
+<div class="highlight"><pre><span></span><code>restorecon<span class="w"> </span>-R<span class="w"> </span>/web
+</code></pre></div></dd>
+</dl>
+<h4 id="seinfo">seinfo</h4>
+<dl>
+<dd><div class="highlight"><span class="filename">List users</span><pre><span></span><code>seinfo<span class="w"> </span>-u
+</code></pre></div></dd>
+</dl>
+<h4 id="semanage">semanage</h4>
+<dl>
+<dd>
+<p>semanage is used to configure certain elements of SELinux policy without requiring modification to or recompilation from policy sources.</p>
+<div class="highlight"><span class="filename">File contexts</span><pre><span></span><code>semanage<span class="w"> </span>fcontext<span class="w"> </span>-l
+semanage<span class="w"> </span>fcontext<span class="w"> </span>-a<span class="w"> </span>-t<span class="w"> </span>httpd_sys_content_t<span class="w"> </span>/web<span class="w"> </span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Port contexts</span><pre><span></span><code>semanage<span class="w"> </span>port<span class="w"> </span>-l
+semanage<span class="w"> </span>port<span class="w"> </span>-a<span class="w"> </span>-t<span class="w"> </span>http_port_t<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span><span class="m">1000</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Booleans</span><pre><span></span><code>semanage<span class="w"> </span>bool<span class="w"> </span>-l
+</code></pre></div>
+<p>Examine the mapping between Linux login names and SELinux users.
+<div class="highlight"><pre><span></span><code>semanage<span class="w"> </span>login<span class="w"> </span>-l
+</code></pre></div></p>
+</dd>
+</dl>
+<h4 id="semodule">semodule</h4>
+<dl>
+<dd><div class="highlight"><span class="filename">Install a policy module</span><pre><span></span><code>semodule<span class="w"> </span>-i<span class="w"> </span>my-httpd.pp
+</code></pre></div></dd>
+</dl>
+<h4 id="sestatus">sestatus</h4>
+<dl>
+<dd><div class="highlight"><pre><span></span><code>sestatus
+</code></pre></div></dd>
+</dl>
+<h4 id="setenforce">setenforce</h4>
+<dl>
+<dd><div class="highlight"><pre><span></span><code>setenforce<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="c1"># Permissive</span>
+setenforce<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="c1"># Enforcing</span>
+</code></pre></div></dd>
+</dl>
+<h4 id="setsebool">setsebool</h4>
+<dl>
+<dd><div class="highlight"><pre><span></span><code><span class="c1"># Allow SELinux to work with Samba (-P makes the change persistent)</span>
+setsebool<span class="w"> </span>-P<span class="w"> </span>samba_export_all_ro<span class="w"> </span><span class="m">1</span>
+
+<span class="c1"># Allow httpd to serve HTML from home directories</span>
+setsebool<span class="w"> </span>-P<span class="w"> </span>httpd_enable_homedirs<span class="w"> </span><span class="m">1</span>
+
+<span class="c1"># Prevent runtime changes to SELinux mode</span>
+setsebool<span class="w"> </span>-P<span class="w"> </span>secure_mode_policyload<span class="w"> </span><span class="m">1</span>
+</code></pre></div></dd>
+</dl>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.expand", "toc.integrate", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.b425cdc4.min.js"></script>
+      
+    
+  </body>
+</html>

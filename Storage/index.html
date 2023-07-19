@@ -1,0 +1,1815 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://jasper-zanjani.github.io/notes/Storage/">
+      
+      
+        <link rel="prev" href="../Shell/">
+      
+      
+        <link rel="next" href="../SystemD/">
+      
+      <link rel="icon" href="../img/brain.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
+    
+    
+      
+        <title>Storage - Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.26e3688c.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../style/tooltip-width.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="yellow">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#storage" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Notes" class="md-header__button md-logo" aria-label="Notes" data-md-component="logo">
+      
+  <img src="../img/brain.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Storage
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Notes" class="md-nav__button md-logo" aria-label="Notes" data-md-component="logo">
+      
+  <img src="../img/brain.png" alt="logo">
+
+    </a>
+    Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Linux
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Concurrency/" class="md-nav__link">
+        Concurrency
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Containers/" class="md-nav__link">
+        Containers
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Databases/" class="md-nav__link">
+        Databases
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Display/" class="md-nav__link">
+        Display
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Files/" class="md-nav__link">
+        Files
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Filters/" class="md-nav__link">
+        Filters
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GRUB/" class="md-nav__link">
+        GRUB2
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../IAM/" class="md-nav__link">
+        Users
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Kernel/" class="md-nav__link">
+        Kernel
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Network/" class="md-nav__link">
+        Network
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Package/" class="md-nav__link">
+        Package management
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Process/" class="md-nav__link">
+        Process management
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Random/" class="md-nav__link">
+        Random
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Red-Hat/" class="md-nav__link">
+        Red Hat
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ricing/" class="md-nav__link">
+        Tiling window managers
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Security/" class="md-nav__link">
+        Security
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Shell/" class="md-nav__link">
+        Shells
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Storage
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Storage
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#zfs" class="md-nav__link">
+    ZFS
+  </a>
+  
+    <nav class="md-nav" aria-label="ZFS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pool-creation" class="md-nav__link">
+    Pool creation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removing-devices" class="md-nav__link">
+    Removing devices
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disk-replacement" class="md-nav__link">
+    Disk replacement
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dataset-management" class="md-nav__link">
+    Dataset management
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snapshot-management" class="md-nav__link">
+    Snapshot management
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migration" class="md-nav__link">
+    Migration
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#btrfs" class="md-nav__link">
+    Btrfs
+  </a>
+  
+    <nav class="md-nav" aria-label="Btrfs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pool-management" class="md-nav__link">
+    Pool management
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filesystem-management" class="md-nav__link">
+    Filesystem management
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snapshots" class="md-nav__link">
+    Snapshots
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nfs" class="md-nav__link">
+    NFS
+  </a>
+  
+    <nav class="md-nav" aria-label="NFS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    Authentication
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#smb" class="md-nav__link">
+    SMB
+  </a>
+  
+    <nav class="md-nav" aria-label="SMB">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hdd-serial-numbers" class="md-nav__link">
+    HDD serial numbers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autofs" class="md-nav__link">
+    Autofs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvm" class="md-nav__link">
+    LVM
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vdo" class="md-nav__link">
+    VDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stratis" class="md-nav__link">
+    Stratis
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#glossary" class="md-nav__link">
+    Glossary
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commands" class="md-nav__link">
+    Commands
+  </a>
+  
+    <nav class="md-nav" aria-label="Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#blkid" class="md-nav__link">
+    blkid
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blkid_1" class="md-nav__link">
+    blkid
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#btrfs_1" class="md-nav__link">
+    btrfs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fallocate" class="md-nav__link">
+    fallocate
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fallocate_1" class="md-nav__link">
+    fallocate
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filefrag" class="md-nav__link">
+    filefrag
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hdparm" class="md-nav__link">
+    hdparm
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hdparm_1" class="md-nav__link">
+    hdparm
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#losetup" class="md-nav__link">
+    losetup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#losetup_1" class="md-nav__link">
+    losetup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lsblk" class="md-nav__link">
+    lsblk
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lsblk_1" class="md-nav__link">
+    lsblk
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sfdisk" class="md-nav__link">
+    sfdisk
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sfdisk_1" class="md-nav__link">
+    sfdisk
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shred" class="md-nav__link">
+    shred
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shred_1" class="md-nav__link">
+    shred
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wipefs" class="md-nav__link">
+    wipefs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mount" class="md-nav__link">
+    mount
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SystemD/" class="md-nav__link">
+        SystemD
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Virtualization/" class="md-nav__link">
+        Virtualization
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_22" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_22" id="__nav_22_label" tabindex="0">
+          Applications
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_22">
+          <span class="md-nav__icon md-icon"></span>
+          Applications
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/bind/" class="md-nav__link">
+        BIND
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/ffmpeg/" class="md-nav__link">
+        ffmpeg
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/git/" class="md-nav__link">
+        Git
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/gnome/" class="md-nav__link">
+        GNOME
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/nginx/" class="md-nav__link">
+        Nginx
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/pam/" class="md-nav__link">
+        PAM
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/rhythmbox/" class="md-nav__link">
+        Rhythmbox
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/screen/" class="md-nav__link">
+        screen
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/selinux/" class="md-nav__link">
+        SELinux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/ssh/" class="md-nav__link">
+        SSH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/syncthing/" class="md-nav__link">
+        Syncthing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/vim/" class="md-nav__link">
+        Vim
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/youtube-dl/" class="md-nav__link">
+        Youtube dl
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="storage">Storage</h1>
+<div class="highlight"><span class="filename">Create virtual disks</span><pre><span></span><code><span class="c1"># Create sparse file</span>
+fallocate<span class="w"> </span>-l<span class="w"> </span>100M<span class="w"> </span>/tmp/disk0<span class="w">    </span>
+
+<span class="c1"># Create loopback device</span>
+losetup<span class="w"> </span>-f<span class="w"> </span>/tmp/disk0<span class="w">           </span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Formatting filesystems</span><pre><span></span><code>mkfs.ext4<span class="w"> </span>/dev/sda1
+fsck.ext4<span class="w"> </span>/dev/sda1
+
+mkfs.xfs<span class="w"> </span>/dev/sda2
+xfs_repair<span class="w"> </span>/dev/sda2
+</code></pre></div>
+<p>Traditionally, filesystems are mounted using <strong>/etc/fstab</strong>, a whitespace-delimited config file.</p>
+<p>Typical fstab entries have six columns, delimited by whitespace:</p>
+<ul>
+<li><strong>fs_spec</strong> describes the block special device. It can appear in any number of ways depending on the nature of the device</li>
+<li><strong>fs_file</strong> describes the mount point</li>
+<li><strong>fs_vfstype</strong> describes the type of filesystem</li>
+<li><strong>fs_mntops</strong> describes mount options</li>
+<li><strong>fs_freq</strong> is used by <strong>dump</strong> to determine which filesystems need to be dumped</li>
+<li><strong>fs_passno</strong> is used by <strong>fsck</strong> to determine the order in which filesystem checks are done at boot time</li>
+</ul>
+<div class="highlight"><span class="filename">/etc/fstab</span><pre><span></span><code><span class="c1"># NFS</span>
+nas:/export/storage<span class="w">     </span>/mnt/nfs_storage<span class="w">        </span>nfs<span class="w">     </span>defaults,_netdev<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>
+
+<span class="c1"># SMB</span>
+//nas/storage<span class="w">           </span>/mnt/smb_storage<span class="w">        </span>cifs<span class="w">    </span>guest,uid<span class="o">=</span><span class="m">1000</span>,iocharset<span class="o">=</span>utf-8<span class="w">  </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>
+
+<span class="c1"># VDO</span>
+/dev/mapper/storage<span class="w">     </span>/mnt/vdo_storage<span class="w">        </span>xfs<span class="w">     </span>_netdev,x-systemd.device-timeout<span class="o">=</span><span class="m">0</span>,x-systemd.requires<span class="o">=</span>vdo.service<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>
+
+<span class="c1"># Stratis</span>
+
+<span class="c1"># btrfs</span>
+<span class="nv">UUID</span><span class="o">=</span>5530f7df-65b7-4fd5-8757-0e69aad14f75<span class="w"> </span>/<span class="w">     </span>btrfs<span class="w">   </span><span class="nv">subvol</span><span class="o">=</span>/@,defaults,noatime,autodefrag,compress<span class="o">=</span>zstd,discard<span class="o">=</span>async,ssd<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>
+<span class="nv">UUID</span><span class="o">=</span>5530f7df-65b7-4fd5-8757-0e69aad14f75<span class="w"> </span>/home<span class="w"> </span>btrfs<span class="w">   </span><span class="nv">subvol</span><span class="o">=</span>/@home,defaults,noatime,autodefrag,compress<span class="o">=</span>zstd,discard<span class="o">=</span>async,ssd<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>
+</code></pre></div>
+<h2 id="zfs">ZFS</h2>
+<p>ZFS is a technology that combines the functions of a 128-bit CoW filesystem, a volume manager, and software RAID.
+Like RAID, ZFS attempts to achieve data reliability by abstracting volumes over physical devices. 
+But ZFS improves on RAID in a variety of ways:</p>
+<ul>
+<li>ZFS achieves error handling by using checksum information to correct corrupted files.
+This is unlike hardware RAID mirrors, where failures occur silently and are typically only detected upon reading a corrupt file.</li>
+<li>ZFS writes use CoW meaning they are atomic and aren't affected by issues like <strong>RAID holes</strong>, a condition in which a stripe is only partially written before the system crashes, making the array inconsistent and corrupt after a restart</li>
+<li>ZFS can also transparently compress and encrypt data written to datasets.</li>
+</ul>
+<p>A disadvantage of ZFS is that it is too tightly bound to the operation of the kernel to operate in true userspace, and that is why each implementation is different for operating systems.
+<strong>ZFS on Linux (ZOL)</strong> is considered the ugly stepchild of the ZFS community despite the fact that the Linux implementation has the most features and community support.</p>
+<p>The largest structure in the ZFS taxonomy is the <a href="https://docs.oracle.com/cd/E36784_01/html/E36835/ftyue.html#pool"><strong>pool</strong></a> or <strong id="zpool">zpool</strong>, an independent collection of one or more logical devices which provide space for filesystems (equivalent to a logical volume in LVM).
+Virtual devices or <strong>vdevs</strong> constitute a pool and are an abstraction of one or more storage devices (equivalent to volume groups in LVM).</p>
+<p>Vdevs support one of five <strong>topologies</strong>:</p>
+<ul>
+<li>Single-device vdevs cannot survive any failure</li>
+<li>Mirror vdevs duplicate every block on each of their devices</li>
+<li>RAIDz1, RAIDz2, or RAIDz3 provide one, two, or three parity blocks for each stripe. The minimum number of disks is always one more than the number of parity devices.</li>
+</ul>
+<p>Writes are distributed across available vdevs in accordance with their available free space, such that they fill more or less evenly over time.
+In ZFS parlance these pieces of data are called <strong>stripes</strong>.</p>
+<p>Special <strong>support classes</strong> of vdev such as spare, cache, log, and special represent vdevs that are dedicated to specialized tasks to enhance performance and reliabilities of the pool.</p>
+<h4 id="pool-creation"><a href="#zpool">Pool</a> creation</h4>
+<dl>
+<dd>
+<p>A variety of ZFS topologies can be <a href="https://docs.oracle.com/cd/E36784_01/html/E36835/gaynr.html">created</a> on a single line by passing subcommands and arguments to <a href="https://openzfs.github.io/openzfs-docs/man/8/zpool-create.8.html"><strong>zpool create</strong></a>.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Three-wide mirror</span>
+zpool<span class="w"> </span>create<span class="w"> </span>tank<span class="w"> </span>mirror<span class="w"> </span>/dev/sd<span class="o">{</span>a,b<span class="o">}</span><span class="w"> </span><span class="c1"># (1)</span>
+
+<span class="c1"># Two two-wide mirrors</span>
+zpool<span class="w"> </span>create<span class="w"> </span>tank<span class="w"> </span>mirror<span class="w"> </span>/dev/sd<span class="o">{</span>a,b<span class="o">}</span><span class="w"> </span>mirror<span class="w"> </span>/dev/sd<span class="o">{</span>c,d<span class="o">}</span>
+
+<span class="c1"># Raidz</span>
+zpool<span class="w"> </span>create<span class="w"> </span>tank<span class="w"> </span>raidz<span class="w"> </span>/dev/sd<span class="o">{</span>a,b,c<span class="o">}</span>
+
+<span class="c1"># Setting a property at creation with -o</span>
+zpool<span class="w"> </span>create<span class="w"> </span>tank<span class="w"> </span>mirror<span class="w"> </span>/dev/sd<span class="o">{</span>a,b<span class="o">}</span><span class="w"> </span>-o<span class="w"> </span><span class="nv">compression</span><span class="o">=</span>lz4
+</code></pre></div>
+<ol>
+<li>Zpools, or pools for short, are conventionally named "tank" in documentation.</li>
+</ol>
+<p>Additional <strong id="vdev">vdevs</strong> ("virtual device") can be added to existing pools using <strong>zpool add</strong> using identical syntax.</p>
+<div class="highlight"><pre><span></span><code>zpool<span class="w"> </span>add<span class="w"> </span>tank<span class="w"> </span>mirror<span class="w"> </span>/dev/sd<span class="o">{</span>e,f<span class="o">}</span>
+</code></pre></div>
+<p>Pools are most commonly displayed using <a href="https://openzfs.github.io/openzfs-docs/man/8/zpool-status.8.html"><strong>zpool status</strong></a>.
+Depending on the installation, by default disks are identified by UUID or block device name.</p>
+<div class="highlight"><pre><span></span><code>zpool<span class="w"> </span>status<span class="w"> </span>tank<span class="w"> </span>-g<span class="w"> </span><span class="c1"># GUIDs</span>
+zpool<span class="w"> </span>status<span class="w"> </span>tank<span class="w"> </span>-L<span class="w"> </span><span class="c1"># Block device names</span>
+zpool<span class="w"> </span>list<span class="w"> </span>-v
+
+<span class="c1"># Destroy pool</span>
+zpool<span class="w"> </span>destroy<span class="w"> </span>tank
+</code></pre></div>
+</dd>
+</dl>
+<h4 id="removing-devices">Removing devices</h4>
+<dl>
+<dd>
+<p><a href="https://openzfs.github.io/openzfs-docs/man/8/zpool-remove.8.html"><strong>zpool remove</strong></a> is used to remove spare, cache, log and top-level data devices that are <strong>not</strong> raidz (top-level raidz vdevs cannot be removed).</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Hot spares</span>
+zpool<span class="w"> </span>add<span class="w"> </span>tank<span class="w"> </span>spare<span class="w"> </span>sdg
+zpool<span class="w"> </span>remove<span class="w"> </span>tank<span class="w"> </span>sdg
+
+<span class="c1"># When incorrectly adding a device to a pool</span>
+zpool<span class="w"> </span>add<span class="w"> </span>tank<span class="w"> </span>sdh
+zpool<span class="w"> </span>remove<span class="w"> </span>sdh
+zpool<span class="w"> </span>add<span class="w"> </span>tank<span class="w"> </span>mirror<span class="w"> </span>sdh
+</code></pre></div>
+<p>Alternatively, <a href="https://openzfs.github.io/openzfs-docs/man/8/zpool-detach.8.html"><strong>zpool detach</strong></a> is used exclusively to remove a mirrored data device.</p>
+<div class="highlight"><span class="filename">Mirrored arrays</span><pre><span></span><code>zpool<span class="w"> </span>add<span class="w"> </span>tank<span class="w"> </span>mirror<span class="w"> </span>sde<span class="w"> </span>sdf
+zpool<span class="w"> </span>detach<span class="w"> </span>sdb
+</code></pre></div>
+</dd>
+</dl>
+<h4 id="disk-replacement">Disk replacement</h4>
+<dl>
+<dd>
+<div class="highlight"><span class="filename">Replace disk</span><pre><span></span><code><span class="c1"># Clear errors first</span>
+zpool<span class="w"> </span>clear<span class="w"> </span>tank
+
+<span class="c1"># Take disk offline</span>
+zpool<span class="w"> </span>offline<span class="w"> </span>tank<span class="w"> </span>sdb
+
+<span class="c1"># Replace disk physically</span>
+
+<span class="c1"># Begin the resilvering process</span>
+zpool<span class="w"> </span>replace<span class="w"> </span>tank<span class="w"> </span>sdb<span class="w"> </span>sdc
+
+<span class="c1"># Monitor resilvering process</span>
+watch<span class="w"> </span>zpool<span class="w"> </span>status<span class="w"> </span>tank
+</code></pre></div>
+<p>If a disk has gone bad, it must first be taken offline using <a href="https://openzfs.github.io/openzfs-docs/man/8/zpool-offline.8.html"><strong>zpool offline</strong></a> before physically replacing it.
+Failing to do this will produce errors.</p>
+<p>Sometimes the UUID must be provided to take a disk offline.
+This can be retrieved using <a href="#blkid"><strong>blkid</strong></a>.</p>
+<div class="highlight"><pre><span></span><code>blkid<span class="w"> </span>/dev/sdb2
+zpool<span class="w"> </span>offline<span class="w"> </span><span class="nv">$UUID</span>
+</code></pre></div>
+<p>Then <a href="https://openzfs.github.io/openzfs-docs/man/8/zpool-replace.8.html"><strong>zpool replace</strong></a> initiates the process of rebuilding redundant groups, or <strong>resilvering</strong>.</p>
+<p><a href="https://docs.oracle.com/cd/E19253-01/819-5461/gazgd/index.html">Replacing</a> a used disk with one that is unused (without physical replacement) similarly uses <a href="https://openzfs.github.io/openzfs-docs/man/8/zpool-replace.8.html"><strong>zpool replace</strong></a>.</p>
+<p>Ongoing resilvers can be cancelled using <a href="https://openzfs.github.io/openzfs-docs/man/8/zpool-detach.8.html"><strong>zpool detach</strong></a>:</p>
+<div class="highlight"><pre><span></span><code>zpool<span class="w"> </span>detach<span class="w"> </span>tank<span class="w"> </span>sdc
+</code></pre></div>
+<p>When simply moving a disk's physical location (from one bay to another), it must also be taken offline.</p>
+<div class="highlight"><pre><span></span><code>zpool<span class="w"> </span>offline<span class="w"> </span>tank<span class="w"> </span>sdb
+<span class="c1"># Move disk physically</span>
+zpool<span class="w"> </span>online<span class="w"> </span>tank<span class="w"> </span>sdb
+</code></pre></div>
+<p><a href="https://docs.oracle.com/cd/E19253-01/819-5461/gazqr/index.html">Exporting a pool</a> using <a href="https://openzfs.github.io/openzfs-docs/man/8/zpool-export.8.html"><strong>zpool export</strong></a> takes it offline, allowing all disks to be removed.</p>
+<p><a href="https://docs.oracle.com/cd/E19253-01/819-5461/gazuf/index.html">Importing a pool</a> is also straightforward.
+Unless there is a name conflict, the name of the pool is all that is needed.
+The UUID of the pool can be retrieved by inspecting member disks using lsblk.</p>
+<div class="highlight"><pre><span></span><code>zpool<span class="w"> </span><span class="nb">export</span><span class="w"> </span>tank
+zpool<span class="w"> </span>import<span class="w"> </span>tank
+</code></pre></div>
+<p>Note that for TrueNAS, a pool should be imported through the GUI, otherwise attempting to create network shares will produce <a href="https://www.truenas.com/community/threads/einval-sharingsmb_create-path_local-the-path-must-reside-within-a-pool-mount-point.107389/">errors</a>.</p>
+</dd>
+</dl>
+<h4 id="dataset-management">Dataset management</h4>
+<dl>
+<dd>
+<p>A <strong id="dataset">dataset</strong> in ZFS is equivalent to the <a href="#btrfs">btrfs</a> <a href="#subvolume"><strong>subvolume</strong></a>, defined as an independently mountable POSIX filetree.
+Commands under <a href="https://openzfs.github.io/openzfs-docs/man/8/zfs.8.html"><strong>zfs</strong></a> exist for <a href="https://openzfs.github.io/openzfs-docs/man/8/zfs-list.8.html">displaying</a>, <a href="https://openzfs.github.io/openzfs-docs/man/8/zfs-create.8.html">creating</a>, <a href="https://openzfs.github.io/openzfs-docs/man/8/zfs-rename.8.html">renaming</a>, and <a href="https://openzfs.github.io/openzfs-docs/man/8/zfs-destroy.8.html">destroying</a> datasets:</p>
+<div class="highlight"><span class="filename">Create dataset</span><pre><span></span><code>zfs<span class="w"> </span>create<span class="w"> </span>tank/dataset
+zfs<span class="w"> </span>list<span class="w"> </span>-r<span class="w"> </span>tank<span class="w"> </span><span class="c1"># (1)</span>
+zfs<span class="w"> </span>rename<span class="w"> </span>tank<span class="w"> </span>pool
+zfs<span class="w"> </span>remove<span class="w"> </span>pool/dataset
+</code></pre></div>
+<ol>
+<li>Providing a pool name alone will not display contained datasets recursively.</li>
+</ol>
+<p>Dataset properties can be changed with <a href="https://openzfs.github.io/openzfs-docs/man/8/zfs-set.8.html"><strong>zfs set</strong></a>:</p>
+<div class="highlight"><span class="filename">Configure dataset</span><pre><span></span><code>zfs<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="nv">mountpoint</span><span class="o">=</span>/mnt/tank<span class="w"> </span>tank
+zfs<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="nv">compression</span><span class="o">=</span>on<span class="w"> </span>tank/dataset
+zfs<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="nv">sync</span><span class="o">=</span>disabled<span class="w"> </span>tank/dataset
+zfs<span class="w"> </span><span class="nb">set</span><span class="w"> </span>acme:disksource<span class="o">=</span>vendorname<span class="w">  </span>
+</code></pre></div>
+<p>A ZFS <strong>volume</strong> is a <a href="#dataset">dataset</a> that <a href="https://docs.oracle.com/cd/E18752_01/html/819-5461/gaypf.html">represents</a> a block device.
+They are created with the <strong>-V</strong> option and can be found under <strong>/dev/zvol</strong>.</p>
+<div class="highlight"><pre><span></span><code>zfs<span class="w"> </span>create<span class="w"> </span>-V<span class="w"> </span>5gb<span class="w"> </span>tank/vol
+</code></pre></div>
+<p>A volume can be shared as an iSCSI target by setting the <strong>shareiscsi</strong> property on the volume.</p>
+</dd>
+</dl>
+<h4 id="snapshot-management">Snapshot management</h4>
+<dl>
+<dd>
+<p><a href="https://docs.oracle.com/cd/E19253-01/819-5461/gbciq/index.html"><strong>Snapshots</strong></a> are read-only copies of file systems or volumes.
+They are managed using subcommands under <a href="https://openzfs.github.io/openzfs-docs/man/8/zfs-snapshot.8.html"><strong>zfs snapshot</strong></a> and appear as directories at the root of the file system of every dataset under <strong>.zfs/snapshot</strong>.</p>
+<div class="highlight"><span class="filename">Create snapshot of a pool recursively</span><pre><span></span><code>zfs<span class="w"> </span>snapshot<span class="w"> </span>-r<span class="w"> </span>tank@now
+</code></pre></div>
+<div class="highlight"><span class="filename">Display snapshots</span><pre><span></span><code>zfs<span class="w"> </span>list<span class="w"> </span>-t<span class="w"> </span>snapshot
+</code></pre></div>
+<div class="highlight"><span class="filename">Snapshot management</span><pre><span></span><code>zfs<span class="w"> </span>snapshot<span class="w"> </span>tank@snapshot1
+zfs<span class="w"> </span>rollback<span class="w"> </span>tank@snapshot1
+zfs<span class="w"> </span>destroy<span class="w"> </span>tank@snapshot1
+</code></pre></div>
+</dd>
+</dl>
+<h4 id="migration">Migration</h4>
+<dl>
+<dd>
+<p><a href="https://serverfault.com/questions/88638/moving-a-zfs-filesystem-from-one-pool-to-another">Migrating pools</a> is done using snapshots as well, with the commands <a href="https://openzfs.github.io/openzfs-docs/man/8/zfs-send.8.html"><strong>zfs send</strong></a> and <a href="https://openzfs.github.io/openzfs-docs/man/8/zfs-receive.8.html"><strong>zfs receive</strong></a>.
+First a <a href="#snapshot-management">snapshot</a> is taken, then:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Use pv to monitor progress</span>
+zfs<span class="w"> </span>send<span class="w"> </span>-R<span class="w"> </span>source-tank@moving<span class="w"> </span><span class="p">|</span><span class="w"> </span>pv<span class="w"> </span><span class="p">|</span><span class="w"> </span>zfs<span class="w"> </span>receive<span class="w"> </span>-Fd<span class="w"> </span>receive-tank/<span class="w"> </span><span class="c1"># (1)</span>
+</code></pre></div>
+<ol>
+<li>Without <strong>-d</strong>, the recursive copy will be performed into the same destination <a href="https://ptribble.blogspot.com/2012/09/recursive-zfs-send-and-receive.html">without recreating the dataset</a>. </li>
+</ol>
+</dd>
+</dl>
+<h2 id="btrfs">Btrfs</h2>
+<p>Oracle's <strong>Btrfs</strong> "B-tree file system" aimed to repeat ZFS's advances during a period when it seemed that licensing challenges would prevent ZFS from becoming available on Linux.
+It was incorporated into the Linux kernel in 2009 but is still under active development.</p>
+<p>Several key differences in capabilities between Btrfs and ZFS:</p>
+<ul>
+<li>Topologies can be changed much more easily</li>
+<li>Btrfs uses less RAM</li>
+<li>Btrfs does not have the ability to allocate specific devices as caches</li>
+<li>As of 2017, Btrfs implementations of parity raid are not yet ready for production use</li>
+</ul>
+<details class="info">
+<summary>Resources</summary>
+<p>Unlike ZFS which has a lot of material in written and video form for potential users to learn from, BtrFS appears not to have much available.
+BtrFS does have an <a href="https://btrfs.wiki.kernel.org/index.php/Glossary">official wiki</a>, but written articles on FOSS blogs focus on operation from the command-line but don't do a good job of describing the taxonomy of concepts, aside from the <a href="https://btrfs.wiki.kernel.org/index.php/Glossary">glossary</a>.</p>
+<p>Users of ZFS, in contrast, have taken the trouble to create introductory material, including Ars Technica's <a href="https://arstechnica.com/information-technology/2020/05/zfs-101-understanding-zfs-storage-and-performance/">ZFS 101</a> article, and many talks by enthusiasts like <a href="https://youtu.be/Hjpqa_kjCOI">Philip Paeps</a>.</p>
+<p>This might be because btrfs's concepts seem less well thought-out, or at least more poorly described.
+For example, the term <a href="#subvolume">subvolume</a> is used in btrfs but the container for subvolumes is not "volume" but rather "top-level subvolume".</p>
+<p>Jim Salter from Ars Technica (who wrote the ZFS 101 article above) appears to have devoted some effort to fleshing out the topic:</p>
+<ul>
+<li>
+<p><a href="https://arstechnica.com/gadgets/2021/09/examining-btrfs-linuxs-perpetually-half-finished-filesystem/">Examining btrfs, Linux's perpetually half-finished filesystem</a></p>
+</li>
+<li>
+<p><a href="https://vitux.com/how-to-install-and-configure-samba-on-ubuntu/">Install and configure Samba server</a></p>
+</li>
+<li><a href="https://www.tecmint.com/install-samba-on-rhel-8-for-file-sharing-on-windows/">Install Samba4 on RHEL 8 for File Sharing on Windows</a></li>
+<li><a href="https://youtu.be/mCfX4sqDmzs">FreeNAS 11.3 - How to Set Up Windows SMB Shares</a></li>
+<li><a href="http://rkeene.org/projects/info/wiki/btrfs">BtrFS</a></li>
+<li><a href="https://docs.oracle.com/cd/E19253-01/819-5461/6n7ht6quu/index.html">Creating and Destroying ZFS Storage Pools</a></li>
+<li><a href="https://docs.oracle.com/cd/E19253-01/819-5461/gayrd/index.html">Managing devices in ZFS storage pools</a></li>
+<li><a href="https://opensource.com/article/20/11/btrfs-linux">Getting started with btrfs for Linux</a></li>
+<li><a href="https://opensource.com/article/18/4/ext4-filesystem">Understanding Linux filesystems: ext4 and beyond</a></li>
+</ul>
+</details>
+<h4 id="pool-management">Pool management</h4>
+<dl>
+<dd>
+<div class="highlight"><span class="filename">Create a storage pool</span><pre><span></span><code>mkfs.btrfs<span class="w"> </span>--data<span class="w"> </span>raid0<span class="w"> </span>/dev/sd<span class="o">{</span>a,b,c<span class="o">}</span><span class="w"> </span><span class="c1"># (1)</span>
+</code></pre></div>
+<ol>
+<li>Valid arguments to <strong>-d</strong>/<strong>--data</strong> include raid0, raid1, raid1c3, raid1c4, raid5, raid6, raid10, single, or dup.</li>
+</ol>
+<div class="highlight"><span class="filename">Add device</span><pre><span></span><code>btrfs<span class="w"> </span>device<span class="w"> </span>add<span class="w"> </span>/dev/sde<span class="w"> </span>/data
+btrfs<span class="w"> </span>filesystem<span class="w"> </span>balance<span class="w"> </span>/data
+</code></pre></div>
+<div class="highlight"><span class="filename">Remove device</span><pre><span></span><code>btrfs<span class="w"> </span>device<span class="w"> </span>delete<span class="w"> </span>/dev/sdb<span class="w"> </span>/data
+btrfs<span class="w"> </span>filesystem<span class="w"> </span>balance<span class="w"> </span>/data
+</code></pre></div>
+<div class="highlight"><span class="filename">Replace device</span><pre><span></span><code>btrfs<span class="w"> </span>device<span class="w"> </span>add<span class="w"> </span>/dev/sdc<span class="w"> </span>/data
+btrfs<span class="w"> </span>device<span class="w"> </span>delete<span class="w"> </span>/dev/sdb<span class="w"> </span>/data
+btrfs<span class="w"> </span>filesystem<span class="w"> </span>balance<span class="w"> </span>/data
+</code></pre></div>
+</dd>
+</dl>
+<h4 id="filesystem-management">Filesystem management</h4>
+<dl>
+<dd>
+<p>Filesystems in btrfs are equivalent to ZFS datasets except that filesystems can be divided into "subvolumes".</p>
+<div class="highlight"><span class="filename">Display subvolumes</span><pre><span></span><code><span class="c1"># Subvolume names begin with **@**.</span>
+btrfs<span class="w"> </span>subvolume<span class="w"> </span>list<span class="w"> </span>/
+</code></pre></div>
+<p>Subvolumes can be mounted to separate mountpoints, even though they specify the same filesystem, using the <strong>subvol</strong> directive.</p>
+<div class="highlight"><pre><span></span><code>UUID=5530f7df-65b7-4fd5-8757-0e69aad14f75 /              btrfs   subvol=/@,defaults,noatime,autodefrag,compress=zstd,discard=async,ssd 0 0
+UUID=5530f7df-65b7-4fd5-8757-0e69aad14f75 /home          btrfs   subvol=/@home,defaults,noatime,autodefrag,compress=zstd,discard=async,ssd 0 0
+</code></pre></div>
+<div class="highlight"><span class="filename">Rename filesystem</span><pre><span></span><code>btrfs<span class="w"> </span>filesystem<span class="w"> </span>label<span class="w"> </span>/<span class="w"> </span>tank
+
+<span class="c1"># Verify</span>
+btrfs<span class="w"> </span>filesystem<span class="w"> </span>show
+blkid
+</code></pre></div>
+<div class="highlight"><span class="filename">Measure free space</span><pre><span></span><code>btrfs<span class="w"> </span>filesystem<span class="w"> </span>df<span class="w"> </span>/
+
+<span class="c1"># Show storage consumed, including how much is shared by all snapshots</span>
+btrfs<span class="w"> </span><span class="k">fi</span><span class="w"> </span>du<span class="w"> </span>/home<span class="w"> </span>-s
+</code></pre></div>
+</dd>
+</dl>
+<h4 id="snapshots">Snapshots</h4>
+<dl>
+<dd>
+<p>In btrfs, you can take snapshots of btrfs subvolumes only, and the snapshots are subvolumes themselves.
+In fact, by <a href="https://btrfs.wiki.kernel.org/index.php/SysadminGuide#Snapshots">definition</a> a btrfs snapshot is simply a subvolume that shares its data and metadata with some other subvolume using btrfs's CoW capabilities.</p>
+<div class="highlight"><pre><span></span><code>btrfs<span class="w"> </span>subvolume<span class="w"> </span>list<span class="w"> </span>/
+</code></pre></div>
+<p>These are stored in the <strong>.snapshots</strong> directory at the root of the subvolume as numbered subdirectories.
+Restoring from these snapshots can be done with simple file tools like <strong>rsync</strong>.</p>
+<div class="highlight"><pre><span></span><code>rsync<span class="w"> </span>-avz<span class="w"> </span>/.snapshots/141/snapshot/<span class="nv">$PATH</span><span class="w"> </span><span class="nv">$PATH</span>
+</code></pre></div>
+<p>Snapshots are read-only by default, but can also be writable.
+Snapshots can be investigated:</p>
+<div class="highlight"><pre><span></span><code>btrfs<span class="w"> </span>subvolume<span class="w"> </span>show<span class="w"> </span>/.snapshots/141/snapshot
+</code></pre></div>
+<div class="highlight"><span class="filename">Delete snapshot</span><pre><span></span><code>btrfs<span class="w"> </span>subvolume<span class="w"> </span>delete<span class="w"> </span>/.snapshots/141/snapshot
+</code></pre></div>
+</dd>
+</dl>
+<h2 id="nfs">NFS</h2>
+<p><strong>NFS</strong> or "Network File System" is a distributed filesystem based on the RPC protocol that provides transparent access to remote disks.</p>
+<p>Shares or "exports" made available to clients are defined in <strong>/etc/exports</strong>.</p>
+<div class="highlight"><span class="filename">/etc/exports on TrueNAS</span><pre><span></span><code>&quot;/mnt/pool/Documents&quot;\
+    *(sec=sys,rw,no_subtree_check)
+
+# Read-only (&quot;rw&quot; is removed)
+&quot;/mnt/pool/Aliana&quot;\
+    *(sec=sys,no_subtree_check)
+</code></pre></div>
+<p>Once exports are defined, the NFS server can be started
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>nfs-server.service
+</code></pre></div></p>
+<p>Exports can be displayed using <strong>showmount -e</strong>.</p>
+<p>Shares can be manually mounted in /etc/fstab using the following syntax:
+<div class="highlight"><pre><span></span><code>127.0.0.1:/export/web_data1 /mnt/nfs_web_data1 nfs defaults,_netdev 0 0
+127.0.0.1:/export/web_data2 /mnt/nfs_web_data2 nfs defaults,_netdev 0 0
+</code></pre></div></p>
+<p>Better still is using <a href="#autofs">autofs</a>.</p>
+<details class="info">
+<summary>Resources</summary>
+<ul>
+<li><a href="https://youtu.be/c3dL0ULEH-s"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m10 15 5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73Z"/></svg></span> How to Share Files Using NFS: Linux Server Training 101</a></li>
+</ul>
+</details>
+<details class="info">
+<summary>History</summary>
+<p>Modern NFS deployments in the wild are usually versions 3 or 4.
+NFS version 4 (released in 2003) has superior performance, requires only the additional <strong>mountd</strong> service and <strong>TCP port 2049</strong> to be open.</p>
+<p>NFS version 3 was released in the early 1990s resolved earlier performance bottlenecks with a coherency scheme that allowed asynchronous writes.
+File locking was implemented by means of two separate daemons, <strong>lockd</strong> and <strong>statd</strong>.
+This approach was found to be unreliable, and NFSv4 incorporated file locking into the core protocol.</p>
+</details>
+<h4 id="authentication">Authentication</h4>
+<p>All versions of NFS support various security mechanisms:</p>
+<ul>
+<li><strong>AUTH_NONE</strong> no authentication</li>
+<li><strong>AUTH_SYS</strong> Unix-style user and group access control</li>
+<li><strong>RPCSEC_GSS</strong> layer which is often used in combination with Kerberos</li>
+</ul>
+<p>AUTH_SYS depends on the client reporting user UID and GID, which are compared with the server's own values in /etc/passwd.
+This means that users with root access can <strong>su</strong> to whatever UID they wish, allowing them to access shares.
+This approach depends on the client to correctly report its access and is highly insecure.</p>
+<p>NFS servers intercept incoming requests made on behalf of UID 0 (root) and changes them to map them to that of another reason, a process called "squashing root".
+A placeholder account named "nobody" with UID 65534 is defined to be the account as whom a root user masquerades on an NFS server.
+Options in the exports file can control this behavior.</p>
+<p>In TrueNAS, the <a href="https://www.truenas.com/community/threads/mapall-maproot-better-explanation-please.54877/">MAPROOT</a> setting specifies a user account to which root logins should be mapped.
+Similarly, the <a href="https://www.truenas.com/community/threads/nfs-mount-configuration-for-user-perms.70236/"><strong>MAPALL</strong></a> setting defines a user account to which any client account should be mapped.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Normal NFS share in TrueNAS</span>
+<span class="s2">&quot;/mnt/pool/Media/Pictures&quot;</span><span class="se">\</span>
+<span class="w">    </span>*<span class="o">(</span><span class="nv">sec</span><span class="o">=</span>sys,rw,no_subtree_check<span class="o">)</span>
+
+<span class="c1"># MAPALL set to user media with UID 3000</span>
+<span class="s2">&quot;/mnt/pool/Media/Videos&quot;</span><span class="se">\</span>
+<span class="w">    </span>*<span class="o">(</span><span class="nv">sec</span><span class="o">=</span>sys,rw,anonuid<span class="o">=</span><span class="m">3000</span>,anongid<span class="o">=</span><span class="m">3000</span>,all_squash,no_subtree_check<span class="o">)</span>
+</code></pre></div>
+<p>AUTH_SYS authentication provide a good use-case to use certain commands like <strong>id</strong>.</p>
+<h2 id="smb">SMB</h2>
+<p>The SMB implementation on Linux is called <strong>Samba</strong>.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Configure Samba </span>
+mkdir<span class="w"> </span>/samba<span class="w">                   </span><span class="c1"># Create a directory for the share</span>
+chmod<span class="w"> </span>-R<span class="w"> </span><span class="m">0777</span><span class="w"> </span>/samba
+chown<span class="w"> </span>-R<span class="w"> </span>nobody:nobody<span class="w"> </span>/samba<span class="w">  </span><span class="c1"># Remove ownership, not necessary</span>
+
+<span class="c1"># Open firewall rule (not strictly necessary)</span>
+firewall-cmd<span class="w"> </span>--permanent<span class="w"> </span>--add-service<span class="o">=</span>samba
+firewall-cmd<span class="w"> </span>--reload
+
+<span class="c1"># Verify</span>
+firewall-cmd<span class="w"> </span>--list-services<span class="w"> </span>
+</code></pre></div>
+<p>Configure the main Samba config file at <strong>/etc/samba/smb.conf</strong>. The name in brackets becomes the name of the share.
+<div class="highlight"><pre><span></span><code><span class="k">[samba]</span>
+<span class="w">    </span><span class="na">comment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">Samba on Ubuntu</span>
+<span class="w">    </span><span class="na">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/samba</span>
+<span class="w">    </span><span class="na">read only</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">no</span>
+<span class="w">    </span><span class="na">browsable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span>
+</code></pre></div></p>
+<p>Verify configuration</p>
+<div class="highlight"><pre><span></span><code>testparm
+</code></pre></div>
+<div class="highlight"><span class="filename">SELinux</span><pre><span></span><code><span class="c1"># Set SELinux context of share directory</span>
+semanage<span class="w"> </span>fcontext<span class="w"> </span>-a<span class="w"> </span>-t<span class="w"> </span>samba_share_t<span class="w"> </span><span class="s1">&#39;/samba(/.*)?&#39;</span>
+restorecon<span class="w"> </span>-vvFR<span class="w"> </span>/samba
+
+<span class="c1"># Allow SELinux to work with Samba</span>
+setsebool<span class="w"> </span>-P<span class="w"> </span>samba_export_all_ro<span class="w"> </span>on
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># Set up a Samba account</span>
+smbpasswd<span class="w"> </span>-a<span class="w"> </span><span class="nv">$USER</span>
+
+<span class="c1"># Restart Samba service</span>
+systemctl<span class="w"> </span>restart<span class="w"> </span>smbd
+
+<span class="c1"># Browse all available shares</span>
+smbclient<span class="w"> </span>-L<span class="w"> </span><span class="nv">$HOST</span>
+
+<span class="c1"># Access SMB share, displaying the Samba CLI &quot;smb: \&gt;&quot;</span>
+smbclient<span class="w"> </span>//<span class="nv">$HOST</span>/<span class="nv">$USER</span><span class="w"> </span>-U<span class="w"> </span><span class="nv">$USER</span>
+</code></pre></div>
+<p>On TrueNAS, the option to "Allow Guest Access" should be turned on, unless password-based authentication for specific users is desired.
+Also, the directory must have write permissions enabled to allow uploading.
+<div class="highlight"><pre><span></span><code>chmod<span class="w"> </span>o+w
+</code></pre></div>
+Bizarrely, the ability to navigate into subdirectories appears to depend on the owner execute bit.
+This may have something to do with anonymous guest access.
+<div class="highlight"><pre><span></span><code>chmod<span class="w"> </span>u+x
+</code></pre></div></p>
+<p>Permanently mounting a Samba share in /etc/fstab
+<div class="highlight"><pre><span></span><code>//nas/Videos /home/jasper/Videos cifs guest,uid=1000,iocharset=utf8 0 0
+</code></pre></div>
+Then mount the fstab file
+<div class="highlight"><pre><span></span><code>mount<span class="w"> </span>-a
+</code></pre></div></p>
+<h4 id="hdd-serial-numbers">HDD serial numbers</h4>
+<dl>
+<dd>
+<div class="highlight"><pre><span></span><code><span class="c1"># Produce a CSV of hard disk identifiers and their serial numbers using hdparm, grep, cut, and output redirection.</span>
+<span class="k">for</span><span class="w"> </span>l<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span>a..w<span class="o">}</span><span class="w"> </span>
+<span class="k">do</span><span class="w"> </span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;/dev/sd</span><span class="nv">$l</span><span class="s2">,&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>drives
+<span class="w">    </span>hdparm<span class="w"> </span>-I<span class="w"> </span>/dev/sd<span class="nv">$l</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>
+<span class="w">        </span>grep<span class="w"> </span><span class="s1">&#39;Serial Number&#39;</span><span class="w"> </span>-<span class="w"> </span><span class="p">|</span>
+<span class="w">        </span>cut<span class="w"> </span>-d<span class="w"> </span>:<span class="w"> </span>-f<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>
+<span class="w">        </span>tr<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;[:space:]&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>drives
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>drives<span class="p">;</span>
+<span class="k">done</span>
+</code></pre></div>
+</dd>
+</dl>
+<h4 id="autofs">Autofs</h4>
+<dl>
+<dd>
+<p><strong>Auto File System</strong> offers an alternative way of mounting NFS shares that can save some system resources, especially when many shares are mounted.
+Autofs can mount NFS shares dynamically, only when accessed.</p>
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>autofs
+systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>autofs.service
+</code></pre></div>
+<p>Mounts are defined in configs called <strong>maps</strong>.
+There are three map types:</p>
+<ul>
+<li><strong>master</strong> map is <strong>/etc/auto.master</strong> by default. This can be defined using the <strong>master_map_name</strong> directive in the main configuration at <strong>/etc/autofs.conf</strong>.</li>
+<li><strong>direct</strong> maps point to other files for mount details. They are notable for beginning with <strong>/-</strong></li>
+<li><strong>indirect</strong> maps also point to other files for mount details but provide an umbrella mount point which will contain all other mounts within it. Note that other mountpoints at this parent directory cannot coexist with autofs mounts.</li>
+</ul>
+<p>Here is an example indirect map that will mount to /data/sales.</p>
+<div class="highlight"><span class="filename">/etc/auto.master.d/data.autofs</span><pre><span></span><code>/data /etc/auto.data
+</code></pre></div>
+<div class="highlight"><span class="filename">/etc/auto.data</span><pre><span></span><code>sales -rw,soft 192.168.33.101:/data/sales
+</code></pre></div>
+<p>Map files also support wildcards.
+<div class="highlight"><pre><span></span><code>* 127.0.0.1:/home/&amp;
+</code></pre></div></p>
+</dd>
+</dl>
+<h4 id="lvm">LVM</h4>
+<dl>
+<dd>
+<div class="highlight"><span class="filename">LVM</span><pre><span></span><code>pvcreate<span class="w"> </span>/dev/vd<span class="o">{</span>b,c,d<span class="o">}</span>
+vgcreate<span class="w"> </span>group<span class="w"> </span>/dev/vd<span class="o">{</span>b,c,d<span class="o">}</span>
+
+<span class="c1"># Use all free space</span>
+lvcreate<span class="w"> </span>-l<span class="w"> </span><span class="m">100</span>%FREE<span class="w"> </span>-n<span class="w"> </span>volume<span class="w"> </span>group<span class="w"> </span><span class="c1"># --extents, --name</span>
+</code></pre></div>
+</dd>
+</dl>
+<h4 id="vdo">VDO</h4>
+<dl>
+<dd>
+<p><strong>Virtual disk optimizer (VDO)</strong> is a kernel module introduced in RHEL 7.5 that provides data deduplication and compression on block devices.</p>
+<p>The physical storage of a VDO volume is divided into a number of <strong>slabs</strong>, which are contiguous regions of the physical space. 
+All slabs for a given volume have the same size, which can be any power of 2 multiple of 128 MB up to 32 GB (2 GB by default).
+The maximum number of slabs is 8,192.
+The maximum physical storage of the VDO is provided to the user on creation.</p>
+<p>Like LVM volumes, VDO volumes appear under <strong>/dev/mapper</strong></p>
+<p>VDO appears not to be installed by default, but it is available in the BaseOS repo.
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>install<span class="w"> </span>vdo
+systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>vdo
+</code></pre></div></p>
+<div class="highlight"><span class="filename">Create a VDO volume</span><pre><span></span><code>vdo<span class="w"> </span>create<span class="w"> </span>--name<span class="o">=</span>web_storage<span class="w"> </span>--device<span class="o">=</span>/dev/xvdb<span class="w"> </span>--vdoLogicalSize<span class="o">=</span>10G
+vdostats<span class="w"> </span>--human-readable
+mkfs.xfs<span class="w"> </span>-K<span class="w"> </span>/dev/mapper/web_storage
+udevadm<span class="w"> </span>settle
+</code></pre></div>
+<div class="highlight"><span class="filename">/etc/fstab</span><pre><span></span><code>/dev/mapper/storage<span class="w">     </span>/mnt/vdo_storage<span class="w">        </span>xfs<span class="w">     </span>_netdev,x-systemd.device-timeout<span class="o">=</span><span class="m">0</span>,x-systemd.requires<span class="o">=</span>vdo.service<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>
+</code></pre></div>
+</dd>
+</dl>
+<h4 id="stratis">Stratis</h4>
+<dl>
+<dd>
+<p>Stratis is an open-source managed pooled storage solution in the vein of ZFS or btrfs.</p>
+<p>Stratis block devices can be disks, partitions, LUKS-encrypted volumes, LVM logical volumes, or DM multipath devices.
+Stratis pools are mounted under <strong>/stratis</strong> and, like other pooled storage systems, support multiple filesystems.
+Stratis file systems are thinly provisioned and formatted with <strong>xfs</strong>, although vanilla xfs utilities cannot be used on Stratis file systems.</p>
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>stratisd<span class="w"> </span>stratis-cli
+systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>stratisd
+</code></pre></div>
+<div class="highlight"><span class="filename">Pool management</span><pre><span></span><code>stratis<span class="w"> </span>pool<span class="w"> </span>create<span class="w"> </span>pool<span class="w"> </span>/dev/sd<span class="o">{</span>a,b,c<span class="o">}</span>
+
+<span class="c1"># An error about the devices being &quot;owned&quot; can be resolved by wiping it.</span>
+wipefs<span class="w"> </span>-a<span class="w"> </span>/dev/sda
+
+<span class="c1"># Display block devices managed by Stratis, equivalent to</span>
+<span class="c1">#   pvs</span>
+stratis<span class="w"> </span>blockdev
+
+<span class="c1"># Create filesystem</span>
+stratis<span class="w"> </span>fs<span class="w"> </span>create<span class="w"> </span>pool<span class="w"> </span>files
+
+<span class="c1"># Confirm</span>
+stratis<span class="w"> </span>fs
+
+<span class="c1"># Expand pool, equivalent to </span>
+<span class="c1">#   zpool add pool /dev/sdd</span>
+stratis<span class="w"> </span>pool<span class="w"> </span>add-data<span class="w"> </span>pool<span class="w"> </span>/dev/sdd
+</code></pre></div>
+<div class="highlight"><span class="filename">/etc/fstab</span><pre><span></span><code>
+</code></pre></div>
+<div class="highlight"><span class="filename">Snapshot management</span><pre><span></span><code><span class="c1"># Save snapshot</span>
+stratis<span class="w"> </span>fs<span class="w"> </span>snapshot<span class="w"> </span>pool<span class="w"> </span>files<span class="w"> </span>files-snapshot
+
+<span class="c1"># Restore from snapshot</span>
+stratis<span class="w"> </span>fs<span class="w"> </span>rename<span class="w"> </span>files<span class="w"> </span>files-orig
+stratis<span class="w"> </span>fs<span class="w"> </span>rename<span class="w"> </span>files-snapshot<span class="w"> </span>files
+umount<span class="w"> </span>/mnt/files<span class="p">;</span><span class="w"> </span>mount<span class="w"> </span>/mnt/files
+</code></pre></div>
+</dd>
+</dl>
+<h2 id="glossary">Glossary</h2>
+<h2 id="commands">Commands</h2>
+<h4 id="blkid">blkid</h4>
+<dl>
+<dd>
+<h4 id="blkid_1">blkid</h4>
+<dl>
+<dd><div class="highlight"><pre><span></span><code>
+</code></pre></div></dd>
+</dl>
+</dd>
+</dl>
+<h4 id="btrfs_1">btrfs</h4>
+<dl>
+<dd></dd>
+</dl>
+<h4 id="fallocate">fallocate</h4>
+<dl>
+<dd>
+<h4 id="fallocate_1">fallocate</h4>
+<dl>
+<dd>
+<p>Create a file of a given size with the <code>--length</code>/<code>-l</code> option</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">1 gigabyte</label><label for="__tabbed_1_2">1 gibibyte</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>fallocate<span class="w"> </span>-l<span class="w"> </span>1GB<span class="w"> </span><span class="nv">$FILENAME</span><span class="w"> </span><span class="c1"># gigabyte</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>fallocate<span class="w"> </span>-l<span class="w"> </span>1G<span class="w"> </span><span class="nv">$FILENAME</span><span class="w">  </span><span class="c1"># gibibyte</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+<h4 id="filefrag">filefrag</h4>
+<dl>
+<dd></dd>
+</dl>
+<h4 id="hdparm">hdparm</h4>
+<dl>
+<dd>
+<h4 id="hdparm_1">hdparm</h4>
+<dl>
+<dd><div class="highlight"><pre><span></span><code>hdparm<span class="w"> </span>-I<span class="w"> </span>/dev/sda
+</code></pre></div></dd>
+</dl>
+</dd>
+</dl>
+<h4 id="losetup">losetup</h4>
+<dl>
+<dd>
+<h4 id="losetup_1">losetup</h4>
+<dl>
+<dd>Create a loopback device (i.e. a virtual block device)
+<div class="highlight"><pre><span></span><code>losetup<span class="w"> </span>-f<span class="w"> </span>/tmp/file1
+</code></pre></div></dd>
+</dl>
+</dd>
+</dl>
+<h4 id="lsblk">lsblk</h4>
+<dl>
+<dd>
+<h4 id="lsblk_1">lsblk</h4>
+<dl>
+<dd><div class="highlight"><span class="filename">Display filesystems</span><pre><span></span><code>lsblk<span class="w"> </span>-f<span class="w"> </span><span class="c1"># --fs</span>
+</code></pre></div></dd>
+</dl>
+</dd>
+</dl>
+<h4 id="sfdisk">sfdisk</h4>
+<dl>
+<dd>
+<h4 id="sfdisk_1">sfdisk</h4>
+<dl>
+<dd>
+<p>Script-based partition table editor, similar to <a href="#fdisk"><strong>fdisk</strong></a> and <a href="#gdisk"><strong>gdisk</strong></a>, which can be run interactively. 
+It does not interface with GPT format, neither is it designed for large partitions.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Display size of a partition or disk</span>
+sfdisk<span class="w"> </span>-s<span class="w"> </span><span class="nv">$PARTITION</span>
+sfdisk<span class="w"> </span>-s<span class="w"> </span><span class="nv">$DEVICE</span>
+
+<span class="c1"># Apply consistency checks to partition or disk</span>
+sfdisk<span class="w"> </span>-V<span class="w"> </span><span class="nv">$PARTITION</span>
+sfdisk<span class="w"> </span>--verify<span class="w"> </span><span class="nv">$DEVICE</span>
+
+<span class="c1"># Create a partition</span>
+sfdisk<span class="w"> </span><span class="nv">$DEVICE</span>
+</code></pre></div>
+</dd>
+</dl>
+</dd>
+</dl>
+<h4 id="shred">shred</h4>
+<dl>
+<dd>
+<h4 id="shred_1">shred</h4>
+<dl>
+<dd>Write random data to an unmounted disk for {n} passes
+<div class="highlight"><pre><span></span><code>shred<span class="w"> </span>--iterations<span class="o">=</span>n
+</code></pre></div></dd>
+</dl>
+</dd>
+</dl>
+<h4 id="wipefs">wipefs</h4>
+<dl>
+<dd></dd>
+</dl>
+<h4 id="mount">mount</h4>
+<dl>
+<dd>
+<h1 id="mount-fstab-file">Mount fstab file</h1>
+mount -a</dd>
+</dl>
+<h3 id="lvm_1">LVM</h3>
+<h4 id="lvm_2">lvm</h4>
+<dl>
+<dd><div class="highlight"><pre><span></span><code>lvm<span class="w"> </span>version
+</code></pre></div></dd>
+</dl>
+<h4 id="lvresize">lvresize</h4>
+<dl>
+<dd>Resize existent logical volume <strong>Marketing</strong> in volume group <strong>vg1</strong> to have an additional 10 gigabytes of space
+<div class="highlight"><pre><span></span><code>lvresize<span class="w"> </span>-L<span class="w"> </span>+10G<span class="w"> </span>/dev/vg1/Marketing
+</code></pre></div></dd>
+</dl>
+<h4 id="pvcreate">pvcreate</h4>
+<dl>
+<dd><div class="highlight"><pre><span></span><code>pvcreate<span class="w"> </span>/dev/sd<span class="o">{</span>a,b,c<span class="o">}</span>
+</code></pre></div></dd>
+</dl>
+<h4 id="lvresize_1">lvresize</h4>
+<dl>
+<dd>
+<p>Resize existent logical volume <strong>Marketing</strong> in volume group <strong>vg1</strong> to have an additional 10 gigabytes of space
+<div class="highlight"><pre><span></span><code>lvresize<span class="w"> </span>-L<span class="w"> </span>+10G<span class="w"> </span>/dev/vg1/Marketing
+</code></pre></div></p>
+<p>It is possible to use LVM to format the storage media when installing CentOS or RHEL on a virtual machine, even if there is only a single disk.
+This will result in a swap partition being created as a small logical volume.
+This can be removed:
+<div class="highlight"><pre><span></span><code>swapoff<span class="w"> </span>cs/swap
+lvremove<span class="w"> </span>cs/swap
+</code></pre></div>
+Then the remaining logical volume mounted to root can be expanded:
+<div class="highlight"><pre><span></span><code>lvresize<span class="w"> </span>-l<span class="w"> </span><span class="m">100</span>%VG<span class="w"> </span>cs/root
+</code></pre></div></p>
+</dd>
+</dl>
+<h4 id="pvcreate_1">pvcreate</h4>
+<dl>
+<dd><div class="highlight"><pre><span></span><code>pvcreate<span class="w"> </span>/dev/loop0
+</code></pre></div></dd>
+</dl>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.expand", "toc.integrate", "content.code.annotate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.b425cdc4.min.js"></script>
+      
+    
+  </body>
+</html>

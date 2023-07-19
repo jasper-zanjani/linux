@@ -1,0 +1,1722 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://jasper-zanjani.github.io/notes/Network/">
+      
+      
+        <link rel="prev" href="../Kernel/">
+      
+      
+        <link rel="next" href="../Package/">
+      
+      <link rel="icon" href="../img/brain.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
+    
+    
+      
+        <title>Network - Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.26e3688c.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../style/tooltip-width.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="yellow">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#networking" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Notes" class="md-header__button md-logo" aria-label="Notes" data-md-component="logo">
+      
+  <img src="../img/brain.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Network
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Notes" class="md-nav__button md-logo" aria-label="Notes" data-md-component="logo">
+      
+  <img src="../img/brain.png" alt="logo">
+
+    </a>
+    Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Linux
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Concurrency/" class="md-nav__link">
+        Concurrency
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Containers/" class="md-nav__link">
+        Containers
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Databases/" class="md-nav__link">
+        Databases
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Display/" class="md-nav__link">
+        Display
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Files/" class="md-nav__link">
+        Files
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Filters/" class="md-nav__link">
+        Filters
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GRUB/" class="md-nav__link">
+        GRUB2
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../IAM/" class="md-nav__link">
+        Users
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Kernel/" class="md-nav__link">
+        Kernel
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Network
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Network
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#networkmanager" class="md-nav__link">
+    NetworkManager
+  </a>
+  
+    <nav class="md-nav" aria-label="NetworkManager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nmcli" class="md-nav__link">
+    nmcli
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nmtui" class="md-nav__link">
+    nmtui
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#netplan" class="md-nav__link">
+    Netplan
+  </a>
+  
+    <nav class="md-nav" aria-label="Netplan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#netplan_1" class="md-nav__link">
+    netplan
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tasks" class="md-nav__link">
+    Tasks
+  </a>
+  
+    <nav class="md-nav" aria-label="Tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bridge" class="md-nav__link">
+    Bridge
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#downloading-files" class="md-nav__link">
+    Downloading files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wireguard-tunnel" class="md-nav__link">
+    Wireguard tunnel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#static-ip" class="md-nav__link">
+    Static IP
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commands" class="md-nav__link">
+    Commands
+  </a>
+  
+    <nav class="md-nav" aria-label="Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#curl" class="md-nav__link">
+    curl
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#firewall-cmd" class="md-nav__link">
+    firewall-cmd
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip" class="md-nav__link">
+    ip
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iptables" class="md-nav__link">
+    iptables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#netcat" class="md-nav__link">
+    netcat
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nft" class="md-nav__link">
+    nft
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nmap" class="md-nav__link">
+    nmap
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tcpdump" class="md-nav__link">
+    tcpdump
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ufw" class="md-nav__link">
+    ufw
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wg" class="md-nav__link">
+    wg
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wget" class="md-nav__link">
+    wget
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#glossary" class="md-nav__link">
+    Glossary
+  </a>
+  
+    <nav class="md-nav" aria-label="Glossary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ebpf" class="md-nav__link">
+    eBPF
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ifcfg" class="md-nav__link">
+    ifcfg
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#netfilter" class="md-nav__link">
+    Netfilter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Package/" class="md-nav__link">
+        Package management
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Process/" class="md-nav__link">
+        Process management
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Random/" class="md-nav__link">
+        Random
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Red-Hat/" class="md-nav__link">
+        Red Hat
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ricing/" class="md-nav__link">
+        Tiling window managers
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Security/" class="md-nav__link">
+        Security
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Shell/" class="md-nav__link">
+        Shells
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Storage/" class="md-nav__link">
+        Storage
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SystemD/" class="md-nav__link">
+        SystemD
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Virtualization/" class="md-nav__link">
+        Virtualization
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_22" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_22" id="__nav_22_label" tabindex="0">
+          Applications
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_22">
+          <span class="md-nav__icon md-icon"></span>
+          Applications
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/bind/" class="md-nav__link">
+        BIND
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/ffmpeg/" class="md-nav__link">
+        ffmpeg
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/git/" class="md-nav__link">
+        Git
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/gnome/" class="md-nav__link">
+        GNOME
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/nginx/" class="md-nav__link">
+        Nginx
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/pam/" class="md-nav__link">
+        PAM
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/rhythmbox/" class="md-nav__link">
+        Rhythmbox
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/screen/" class="md-nav__link">
+        screen
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/selinux/" class="md-nav__link">
+        SELinux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/ssh/" class="md-nav__link">
+        SSH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/syncthing/" class="md-nav__link">
+        Syncthing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/vim/" class="md-nav__link">
+        Vim
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/youtube-dl/" class="md-nav__link">
+        Youtube dl
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="networking">Networking</h1>
+<p>The Linux kernel supports several <strong id="packet-filtering">packet-filtering</strong> mechanisms.</p>
+<ul>
+<li><a href="#netfilter"><strong>Netfilter</strong></a> using the venerable <a href="#iptables">iptables</a> utility</li>
+<li><strong>nftables</strong> subsystem, introduced with kernel 3.13 (2014), had been commonly assumed to eventually take the place of iptables. Firewall rules are implemented in an in-kernel VM.</li>
+<li><strong>bpfilter</strong> </li>
+</ul>
+<p>Netfilter is a software firewall and packet filtering framework introduced with Linux 2.4.0 (2001) and controlled by the <a href="#iptables">iptables</a> command.</p>
+<p>Netfilter rules are stored in <strong>tables</strong> and in <strong>chains</strong>, and tables are associated with various chains.</p>
+<p>By convention, table names are specified in lowercase and chain names in uppercase.
+Every packet starts at the top of a chain and is matched rule by rule.
+When a match is found the specified action, called the <strong>target</strong>, is triggered: i.e. "DROP" or "ACCEPT".</p>
+<table>
+<thead>
+<tr>
+<th>Tables</th>
+<th>INPUT</th>
+<th>OUTPUT</th>
+<th>FORWARD</th>
+<th>PREROUTING</th>
+<th>POSTROUTING</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>filter</td>
+<td>✔&#xfe0f;</td>
+<td>✔&#xfe0f;</td>
+<td>✔&#xfe0f;</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>nat</td>
+<td></td>
+<td>✔&#xfe0f;</td>
+<td></td>
+<td>✔&#xfe0f;</td>
+<td>✔&#xfe0f;</td>
+</tr>
+<tr>
+<td>mangle</td>
+<td>✔&#xfe0f;</td>
+<td>✔&#xfe0f;</td>
+<td>✔&#xfe0f;</td>
+<td>✔&#xfe0f;</td>
+<td>✔&#xfe0f;</td>
+</tr>
+<tr>
+<td>raw</td>
+<td></td>
+<td>✔&#xfe0f;</td>
+<td></td>
+<td>✔&#xfe0f;</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>There are five builtin netfilter <strong>chains</strong>, though user-defined chains are also possible:</p>
+<ul>
+<li><strong>INPUT</strong> used for filtering incoming packets where the host itself is the destination packet.</li>
+<li><strong>OUTPUT</strong> for outgoing packets, where the host is the source of the packet.</li>
+<li><strong>FORWARD</strong> for filtering routed packets, where the host is router.</li>
+<li><strong>PREROUTING</strong> used for DNAT or port forwarding</li>
+<li><strong>POSTROUTING</strong> used for SNAT</li>
+</ul>
+<p>Netfilter <strong>tables</strong>:</p>
+<ul>
+<li><strong>filter</strong> default</li>
+<li><strong>nat</strong> for SNAT and DNAT</li>
+<li><strong>mangle</strong> for packet alteration</li>
+<li><strong>raw</strong> used only to mark packets that should not be handled by the connection tracking system using the NOTRACK target</li>
+</ul>
+<h2 id="networkmanager">NetworkManager</h2>
+<p><a href="https://networkmanager.dev/"><strong>NetworkManager</strong></a> provides a high-level interface for the configuration of network interfaces.
+It was developed by Red Hat and <a href="https://en.wikipedia.org/wiki/NetworkManager">released</a> in late 2004.</p>
+<p>The config file format native to NetworkManager is the ini-format <a href="https://networkmanager.dev/docs/api/latest/nm-settings-keyfile.html" id="keyfile"><strong>keyfile</strong></a> stored in <strong>/etc/NetworkManager/system-connections</strong>.
+These files define network interfaces, or <strong>connection profiles</strong> in NetworkManager's terminology.</p>
+<h4 id="nmcli">nmcli</h4>
+<dl>
+<dd>
+<p>Control NetworkManager and report network status</p>
+<p>Display devices and statuses
+<div class="highlight"><pre><span></span><code>nmcli device status
+</code></pre></div></p>
+<p>Display information on interfaces as well as status
+Including other network connections not managed by network manager ("unmanaged") or not connected ("unavailable") 
+<div class="highlight"><pre><span></span><code>nmcli dev status
+</code></pre></div></p>
+<p>Display what connections are enabled 
+<div class="highlight"><pre><span></span><code>nmcli general status
+</code></pre></div></p>
+<p>Display UUIDs associated with network connections 
+<div class="highlight"><pre><span></span><code>nmcli connection show --active
+</code></pre></div></p>
+<p>Display much more information on network devices
+<div class="highlight"><pre><span></span><code>nmcli device show
+</code></pre></div></p>
+<p>Configure settings for network interface {ens01} via interactive shell
+<div class="highlight"><pre><span></span><code>nmcli<span class="w"> </span>connection<span class="w"> </span>edit<span class="w"> </span>ens01
+</code></pre></div></p>
+<p>List all connections NetworkManager has
+<div class="highlight"><pre><span></span><code>nmcli<span class="w"> </span>connection<span class="w"> </span>show
+</code></pre></div></p>
+<p>Show settings for network interface {ens01}
+<div class="highlight"><pre><span></span><code>nmcli<span class="w"> </span>device<span class="w"> </span>show<span class="w"> </span>ens01
+</code></pre></div></p>
+<p>Show status for all devices
+<div class="highlight"><pre><span></span><code>nmcli<span class="w"> </span>device<span class="w"> </span>status
+</code></pre></div></p>
+<p>Display currently configured hostname
+<div class="highlight"><pre><span></span><code>nmcli<span class="w"> </span>general<span class="w"> </span>hostname
+</code></pre></div></p>
+<p>Set hostname to {hostname}
+<div class="highlight"><pre><span></span><code>nmcli<span class="w"> </span>general<span class="w"> </span>hostname<span class="w"> </span>hostname
+</code></pre></div></p>
+<p>Show overall status of NetworkManager
+<div class="highlight"><pre><span></span><code>nmcli<span class="w"> </span>general<span class="w"> </span>status
+</code></pre></div></p>
+<div class="highlight"><span class="filename">Migrate a connection profile</span><pre><span></span><code>nmcli<span class="w"> </span>connection<span class="w"> </span>migrate<span class="w"> </span>eth0
+</code></pre></div>
+</dd>
+</dl>
+<h4 id="nmtui">nmtui</h4>
+<dl>
+<dd><div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>install<span class="w"> </span>NetworkManager-tui
+</code></pre></div>
+<strong>nmtui</strong> is a curses-based TUI for control of NetworkManager.</dd>
+</dl>
+<h2 id="netplan">Netplan</h2>
+<p><strong>netplan</strong> is a <a href="https://netplan.io/">utility for network configuration</a> using YAML files that is the default network management tool used by recent versions of Ubuntu (since Ubuntu 17.10).
+<strong>Netplan</strong> is used as the default network management tool (previously ifconfig and its config at <strong>/etc/network/interfaces</strong> was used).</p>
+<p>Netplan supports two <strong>renderers</strong> or backends: <strong>NetworkManager</strong> and <strong>networkd</strong>.</p>
+<p>Netplan configs are YAML format and placed in <strong>/etc/netplan</strong>.
+Ubuntu installations usually come with a single config in this location named <strong>01-network-manage-all-yaml</strong>, but many configs can be created in subdirectories.
+These are processed in <strong>lexicographical order</strong> regardless of subdirectory (unless there are multiple files with the same name).
+If a boolean or scalar parameter is defined in more than one config, the last value is assumed. Values that are sequences are concatenated.</p>
+<div class="highlight"><span class="filename">Default config</span><pre><span></span><code><span class="c1"># Let NetworkManager manage all devices on this system</span>
+<span class="nt">network</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">renderer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NetworkManager</span><span class="w"> </span><span class="c1"># (1)</span>
+</code></pre></div>
+<ol>
+<li>This may require the <strong>python3-networkmanager</strong> package to be installed first.</li>
+</ol>
+<div class="highlight"><span class="filename">Static IP configuration</span><pre><span></span><code><span class="nt">network</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">  </span><span class="nt">ethernets</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">eth0</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">addresses</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.2.100/24</span>
+<span class="w">      </span><span class="nt">gateway4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.2.1</span>
+<span class="w">      </span><span class="nt">nameservers</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">addresses</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.1</span>
+<span class="w">        </span><span class="nt">search</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+</code></pre></div>
+<h4 id="netplan_1">netplan</h4>
+<dl>
+<dd>
+<p>The <strong>netplan</strong> utility can be used to load the on-disk configuration.</p>
+<div class="highlight"><span class="filename">Reload configuration temporarily</span><pre><span></span><code>netplan<span class="w"> </span>try
+</code></pre></div>
+</dd>
+</dl>
+<h2 id="tasks">Tasks</h2>
+<h4 id="bridge">Bridge</h4>
+<dl>
+<dd>
+<p>A bridge is used to unite two or more network segments, typically used to establish communication channels between VMs, containers, and the host.</p>
+<p>Unlike the virtual bridge that Windows uses for WSL2 distributions, the bridge in Linux is strictly L2.
+That is, VMs connecting to the bridge are assigned IPs by the same DHCP server (i.e. the router) in the same subnet as that of the physical hosts.
+In Windows, the virtual bridge assigns an internal IP in a private range (usually 172.16.0.0/12), and connectivity to the host or the Internet has to be accomplished via NAT.</p>
+<div class="highlight"><pre><span></span><code>ip<span class="w"> </span>link<span class="w"> </span>add<span class="w"> </span>virbr0<span class="w"> </span><span class="nb">type</span><span class="w"> </span>bridge<span class="w"> </span><span class="c1"># (1)</span>
+ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>virbr0<span class="w"> </span>up
+</code></pre></div>
+<ol>
+<li>The link can be deleted thus:
+<div class="highlight"><pre><span></span><code>ip<span class="w"> </span>link<span class="w"> </span>delete<span class="w"> </span>virbr0
+</code></pre></div></li>
+</ol>
+<p>Adding an interface to the bridge is done by setting its master.
+<div class="highlight"><pre><span></span><code>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>enp2s0f0<span class="w"> </span>master<span class="w"> </span>virbr0<span class="w"> </span><span class="c1"># (1)</span>
+</code></pre></div></p>
+<ol>
+<li>This can be undone as follows:
+<div class="highlight"><pre><span></span><code>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>enp2s0f0<span class="w"> </span>nomaster
+</code></pre></div></li>
+</ol>
+<p>The iproute2 <strong>bridge</strong> utility can be used to verify the command has taken effect:
+<div class="highlight"><pre><span></span><code>bridge<span class="w"> </span>link
+</code></pre></div></p>
+<p>This may interrupt network connectivity.
+In this case, the IP address must be removed from the linked interface and assigned to the bridge
+<div class="highlight"><pre><span></span><code>ip<span class="w"> </span>address<span class="w"> </span>delete<span class="w"> </span><span class="m">192</span>.168.1.3<span class="w"> </span>dev<span class="w"> </span>enp2s0f0
+ip<span class="w"> </span>address<span class="w"> </span>add<span class="w"> </span><span class="m">192</span>.168.1.3<span class="w"> </span>dev<span class="w"> </span>virbr0
+</code></pre></div></p>
+<p>The default route in the routing table must also be amended.
+Note this is not the IP address of the interface but rather that of the <strong>gateway</strong>.
+Also note that this gateway must already have its own network segment defined.
+That is, in order for a default route to be defined at least one static route must also be defined, which is the gateway's own local subnet.
+<div class="highlight"><pre><span></span><code>ip<span class="w"> </span>route<span class="w"> </span>delete<span class="w"> </span>default
+ip<span class="w"> </span>route<span class="w"> </span>add<span class="w"> </span>default<span class="w"> </span>via<span class="w"> </span><span class="m">192</span>.168.1.1
+</code></pre></div></p>
+</dd>
+</dl>
+<h4 id="downloading-files">Downloading files</h4>
+<dl>
+<dd>
+<p><a href="#wget"><strong>Wget</strong></a> defaults to file operations in a way that is more natural for downloading.</p>
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span><span class="nv">$url</span>
+</code></pre></div>
+<p><a href="#curl"><strong>Curl</strong></a> depends on piping and defaults to STDOUT in a manner similar to <strong>cat</strong>.</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-O<span class="w"> </span><span class="nv">$url</span><span class="w"> </span>
+</code></pre></div>
+</dd>
+</dl>
+<h4 id="wireguard-tunnel">Wireguard tunnel</h4>
+<dl>
+<dd>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.34 13.16c1.32 0 3.22-.27 3.22-1.84.01-.12 0-.24-.03-.36l-.78-3.4c-.18-.75-.34-1.09-1.66-1.75-1.02-.52-3.24-1.38-3.9-1.38-.61 0-.79.79-1.52.79-.7 0-1.22-.59-1.88-.59-.63 0-1.04.43-1.36 1.31 0 0-.88 2.5-1 2.86-.01.07-.02.13-.02.2 0 .97 3.82 4.15 8.93 4.15m3.43-1.19c.18.86.18.95.18 1.04 0 1.5-1.66 2.31-3.83 2.31-4.92 0-9.23-2.88-9.23-4.78 0-.27.06-.53.16-.77-1.77.08-4.05.4-4.05 2.42 0 3.32 7.84 7.39 14.05 7.39 4.76 0 5.95-2.15 5.95-3.85 0-1.34-1.15-2.86-3.23-3.76"/></svg></span> Red Hat</label><label for="__tabbed_1_2"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 12a10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2a10 10 0 0 1 10 10m-7.66-4.26c.58.33 1.31.13 1.66-.44.31-.57.12-1.3-.46-1.64-.57-.33-1.31-.16-1.64.44-.33.57-.13 1.31.44 1.64m-2.46 7.76c-.53 0-1.03-.11-1.47-.32l-.84 1.5c.7.32 1.48.54 2.31.54.49 0 .95-.07 1.4-.19.08-.49.36-.93.82-1.19.46-.27.98-.29 1.44-.12.89-.87 1.46-2.06 1.55-3.39l-1.71-.02a3.506 3.506 0 0 1-3.5 3.19m0-7c1.84 0 3.34 1.39 3.5 3.19l1.71-.03a5.209 5.209 0 0 0-1.55-3.38c-.46.17-.99.14-1.44-.12-.46-.26-.74-.71-.82-1.19-.45-.12-.91-.19-1.4-.19-.83 0-1.61.19-2.31.54l.84 1.5c.44-.21.94-.32 1.47-.32M8.37 12c0-1.19.59-2.24 1.49-2.87L9 7.65a5.217 5.217 0 0 0-2.17 3.04c.38.31.62.78.62 1.31s-.24 1-.62 1.31A5.195 5.195 0 0 0 9 16.34l.86-1.47c-.9-.63-1.49-1.68-1.49-2.87m5.97 4.26c-.57.33-.77 1.06-.44 1.64.33.57 1.07.77 1.64.44.58-.34.77-1.07.46-1.64-.35-.58-1.08-.77-1.66-.44M5.76 10.8c-.66 0-1.2.54-1.2 1.2 0 .66.54 1.2 1.2 1.2.67 0 1.2-.54 1.2-1.2 0-.66-.53-1.2-1.2-1.2Z"/></svg></span> Ubuntu</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>install<span class="w"> </span>wireguard-tools
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>apt<span class="w"> </span>install<span class="w"> </span>wireguard
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Successful installation can be confirmed by running the following, which should produce no output (and no error) on success.
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>modprobe<span class="w"> </span>wireguard
+</code></pre></div></p>
+<p>The first step in <a href="https://www.youtube.com/watch?v=88GyLoZbDNw">creating a Wireguard tunnel</a> is to create a private key on each endpoint of the tunnel.
+The <strong>genkey</strong> subcommand creates a 44-character base64 encoded key ending in <code>=</code> which can be redirected to a file.
+If the file will be world-readable, the utility will ask you to change the umask.
+<div class="highlight"><pre><span></span><code>wg<span class="w"> </span>genkey<span class="w"> </span><span class="c1"># ▓▓░░░▓░▒▓▒▓▒░▓░▒░▓░▒▒░▓░▓░▒░▒▓▒▒▒░░▒▒░░░▒▒▓▓=</span>
+</code></pre></div></p>
+<p>The public key can be generated by piping the private key from STDIN or from the file.
+<div class="highlight"><pre><span></span><code>wg<span class="w"> </span>pubkey<span class="w"> </span>private<span class="w"> </span>&gt;<span class="w"> </span>public
+wg<span class="w"> </span>genkey<span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>private<span class="w"> </span><span class="p">|</span><span class="w"> </span>wg<span class="w"> </span>pubkey<span class="w"> </span>&gt;<span class="w"> </span>public
+</code></pre></div></p>
+<p>Then a Wireguard interface is created, typically named <strong>wg0</strong>, using network management utilities.
+<div class="highlight"><pre><span></span><code>ip<span class="w"> </span>link<span class="w"> </span>add<span class="w"> </span>wg0<span class="w"> </span><span class="nb">type</span><span class="w"> </span>wireguard
+</code></pre></div></p>
+<p>An IP address is assigned to that interface, to be used within the tunnel:
+<div class="highlight"><pre><span></span><code>ip<span class="w"> </span>addr<span class="w"> </span>add<span class="w"> </span><span class="m">10</span>.0.0.1/24<span class="w"> </span>dev<span class="w"> </span>wg0
+</code></pre></div></p>
+<p>Now the private key is associated with the interface:
+<div class="highlight"><pre><span></span><code>wg<span class="w"> </span><span class="nb">set</span><span class="w"> </span>wg0<span class="w"> </span>private-key<span class="w"> </span>~/.config/wireguard/private
+</code></pre></div></p>
+<p>Finally, the interface is brought up:
+<div class="highlight"><pre><span></span><code>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>wg0<span class="w"> </span>up
+</code></pre></div></p>
+<p>The public key of the peer is now associated with the Wireguard interface and the public IP and port of the other endpoint are specified.
+<div class="highlight"><pre><span></span><code>wg<span class="w"> </span><span class="nb">set</span><span class="w"> </span>wg0<span class="w"> </span>peer<span class="w"> </span><span class="nv">$PUBKEY</span><span class="w"> </span>allowed-ips<span class="w"> </span><span class="m">10</span>.0.0.2/32<span class="w"> </span>endpoint<span class="w"> </span><span class="nv">$IP</span>
+</code></pre></div></p>
+<p>The tunnel is dismantled by removing the interface.
+<div class="highlight"><pre><span></span><code>ip<span class="w"> </span>link<span class="w"> </span>delete<span class="w"> </span>wg0
+</code></pre></div></p>
+<p>Alternatively, many of these steps can be consolidated into creating a config for the Wireguard interface at <strong>/etc/wireguard/wg0.conf</strong> with the following contents:
+<div class="highlight"><pre><span></span><code><span class="k">[Interface]</span>
+<span class="w">    </span><span class="na">PrivateKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">▓▓░░░▓░▒▓▒▓▒░▓░▒░▓░▒▒░▓░▓░▒░▒▓▒▒▒░░▒▒░░░▒▒▓▓=</span>
+<span class="w">    </span><span class="na">Address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">10.0.0.1/24</span>
+<span class="w">    </span><span class="na">PostUp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">iptables -A FORWARD -i wg0 -j ACCEPT</span><span class="c1">; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE</span>
+<span class="w">    </span><span class="na">PostDown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">iptables -D FORWARD -i wg0 -j ACCEPT</span><span class="c1">; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE</span>
+<span class="w">    </span><span class="na">ListenPort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">51820</span>
+
+<span class="k">[Peer]</span>
+<span class="w">    </span><span class="na">PublicKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">▓▒▓▒▓▓░▓▒▒░░▒▒▒▓▒░▒▓▒░▒▒▓▒░▒░░░░▒░▒▒▒░░▒▒▓░▒=</span>
+<span class="w">    </span><span class="na">AllowedIps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">10.0.0.2/32</span>
+<span class="w">    </span><span class="na">Endpoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">123.45.67.89:51820</span>
+</code></pre></div></p>
+<p>Then to bring it up quickly:
+<div class="highlight"><pre><span></span><code>wg-quick<span class="w"> </span>up<span class="w"> </span>wg0
+</code></pre></div></p>
+<p>The same utility can be used to teardown the tunnel
+<div class="highlight"><pre><span></span><code>wg-quick<span class="w"> </span>down<span class="w"> </span>wg0
+</code></pre></div></p>
+</dd>
+</dl>
+<h4 id="static-ip">Static IP</h4>
+<dl>
+<dd>
+<p>Static IP configuration varies by the network management toolset and backend presenton a system. 
+Ubuntu systems use <a href="#netplan"><strong>Netplan</strong></a> whereas other distributions most commonly use <a href="#networkmanager"><strong>Network Manager</strong></a>.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Netplan</label><label for="__tabbed_2_2">Network Manager</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nt">network</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">  </span><span class="nt">ethernets</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">eth0</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">addresses</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.2.100/24</span>
+<span class="w">      </span><span class="nt">gateway4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.2.1</span>
+<span class="w">      </span><span class="nt">nameservers</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">addresses</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.1</span>
+<span class="w">        </span><span class="nt">search</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">[connection]</span>
+<span class="na">id</span><span class="o">=</span><span class="s">Ethernet</span>
+<span class="na">uuid</span><span class="o">=</span><span class="s">abcdef01-2345-6789-0abc-def012345678</span>
+<span class="na">type</span><span class="o">=</span><span class="s">ethernet</span>
+<span class="na">interface-name</span><span class="o">=</span><span class="s">eth0</span>
+
+<span class="k">[ethernet]</span>
+
+<span class="k">[ipv4]</span>
+<span class="na">address1</span><span class="o">=</span><span class="s">192.168.2.100/24,192.168.2.1</span>
+<span class="na">dns</span><span class="o">=</span><span class="s">10.40.7.2</span>
+<span class="na">method</span><span class="o">=</span><span class="s">manual</span>
+
+<span class="k">[ipv6]</span>
+<span class="na">addr-gen-mode</span><span class="o">=</span><span class="s">stable-privacy</span>
+<span class="na">method</span><span class="o">=</span><span class="s">auto</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Setting a static IP address on Red Hat distributions could involve multiple methods:</p>
+<ul>
+<li><a href="https://linuxhint.com/configure-static-ip-address-fedora/">nmcli commands</a></li>
+<li><a href="Network/#networkmanager">NetworkManager keyfiles</a></li>
+<li><a href="Network/#ifcfg-files">ifcfg files</a> (prior to distributions downstream to Fedora 36)</li>
+</ul>
+</dd>
+</dl>
+<h2 id="commands">Commands</h2>
+<h4 id="curl">curl</h4>
+<dl>
+<dd>
+<p>Accept a self-signed certificate by skipping verification
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-k<span class="w"> </span>https://192.168.1.10
+</code></pre></div></p>
+<p>Use the <a href="https://tools.ietf.org/html/rfc2229"> <code>dict</code> network protocol </a> to retrieve the definition of a word.
+<a href="https://fedoramagazine.org/set-up-an-offline-command-line-dictionary-in-fedora/">ref</a>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>dict://dict.org/d:&lt;word&gt;
+</code></pre></div>
+Sending a POST method to a FastAPI app (<a href="https://app.pluralsight.com/guides/explore-python-libraries:-fastapi">src</a>)
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;http://127.0.0.1:8000/purchase/item/&quot;</span><span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;accept: application/json&quot;</span><span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;{\&quot;name\&quot;:\&quot;sample item\&quot;,\&quot;info\&quot;:\&quot;This is info for the item\&quot;,\&quot;price\&quot;:40,\&quot;qty\&quot;:2}&quot;</span>
+</code></pre></div></p>
+</dd>
+</dl>
+<h4 id="firewall-cmd">firewall-cmd</h4>
+<dl>
+<dd>
+<p>Frontend to <a href="#netfilter">Netfilter</a> in Red Hat distributions.</p>
+<div class="highlight"><pre><span></span><code>firewall-cmd<span class="w"> </span>--state<span class="w"> </span><span class="c1"># &quot;running&quot;</span>
+</code></pre></div>
+<p>Firewalld has a runtime configuration and a saved, persistent configuration.
+Only the runtime configuration will be consulted for any command, unless the persistent configuration is specified with <strong>--permanent</strong>.</p>
+<p>The runtime configuration can be saved with this command, which obviates the need to execute every change twice.
+<div class="highlight"><pre><span></span><code>firewall-cmd<span class="w"> </span>--runtime-to-permanent
+</code></pre></div></p>
+<p>Alternatively, the persistent configuration can be loaded into memory:
+<div class="highlight"><pre><span></span><code>firewall-cmd<span class="w"> </span>--reload
+</code></pre></div></p>
+<div class="highlight"><span class="filename">Display firewall rules</span><pre><span></span><code>firewall-cmd<span class="w"> </span>--list-all<span class="w"> </span>--permanent
+</code></pre></div>
+<p>Firewalld uses <strong>zones</strong> to define the level of trust for network connections.
+A connection can only be part of one zone, but a zone can be used for many network connections.
+Builtin zones have XML-format configs found in <strong>/usr/lib/firewalld/zones</strong>.
+<div class="highlight"><pre><span></span><code>firewall-cmd<span class="w"> </span>--get-active-zones<span class="w">     </span><span class="c1"># Display active zones along with interfaces</span>
+firewall-cmd<span class="w"> </span>--info-zone<span class="o">=</span>public<span class="w">     </span><span class="c1"># Inspect zone</span>
+firewall-cmd<span class="w"> </span>--new-zone<span class="o">=</span>testlab<span class="w">     </span><span class="c1"># Create new zone</span>
+</code></pre></div></p>
+<p>Firewalld rules are generally managed through builtin <strong>services</strong>.
+These bundle network settings together for well-known applications like SSH, etc.
+Builtin services are also XML-format configs found in <strong>/usr/lib/firewalld/services</strong>.</p>
+<div class="highlight"><span class="filename">Services</span><pre><span></span><code>firewall-cmd<span class="w"> </span>--list-services
+firewall-cmd<span class="w"> </span>--add-service<span class="o">=</span>http
+firewall-cmd<span class="w"> </span>--remove-service<span class="o">=</span>http
+</code></pre></div>
+<p>Firewalld's config file is at <strong>/etc/firewalld/firewalld.conf</strong>
+<div class="highlight"><span class="filename">/etc/firewalld/firewalld.conf</span><pre><span></span><code><span class="na">AllowZoneDrifting</span><span class="o">=</span><span class="s">no</span>
+</code></pre></div></p>
+<p>Since RHEL 8, firewalld's backend has been changed to nftables.
+<div class="highlight"><span class="filename">/etc/firewalld/firewalld.conf</span><pre><span></span><code><span class="na">FirewallBackend</span><span class="o">=</span><span class="s">nftables</span>
+</code></pre></div></p>
+</dd>
+</dl>
+<!-- 
+
+The RHEL8: Managing Networking course on Pluralsight by Andrew Mallett introduced the topic of netowrk namespaces with a very cool scenario.
+Although the scenario has absolutely no practical benefit, as far as I can tell, it still offered a chance to play around with the various commands in a synthetic way.
+
+
+-->
+
+<h4 id="ip">ip</h4>
+<dl>
+<dd>
+<div class="highlight"><span class="filename">ip address</span><pre><span></span><code>ip<span class="w"> </span>address<span class="w"> </span>add<span class="w"> </span><span class="m">192</span>.168.2.2<span class="w"> </span>dev<span class="w"> </span>eth0
+</code></pre></div>
+<div class="highlight"><span class="filename">ip route</span><pre><span></span><code><span class="c1"># Add static route (this is sometimes done automatically by the system after adding an address)</span>
+ip<span class="w"> </span>route<span class="w"> </span>add<span class="w"> </span><span class="m">192</span>.168.2.0/24<span class="w"> </span>dev<span class="w"> </span>eth0
+
+<span class="c1"># Add default route</span>
+ip<span class="w"> </span>route<span class="w"> </span>add<span class="w"> </span>default<span class="w"> </span>via<span class="w"> </span><span class="m">192</span>.168.2.1<span class="w"> </span>dev<span class="w"> </span>eth0
+</code></pre></div>
+<div class="highlight"><span class="filename">ip link</span><pre><span></span><code><span class="c1"># Create new links</span>
+ip<span class="w"> </span>link<span class="w"> </span>add<span class="w"> </span>virbr0<span class="w"> </span><span class="nb">type</span><span class="w"> </span>bridge
+ip<span class="w"> </span>link<span class="w"> </span>add<span class="w"> </span>wg0<span class="w"> </span><span class="nb">type</span><span class="w"> </span>wireguard
+
+<span class="c1"># Listen for netlink messages</span>
+ip<span class="w"> </span>monitor<span class="w"> </span>
+
+<span class="c1"># Change the default gateway to 192.168.1.1 on eth0</span>
+ip<span class="w"> </span>route<span class="w"> </span>change<span class="w"> </span>default<span class="w"> </span>via<span class="w"> </span><span class="m">192</span>.168.1.1<span class="w"> </span>dev<span class="w"> </span>eth0
+
+<span class="c1"># Bring interface up&quot;</span>
+ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>wlp2s0<span class="w"> </span>up
+</code></pre></div>
+<div class="highlight"><span class="filename">ip neighbor</span><pre><span></span><code><span class="c1"># Display ARP cache</span>
+ip<span class="w"> </span>neighbor<span class="w"> </span>show
+
+<span class="c1"># Delete ARP entry</span>
+ip<span class="w"> </span>neighbor<span class="w"> </span>delete<span class="w"> </span><span class="nv">$IP_ADDR</span><span class="w"> </span>dev<span class="w"> </span>eth0<span class="w"> </span>
+</code></pre></div>
+<div class="highlight"><span class="filename">ip netns</span><pre><span></span><code>ip<span class="w"> </span>netns<span class="w"> </span><span class="c1"># (1)</span>
+
+<span class="c1"># We can create a network namespace then add two virtual Ethernet interfaces.</span>
+<span class="c1"># These are **peers**, meaning they are linked together as if connected to the same switch.</span>
+ip<span class="w"> </span>netns<span class="w"> </span>add<span class="w"> </span>netns0
+ip<span class="w"> </span>link<span class="w"> </span>add<span class="w"> </span>veth0<span class="w"> </span><span class="nb">type</span><span class="w"> </span>veth<span class="w"> </span>peer<span class="w"> </span>name<span class="w"> </span>veth1<span class="w"> </span>netns<span class="w"> </span>netns0
+
+<span class="c1"># We can then run a command in the **context** of a namespace. Without providing a context, </span>
+<span class="c1"># the default namespace is used and we can display veth0 but not veth1. If there are no other</span>
+<span class="c1"># links in the namespace (which there shouldn&#39;t be) then the **number** of the interface&#39;s </span>
+<span class="c1"># peer appears in the link&#39;s name. By running a command in the context of the new namespace </span>
+<span class="c1"># we can display veth1. The interface number of the link it&#39;s paired with in the </span>
+<span class="c1"># default namespace also appears in this link&#39;s name.</span>
+ip<span class="w"> </span>link<span class="w"> </span>show<span class="w">                        </span><span class="c1"># &quot;veth0@if2&quot;</span>
+ip<span class="w"> </span>netns<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>netns0<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span>show<span class="w">   </span><span class="c1"># &quot;veth1@if4&quot;</span>
+
+<span class="c1"># Now we assign an address to the namespaced link and bring it up</span>
+ip<span class="w"> </span>netns<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>netns0<span class="w"> </span>ip<span class="w"> </span>addr<span class="w"> </span>add<span class="w"> </span><span class="m">10</span>.0.0.1/24<span class="w"> </span>dev<span class="w"> </span>veth1
+ip<span class="w"> </span>netns<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>netns0<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>dev<span class="w"> </span>veth1<span class="w"> </span>up
+
+<span class="c1"># Pinging this IP from outside the namespace will not work because there is no route.</span>
+<span class="c1"># Adding an IP in the same subnet to veth0 creates the route.</span>
+ip<span class="w"> </span>addr<span class="w"> </span>add<span class="w"> </span><span class="m">10</span>.0.0.2/24<span class="w"> </span>dev<span class="w"> </span>veth0
+
+<span class="c1"># The interface must be brought up, which automatically adds a route to the routing table.</span>
+ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>dev<span class="w"> </span>veth0<span class="w"> </span>up
+</code></pre></div>
+<ol>
+<li>Network namespaces are mounted to <strong>/var/run/netns</strong></li>
+</ol>
+</dd>
+</dl>
+<h4 id="iptables">iptables</h4>
+<dl>
+<dd>
+<p>A frontend for the kernel-level <a href="#netfilter"><strong>netfilter</strong></a> service, similar to <a href="#firewalld">firewalld</a>. </p>
+<p>Rules are saved in a <strong>rulesfile</strong> which once may have been found at <strong>/etc/sysconfig/iptables</strong>, but this file does not exist on recent Fedora installations.</p>
+<p>Display rules as written on disk
+<div class="highlight"><pre><span></span><code>iptables<span class="w"> </span>--list-rules
+</code></pre></div></p>
+<p>Reload configuration file
+<div class="highlight"><pre><span></span><code>iptables<span class="w"> </span>-F
+</code></pre></div></p>
+<p>Accept SSH traffic from a particular IP
+<div class="highlight"><pre><span></span><code>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>ssh<span class="w"> </span>-s<span class="w"> </span><span class="m">10</span>.0.222.222<span class="w"> </span>-j<span class="w"> </span>ACCEPT
+</code></pre></div></p>
+<p>Accept incoming TCP traffic to port 80
+<div class="highlight"><pre><span></span><code>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">80</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+</code></pre></div></p>
+<p>Change FORWARD <a href="#chains">chain</a> policy
+<div class="highlight"><pre><span></span><code>iptables<span class="w"> </span>-P<span class="w"> </span>FORWARD<span class="w"> </span>ACCEPT<span class="w"> </span><span class="c1"># (1)</span>
+</code></pre></div></p>
+<ol>
+<li>By default, the INPUT chain accepts incoming packets.
+However, this policy can be changed by specifying a DROP rule specification.</li>
+</ol>
+<p>Allow incoming SSH connections only from a single IP address
+<div class="highlight"><pre><span></span><code>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">22</span><span class="w"> </span>-j<span class="w"> </span>DROP
+iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">22</span><span class="w"> </span>-s<span class="w"> </span><span class="m">1</span>.2.3.4<span class="w"> </span>-j<span class="w"> </span>ACCEPT
+</code></pre></div></p>
+<p>Do not respond to pings
+<div class="highlight"><pre><span></span><code>iptables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>icmp<span class="w"> </span>-j<span class="w"> </span>DROP
+</code></pre></div></p>
+</dd>
+</dl>
+<h4 id="netcat">netcat</h4>
+<dl>
+<dd>
+<p>The netcat utility allows testing of a host's ports, similar to <strong>ping</strong>, but more versatile because <strong>ping</strong> only uses the portless ICMP protocol. 
+GNU and OpenBSD versions available</p>
+<p>Connect to host on port 80
+<div class="highlight"><pre><span></span><code>nc<span class="w"> </span>example.com<span class="w"> </span><span class="m">80</span>
+</code></pre></div>
+Scan ports</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Single</label><label for="__tabbed_3_2">Multiple</label><label for="__tabbed_3_3">Range of ports</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>nc<span class="w"> </span>-v<span class="w"> </span>-w<span class="w"> </span><span class="m">2</span><span class="w"> </span>z<span class="w"> </span><span class="m">192</span>.168.56.1<span class="w"> </span><span class="m">22</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>nc<span class="w"> </span>-v<span class="w"> </span>-w<span class="w"> </span><span class="m">2</span><span class="w"> </span>z<span class="w"> </span><span class="m">192</span>.168.56.1<span class="w"> </span><span class="m">22</span><span class="w"> </span><span class="m">80</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>nc<span class="w"> </span>-v<span class="w"> </span>-w<span class="w"> </span><span class="m">2</span><span class="w"> </span>z<span class="w"> </span><span class="m">192</span>.168.56.1<span class="w"> </span><span class="m">22</span>-25
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Transfer files between servers
+This example uses the <code>pv</code> utility to monitor progress.
+<div class="highlight"><pre><span></span><code><span class="c1"># Run `nc` in listening mode (`-l` option) on port 3000</span>
+tar<span class="w"> </span>-zcf<span class="w"> </span>-<span class="w"> </span>debian-10.0.0-amd64-xfce-CD-1.iso<span class="w"> </span><span class="p">|</span><span class="w"> </span>pv<span class="w"> </span><span class="p">|</span><span class="w"> </span>nc<span class="w"> </span>-l<span class="w"> </span>-p<span class="w"> </span><span class="m">3000</span><span class="w"> </span>-q<span class="w"> </span><span class="m">5</span>
+
+<span class="c1"># On the receiving client, to obtain the file:</span>
+nc<span class="w"> </span><span class="m">192</span>.168.1.4<span class="w"> </span><span class="m">3000</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>pv<span class="w"> </span><span class="p">|</span><span class="w"> </span>tar<span class="w"> </span>-zxf<span class="w"> </span>-
+</code></pre></div>
+Create a command-line chat server
+<div class="highlight"><pre><span></span><code># Create chat server listening on port 5000
+nc -l -vv -p 5000
+
+# Launch a chat session on the other system
+nc 192.168.56.1 5000
+</code></pre></div>
+Find a service running on port
+Obtain port banners (<code>-n</code> disables DNS lookup)
+<div class="highlight"><pre><span></span><code>nc<span class="w"> </span>-v<span class="w"> </span>-n<span class="w"> </span><span class="m">192</span>.168.56.110<span class="w"> </span><span class="m">80</span>
+</code></pre></div>
+Create stream sockets
+Create and listen on a UNIX-domain stream socket
+<div class="highlight"><pre><span></span><code>nc<span class="w"> </span>-lU<span class="w"> </span>/var/tmp/mysocket<span class="w"> </span><span class="p">&amp;</span>
+ss<span class="w"> </span>-lpn<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;/var/tmp/&quot;</span>
+</code></pre></div>
+Create a backdoor
+Netcat needs to listen on a chosen port (here 3001): <code>-d</code> disables reading from stdin; <code>-e</code> specifies the command to run on the target system
+<div class="highlight"><pre><span></span><code>nc<span class="w"> </span>-L<span class="w"> </span>-p<span class="w"> </span><span class="m">3001</span><span class="w"> </span>-d<span class="w"> </span>-e<span class="w"> </span>cmd.exe
+</code></pre></div>
+Connect to {port} at {host}
+<div class="highlight"><pre><span></span><code>nc<span class="w"> </span>host<span class="w"> </span>port
+</code></pre></div>
+Netcat command that retrieves a webpage
+<div class="highlight"><pre><span></span><code>nc<span class="w"> </span>host<span class="w"> </span>port<span class="w"> </span>get
+</code></pre></div></p>
+</dd>
+</dl>
+<h4 id="nft">nft</h4>
+<dl>
+<dd><div class="highlight"><pre><span></span><code>nft<span class="w"> </span>list<span class="w"> </span>ruleset
+nft<span class="w"> </span>list<span class="w"> </span>tables
+nft<span class="w"> </span>list<span class="w"> </span>table<span class="w"> </span>ip<span class="w"> </span>filter<span class="w"> </span><span class="c1"># display just the filter table</span>
+nft<span class="w"> </span>flush<span class="w"> </span>ruleset
+</code></pre></div></dd>
+</dl>
+<h4 id="nmap">nmap</h4>
+<dl>
+<dd>Scan hosts from a text file
+<div class="highlight"><pre><span></span><code>nmap<span class="w"> </span>-iL<span class="w"> </span>hosts.txt
+</code></pre></div>
+Identify a host's operating system
+<div class="highlight"><pre><span></span><code>nmap<span class="w"> </span>-A<span class="w"> </span>localhost.example.com
+</code></pre></div>
+Determine whether a host has a firewall enabled
+<div class="highlight"><pre><span></span><code>nmap<span class="w"> </span>-sA<span class="w"> </span>localhost.example.com
+</code></pre></div>
+Scan a specified range of ports
+<div class="highlight"><pre><span></span><code>nmap<span class="w"> </span>-p<span class="w"> </span><span class="m">10</span>-300<span class="w"> </span>localhost.example.com
+</code></pre></div>
+Perform a SYN TCP scan, stealthier than the TCP connect scan
+<div class="highlight"><pre><span></span><code>nmap<span class="w"> </span>-sT<span class="w"> </span>localhost.example.com
+</code></pre></div>
+Aggressive scan
+<div class="highlight"><pre><span></span><code>nmap<span class="w"> </span>-A<span class="w"> </span><span class="m">192</span>.168.1.0/24
+</code></pre></div>
+Ping scan home network (not bothering with ports)
+<div class="highlight"><pre><span></span><code>nmap<span class="w"> </span>-sn<span class="w"> </span><span class="m">192</span>.168.1.0/24
+</code></pre></div>
+Fast port scan using SYN packets
+<div class="highlight"><pre><span></span><code>nmap<span class="w"> </span>-sS<span class="w"> </span>-F<span class="w"> </span><span class="m">192</span>.168.1.0/24
+</code></pre></div>
+Port scan using SYN ("synchronize") packet, first element of TCP handshake
+<div class="highlight"><pre><span></span><code>nmap<span class="w"> </span>-sS<span class="w"> </span><span class="m">192</span>.168.1.0/24
+</code></pre></div>
+Port scan using normal TCP
+<div class="highlight"><pre><span></span><code>nmap<span class="w"> </span>-sT<span class="w"> </span><span class="m">192</span>.168.1.0/24
+</code></pre></div>
+Port scan using UDP
+<div class="highlight"><pre><span></span><code>nmap<span class="w"> </span>-sU<span class="w"> </span><span class="m">192</span>.168.1.0/24
+</code></pre></div>
+Xmas scan
+<div class="highlight"><pre><span></span><code>nmap<span class="w"> </span>-sX
+</code></pre></div>
+Scan a range of IPs [ref][Sec+ Lab]
+<div class="highlight"><pre><span></span><code>nmap<span class="w"> </span><span class="m">192</span>.168.27.0/24<span class="w"> </span>&gt;<span class="w"> </span>hosts.txt
+</code></pre></div>
+Identify operating system and scan ports using TCP SYN packets [ref][Sec+ Lab]
+<div class="highlight"><pre><span></span><code>nmap<span class="w"> </span>-O<span class="w"> </span>-sS<span class="w"> </span><span class="m">192</span>.168.27.0/24<span class="w"> </span>&gt;<span class="w"> </span>hosts.txt
+</code></pre></div></dd>
+</dl>
+<h4 id="tcpdump">tcpdump</h4>
+<dl>
+<dd>
+<p>Inspect actual IP packets</p>
+<p>Display all network data
+<div class="highlight"><pre><span></span><code>tcpdump -i eth0   
+</code></pre></div>
+Set snapshot length of capture (default: 65,535B)
+<div class="highlight"><pre><span></span><code>tcpdump<span class="w"> </span>-s
+</code></pre></div></p>
+</dd>
+</dl>
+<h4 id="ufw">ufw</h4>
+<dl>
+<dd>
+<p>Program for managing a <a href="#netfilter">Netfilter</a> firewall.</p>
+<p>Allow traffic associated with various services
+<div class="highlight"><pre><span></span><code>ufw<span class="w"> </span>allow<span class="w"> </span>ssh
+ufw<span class="w"> </span>allow<span class="w"> </span>http
+ufw<span class="w"> </span>allow<span class="w"> </span>https
+</code></pre></div></p>
+</dd>
+</dl>
+<h4 id="wg">wg</h4>
+<dl>
+<dd>
+<p>This is the main CLI frontend for Wireguard, the UDP-based tunneling protocol and application that was introduced with kernel 5.6.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.47 2 12v7.73C2 21 3 22 4.27 22H12c5.53 0 10-4.5 10-10S17.5 2 12 2m2.03 4.12c1.68 0 3.26 1.28 3.26 3.06 0 .16 0 .32-.02.51-.05.47-.48.81-.95.75a.836.836 0 0 1-.7-.98c0-.06.01-.14.01-.28 0-1.01-.82-1.4-1.6-1.4-.78 0-1.48.66-1.48 1.4.01.85 0 1.7 0 2.56l1.45-.02c1.12-.02 1.13 1.68 0 1.67l-1.45.01-.01 2.39c-.18 1.88-1.77 3.37-3.69 3.37-2.03 0-3.71-1.66-3.71-3.7A3.801 3.801 0 0 1 9 11.74l1.15-.01v1.67L9 13.41h-.03c-1.16.03-2.15.82-2.16 2.06 0 1.12.91 2.03 2.04 2.03 1.15 0 2.03-.83 2.03-2.03.02-2.01-.01-4.22 0-6.3 0-.12.01-.21.02-.34.19-1.54 1.57-2.71 3.13-2.71"/></svg></span> Fedora</label><label for="__tabbed_4_2"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 12a10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2a10 10 0 0 1 10 10m-7.66-4.26c.58.33 1.31.13 1.66-.44.31-.57.12-1.3-.46-1.64-.57-.33-1.31-.16-1.64.44-.33.57-.13 1.31.44 1.64m-2.46 7.76c-.53 0-1.03-.11-1.47-.32l-.84 1.5c.7.32 1.48.54 2.31.54.49 0 .95-.07 1.4-.19.08-.49.36-.93.82-1.19.46-.27.98-.29 1.44-.12.89-.87 1.46-2.06 1.55-3.39l-1.71-.02a3.506 3.506 0 0 1-3.5 3.19m0-7c1.84 0 3.34 1.39 3.5 3.19l1.71-.03a5.209 5.209 0 0 0-1.55-3.38c-.46.17-.99.14-1.44-.12-.46-.26-.74-.71-.82-1.19-.45-.12-.91-.19-1.4-.19-.83 0-1.61.19-2.31.54l.84 1.5c.44-.21.94-.32 1.47-.32M8.37 12c0-1.19.59-2.24 1.49-2.87L9 7.65a5.217 5.217 0 0 0-2.17 3.04c.38.31.62.78.62 1.31s-.24 1-.62 1.31A5.195 5.195 0 0 0 9 16.34l.86-1.47c-.9-.63-1.49-1.68-1.49-2.87m5.97 4.26c-.57.33-.77 1.06-.44 1.64.33.57 1.07.77 1.64.44.58-.34.77-1.07.46-1.64-.35-.58-1.08-.77-1.66-.44M5.76 10.8c-.66 0-1.2.54-1.2 1.2 0 .66.54 1.2 1.2 1.2.67 0 1.2-.54 1.2-1.2 0-.66-.53-1.2-1.2-1.2Z"/></svg></span> Ubuntu</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>install<span class="w"> </span>wireguard-tools
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>apt<span class="w"> </span>install<span class="w"> </span>wireguard
+</code></pre></div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+<h4 id="wget">wget</h4>
+<dl>
+<dd>Accept a self-signed certificate by skipping verification
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>--no-check-certificate<span class="w"> </span><span class="nv">$URL</span>
+</code></pre></div></dd>
+</dl>
+<h2 id="glossary">Glossary</h2>
+<h4 id="ebpf">eBPF</h4>
+<dl>
+<dd>
+<p>eBPF is an extended version of the Berkeley Packet Filter (BPF). 
+It is a sandboxed environment that allows code to be inserted into the running kernel. 
+Kernel functionality must normally be extended by building an entirely new kernel with custom modules or upstream patching of the Linux kernel.</p>
+<p>eBPF's architecture includes a JIT compiler that compiles the program's generic bytecode, which means eBPF programs run as efficiently as natively compiled kernel code.</p>
+<p>eBPF programs can be bound to kernel events, such as receipt of a packet from the NIC.</p>
+<p><strong>bpftool</strong> is a core eBPF CLI tool.</p>
+<div class="highlight"><pre><span></span><code>bpftool<span class="w"> </span>prog<span class="w">     </span><span class="c1"># Display running eBPF programs</span>
+bpftool<span class="w"> </span>map<span class="w"> </span>show<span class="w"> </span><span class="c1"># Display maps</span>
+</code></pre></div>
+</dd>
+</dl>
+<h4 id="ifcfg">ifcfg</h4>
+<dl>
+<dd>
+<p>Historically, <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide/sec-configuring_ip_networking_with_ifcg_files"><strong>ifcfg</strong> (interface configuration) files</a> were ini-format files found in <strong>/etc/sysconfig/network-scripts/</strong> in Red Hat distributions.
+They were used to control network interfaces on the legacy "network" service, now part of the network-scripts package, which included the <a href="https://github.com/fedora-sysv/initscripts/blob/master/doc/sysconfig.txt#L416">sysconfig.txt</a> file which documents the ifcfg file format.</p>
+<p>After the introduction of <a href="#networkmanager">NetworkManager</a>, this format survived and was <a href="https://networkmanager.dev/docs/api/latest/nm-settings-ifcfg-rh.html">expanded</a> with new 
+directives specific to NetworkManager.</p>
+<p>By convention, the string value of the DEVICE directive was the suffix of the filename itself.
+<div class="highlight"><span class="filename">ifcfg-eth0</span><pre><span></span><code><span class="na">DEVICE</span><span class="o">=</span><span class="s">eth0</span>
+<span class="na">BOOTPROTO</span><span class="o">=</span><span class="s">dhcp</span>
+<span class="na">ONBOOT</span><span class="o">=</span><span class="s">yes</span>
+<span class="na">TYPE</span><span class="o">=</span><span class="s">Ethernet</span>
+</code></pre></div></p>
+<p>The nmcli utility exposes a command that can change the configuration backend from ifcfg to a NetworkManager <a href="#keyfile"><strong>keyfile</strong></a>.
+<div class="highlight"><span class="filename">Migrate a connection profile</span><pre><span></span><code>nmcli<span class="w"> </span>connection<span class="w"> </span>migrate<span class="w"> </span>eth0
+</code></pre></div></p>
+<p>Ifcfg file support was finally removed in <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/9.0_release_notes/index#overview-major-changes">RHEL 9</a> and <a href="https://fedoraproject.org/wiki/Changes/NoIfcfgFiles">Fedora 36</a>.
+If no ifcfg files are present, the configuration backend that supports them can be removed.
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>remove<span class="w"> </span>NetworkManager-initscripts-ifcfg-rh
+</code></pre></div></p>
+</dd>
+</dl>
+<h4 id="netfilter">Netfilter</h4>
+<dl>
+<dd>Netfilter is a software firewall and packet filtering framework introduced with Linux 2.4.0 (2001) and controlled by the <a href="#iptables">iptables</a> command.</dd>
+</dl>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.expand", "toc.integrate", "content.code.annotate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.b425cdc4.min.js"></script>
+      
+    
+  </body>
+</html>

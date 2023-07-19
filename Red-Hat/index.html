@@ -1,0 +1,1640 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://jasper-zanjani.github.io/notes/Red-Hat/">
+      
+      
+        <link rel="prev" href="../Random/">
+      
+      
+        <link rel="next" href="../Ricing/">
+      
+      <link rel="icon" href="../img/brain.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
+    
+    
+      
+        <title>Red Hat - Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.26e3688c.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../style/tooltip-width.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="yellow">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#red-hat" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Notes" class="md-header__button md-logo" aria-label="Notes" data-md-component="logo">
+      
+  <img src="../img/brain.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Red Hat
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Notes" class="md-nav__button md-logo" aria-label="Notes" data-md-component="logo">
+      
+  <img src="../img/brain.png" alt="logo">
+
+    </a>
+    Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Linux
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Concurrency/" class="md-nav__link">
+        Concurrency
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Containers/" class="md-nav__link">
+        Containers
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Databases/" class="md-nav__link">
+        Databases
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Display/" class="md-nav__link">
+        Display
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Files/" class="md-nav__link">
+        Files
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Filters/" class="md-nav__link">
+        Filters
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GRUB/" class="md-nav__link">
+        GRUB2
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../IAM/" class="md-nav__link">
+        Users
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Kernel/" class="md-nav__link">
+        Kernel
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Network/" class="md-nav__link">
+        Network
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Package/" class="md-nav__link">
+        Package management
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Process/" class="md-nav__link">
+        Process management
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Random/" class="md-nav__link">
+        Random
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Red Hat
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Red Hat
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#subscriptions" class="md-nav__link">
+    Subscriptions
+  </a>
+  
+    <nav class="md-nav" aria-label="Subscriptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#subscription-manager" class="md-nav__link">
+    subscription-manager
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#applications" class="md-nav__link">
+    Applications
+  </a>
+  
+    <nav class="md-nav" aria-label="Applications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tuned" class="md-nav__link">
+    TuneD
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cockpit" class="md-nav__link">
+    Cockpit
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage" class="md-nav__link">
+    Storage
+  </a>
+  
+    <nav class="md-nav" aria-label="Storage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#autofs" class="md-nav__link">
+    Autofs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stratis" class="md-nav__link">
+    Stratis
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vdo" class="md-nav__link">
+    VDO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#labs" class="md-nav__link">
+    Labs
+  </a>
+  
+    <nav class="md-nav" aria-label="Labs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ex200" class="md-nav__link">
+    EX200
+  </a>
+  
+    <nav class="md-nav" aria-label="EX200">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#iam" class="md-nav__link">
+    IAM
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repos" class="md-nav__link">
+    Repos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#networking" class="md-nav__link">
+    Networking
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    Logging
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scheduling" class="md-nav__link">
+    Scheduling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chrony" class="md-nav__link">
+    Chrony
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grub" class="md-nav__link">
+    GRUB
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage_1" class="md-nav__link">
+    Storage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shares" class="md-nav__link">
+    Shares
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-as-service" class="md-nav__link">
+    Container as service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selinux" class="md-nav__link">
+    SELinux
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#firewall" class="md-nav__link">
+    Firewall
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commands" class="md-nav__link">
+    Commands
+  </a>
+  
+    <nav class="md-nav" aria-label="Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dnf" class="md-nav__link">
+    dnf
+  </a>
+  
+    <nav class="md-nav" aria-label="dnf">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#repos_1" class="md-nav__link">
+    Repos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#firewall-cmd" class="md-nav__link">
+    firewall-cmd
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#httpd" class="md-nav__link">
+    httpd
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#podman" class="md-nav__link">
+    podman
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rpm" class="md-nav__link">
+    rpm
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rpmkeys" class="md-nav__link">
+    rpmkeys
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#glossary" class="md-nav__link">
+    Glossary
+  </a>
+  
+    <nav class="md-nav" aria-label="Glossary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#centos" class="md-nav__link">
+    CentOS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fedora" class="md-nav__link">
+    Fedora
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ricing/" class="md-nav__link">
+        Tiling window managers
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Security/" class="md-nav__link">
+        Security
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Shell/" class="md-nav__link">
+        Shells
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Storage/" class="md-nav__link">
+        Storage
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SystemD/" class="md-nav__link">
+        SystemD
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Virtualization/" class="md-nav__link">
+        Virtualization
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_22" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_22" id="__nav_22_label" tabindex="0">
+          Applications
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_22">
+          <span class="md-nav__icon md-icon"></span>
+          Applications
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/bind/" class="md-nav__link">
+        BIND
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/ffmpeg/" class="md-nav__link">
+        ffmpeg
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/git/" class="md-nav__link">
+        Git
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/gnome/" class="md-nav__link">
+        GNOME
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/nginx/" class="md-nav__link">
+        Nginx
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/pam/" class="md-nav__link">
+        PAM
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/rhythmbox/" class="md-nav__link">
+        Rhythmbox
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/screen/" class="md-nav__link">
+        screen
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/selinux/" class="md-nav__link">
+        SELinux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/ssh/" class="md-nav__link">
+        SSH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/syncthing/" class="md-nav__link">
+        Syncthing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/vim/" class="md-nav__link">
+        Vim
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/youtube-dl/" class="md-nav__link">
+        Youtube dl
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="red-hat">Red Hat</h1>
+<h2 id="subscriptions">Subscriptions</h2>
+<p>Subscriptions are managed through the Red Hat <a href="https://access.redhat.com/solutions/3653861">entitlement service</a>, integrated with the Customer Portal.
+Entitlement certificates are stored as X.509 PEM certificate files in <strong>/etc/pki/entitlement</strong> for <a href="https://access.redhat.com/articles/simple-content-access"><strong>Simple Content Access (SCA)</strong></a>-enabled accounts.</p>
+<div class="highlight"><span class="filename">Inspect X.509 certificate</span><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-text<span class="w"> </span>-in<span class="w"> </span>/etc/pki/entitlement/9012345678901234567.pem
+</code></pre></div>
+<h4 id="subscription-manager">subscription-manager</h4>
+<dl>
+<dd><div class="highlight"><pre><span></span><code><span class="c1"># Display status of subscriptions and products</span>
+subscription-manager<span class="w"> </span>status
+
+<span class="c1"># Display installed products</span>
+subscription-manager<span class="w"> </span>list
+</code></pre></div></dd>
+</dl>
+<h2 id="applications">Applications</h2>
+<h4 id="tuned">TuneD</h4>
+<dl>
+<dd>
+<p><a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/getting-started-with-tuned_monitoring-and-managing-system-status-and-performance">TuneD</a>
+is a service that monitors the system and optimizes its performance under certain workloads.
+TuneD provides predefined profiles for power-saving and performance-boosting use cases.</p>
+<ul>
+<li><strong>throughput-performance</strong> optimizes for throughput</li>
+<li><strong>virtual-guest</strong> optimizes for performance</li>
+<li><strong>balanced</strong> balances performance and power consumption</li>
+<li><strong>powersave</strong> optimizes for power consumption</li>
+</ul>
+<p>These can be listed from the command-line:</p>
+<div class="highlight"><pre><span></span><code>tuned-adm<span class="w"> </span>list<span class="w"> </span>profiles
+tuned-adm<span class="w"> </span>active
+tuned-adm<span class="w"> </span>recommend
+
+<span class="c1"># Select a profile</span>
+tuned-adm<span class="w"> </span>profile<span class="w"> </span>powersave
+
+<span class="c1"># Select a merged profile</span>
+tuned-adm<span class="w"> </span>profile<span class="w"> </span>virtual-guest<span class="w"> </span>powersave
+</code></pre></div>
+<div class="highlight"><span class="filename">/etc/tuned/tuned-main.conf</span><pre><span></span><code><span class="c1"># Enable dynamic tuning, which monitors system components during uptime and makes system changes dynamically.</span>
+<span class="na">dynamic_tuning</span><span class="o">=</span><span class="s">1</span>
+</code></pre></div>
+</dd>
+</dl>
+<h4 id="cockpit">Cockpit</h4>
+<dl>
+<dd>Cockpit is builtin to Red Hat distributions and, once started as a normal SystemD service, is available at port 9090.</dd>
+</dl>
+<h2 id="storage">Storage</h2>
+<h4 id="autofs">Autofs</h4>
+<dl>
+<dd></dd>
+</dl>
+<h4 id="stratis">Stratis</h4>
+<dl>
+<dd></dd>
+</dl>
+<h4 id="vdo">VDO</h4>
+<dl>
+<dd></dd>
+</dl>
+<h2 id="labs">Labs</h2>
+<h3 id="ex200">EX200</h3>
+<h4 id="iam">IAM</h4>
+<dl>
+<dd>
+<p>We're going to lay the groundwork here and use these local accounts for all the subsequent tasks. You can write a script to do this, or do it by hand, from the data in the input file for the script. The file contents are:</p>
+<div class="highlight"><pre><span></span><code>manny:1010:dba_admin,dba_managers,dba_staff 
+moe:1011:dba_admin,dba_staff 
+jack:1012:dba_intern,dba_staff 
+marcia:1013:it_staff,it_managers 
+jan:1014:dba_admin,dba_staff 
+cindy:1015:dba_intern,dba_staff 
+</code></pre></div>
+<p>Set all user passwords to <strong>dbapass</strong>. 
+Also, change the users' PRIMARY groups' GID to match their UID. 
+Don't forget to check their home directories to make sure permisisons are correct!</p>
+<p>Enable the following command aliases:</p>
+<ul>
+<li><strong>SOFTWARE</strong></li>
+<li><strong>SERVICES</strong></li>
+<li><strong>PROCESSES</strong></li>
+</ul>
+<p>Add a new command alias named <strong>MESSAGES</strong>:
+<div class="highlight"><pre><span></span><code>/bin/tail<span class="w"> </span>-f<span class="w"> </span>/var/log/messages
+</code></pre></div>
+Enable superuser privilages for the following local groups:</p>
+<ul>
+<li><strong>dba_managers</strong>: everything</li>
+<li><strong>dba_admin</strong>: Command aliases: SOFTWARE, SERVICES, PROCESSES</li>
+<li><strong>dba_intern</strong>: Command alias: MESSAGES</li>
+</ul>
+</dd>
+</dl>
+<h4 id="repos">Repos</h4>
+<dl>
+<dd>
+<p>You'll need to configure three repositories and install some software:</p>
+<ul>
+<li>
+<p>RHEL 8 BaseOS:</p>
+<ul>
+<li>Repository ID: <strong>[rhel-8-baseos-rhui-rpms]</strong></li>
+<li>The mirrorlist is: <strong>https://rhui3.REGION.aws.ce.redhat.com/pulp/mirror/content/dist/rhel8/rhui/$releasever/$basearch/baseos/os</strong></li>
+<li>The GPG key is located at: <strong>/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release</strong></li>
+<li>You will need to add SSL configuration:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="na">sslverify</span><span class="o">=</span><span class="s">1</span><span class="w"> </span>
+<span class="na">sslclientkey</span><span class="o">=</span><span class="s">/etc/pki/rhui/content-rhel8.key</span><span class="w"> </span>
+<span class="na">sslclientcert</span><span class="o">=</span><span class="s">/etc/pki/rhui/product/content-rhel8.crt</span><span class="w"> </span>
+<span class="na">sslcacert</span><span class="o">=</span><span class="s">/etc/pki/rhui/cdn.redhat.com-chain.crt</span><span class="w"> </span>
+</code></pre></div>
+</li>
+<li>
+<p>RHEL 8 AppStream:</p>
+<ul>
+<li>Repository ID: <strong>[rhel-8-appstream-rhui-rpms]</strong></li>
+<li>The mirrorlist is: <strong>https://rhui3.REGION.aws.ce.redhat.com/pulp/mirror/content/dist/rhel8/rhui/$releasever/$basearch/appstream/os</strong></li>
+<li>The GPG key is located at: <strong>/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release</strong></li>
+<li>You will need to add SSL configuration:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="na">sslverify</span><span class="o">=</span><span class="s">1</span>
+<span class="na">sslclientkey</span><span class="o">=</span><span class="s">/etc/pki/rhui/content-rhel8.key</span>
+<span class="na">sslclientcert</span><span class="o">=</span><span class="s">/etc/pki/rhui/product/content-rhel8.crt</span>
+<span class="na">sslcacert</span><span class="o">=</span><span class="s">/etc/pki/rhui/cdn.redhat.com-chain.crt</span>
+</code></pre></div>
+</li>
+<li>
+<p>EPEL:</p>
+<ul>
+<li>Repository ID: <strong>[epel]</strong></li>
+<li>The baseurl is: <strong>https://download.fedoraproject.org/pub/epel/$releasever/Everything/$basearch</strong></li>
+</ul>
+</li>
+</ul>
+<p>Configure the repositories on the first server, then make an archive of the files, securely copy them to the second server, then unarchive the repository files on the second server.</p>
+<ul>
+<li>Install the default AppStream stream/profile for container-tools</li>
+<li>Install the youtube-dl package (from EPEL)</li>
+<li>Check for system updates, but don't install them</li>
+</ul>
+</dd>
+</dl>
+<h4 id="networking">Networking</h4>
+<dl>
+<dd>
+<p>On the first server, configure the second interface's IPv4/IPv6 addresses using nmtui.</p>
+<ul>
+<li>IPv4: <strong>10.0.1.20/24</strong></li>
+<li>IPv6: <strong>2002:0a00:0114::/64</strong></li>
+<li>Manual, not Automatic (DHCP) for both interfaces</li>
+<li>Only IP addresses, no other fields</li>
+<li>Configure only, do not activate</li>
+</ul>
+</dd>
+</dl>
+<h4 id="logging">Logging</h4>
+<dl>
+<dd>By default, the systemd journal logs to memory in RHEL 8, in the location /run/log/journal. While this works fine, we'd like to make our journals persistent across reboots.
+Configure the systemd journal logs to be persistent on both servers, logging to <strong>/var/log/journal</strong>.</dd>
+</dl>
+<h4 id="scheduling">Scheduling</h4>
+<dl>
+<dd>
+<p>Create one <strong>at</strong> task and one <strong>cron</strong> job on the first server:</p>
+<ul>
+<li>The at job will create a file containing the string "The at job ran" in the file named <strong>/web/html/at.html</strong>, two minutes from the time you schedule it.</li>
+<li>The cron job will append to the <strong>/web/html/cron.html</strong> file every minute, echoing the date to the file.</li>
+</ul>
+<p>These files will be available via the web server on the first server after the "Troubleshoot SELinux issues" objective is completed.</p>
+</dd>
+</dl>
+<h4 id="chrony">Chrony</h4>
+<dl>
+<dd>
+<p>Time sync is not working on either of our servers. We need to fix that.</p>
+<p>Configure chrony to use the following server:
+<div class="highlight"><pre><span></span><code>server 169.254.169.123 iburst 
+</code></pre></div>
+Make sure your work is persistent and check your work!</p>
+</dd>
+</dl>
+<h4 id="grub">GRUB</h4>
+<dl>
+<dd>
+<p>On <strong>server1</strong>, make the following changes:</p>
+<ul>
+<li>Increase the timeout using <strong><code>GRUB_TIMEOUT=10</code></strong></li>
+<li>Add the following line: <strong><code>GRUB_TIMEOUT_STYLE=hidden</code></strong></li>
+<li>Add quiet to the end of the <strong><code>GRUB_CMDLINE_LINUX</code></strong> line</li>
+</ul>
+<p>Validate the changes in <strong>/boot/grub2/grub.cfg</strong>. Do not reboot the server.</p>
+</dd>
+</dl>
+<h4 id="storage_1">Storage</h4>
+<dl>
+<dd>
+<p>On the second server:</p>
+<ul>
+<li>
+<p>Create a VDO device with the first unused 5GB device.</p>
+<ul>
+<li>Name: <strong>web_storage</strong></li>
+<li>Logical Size: 10GB</li>
+</ul>
+</li>
+<li>
+<p>Use the VDO device as an LVM physical volume. Create the following:</p>
+</li>
+<li>
+<p>Volume Group: <strong>web_vg</strong></p>
+<ul>
+<li>
+<p>Three 2G Logical Volumes with xfs file systems, mounted persistently at <strong>/mnt/web_storage_{dev,qa,prod}q</strong>:</p>
+<ul>
+<li>web_storage_dev</li>
+<li>web_storage_qa</li>
+<li>web_storage_prod</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>We need to increase the swap on the second server. We're going to use half of our first unused 2G disk for this additional swap space. Configure the swap space non-destructively and persistently.</p>
+<p>On the second server, using the second 2G disk, create the following:</p>
+<ul>
+<li>Stratis pool: <strong>appteam</strong></li>
+<li>Stratis file system, mounted persistently at <strong>/mnt/app_storage</strong>: <strong>appfs1</strong></li>
+</ul>
+</dd>
+</dl>
+<h4 id="shares">Shares</h4>
+<dl>
+<dd>
+<p>Configure autofs on the first server to mount the user home directories on the second server at <strong>/export/home</strong>.</p>
+<ul>
+<li>On the second server, configure a NFS server with the following export:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>/home &lt;first_server_private_IP&gt;(rw,sync,no_root_squash)
+</code></pre></div>
+<ul>
+<li>On the first server, configure autofs to mount the exported /home directory on the second server at <strong>/export/home</strong>. Change the home directories for our six users (manny|moe|jack|marcia|jan|cindy) to be <strong><code>/export/home/&lt;user&gt;</code></strong> and test.</li>
+</ul>
+<p>On the second server, create a directory at <strong>/home/dba_docs</strong> with:</p>
+<ul>
+<li>Group ownership: <strong>dba_staff</strong></li>
+<li>Permissions: <strong>770</strong>, <strong>SGID</strong> and <strong>sticky bits</strong> set</li>
+</ul>
+<p>Create a link in each shared user's home directory to this directory, for easy access.</p>
+<p>Set the following ACLs:</p>
+<ul>
+<li>Read-only for jack and cindy</li>
+<li>Full permissions for marcia</li>
+</ul>
+</dd>
+</dl>
+<h4 id="container-as-service">Container as service</h4>
+<dl>
+<dd>
+<p>As the cloud_user user on the first server, create a persistent systemd container with the following:</p>
+<ul>
+<li>Image: <strong>registry.access.redhat.com/rhscl/httpd-24-rhel7</strong></li>
+<li>Port mappings: 8080 on the container to 8000 on the host</li>
+<li>Persistent storage at <strong>~/web_data</strong>, mounted at <strong>/var/www/html</strong> in the container</li>
+<li>Container name: <strong>web_server</strong></li>
+</ul>
+</dd>
+</dl>
+<h4 id="selinux">SELinux</h4>
+<dl>
+<dd>The Apache web server on the first server won't start! Investigate this issue, and correct any other SELinux issues related to httpd that you may find.</dd>
+</dl>
+<h4 id="firewall">Firewall</h4>
+<dl>
+<dd>
+<p>Make sure the firewall is installed, enabled and started on both servers. Configure the following services/ports:</p>
+<ul>
+<li>
+<p>Server 1:</p>
+<ul>
+<li><strong>ssh</strong></li>
+<li><strong>http</strong></li>
+<li>Port <strong>85</strong> (tcp)</li>
+<li>Port <strong>8000</strong> (tcp)</li>
+</ul>
+</li>
+<li>
+<p>Server 2:</p>
+<ul>
+<li><strong>ssh</strong></li>
+<li><strong>nfs</strong></li>
+<li><strong>nfs3</strong></li>
+<li><strong>rpc-bind</strong></li>
+<li><strong>mountd</strong></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+<h2 id="commands">Commands</h2>
+<h3 id="dnf">dnf</h3>
+<dl>
+<dd>
+<p>View history of dnf commands
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span><span class="nb">history</span>
+dnf<span class="w"> </span><span class="nb">history</span><span class="w"> </span>userinstalled<span class="w"> </span><span class="c1"># View all packages installed by user</span>
+</code></pre></div></p>
+<p><a href="https://docs.fedoraproject.org/en-US/quick-docs/getting-started-with-virtualization/"><strong>Package groups</strong></a> can be specified using the <strong>group</strong> command or by prefixing the package group name with <strong><code>@</code></strong></p>
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>info<span class="w"> </span>@virtualization<span class="w"> </span><span class="c1"># dnf group info virtualization</span>
+dnf<span class="w"> </span>install<span class="w"> </span>@virtualization<span class="w"> </span><span class="c1"># dnf group install virtualization</span>
+dnf<span class="w"> </span>install<span class="w"> </span>--with-optional<span class="w"> </span>@virtualization<span class="w"> </span><span class="c1"># Include optional packages</span>
+</code></pre></div>
+<p>Remove the configuration backend supporting the use of legacy ifcfg files in NetworkManager.
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>remove<span class="w"> </span>NetworkManager-initscripts-ifcfg-rh
+</code></pre></div></p>
+<p><a href="https://docs.fedoraproject.org/en-US/modularity/using-modules/"><strong>Modules</strong></a> are special package groups representing an application, runtime, or a set of tools. 
+The <a href="https://nodejs.org/en/download/package-manager/#centos-fedora-and-red-hat-enterprise-linux">Node.js module</a> allows you to select several <strong>streams</strong> corresponding to major versions.
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>module<span class="w"> </span>install<span class="w"> </span>nodejs:12
+</code></pre></div></p>
+<p>Global dnf configuration is stored in either <strong>/etc/yum.conf</strong> or <strong>/etc/dnf.conf</strong>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">[main]</span>
+<span class="c1">; Exclude packages from updates permanently</span>
+<span class="na">exclude</span><span class="o">=</span><span class="s">kernel* php*</span>
+<span class="c1">; Suppress confirmation</span>
+<span class="na">assumeyes</span><span class="o">=</span><span class="s">True</span>
+</code></pre></div>
+<p>The configuration can be dumped from the command-line (as root)
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>config-manager<span class="w"> </span>--dump
+</code></pre></div></p>
+</dd>
+</dl>
+<h4 id="repos_1">Repos</h4>
+<dl>
+<dd>
+<p>Repositories are INI files placed in  <strong>/etc/yum.repos.d/</strong>, but they can also be displayed and manipulated from the command-line.</p>
+<div class="highlight"><span class="filename">Repositories</span><pre><span></span><code><span class="c1"># Display repos</span>
+dnf<span class="w"> </span>repolist<span class="w"> </span><span class="c1"># -v</span>
+
+<span class="c1"># Display enabled repos</span>
+dnf<span class="w"> </span>repolist<span class="w"> </span>--enabled
+
+<span class="c1"># Display a single repo</span>
+dnf<span class="w"> </span>repoinfo<span class="w"> </span>docker-ce-stable
+
+<span class="c1"># Add repo</span>
+dnf<span class="w"> </span>config-manager<span class="w"> </span>--add-repo<span class="w"> </span><span class="nv">$REPO</span>-URL
+
+<span class="c1"># Disable repo</span>
+dnf<span class="w"> </span>config-manager<span class="w"> </span>--set-disabled<span class="w"> </span><span class="nv">$REPO</span>-NAME
+</code></pre></div>
+<div class="highlight"><span class="filename">Example repos</span><pre><span></span><code><span class="k">[docker-ce-stable]</span>
+<span class="na">name</span><span class="o">=</span><span class="s">Docker CE Stable - $basearch</span>
+<span class="na">baseurl</span><span class="o">=</span><span class="s">https://download.docker.com/linux/fedora/$releasever/$basearch/stable</span>
+<span class="na">enabled</span><span class="o">=</span><span class="s">1</span>
+<span class="na">gpgcheck</span><span class="o">=</span><span class="s">1</span>
+<span class="na">gpgkey</span><span class="o">=</span><span class="s">https://download.docker.com/linux/fedora/gp</span>
+
+<span class="k">[kubernetes]</span>
+<span class="na">name</span><span class="o">=</span><span class="s">Kubernetes</span>
+<span class="na">baseurl</span><span class="o">=</span><span class="s">https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64</span>
+<span class="na">enabled</span><span class="o">=</span><span class="s">1</span>
+<span class="na">gpgcheck</span><span class="o">=</span><span class="s">1</span>
+<span class="na">repo_gpgcheck</span><span class="o">=</span><span class="s">1</span>
+<span class="na">gpgkey</span><span class="o">=</span><span class="s">https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg</span>
+
+<span class="k">[google-cloud-sdk]</span>
+<span class="na">name</span><span class="o">=</span><span class="s">Google Cloud SDK</span>
+<span class="na">baseurl</span><span class="o">=</span><span class="s">https://packages.cloud.google.com/yum/repos/cloud-sdk-el7-x86_64</span>
+<span class="na">enabled</span><span class="o">=</span><span class="s">1</span>
+<span class="na">gpgcheck</span><span class="o">=</span><span class="s">1</span>
+<span class="na">repo_gpgcheck</span><span class="o">=</span><span class="s">0</span>
+<span class="na">gpgkey</span><span class="o">=</span><span class="s">https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg</span>
+</code></pre></div>
+<p><strong>Modules</strong> are collections of packages that are installed together.
+They often also have <strong>profiles</strong> available, which are variants of the module: i.e. client, server, common, devel, etc.
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>module<span class="w"> </span>list<span class="w"> </span>php
+dnf<span class="w"> </span>module<span class="w"> </span>install<span class="w"> </span>php:7.4/devel
+dnf<span class="w"> </span>module<span class="w"> </span>reset<span class="w"> </span>php
+</code></pre></div></p>
+</dd>
+</dl>
+<h4 id="firewall-cmd">firewall-cmd</h4>
+<dl>
+<dd>
+<p>Frontend to <a href="#netfilter">Netfilter</a> in Red Hat distributions.</p>
+<div class="highlight"><pre><span></span><code>firewall-cmd<span class="w"> </span>--state<span class="w"> </span><span class="c1"># &quot;running&quot;</span>
+</code></pre></div>
+<p>Firewalld has a runtime configuration and a saved, persistent configuration.
+Only the runtime configuration will be consulted for any command, unless the persistent configuration is specified with <strong>--permanent</strong>.</p>
+<p>The runtime configuration can be saved with this command, which obviates the need to execute every change twice.
+<div class="highlight"><pre><span></span><code>firewall-cmd<span class="w"> </span>--runtime-to-permanent
+</code></pre></div></p>
+<p>Alternatively, the persistent configuration can be loaded into memory:
+<div class="highlight"><pre><span></span><code>firewall-cmd<span class="w"> </span>--reload
+</code></pre></div></p>
+<div class="highlight"><span class="filename">Display firewall rules</span><pre><span></span><code>firewall-cmd<span class="w"> </span>--list-all<span class="w"> </span>--permanent
+</code></pre></div>
+<p>Firewalld uses <strong>zones</strong> to define the level of trust for network connections.
+A connection can only be part of one zone, but a zone can be used for many network connections.
+Builtin zones have XML-format configs found in <strong>/usr/lib/firewalld/zones</strong>.
+<div class="highlight"><pre><span></span><code>firewall-cmd<span class="w"> </span>--get-active-zones<span class="w">     </span><span class="c1"># Display active zones along with interfaces</span>
+firewall-cmd<span class="w"> </span>--info-zone<span class="o">=</span>public<span class="w">     </span><span class="c1"># Inspect zone</span>
+firewall-cmd<span class="w"> </span>--new-zone<span class="o">=</span>testlab<span class="w">     </span><span class="c1"># Create new zone</span>
+</code></pre></div></p>
+<p>Firewalld rules are generally managed through builtin <strong>services</strong>.
+These bundle network settings together for well-known applications like SSH, etc.
+Builtin services are also XML-format configs found in <strong>/usr/lib/firewalld/services</strong>.</p>
+<div class="highlight"><span class="filename">Services</span><pre><span></span><code>firewall-cmd<span class="w"> </span>--list-services
+firewall-cmd<span class="w"> </span>--add-service<span class="o">=</span>http
+firewall-cmd<span class="w"> </span>--remove-service<span class="o">=</span>http
+</code></pre></div>
+<p>Firewalld's config file is at <strong>/etc/firewalld/firewalld.conf</strong>
+<div class="highlight"><span class="filename">/etc/firewalld/firewalld.conf</span><pre><span></span><code><span class="na">AllowZoneDrifting</span><span class="o">=</span><span class="s">no</span>
+</code></pre></div></p>
+<p>Since RHEL 8, firewalld's backend has been changed to nftables.
+<div class="highlight"><span class="filename">/etc/firewalld/firewalld.conf</span><pre><span></span><code><span class="na">FirewallBackend</span><span class="o">=</span><span class="s">nftables</span>
+</code></pre></div></p>
+</dd>
+</dl>
+<h4 id="httpd">httpd</h4>
+<dl>
+<dd>
+<p>The Apache web server daemon is named <strong>httpd</strong> in RHEL and other RPM-based distributions.
+HTML content is served from <strong>/var/www/html</strong> by default, but this can be changed by modifying the <strong>DocumentRoot</strong> directive in the Apache config located at <strong>/etc/httpd/conf/httpd.conf</strong>.</p>
+<div class="highlight"><span class="filename">/etc/httpd/conf/httpd.conf</span><pre><span></span><code><span class="na">DocumentRoot &quot;/web&quot;</span>
+<span class="c1"># ...</span>
+<span class="na">&lt;Directory &quot;/web&quot;&gt;</span>
+</code></pre></div>
+<p>Containers must mount content to <strong>/usr/local/apache2/htdocs</strong>.</p>
+<p>Users can also serve files from their home directories, by default from a directory named <strong>public_html</strong>.</p>
+</dd>
+</dl>
+<h4 id="podman">podman</h4>
+<dl>
+<dd>
+<p>On RHEL, podman can be installed as a package or as part of a module
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>module<span class="w"> </span>install<span class="w"> </span>container-tools
+</code></pre></div></p>
+<p>With few exceptions, podman exposes a command-line API that closely imitates that of Docker.</p>
+<details class="info">
+<summary>Arch Linux</summary>
+<p>On Arch, <strong>/etc/subuid</strong> and <strong>/etc/subgid</strong> have to be <a href="https://wiki.archlinux.org/title/Podman#Set_subuid_and_subgid">set</a>.
+These are colon-delimited files that define the ranges for namespaced UIDs and GIDs to be used by each user. 
+Conventionally, these ranges begin at 100,000 (for the first, primary user) and contain 65,536 possible values.
+<div class="highlight"><pre><span></span><code>terry:100000:65536
+alice:165536:65536
+</code></pre></div></p>
+<p>Then podman has to be migrated
+<div class="highlight"><pre><span></span><code>podman<span class="w"> </span>system<span class="w"> </span>migrate
+</code></pre></div></p>
+</details>
+<p>Podman supports pulling from various repos using aliases that are defined in <strong>/etc/containers/registries.conf.d</strong>.
+RHEL and derivative distributions support additional aliases, some of which reference images that require a <a href="https://access.redhat.com/RegistryAuthentication#red-hat-registries-1">login</a>.</p>
+<p>For example, Red Hat offers a Python 2.7 runtime from the RHSCL (<a href="https://developers.redhat.com/products/softwarecollections/overview">Red Hat Software Collections</a>) repository on registry.access.redhat.com, which does not require authentication.
+However, Python 3.8 is only available from registry.redhat.io, which does.
+Interestingly, other Python runtimes are available from the ubi7 and ubi8 repos from unauthenticated registries.</p>
+<p>Container images are stored in <strong>~/.local/share/containers/storage</strong>.
+<div class="highlight"><pre><span></span><code>podman<span class="w"> </span>pull<span class="w"> </span>rhscl/httpd-24-rhel7<span class="w"> </span><span class="c1"># (1)</span>
+</code></pre></div></p>
+<ol>
+<li>Alias to <strong>registry.access.redhat.com/rhscl/httpd-24-rhel7</strong></li>
+</ol>
+<p>The <strong>Z</strong> option is necessary on SELinux systems (like RHEL and derivatives) and tells Podman to label the content with a private unshared label.
+On systems running SELinux, rootless containers must be explicitly allowed to access bind mounts.
+Containerized processes are not allowed to access files without a SELinux label.
+<div class="highlight"><pre><span></span><code>podman<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-v<span class="o">=</span>/home/jasper/notes/site:/usr/share/nginx/html:Z<span class="w"> </span>-p<span class="o">=</span><span class="m">8080</span>:80<span class="w"> </span>--name<span class="o">=</span>notes<span class="w"> </span>nginx
+podman<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-v<span class="o">=</span>/home/jasper/notes/site:/usr/local/apache2/htdocs:Z<span class="w"> </span>-p<span class="o">=</span><span class="m">8080</span>:80<span class="w"> </span>--name<span class="o">=</span>notes<span class="w"> </span>httpd-24
+</code></pre></div></p>
+<p>Mapped ports can be displayed
+<div class="highlight"><pre><span></span><code>podman<span class="w"> </span>port<span class="w"> </span>-a
+</code></pre></div></p>
+<p>Output a <a href="https://docs.podman.io/en/latest/markdown/podman-generate-systemd.1.html">SystemD service file</a> from a container to STDOUT (this must be redirected to a file)
+<div class="highlight"><pre><span></span><code>podman<span class="w"> </span>generate<span class="w"> </span>systemd<span class="w"> </span>notes<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--restart-policy<span class="o">=</span>always<span class="w">   </span><span class="se">\</span>
+<span class="w">    </span>--name<span class="w">                    </span><span class="se">\ </span><span class="c1"># (3)</span>
+<span class="w">    </span>--files<span class="w">                   </span><span class="se">\ </span><span class="c1"># (2)</span>
+<span class="w">    </span>--new<span class="w">                     </span><span class="se">\ </span><span class="c1"># (1)</span>
+</code></pre></div></p>
+<ol>
+<li>Yield unit files that do not expect containers and pods to exist but rather create them based on their configuration files.</li>
+<li>Generate a file with a name beginning with the prefix (which can be set with <strong>--container-prefix</strong> or <strong>--pod-prefix</strong>) and followed by the ID or name (if <strong>--name</strong> is also specified)</li>
+<li>In conjunction with <strong>--files</strong>, name the service file after the container and not the ID number.</li>
+</ol>
+</dd>
+</dl>
+<h4 id="rpm">rpm</h4>
+<dl>
+<dd>
+<p>Query repos for information on a package
+<div class="highlight"><pre><span></span><code>rpm<span class="w"> </span>-qi<span class="w"> </span><span class="nv">$PACKAGE</span><span class="w"> </span><span class="c1"># --query --info</span>
+</code></pre></div></p>
+<p>Upgrade or install a package, with progress bars
+<div class="highlight"><pre><span></span><code>rpm<span class="w"> </span>-Uvh<span class="w"> </span><span class="nv">$PACKAGE</span><span class="w"> </span><span class="c1"># --upgrade --verbose --hash</span>
+</code></pre></div></p>
+<p>Display version of Fedora
+<div class="highlight"><pre><span></span><code>rpm<span class="w"> </span>-E<span class="w"> </span>%fedora
+</code></pre></div></p>
+<p>Import a <a href="#rpmkeys">keyring</a>
+<div class="highlight"><pre><span></span><code>rpm<span class="w"> </span>--import<span class="w"> </span><span class="s2">&quot;https://build.opensuse.org/projects/home:manuelschneid3r/public_key&quot;</span>
+</code></pre></div></p>
+</dd>
+</dl>
+<h4 id="rpmkeys">rpmkeys</h4>
+<dl>
+<dd>
+<p>Manage RPM keyrings</p>
+<p>Import a keyring
+<div class="highlight"><pre><span></span><code>rpmkeys<span class="w"> </span>--import<span class="w"> </span><span class="nv">$PUBKEY</span>
+</code></pre></div></p>
+</dd>
+</dl>
+<h2 id="glossary">Glossary</h2>
+<h4 id="centos">CentOS</h4>
+<dl>
+<dd>
+<p>A community distribution of Linux that was created by Gregory Kurtzer in 2004 and acquired by <a href="#rhel">Red Hat</a> in 2014. </p>
+<p>It has traditionally been <a href="https://itsfoss.com/centos-stream-fiasco/">considered</a> downstream to <a href="#rhel">RHEL</a>, incorporating changes to RHEL after a delay of several months. 
+In fact, it is a rebuild of the publicly available <strong>source RPMs (SRPMs)</strong> of RHEL packages, which historically allowed CentOS maintainers to simply package and ship them <a href="https://fosspost.org/centos-project-suicide/">rebranded</a>.</p>
+<p>For years, CentOS was the <a href="https://www.zdnet.com/article/red-hat-resets-centos-linux-and-users-are-angry/#ftag=RSSbaffb68">distribution of choice</a> for experienced Linux administrators who did not feel the need to pay for Red Hat's support.
+In December 2020, Red Hat <a href="https://itsfoss.com/centos-stream-fiasco/">announced</a> that CentOS 8 support will end at the end of 2021 (rather than 2029), while CentOS 7 will continue to be supported until 2024. 
+This represented a shift in focus from CentOS Linux to <a href="#centos-stream"><strong>CentOS Stream</strong></a> and a change from a <strong>fixed-release</strong> (or "stable point release") to a <strong>rolling-release</strong> distribution model.</p>
+<p><strong>CentOS Stream</strong> was <a href="https://itsfoss.com/centos-stream-fiasco/">announced</a> in September 2019 as a distribution of CentOS maintained on a model previously misidentified as rolling-release but now described as "continuously delivered", organized into Streams. 
+CentOS Stream <a href="https://linuxunplugged.com/383">originated <sup><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg></span></sup></a> in an effort to get more community participation in development of RHEL, rather than merely passive consumption.</p>
+</dd>
+</dl>
+<h4 id="fedora">Fedora</h4>
+<dl>
+<dd>
+<p><strong>Fedora</strong> is a community distribution supported by Red Hat launched as "Fedora Core" in 2003. 
+It has traditionally been <a href="https://itsfoss.com/centos-stream-fiasco/">considered</a> upstream to RHEL, serving as a testing ground for new features and improvements.</p>
+<p><strong>Fedora CoreOS</strong> is a Fedora edition <a href="https://fedoramagazine.org/introducing-fedora-coreos/" title="Fedora Magazine: &quot;Introducing Fedora CoreOS&quot;">built</a> specifically for running containerized workloads securely and at scale. 
+Because containers can be deployed across many nodes for redundancy, the system can be updated and rebooted automatically without affecting uptime.
+CoreOS systems are meant to be <strong>immutable infrastructure</strong>, meaning they are only configured through the provisioning process and not modified in-place. 
+All systems start with a generic OS image, but on first boot it uses a system called <strong>Ignition</strong> to read an <strong>Ignition config</strong> (which is converted from a <strong>Fedora CoreOS Config</strong> file) from the cloud or a remote URL, by which it provisions itself, creating disk partitions, file systems, users, etc.</p>
+</dd>
+</dl>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.expand", "toc.integrate", "content.code.annotate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.b425cdc4.min.js"></script>
+      
+    
+  </body>
+</html>

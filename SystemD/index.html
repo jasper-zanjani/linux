@@ -1,0 +1,1253 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://jasper-zanjani.github.io/notes/SystemD/">
+      
+      
+        <link rel="prev" href="../Storage/">
+      
+      
+        <link rel="next" href="../Virtualization/">
+      
+      <link rel="icon" href="../img/brain.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
+    
+    
+      
+        <title>SystemD - Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.26e3688c.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../style/tooltip-width.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="yellow">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#systemd" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Notes" class="md-header__button md-logo" aria-label="Notes" data-md-component="logo">
+      
+  <img src="../img/brain.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              SystemD
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Notes" class="md-nav__button md-logo" aria-label="Notes" data-md-component="logo">
+      
+  <img src="../img/brain.png" alt="logo">
+
+    </a>
+    Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Linux
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Concurrency/" class="md-nav__link">
+        Concurrency
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Containers/" class="md-nav__link">
+        Containers
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Databases/" class="md-nav__link">
+        Databases
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Display/" class="md-nav__link">
+        Display
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Files/" class="md-nav__link">
+        Files
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Filters/" class="md-nav__link">
+        Filters
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GRUB/" class="md-nav__link">
+        GRUB2
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../IAM/" class="md-nav__link">
+        Users
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Kernel/" class="md-nav__link">
+        Kernel
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Network/" class="md-nav__link">
+        Network
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Package/" class="md-nav__link">
+        Package management
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Process/" class="md-nav__link">
+        Process management
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Random/" class="md-nav__link">
+        Random
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Red-Hat/" class="md-nav__link">
+        Red Hat
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ricing/" class="md-nav__link">
+        Tiling window managers
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Security/" class="md-nav__link">
+        Security
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Shell/" class="md-nav__link">
+        Shells
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Storage/" class="md-nav__link">
+        Storage
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          SystemD
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        SystemD
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tasks" class="md-nav__link">
+    Tasks
+  </a>
+  
+    <nav class="md-nav" aria-label="Tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scheduling-services" class="md-nav__link">
+    Scheduling services
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#masking" class="md-nav__link">
+    Masking
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#glossary" class="md-nav__link">
+    Glossary
+  </a>
+  
+    <nav class="md-nav" aria-label="Glossary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-files" class="md-nav__link">
+    Service files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slice" class="md-nav__link">
+    Slice
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sysvinit" class="md-nav__link">
+    SysVinit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#target-files" class="md-nav__link">
+    Target files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timers" class="md-nav__link">
+    Timers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unit-files" class="md-nav__link">
+    Unit files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upstart" class="md-nav__link">
+    Upstart
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commands" class="md-nav__link">
+    Commands
+  </a>
+  
+    <nav class="md-nav" aria-label="Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hostnamectl" class="md-nav__link">
+    hostnamectl
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#journalctl" class="md-nav__link">
+    journalctl
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#localectl" class="md-nav__link">
+    localectl
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loginctl" class="md-nav__link">
+    loginctl
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#systemctl" class="md-nav__link">
+    systemctl
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#systemd-analyze" class="md-nav__link">
+    systemd-analyze
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#systemd-cgls" class="md-nav__link">
+    systemd-cgls
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#systemd-delta" class="md-nav__link">
+    systemd-delta
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Virtualization/" class="md-nav__link">
+        Virtualization
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_22" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_22" id="__nav_22_label" tabindex="0">
+          Applications
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_22">
+          <span class="md-nav__icon md-icon"></span>
+          Applications
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/bind/" class="md-nav__link">
+        BIND
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/ffmpeg/" class="md-nav__link">
+        ffmpeg
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/git/" class="md-nav__link">
+        Git
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/gnome/" class="md-nav__link">
+        GNOME
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/nginx/" class="md-nav__link">
+        Nginx
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/pam/" class="md-nav__link">
+        PAM
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/rhythmbox/" class="md-nav__link">
+        Rhythmbox
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/screen/" class="md-nav__link">
+        screen
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/selinux/" class="md-nav__link">
+        SELinux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/ssh/" class="md-nav__link">
+        SSH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/syncthing/" class="md-nav__link">
+        Syncthing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/vim/" class="md-nav__link">
+        Vim
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Applications/youtube-dl/" class="md-nav__link">
+        Youtube dl
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="systemd">SystemD</h1>
+<p><strong>SystemD</strong> is the de facto Linux init system since replacing <a href="#sysvinit">Sysvinit</a> and <a href="#upstart">Upstart</a> in all major distributions. 
+SystemD organizes resources into <a href="#unit-files"><strong>units</strong></a>, which can be managed by daemons and manipulated by SystemD utilities.</p>
+<p>It was designed by a pair of Red Hat developers in 2010 to be a general purpose system manager.
+It offers parallel execution, explicit dependencies between services, an escape from slow shell scripts, and per-daemon resource control and watchdogs.</p>
+<h2 id="tasks">Tasks</h2>
+<h4 id="scheduling-services">Scheduling services</h4>
+<dl>
+<dd>
+<p>Services can be scheduled to start with <a href="#timers">timers</a>.
+<div class="highlight"><span class="filename">sshd.timer</span><pre><span></span><code><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">Starts sshd service at beginning of workday, and shuts it down at the end.</span>
+
+<span class="k">[Timer]</span>
+<span class="na">Unit</span><span class="o">=</span><span class="s">sshd.service</span>
+<span class="na">OnCalendar</span><span class="o">=</span><span class="s">Mon..Fri *-*-* 09:00:00</span>
+
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">timers.target</span>
+</code></pre></div></p>
+<p>Now, when stopping sshd manually the following output is printed.
+<div class="highlight"><pre><span></span><code>Warning: Stopping sshd.service, but it can still be activated by:
+  sshd.timer
+</code></pre></div></p>
+<p>The service can be scheduled to shutdown within the service file itself using the <strong>RuntimeMaxSec</strong> directive.
+<div class="highlight"><span class="filename">sshd.service</span><pre><span></span><code><span class="n">RuntimeMaxSec</span><span class="o">=</span><span class="mi">36000</span><span class="w"> </span><span class="c1"># i.e. 10 hours</span>
+</code></pre></div></p>
+<p>This unfortunately will result in the service being reported as <a href="https://unix.stackexchange.com/questions/265704/start-stop-a-systemd-service-at-specific-times">failed</a>.
+This failure can be cleared with this command:
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>reset-failed
+</code></pre></div></p>
+</dd>
+</dl>
+<h4 id="masking">Masking</h4>
+<dl>
+<dd>On TrueNAS, the libvirtd socket is <a href="https://www.truenas.com/community/threads/21-02-alpha-1-virsh-commands-fail.91229/">masked</a> by default. 
+This means that <strong>virsh</strong> is not able to connect to the hypervisor until it is unmasked and the service restarted.
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>unmask<span class="w"> </span>libvirtd.socket
+systemctl<span class="w"> </span>restart<span class="w"> </span>libvirtd.service
+virsh<span class="w"> </span>connect<span class="w"> </span>qemu:///system
+</code></pre></div></dd>
+</dl>
+<h2 id="glossary">Glossary</h2>
+<h4 id="service-files">Service files</h4>
+<dl>
+<dd>
+<p><strong>Service files</strong> are a type of unit file which have replaced earlier init scripts and describe how to manage a service or application on the server.
+Active services are placed in <strong>/etc/systemd/system</strong>, whereas inactive service files distributed with installed packages are placed in <strong>/usr/lib/systemd/system</strong>.</p>
+<p>Docker container as a service:
+<div class="highlight"><pre><span></span><code><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">Notes Container (Docker)</span>
+
+<span class="k">[Service]</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/bin/docker start notes</span>
+
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+</code></pre></div></p>
+</dd>
+</dl>
+<h4 id="slice">Slice</h4>
+<dl>
+<dd>
+<p>A <strong>slice unit</strong> is a unit configuration file ending in ".slice" which manages resources of a group of processes.
+SystemD slices implement and build on Linux <a href="../Cgroups"><strong>cgroups</strong></a>.</p>
+<p>Slices exist in a hierarchy below the <strong>root slice</strong> (<strong>-.slice</strong>) and are used to group <strong>scopes</strong> and <strong>services</strong></p>
+<ul>
+<li><strong>Scopes</strong> contain unrelated processes but not necessarily hierarchically</li>
+<li><strong>Services</strong> are from unit files or Transient Runtime Services and contain processes</li>
+</ul>
+<p>Root slices themselves only contain scopes and other slices.</p>
+<ul>
+<li>
+<p><strong>user.slice</strong> contains all user-related slices and scopes, named after the pattern <strong>user-UID.slice</strong></p>
+<ul>
+<li><strong>session.slice</strong> is created for every login session</li>
+</ul>
+</li>
+<li>
+<p><strong>system.slice</strong> contain slices, scopes, and services</p>
+</li>
+<li>
+<p><strong>machine.slice</strong> contains all container-related slices, scopes, and services.</p>
+</li>
+</ul>
+<p>Services can be assigned to specific slices explicitly by editing the value of the <strong>Slice</strong> key in the service file.
+Keys like <strong>CPUWeight</strong> can assign cgroup resource controls.
+Other such controls can be viewed in the <strong>systemd.resource-control(5)</strong> man page.
+<div class="highlight"><pre><span></span><code><span class="k">[Unit]</span>
+<span class="na">Slice</span><span class="o">=</span><span class="s">user.slice</span>
+<span class="na">CPUWeight</span><span class="o">=</span><span class="s">50</span>
+</code></pre></div></p>
+</dd>
+</dl>
+<h4 id="sysvinit">SysVinit</h4>
+<dl>
+<dd>
+<p>SysVInit is the oldest init system used in Linux.</p>
+<p>In SysVinit, which used bash scripts to run and manage servicesj, processes were started serially and synchronously, wasting time and system resources.
+For years, a common mitigation was to run services in the background, simulating concurrency.</p>
+</dd>
+</dl>
+<h4 id="target-files">Target files</h4>
+<dl>
+<dd>
+<p><strong>Target files</strong> are equivalent to SysVInit runlevels.</p>
+<table>
+<thead>
+<tr>
+<th>SystemD target</th>
+<th>SysVInit runlevel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>poweroff.target</td>
+<td>0</td>
+</tr>
+<tr>
+<td>rescue.target</td>
+<td>1</td>
+</tr>
+<tr>
+<td>multi-user.target</td>
+<td>3</td>
+</tr>
+<tr>
+<td>graphical.target</td>
+<td>5</td>
+</tr>
+<tr>
+<td>reboot.target</td>
+<td>6</td>
+</tr>
+<tr>
+<td>emergency.target</td>
+<td>emergency</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<h4 id="timers">Timers</h4>
+<dl>
+<dd>
+<p>Timer files are systemd <a href="#unit-files">unit files</a> with names ending in .timer that control <a href="#service-files">service files</a>.
+For each timer file, a matching unit file must exist describing the unit to activate when the timer elapses.
+By default, systemd will search for a service file with a filename matching that of the timer, but failing that a specific unit can be specified with the <strong>Unit</strong> key within the timer file itself.</p>
+<div class="highlight"><span class="filename">Display timers</span><pre><span></span><code>systemctl<span class="w"> </span>list-timers
+systemctl<span class="w"> </span>status<span class="w"> </span>*timer
+</code></pre></div>
+<p>Like other unit files, timer files may include Unit and Install sections, but must include the <strong>Timer</strong> section.</p>
+<p>Specifying time is done using <strong>timestamps</strong> which can be <strong>monotonic</strong> or <strong>realtime</strong>.</p>
+<ul>
+<li>Monotonic timers are defined relative to various system hooks using the following directives: OnActiveSec, OnBootSec, OnStartupSec, OnUnitActiveSec, and OnUnitInactiveSec.</li>
+<li>Realtime timers define timers according to <strong>calendar event expressions</strong>, denoting real-world dates and times as humans understand them. </li>
+</ul>
+<p>Validate timestamps:
+<div class="highlight"><pre><span></span><code>systemd-analyze<span class="w"> </span>calendar<span class="w"> </span><span class="s1">&#39;*-*-* 00:00:00&#39;</span><span class="w"> </span>--iterations
+</code></pre></div></p>
+<p><strong>systemd-run</strong> can be used for one-off events as a substitute for anacron.
+<div class="highlight"><pre><span></span><code>systemd-run<span class="w"> </span>--on-active<span class="o">=</span>-30sec<span class="w"> </span>/bin/touch<span class="w"> </span>/home/user/file
+</code></pre></div>
+This command creates a <strong>transient</strong> unit file, whose name is provided in the output.
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>cat<span class="w"> </span>run-u97.service
+</code></pre></div></p>
+</dd>
+</dl>
+<h4 id="unit-files">Unit files</h4>
+<dl>
+<dd>
+<p>Unit files are case-sensitive .ini files organized into sections.
+Unit files can be found in several directories:</p>
+<ul>
+<li><strong>/lib/systemd/system</strong> where the system's copy of unit files are placed by default</li>
+<li><strong>/etc/systemd/system</strong> where unit files override the system default</li>
+<li><strong>/run/systemd/system</strong> where run-time unit definitions are found and given a higher priority than the system default in /lib but lower than that in /etc. These unit files are created dynamically and lost on reboot.</li>
+</ul>
+<p>Unit files come in many different types which can be identified by their filename extension (i.e. <strong>.service</strong>, <strong>target</strong>, etc.).</p>
+</dd>
+</dl>
+<h4 id="upstart">Upstart</h4>
+<dl>
+<dd><strong>Upstart</strong> was an init system developed by Canonical for Ubuntu meant to replace <a href="#sysvinit">SysVinit</a>, but it was abandoned in 2014. </dd>
+</dl>
+<h2 id="commands">Commands</h2>
+<h4 id="hostnamectl">hostnamectl</h4>
+<dl>
+<dd>Permanently change hostname
+<div class="highlight"><pre><span></span><code>hostnamectl<span class="w"> </span>set-hostname<span class="w"> </span><span class="nv">$HOSTNAME</span>
+</code></pre></div></dd>
+</dl>
+<h4 id="journalctl">journalctl</h4>
+<dl>
+<dd>
+<p><a href="https://www.linuxuprising.com/2019/10/how-to-clean-up-systemd-journal-logs.html">Clean up</a> old logs</p>
+<div class="highlight"><pre><span></span><code>journalctl<span class="w"> </span>--disk-usage<span class="w"> </span><span class="c1"># (3)</span>
+journalctl<span class="w"> </span>--rotate<span class="w"> </span><span class="c1"># (1)</span>
+journalctl<span class="w"> </span>--vacuum-time<span class="o">=</span>1d<span class="w"> </span><span class="c1"># (2)</span>
+</code></pre></div>
+<ol>
+<li>Ask journal daemon to rotate journal files, immediately archiving and renaming currently active journal files.</li>
+<li><strong>--vacuum-size</strong>, <strong>--vacuum-time</strong>, and <strong>--vacuum-files</strong> can be used singly or in combination to enforce limits on archived journal files.</li>
+<li>Show current disk usage of all journal files</li>
+</ol>
+<p>Display logs</p>
+<div class="highlight"><pre><span></span><code>journalctl<span class="w"> </span>-r<span class="w"> </span><span class="c1"># --reverse (1)</span>
+journalctl<span class="w"> </span>-f<span class="w"> </span><span class="c1"># --follow (2)</span>
+</code></pre></div>
+<ol>
+<li>Display output in reverse (newest entries first)</li>
+<li>Continuously update the display as new log entries are created</li>
+</ol>
+<p>By default, SystemD logs to memory.
+This can be changed by adjusting <strong>/etc/systemd/journald.conf</strong>. 
+This requires the directory <strong>/var/log/journal</strong> to exist.</p>
+<div class="highlight"><span class="filename">Persistent logging</span><pre><span></span><code><span class="k">[Journal]</span>
+<span class="na">Storage</span><span class="o">=</span><span class="s">persistent</span>
+</code></pre></div>
+</dd>
+</dl>
+<h4 id="localectl">localectl</h4>
+<dl>
+<dd>Change locale to French
+<div class="highlight"><pre><span></span><code>localectl<span class="w"> </span>set-locale<span class="w"> </span><span class="nv">LANG</span><span class="o">=</span>fr_FR.utf8
+</code></pre></div></dd>
+</dl>
+<h4 id="loginctl">loginctl</h4>
+<dl>
+<dd>Enable user <strong>lingering</strong>, which allows users that are not logged in to run long-running services.
+<div class="highlight"><pre><span></span><code>loginctl<span class="w"> </span>enable-linger
+loginctl<span class="w"> </span>show-user<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Linger<span class="w"> </span>-<span class="w"> </span><span class="c1"># Confirm</span>
+</code></pre></div></dd>
+</dl>
+<h4 id="systemctl">systemctl</h4>
+<dl>
+<dd>
+<div class="highlight"><span class="filename">Services</span><pre><span></span><code>systemctl<span class="w"> </span>list-unit-files<span class="w"> </span>--type<span class="o">=</span>service<span class="w">    </span><span class="c1"># Display all services</span>
+systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span><span class="nv">$SERVICE</span><span class="w">             </span><span class="c1"># Configure service to start on boot and start it immediately</span>
+systemctl<span class="w"> </span>status<span class="w"> </span><span class="nv">$SERVICE</span>
+systemctl<span class="w"> </span>is-active<span class="w"> </span><span class="nv">$SERVICE</span><span class="w"> </span>
+systemctl<span class="w"> </span>disable<span class="w"> </span><span class="nv">$SERVICE</span>
+systemctl<span class="w"> </span>mask<span class="w"> </span><span class="nv">$SERVICE</span><span class="w">                     </span><span class="c1"># Prevent service from being started inadvertently by another process</span>
+systemctl<span class="w"> </span>restart<span class="w"> </span><span class="nv">$SERVICE</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Boot targets</span><pre><span></span><code>systemctl<span class="w"> </span>get-default
+systemctl<span class="w"> </span>set-default<span class="w"> </span>graphical.target
+systemctl<span class="w"> </span>isolate<span class="w"> </span>emergency.target<span class="w">          </span><span class="c1"># Change target</span>
+systemctl<span class="w"> </span><span class="nb">suspend</span><span class="w">                           </span><span class="c1"># Suspend system</span>
+</code></pre></div>
+<p><strong>--user</strong> specifies the service manager of the calling user.
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>--user<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>container-notes.service<span class="w"> </span><span class="c1"># (1)</span>
+systemctl<span class="w"> </span>--user<span class="w"> </span>status<span class="w"> </span>container-notes.service
+</code></pre></div></p>
+<ol>
+<li>Here, container-notes.service has been created at <strong>~/.config/systemd/user</strong></li>
+</ol>
+</dd>
+</dl>
+<h4 id="systemd-analyze">systemd-analyze</h4>
+<dl>
+<dd><div class="highlight"><span class="filename">Check security of a service</span><pre><span></span><code>systemd-analyze<span class="w"> </span>security<span class="w"> </span>sshd.service
+</code></pre></div></dd>
+</dl>
+<h4 id="systemd-cgls">systemd-cgls</h4>
+<dl>
+<dd><strong>systemd-cgls</strong> recursively shows the contents of the selected <a href="../Cgroups">cgroup</a> hierarchy in a tree.</dd>
+</dl>
+<h4 id="systemd-delta">systemd-delta</h4>
+<dl>
+<dd>
+<p>Show files that are overridden with systemd.</p>
+<p>Display differences among files when they are overridden
+<div class="highlight"><pre><span></span><code>systemd-delta<span class="w"> </span>--diff
+</code></pre></div></p>
+</dd>
+</dl>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.expand", "toc.integrate", "content.code.annotate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.b425cdc4.min.js"></script>
+      
+    
+  </body>
+</html>
