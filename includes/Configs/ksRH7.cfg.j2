@@ -1,0 +1,62 @@
+auth --enableshadow --passalgo=sha512
+url --url="http://{{ lookup('dig',(groups['kickstart'] | first)) }}/{{ distributions[target_os]['dist_path'] }}"
+repo --name=PODSAdmin --baseurl=http://{{ lookup('dig',(groups['kickstart'] | first)) }}/rpms
+text
+firstboot --enable
+ignoredisk --only-use=sda
+keyboard --vckeymap=us --xlayouts=''
+lang en_US.UTF-8
+
+network  --bootproto=static --device={{ distributions[target_os]['device'] }} --gateway={{ target_gateway }} --ip={{ lookup('dig',host) }} --nameserver={{ dns_servers }} --netmask={{ default_netmask }} --onboot=on --ipv6=auto --activate 
+network --hostname={{ host }}
+
+rootpw --iscrypted $6$MfRwxj2ISxGZ47Yr$8.Z1K6gpr7UjLXNrJ6NCYP43qJOw5fReF39pv5ZaUzftUuNAoq/zHnMXBy7M/MQunXNUl75lmilaRWumvefJL0
+services --enabled=ntpd
+skipx
+timezone UTC --isUtc
+bootloader --append=" crashkernel=auto" --location=mbr --boot-drive=sda
+clearpart --all --initlabel --drives=sda
+part /boot --fstype="xfs" --ondisk=sda --size=2048
+part pv.01 --fstype="lvmpv" --ondisk=sda --size=4096 --grow
+volgroup rhel_{{ host.split('.')[0] }} --pesize=4096 pv.01
+logvol swap  --fstype="swap" --size=32764 --name=swap --vgname=rhel_{{ host.split('.')[0] }}
+logvol /  --fstype="xfs" --size=4096 --grow --name=root --vgname=rhel_{{ host.split('.')[0] }}
+
+reboot --eject
+
+%packages
+@core
+kexec-tools
+lsof
+wget
+sos
+net-tools
+sysstat
+bind-utils
+PODSDevOpsCI
+realmd
+sssd
+oddjob
+oddjob-mkhomedir
+adcli
+samba-common-tools
+openldap-clients
+policycoreutils-python
+
+%end
+
+%addon com_redhat_kdump --enable --reserve-mb='auto'
+
+%end
+
+%anaconda
+pwpolicy root --minlen=6 --minquality=1 --notstrict --nochanges --notempty
+pwpolicy user --minlen=6 --minquality=1 --notstrict --nochanges --emptyok
+pwpolicy luks --minlen=6 --minquality=1 --notstrict --nochanges --notempty
+%end
+%post
+cp /etc/chrony.conf /etc/chrony.conf.orig
+sed -i -e '/server 0/ i server tpatime.corp.pods.lcl iburst' -e '/server [0-3]/s/^/#/g' /etc/chrony.conf
+cp /etc/ssh/sshd_config /etc/ssh/sshd_config.orig
+sed -i -e 's,#\(Port 22\),\1,g' -e 's,#\(PermitRootLogin yes\),\1,g' -e 's/PermitRootLogin yes/PermitRootLogin no/g' -e 's,#\(MaxAuthTries 6\),\1,g' -e 's/MaxAuthTries 6/MaxAuthTries 3/g' /etc/ssh/sshd_config
+%end

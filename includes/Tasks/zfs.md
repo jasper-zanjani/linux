@@ -158,12 +158,14 @@ Special **support classes** of vdev such as spare, cache, log, and special repre
 
     ```sh title="Create dataset"
     zfs create tank/dataset
-    zfs list -r tank # (1)
+    
+    # Datasets are not displayed recursively without -r
+    zfs list -r tank
+
     zfs rename tank pool
+    
     zfs remove pool/dataset
     ```
-
-    1. Providing a pool name alone will not display contained datasets recursively.
 
     Dataset properties can be changed with [**zfs set**](https://openzfs.github.io/openzfs-docs/man/8/zfs-set.8.html):
 
@@ -174,11 +176,16 @@ Special **support classes** of vdev such as spare, cache, log, and special repre
     zfs set acme:disksource=vendorname  
     ```
 
-    A ZFS **volume** is a [dataset](#dataset) that [represents](https://docs.oracle.com/cd/E18752_01/html/819-5461/gaypf.html) a block device.
-    They are created with the **-V** option and can be found under **/dev/zvol**.
+#### Volume management
+:   
+    A ZFS [**volume**](https://docs.oracle.com/cd/E19253-01/819-5461/gaypf/index.html) (or "zvol") is a [dataset](#dataset) that [represents](https://docs.oracle.com/cd/E18752_01/html/819-5461/gaypf.html) a block device.
+    They are created with the **-V** option and are represented as devices under **/dev/zvol**.
 
     ```sh
     zfs create -V 5gb tank/vol
+
+    # Create a parent datasets, if they doesn't exist, with -p
+    zfs create -V '5gb' tank/vols/vol -p
     ```
 
     A volume can be shared as an iSCSI target by setting the **shareiscsi** property on the volume.
@@ -189,18 +196,8 @@ Special **support classes** of vdev such as spare, cache, log, and special repre
     [**Snapshots**](https://docs.oracle.com/cd/E19253-01/819-5461/gbciq/index.html) are read-only copies of file systems or volumes.
     They are managed using subcommands under [**zfs snapshot**](https://openzfs.github.io/openzfs-docs/man/8/zfs-snapshot.8.html) and appear as directories at the root of the file system of every dataset under **.zfs/snapshot**.
 
-    ```sh title="Create snapshot of a pool recursively"
-    zfs snapshot -r tank@now
-    ```
-
-    ```sh title="Display snapshots"
-    zfs list -t snapshot
-    ```
-
     ```sh title="Snapshot management"
-    zfs snapshot tank@snapshot1
-    zfs rollback tank@snapshot1
-    zfs destroy tank@snapshot1
+    --8<-- "includes/Commands/zfs-snapshot.sh"
     ```
 
 
@@ -214,4 +211,12 @@ Special **support classes** of vdev such as spare, cache, log, and special repre
     zfs send -R source-tank@moving | pv | zfs receive -Fd receive-tank/ # (1)
     ```
 
-    1. Without **-d**, the recursive copy will be performed into the same destination [without recreating the dataset](https://ptribble.blogspot.com/2012/09/recursive-zfs-send-and-receive.html). 
+    1. Without **-d**, the recursive copy will be performed into the same destination [without recreating the dataset](https://ptribble.blogspot.com/2012/09/recursive-zfs-send-and-receive.html).
+
+#### IAM
+:   
+    [Allow an unprivileged user to create snapshots of his home directory only](https://www.youtube.com/watch?v=qXOZmDoy2Co&list=WL&index=11&t=775s)
+
+    ```sh
+    zfs allow -u lucas snapshot,rollback zroot/usr/home/lucas
+    ```

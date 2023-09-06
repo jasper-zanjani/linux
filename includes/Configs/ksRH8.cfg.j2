@@ -1,0 +1,87 @@
+#version=RHEL8
+# System authorization information
+auth --enableshadow --passalgo=sha512
+# Use text mode install
+text
+
+repo --name="AppStream" --baseurl=http://{{ kickstart_hosts[hostvars[host]['datacenter']] }}:8080/{{ distributions[target_os]['dist_path'] }}/AppStream
+
+%packages
+@core
+adcli
+bind-utils
+chrony
+kexec-tools
+kexec-tools
+lsof
+net-tools
+oddjob
+oddjob-mkhomedir
+openldap-clients
+realmd
+samba-common-tools
+sos
+sssd
+sysstat
+wget
+java
+
+%end
+
+# Keyboard layouts
+keyboard --xlayouts='us'
+# System language
+lang en_US.UTF-8
+
+# Network information
+network  --bootproto=static --device={{ distributions[target_os]['device'] }} --gateway={{ target_gateway }} --ip={{ hostvars[host]['ansible_host'] | default(lookup('dig',host)) }} --nameserver={{ dns_servers }} --netmask={{ default_netmask }} --ipv6=auto --activate
+network --hostname={{ host }}
+
+# Reboot after installation
+reboot --eject
+
+# Use network installation
+url --url="http://{{ kickstart_hosts[hostvars[host]['datacenter']] }}:8080/{{ distributions[target_os]['dist_path'] }}"
+
+# Run the Setup Agent on first boot
+firstboot --enable
+
+ignoredisk --only-use=sda
+# System bootloader configuration
+bootloader --append="crashkernel=auto" --location=mbr --boot-drive=sda
+# Partition clearing information
+clearpart --all --initlabel --drives=sda
+# Disk partitioning information
+part /boot --fstype="xfs" --ondisk=sda --size=2048
+part pv.59 --fstype="lvmpv" --ondisk=sda --size=79871 --grow
+volgroup rhel_{{ host.split('.')[0] }} --pesize=4096 pv.59
+logvol /  --fstype="xfs" --grow --size=4096 --name=root --vgname=rhel_{{ host.split('.')[0] }}
+logvol swap  --fstype="swap" --size=32764 --name=swap --vgname=rhel_{{ host.split('.')[0] }}
+%post
+rpm -ivh http://{{ kickstart_hosts[hostvars[host]['datacenter']] }}:8080/rpms/podscatrust-1.2.5-43940.x86_64.rpm
+rpm -ivh http://{{ kickstart_hosts[hostvars[host]['datacenter']] }}:8080/rpms/PODSDevOpsCI-1.0.0-1.x86_64.rpm
+cp /etc/chrony.conf /etc/chrony.conf.orig
+sed -i -e '/server 0/ i server {{ ntp_list | first }} iburst' -e '/server [0-3]/s/^/#/g' /etc/chrony.conf
+cp /etc/ssh/sshd_config /etc/ssh/sshd_config.orig
+sed -i -e 's,#\(Port 22\),\1,g' -e 's,#\(PermitRootLogin yes\),\1,g' -e 's/PermitRootLogin yes/PermitRootLogin no/g' -e 's,#\(MaxAuthTries 6\),\1,g' -e 's/MaxAuthTries 6/MaxAuthTries 3/g' /etc/ssh/sshd_config
+%end
+
+# System services
+services --enabled="chronyd"
+# Do not configure the X Window System
+skipx
+# System timezone
+timezone UTC --isUtc
+
+# Root password
+rootpw --iscrypted $6$BpZVprgUpI8u.idI$.CvOXsG3WCHJu/1QDsQZszvwqAkKQTub3l6nz59v4JtGyBN4bewBQtmavd0LKx2VyXYvRZOk7NT06wYTDS/9v/
+
+%addon com_redhat_kdump --enable --reserve-mb='auto'
+
+%end
+
+%anaconda
+pwpolicy root --minlen=6 --minquality=1 --notstrict --nochanges --notempty
+pwpolicy user --minlen=6 --minquality=1 --notstrict --nochanges --emptyok
+pwpolicy luks --minlen=6 --minquality=1 --notstrict --nochanges --notempty
+%end

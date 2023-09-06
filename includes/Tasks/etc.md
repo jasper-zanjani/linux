@@ -11,27 +11,28 @@
 
 #### Filters
 :   
-    Display contents of a random file
+
     ```sh
+    # Display contents of a random file
     ls | sort -R | sed 1q | xargs cat
-    ```
-    Find out which commands you use most often
-    ```sh
+
+    # Find out which commands you use most often
     history | awk '{print $2' | sort | uniq -c | sort -rn | head
-    ```
-    Count the number of occurrences of a string
-    ```sh
+
+    # Count the number of occurrences of a string
     echo $STRING | uniq -c | sort -
     ```
 
 #### Change hostname 
 :   
+
     ```sh
     hostnamectl set-hostname $NEWHOSTNAME
     ```
 
 #### Check kernel version 
 :   
+
     ```bash
     uname -srm
     hostnamectl | grep "Kernel"

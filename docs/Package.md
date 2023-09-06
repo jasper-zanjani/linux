@@ -12,7 +12,11 @@
 
 --8<-- "includes/Commands/flatpak.md"
 
---8<-- "includes/Commands/pacman.md"
+#### pacman
+:   
+    ```sh title="pacman"
+    --8<-- "includes/Commands/pacman.sh"
+    ```
 
 --8<-- "includes/Commands/rpm.md"
 

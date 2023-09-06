@@ -5,16 +5,9 @@ This was supposed to make application theming simple and portable.
 
 In GTK4 you can choose either a theming engine or CSS stylesheets.
 
-#### Keyring
+#### GNOME keyring
 :   
-    [GNOME Keyring](https://wiki.gnome.org/action/show/Projects/GnomeKeyring) is a collection of components that store and manage application access to secrets, passwords, keys, and certificates.
-
-    GNOME Keyring can be managed:
-    
-    - [Seahorse](https://wiki.gnome.org/Apps/Seahorse) via GUI
-    - secret-tool which uses (and is included in) [libsecret](https://gitlab.gnome.org/GNOME/libsecret)
-    - [gnome-keyring-query](https://web.archive.org/web/20160326164641/http://www.gentoo-wiki.info/HOWTO_Use_gnome-keyring_to_store_SSH_passphrases) which uses the archived [libgnome-keyring](https://gitlab.gnome.org/GNOME/libgnome-keyring)
-
+    --8<-- "includes/Applications/gnome-keyring.md"
 
 #### Extensions
 :   

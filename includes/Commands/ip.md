@@ -19,9 +19,8 @@ Although the scenario has absolutely no practical benefit, as far as I can tell,
 
     # Add default route
     ip route add default via 192.168.2.1 dev eth0
-    ```
 
-    ```sh title="ip link"
+
     # Create new links
     ip link add virbr0 type bridge
     ip link add wg0 type wireguard
@@ -34,18 +33,17 @@ Although the scenario has absolutely no practical benefit, as far as I can tell,
     
     # Bring interface up"
     ip link set wlp2s0 up
-    ```
 
-    ```sh title="ip neighbor"
+
     # Display ARP cache
     ip neighbor show
 
     # Delete ARP entry
     ip neighbor delete $IP_ADDR dev eth0 
-    ```
 
-    ```sh title="ip netns"
-    ip netns # (1)
+
+    # Network namespaces are mounted to /var/run/netns
+    ip netns
     
     # We can create a network namespace then add two virtual Ethernet interfaces.
     # These are **peers**, meaning they are linked together as if connected to the same switch.
@@ -72,5 +70,3 @@ Although the scenario has absolutely no practical benefit, as far as I can tell,
     # The interface must be brought up, which automatically adds a route to the routing table.
     ip link set dev veth0 up
     ```
-
-    1. Network namespaces are mounted to **/var/run/netns**

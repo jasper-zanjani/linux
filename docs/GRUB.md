@@ -14,6 +14,16 @@ grub>
 
 
 Kernel [**command line parameters**](https://www.kernel.org/doc/html/v4.14/admin-guide/kernel-parameters.html) passed in on boot can be queried during runtime:
+
+```grub
+setparams 'Install Fedora 38'
+
+    linuxefi /images/pxeboot/vmlinuz inst.stage2=hd:LABEL=Fedora-S-dvd-x86_64-38 quiet\
+        ip=192.168.0.200::192.168.0.1:255.255.255.0::ens3:off\
+        inst.ks=http://192.168.0.3/kickstart.cfg
+    initrdefi /images/pxeboot/initrd.img
+```
+
 ```sh
 cat /proc/cmdline
 ```

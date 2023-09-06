@@ -22,10 +22,19 @@ Microcontrollers may be listening when the system is nominally off; they typical
 - **Intel Management Engine (IME)** x64 software suite for remote management of systems; firmware is based on `Minix` and runs on the **Platform Controller Hub** processor, not the main CPU
 - **System Management Mode (SMM)** launches UEFI software
 
-Linux kernel is typically named **vmlinux** (or **vmlinuz** when compressed). Kernel ring buffer contains messages related to the Linux kernel. A ring buffer is a data structure that is always the same size; old messages are discarded as new ones come in, once the buffer is full. `dmesg` is used to see its contents, and the messages are also stored in `/var/log/dmesg`
+Linux kernel is typically named **vmlinux** (or **vmlinuz** when compressed). 
+Kernel ring buffer contains messages related to the Linux kernel. 
+A ring buffer is a data structure that is always the same size; old messages are discarded as new ones come in, once the buffer is full.
+**dmesg** is used to see its contents, and the messages are also stored in **/var/log/dmesg**.
 
 Kernel **modules** can be loaded, listed, or removed from the running kernel.
 
+## Help
+
+
+- Manpages are available using **man**. The manpage index can be regenerated using **mandb** (run as root).
+- [**manweb**](https://github.com/sebastiancarlos/manpdf) is available to browse online manpages.
+- --8<-- "includes/Commands/whereis.md"
 
 ## Security
 

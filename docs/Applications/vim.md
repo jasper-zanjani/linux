@@ -29,7 +29,7 @@ On Windows it is placed at **$HOME/\_vimrc**.
     Use **`:normal`** to define a series of normal-mode commands
     
     ```vim title="Select all lines of a buffer"
-    :normal ggVG
+    normal ggVG
     ```
 
 #### Keybindings
@@ -53,50 +53,53 @@ let mapleader = ' '
 
 #### Autocommands
 :   
-Autocommands expose an API that allows handling editor events like `BufNewFile`, `BufReadPost`, `BufWritePost`, `BufWinLeave`, and especially to implement functionality specific to filetypes.
+    Autocommands expose an API that allows handling editor events like `BufNewFile`, `BufReadPost`, `BufWritePost`, `BufWinLeave`, and especially to implement functionality specific to filetypes.
 
 
-Highlight added lines in green and removed lines in red in .diff files [<sup>:material-play:</sup>](https://youtu.be/aHm36-na4-4?t=690 "Damian Conway, \"More Instantly Better Vim\" - OSCON 2013")
-```vimscript
-filetype on
+    Highlight added lines in green and removed lines in red in .diff files [<sup>:material-play:</sup>](https://youtu.be/aHm36-na4-4?t=690 "Damian Conway, \"More Instantly Better Vim\" - OSCON 2013")
 
-augroup PatchDiffHighlight
-  autocmd!
-  autocmd FileType diff syntax enable
-augroup END
-```
+    ```vim
+    filetype on
 
-Turn syntax highlighting on only for certain filetypes [<sup>:material-play:</sup>](https://youtu.be/aHm36-na4-4?t=690 "Damian Conway, \"More Instantly Better Vim\" - OSCON 2013")
-```vimscript
-augroup PatchDiffHighlight
-  autocmd!
-  autocmd BufEnter *.patch,*.rej,*.diff syntax enable
-augroup END
-```
+    augroup PatchDiffHighlight
+    autocmd!
+    autocmd FileType diff syntax enable
+    augroup END
+    ```
+
+    Turn syntax highlighting on only for certain filetypes [<sup>:material-play:</sup>](https://youtu.be/aHm36-na4-4?t=690 "Damian Conway, \"More Instantly Better Vim\" - OSCON 2013")
+
+    ```vim
+    augroup PatchDiffHighlight
+    autocmd!
+    autocmd BufEnter *.patch,*.rej,*.diff syntax enable
+    augroup END
+    ```
 
 #### Color
+:   
 
-```vimscript
-; Change the color of ELEMENT
-highlight ELEMENT ctermfg=COLOR ctermbg=COLOR guifg=#abc123 guibg=#abc123
+    ```vim
+    ; Change the color of ELEMENT
+    highlight ELEMENT ctermfg=COLOR ctermbg=COLOR guifg=#abc123 guibg=#abc123
 
-; Select alternative colorschemes
-:colo[rscheme] <tab>
+    ; Select alternative colorschemes
+    :colo[rscheme] <tab>
 
-; Display all available colorschemes
-:colo <C-d>
-```
+    ; Display all available colorschemes
+    :colo <C-d>
 
-Clear custom color commands
-```vim
-:highlight clear
-:hi clear
-```
-[Set file format to Unix/DOS][https://kb.iu.edu/d/acux]
-```vim
-:set fileformat=unix
-:set fileformat=dos
-```
+    " Clear custom color commands
+    :highlight clear
+    :hi clear
+    ```
+
+    [Set file format to Unix/DOS][https://kb.iu.edu/d/acux]
+
+    ```vim
+    :set fileformat=unix
+    :set fileformat=dos
+    ```
 
 
 #### Completion
@@ -116,18 +119,24 @@ Clear custom color commands
 
 #### Configuration
 :   
-    ```vimscript title="Configuration"
+    ```vim
     " Prevent vim from creating backups files
     set nobackup
 
     " Set relative line numbers
     set rnu
+
+    " Line wrapping
+    set wrap
+
+    " Mouse support
+    set mouse=a
     ```
 
 #### [Search and replace](https://vim.fandom.com/wiki/Search_and_replace)
 :   
 
-    ```vimscript
+    ```vim
     " Replace foo with bar across all lines, wherever they occur
     %s/foo/bar/g
     ```
@@ -135,7 +144,8 @@ Clear custom color commands
 #### Mapping keys
 :   
     Map ++alt+j++ and ++alt+k++ to move lines of text up or down
-    ```vimrc
+    
+    ```vim
     nnoremap <A-j> :m .+1<CR>==
     nnoremap <A-k> :m .-2<CR>==
     inoremap <A-j> <Esc>:m .+1<CR>==gi
@@ -148,27 +158,31 @@ Clear custom color commands
 #### Yanking STDOUT 
 :   
     To run a shell command from the normal mode command line, you simply run the `!` (["bang"](https://learnvimscriptthehardway.stevelosh.com/chapters/52.html)) command in normal mode.
+
     ```vim
     :!env
     ```
 
     However to [store the output of that command into a register](https://stackoverflow.com/questions/1694392/vim-store-output-of-external-command-into-a-register), you must run a command like the following, which stores the output of the shell command into the **a** register.
+
     ```vim
     :let @a = system('env')
     ```
-    The register signified by **`@"`** will be placed into the buffer by the **put** command (**`p`**).
+    The register signified by **@"** will be placed into the buffer by the **put** command (++p++).
+
     ```vim
     :let @" = system('env')
     ```
 
     Alternatively
+
     ```vim
     :put =system('env')
     ```
 
 #### Filetype-associated settings
 :   
-    ```vimscript title="Set indentation behavior specific to YAML"
+    ```vim title="Set indentation behavior specific to YAML"
     autocmd FileType yaml setlocal ai ts=2 sw=2 et
     ```
     
@@ -180,15 +194,14 @@ Clear custom color commands
 
 
     Install a plugin to provide [Rust language support](https://github.com/rust-lang/rust.vim)
-    ```vimscript
+    ```vim
     Plug 'rust-lang/rust.vim'
     ```
 
 #### Mouse support
 :   
-    From [here](https://vimtricks.com/)
     ```vim
-    set mouse=a
+
     ```
 
 #### Language definition

@@ -1,26 +1,39 @@
 #### journalctl
 :   
+
+    ```sh
+    # Display logs
+    journalctl -r # --reverse
+    journalctl -f # --follow
+    
+    # Examine logs of a user container service.
+    journalctl -u container-notes.service # --user
+
+    # Examine all errors logged since last boot
+    journalctl -b -p err
+
+    # Follow logs of a particular unit
+    journalctl -f -u name.service # --follow
+
+    # Query logs by executable name
+    journalctl _COMM=program
+
+    # Query logs by executable file path
+    journalctl _EXE=/bin/program 
+    ```
+
     [Clean up](https://www.linuxuprising.com/2019/10/how-to-clean-up-systemd-journal-logs.html) old logs
 
     ```sh
-    journalctl --disk-usage # (3)
-    journalctl --rotate # (1)
-    journalctl --vacuum-time=1d # (2)
+    # Show current disk usage of all journal files
+    journalctl --disk-usage
+
+    # Rotate journal files, immediately archiving and renaming currently active journal files.
+    journalctl --rotate
+
+    # Enforce limits on archived journal files.
+    journalctl --vacuum-time=1d
     ```
-
-    1. Ask journal daemon to rotate journal files, immediately archiving and renaming currently active journal files.
-    2. **--vacuum-size**, **--vacuum-time**, and **--vacuum-files** can be used singly or in combination to enforce limits on archived journal files.
-    3. Show current disk usage of all journal files
-
-    Display logs
-
-    ```sh
-    journalctl -r # --reverse (1)
-    journalctl -f # --follow (2)
-    ```
-
-    1. Display output in reverse (newest entries first)
-    2. Continuously update the display as new log entries are created
 
     By default, SystemD logs to memory.
     This can be changed by adjusting **/etc/systemd/journald.conf**. 
@@ -30,3 +43,6 @@
     [Journal]
     Storage=persistent
     ```
+
+    By default, SystemD will only occupy at most 10% of the total filesystem size and leave 15% free.
+    These settings can be adjusted by configuring the **SystemMaxUse** and **SystemKeepFree** settings.

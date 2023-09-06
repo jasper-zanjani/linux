@@ -12,6 +12,7 @@ Because Suckless wants the source code not to exceed 2,000 lines of code, a lot 
 - **xmonad** is written and configured in Haskell, making it challenging to configure.
 
 All window managers place an INI-format .desktop file in **/usr/share/xsessions/**.
+
 ```ini title="xmonad.desktop"
 [Desktop Entry]
 Name=xmonad

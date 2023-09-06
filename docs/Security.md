@@ -3,21 +3,46 @@
 ## GPG
 
 GPG keys are used to sign packages and repos.
-For example, [yum](../Package/#dnf) repos and [apt](../Package/#apt-key) incorporate APIs and handle GPG keys.
-
+For example, **yum** repos and **apt** incorporate APIs and handle GPG keys.
 The **KWallet Manager** and [**GNOME Keyring**](https://wiki.gnome.org/Projects/GnomeKeyring) (Seahorse) applications can also be used to manage GPG keys.
 
-## PAM
+## Tasks
 
-**Pluggable authentication modules** form an authentication framework that can be used by "PAM-aware applications".
-These applications have config files that are found in **/etc/pam.d**
-The various pam modules have man pages prefixed with **pam\_**, i.e. "pam\_wheel" etc.
+#### GPG key pair
+:   
+    Generate a public and private ("secret") key pair ("keyring") after displaying interactive prompts to the user, who must enter real name and email address and specify variables like key length, encryption algorithm etc.
+
+    ```sh
+    gpg --full-generate-key
+    gpg --generate-key # (1)
+    ```
+
+    1. Generate a new keyring using current default parameters.
+
+    The rngd daemon found in the **rng-tools** package can be enabled for additional entropy if needed by the system.
+
+    ```sh
+    pacman -S community/rng-tools
+    ```
+
+    The generates a public and private key in **~/.gnupg**.
+    The public key, which can be distributed publicly so that people can encrypt messages to the user, is named **pubring.kbx**
+    More than one master keypair can be generated in this manner, even for the same email address.
 
 ## Commands
 
---8<--
-includes/Commands/gpg.md
+#### gpg
+:   
 
-includes/Commands/pass.md
+    ```sh
+    --8<-- "includes/Commands/gpg.sh"
+    ```
 
---8<--
+#### pass
+:   
+    --8<-- "includes/Commands/pass.md"
+
+#### pwscore
+:   
+    **pwscore** allows the quality of a password to be checked interactively.
+    It is installed as part of **libpwquality**, which is also used to enforce password quality in [Kickstart](Applications/kickstart) files.

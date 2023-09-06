@@ -1,8 +1,14 @@
 # BIND
 
-```sh
+```sh title="Install BIND9"
+# Ubuntu
 apt install bind9 bind9-utils bind9-dnsutils -y
+
+# RHEL
+dnf install bind bind-utils -y
 ```
+
+The systemd service is called **named**.
 
 Set BIND to IPv4 mode in the service parameters file:
 

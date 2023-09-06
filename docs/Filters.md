@@ -4,6 +4,12 @@
 :   
     --8<-- "includes/Commands/awk.md"
 
+#### fzf
+:   
+    ```sh
+    --8<-- "includes/Commands/fzf.sh"
+    ```
+
 #### grep
 :   
     --8<-- "includes/Commands/grep.md"

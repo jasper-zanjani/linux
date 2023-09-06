@@ -1,4 +1,4 @@
-### dnf
+#### dnf
 :   
     View history of dnf commands
     ```sh
@@ -6,12 +6,17 @@
     dnf history userinstalled # View all packages installed by user
     ```
 
-    [**Package groups**](https://docs.fedoraproject.org/en-US/quick-docs/getting-started-with-virtualization/) can be specified using the **group** command or by prefixing the package group name with **`@`**
+    [**Package groups**](https://docs.fedoraproject.org/en-US/quick-docs/getting-started-with-virtualization/) can be specified using the **group** command or by prefixing the package group name with **@**
 
     ```sh
-    dnf info @virtualization # dnf group info virtualization
-    dnf install @virtualization # dnf group install virtualization
-    dnf install --with-optional @virtualization # Include optional packages
+    dnf group info virtualization
+    dnf info @virtualization
+
+    dnf group install virtualization
+    dnf install @virtualization
+    
+    # Include optional packages
+    dnf install --with-optional @virtualization
     ```
 
     Remove the configuration backend supporting the use of legacy ifcfg files in NetworkManager.
