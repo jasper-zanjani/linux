@@ -21,3 +21,7 @@ gpg --import ~/jdoe.pub
 
 # Send keys to $SERVER
 gpg --send-keys keyIDs --keyserver $SERVER
+
+# Verify veracity of a .sig signature file for a download
+gpg --keyserver-options auto-key-retrieve --verify archlinux-version-x86_64.iso.sig
+

@@ -18,6 +18,17 @@
     --8<-- "includes/Commands/pacman.sh"
     ```
 
+    Every section in **/etc/pacman.conf** defines a package repository.
+
+    ```ini title="/etc/pacman.conf"
+    --8<-- "includes/Configs/archzfs.cfg
+    ```
+
+#### pacman-key
+:   
+    --8<-- "includes/Commands/pacman-key.md"
+
+
 --8<-- "includes/Commands/rpm.md"
 
 --8<-- "includes/Commands/snap.md"

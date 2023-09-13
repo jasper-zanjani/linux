@@ -50,6 +50,9 @@ sed '2,3d' $FILE
 ```
 
 ```sh title="Context addressing"
+# Display only uncommented lines of a configuration
+sed '/^#/d' /etc/locale.gen
+
 # Delete a range of lines, from the first occurrence of 'second' to the line with the first occurrence of 'fourth'
 sed '/second/,/fourth/d' myfile
 

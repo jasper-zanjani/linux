@@ -24,6 +24,31 @@ In ZFS parlance these pieces of data are called **stripes**.
 
 Special **support classes** of vdev such as spare, cache, log, and special represent vdevs that are dedicated to specialized tasks to enhance performance and reliabilities of the pool.
 
+#### Installation
+:   
+    On [Arch](https://openzfs.github.io/openzfs-docs/Getting%20Started/Arch%20Linux/index.html), the **zfs-linux** package must be installed from the [**archzfs**](https://github.com/archzfs/archzfs) repo.
+
+    ```ini title="/etc/pacman.conf"
+    --8<-- "includes/Configs/archzfs.cfg
+    ```
+
+    ```sh
+    # Install ZFS
+    pacman -S zfs-linux
+    ```
+
+    On [Fedora](https://openzfs.github.io/openzfs-docs/Getting%20Started/Fedora/index.html), the **zfs** package must be installed from the ZFS repo.
+
+    ```sh
+    dnf install -y https://zfsonlinux.org/fedora/zfs-release-2-3$(rpm --eval "%{dist}").noarch.rpm
+
+    # Install kernel headers
+    dnf install -y kernel-devel
+
+    # Install ZFS
+    dnf install -y zfs
+    ```
+
 
 #### [Pool](#zpool) creation
 :   
@@ -220,3 +245,15 @@ Special **support classes** of vdev such as spare, cache, log, and special repre
     ```sh
     zfs allow -u lucas snapshot,rollback zroot/usr/home/lucas
     ```
+
+#### zdb
+:   
+    **zdb** can be used to display consistency and debugging information on pools.
+
+    ??? info "TrueNAS"
+
+        Note that on TrueNAS the cache path is different from that expected by zdb and the cache must be [explicitly specified](https://serverfault.com/questions/899814/zdb-doesn-t-recognize-my-pool) on every invocation.
+
+        ```sh
+        zdb -U /data/zfs/zpool.cache $POOL
+        ```

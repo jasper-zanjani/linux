@@ -48,7 +48,7 @@
 #### Repos
 :   
     Repositories are INI files placed in  **/etc/yum.repos.d/**, but they can also be displayed and manipulated from the command-line.
-    
+
     ```sh title="Repositories"
     # Display repos
     dnf repolist # -v
@@ -64,6 +64,9 @@
     
     # Disable repo
     dnf config-manager --set-disabled $REPO-NAME
+
+    # Enable repo (in this case an experimental ZFS repo kept disabled by default)
+    dnf config-manager --enable zfs-testing
     ```
 
     ```ini title="Example repos"

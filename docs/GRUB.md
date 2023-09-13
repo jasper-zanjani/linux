@@ -61,6 +61,7 @@ cat /proc/cmdline
     
     Invoking the [**set**](https://www.gnu.org/software/grub/manual/grub/grub.html#set) command without arguments will display all environment variables.
     Here the prefix and root variables are set before inserting and loading the normal module:
+    
     ```
     grub> set prefix=(hd0,msdos1)/boot/grub
     grub> set root=(hd0,msdos1)
@@ -72,6 +73,7 @@ cat /proc/cmdline
 :   
     Append **rd.break** to the list of command-line parameters to GRUB.
     Once the shell is ready, run the following commands
+    
     ```sh
     mount -o remount,rw /sysroot
     chroot /sysroot
@@ -113,15 +115,21 @@ cat /proc/cmdline
 
 ## Commands
 
---8<--
-includes/Commands/grub-install.md"
+??? info "GRUB2"
 
-includes/Commands/grub-mkconfig.md
+    Until recently, GRUB2 executables were prefixed with **grub2-**, while **GRUB Legacy** took **grub-**.
+    This is no longer the case and all recent GRUB executables begin with **grub-**.
 
-includes/Commands/grub2-mkconfig.md
+```sh title="grub-install"
+--8<-- "includes/Commands/grub-install.sh"
+```
 
-includes/Commands/grub2-editenv.md
+**grub-mkconfig** (previously **grub2-mkconfig**) is used to create a GRUB config file from the settings defined in **/etc/default/grub**.
 
-includes/Commands/update-grub.md
+```sh title="grub-mkconfig"
+--8<-- "includes/Commands/grub-mkconfig.sh"
+```
 
---8<--
+```sh title="update-grub"
+--8<-- "includes/Commands/update-grub.sh"
+```

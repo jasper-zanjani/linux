@@ -1,5 +1,8 @@
 pacman -Q # --query
 
+# Get number of total installed packages
+pacman -Q | wc -l
+
 # Display detailed information on a package
 pacman -Qi $PACKAGE 
 
@@ -63,5 +66,5 @@ pacman -Syy # --sync --refresh --refresh
 # Download program updates but don't install them
 pacman -Syyuw # --sync --refresh --refresh --sysupgrade --downloadonly
 
-# Get number of total installed packages
-pacman -Q | wc -l
+# Downgrade a package (here, the Linux kernel)
+pacman -U https://archive.archlinux.org/packages/l/linux/linux-6.4.12.arch1-1-x86_64.pkg.tar.zst

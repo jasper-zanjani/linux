@@ -45,7 +45,7 @@
 
     **Unix System Laboratories (USL)** sued BSDI after BSDI attempted to market its product as a real UNIX, and other BSD distributions were affected by disputed code. 
     Ultimately 3 out of the 18,000 files that made up the Network Release 2 distribution were removed, which became known as BSD-lite, released in 1994. 
-    This legal dispute was partly to blame for Linux's rapid ascent in popularity. [:material-link:](https://web.archive.org/web/20060315152051/http://www.applelust.com/alust/terminal/archives/terminal041202.shtml)
+    This [legal dispute](https://web.archive.org/web/20060315152051/http://www.applelust.com/alust/terminal/archives/terminal041202.shtml) was partly to blame for Linux's rapid ascent in popularity.
 
 #### Distributions
 :   
