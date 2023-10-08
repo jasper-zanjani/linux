@@ -1,4 +1,3 @@
-[https://kb.iu.edu/d/acux]: https://kb.iu.edu/d/acux "kb.iu.edu: \"Convert between Unix and Windows text files\""
 [https://vim.fandom.com/wiki/Moving_lines_up_or_down]: https://vim.fandom.com/wiki/Moving_lines_up_or_down "Vim Tips Wiki: \"Moving lines up or down\""
 [Oualline]: http://sci.notbc.org/~weiss/resources/vim/Vim-course/others/vim-1.0.pdf "Oualline, Steve. _The Vim Book_. 2007."
 [https://youtu.be/wlR5gYd6um0]: https://youtu.be/wlR5gYd6um0 "Mastering the Vim Language"
@@ -15,7 +14,6 @@ Maybe I could extend the markdown language plugin to incorporate mkdocs and pymd
 
 Unlike WYSIWYG editors which optimize input for writing text, vim optimizes for editing it.
 Vim offers a **composable** language for expressing these editing changes whose syntax can be composed into two elements, **operations** and **text objects**, which are analogous to **verbs** and **nouns** in language.
-<sup>[YouTube][https://youtu.be/wlR5gYd6um0]</sup>
 
 The framework of understanding vim's syntax as a language appears to date back to an influential 2011 Stack Overflow [post](https://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vim/1220118#1220118 "What is your most productive shortcut with Vim?").
 
@@ -24,19 +22,17 @@ On Windows it is placed at **$HOME/\_vimrc**.
 
 ## Syntax
 
-#### normal
-:   
-    Use **`:normal`** to define a series of normal-mode commands
     
-    ```vim title="Select all lines of a buffer"
-    normal ggVG
-    ```
+```vim title="Normal-mode commands"
+" Select all lines of a buffer
+normal ggVG
+```
 
 #### Keybindings
 
 There are two kinds of keybindings in Vim
 
-- **Recursive** using command words `map`, `nmap`, `vmap`, etc. In these keybindings, the mapping itself is interpreted.
+- **Recursive** using command words map, nmap, vmap, etc. In these keybindings, the mapping itself is interpreted.
 - **Nonrecursive** 
 
 There are two types of keycodes:
@@ -76,10 +72,7 @@ let mapleader = ' '
     augroup END
     ```
 
-#### Color
-:   
-
-    ```vim
+    ```vim title="Color"
     ; Change the color of ELEMENT
     highlight ELEMENT ctermfg=COLOR ctermbg=COLOR guifg=#abc123 guibg=#abc123
 
@@ -94,9 +87,9 @@ let mapleader = ' '
     :hi clear
     ```
 
-    [Set file format to Unix/DOS][https://kb.iu.edu/d/acux]
 
     ```vim
+    " Set file format to Unix/DOS
     :set fileformat=unix
     :set fileformat=dos
     ```
@@ -110,49 +103,40 @@ let mapleader = ' '
 
 ## Tasks
 
-#### Invoking to a specific line number
-:   
-    ```sh
-    # Open with cursor at line 13
-    vim .bashrc +13
-    ```
+```sh title="Invocation"
+# Open with cursor at line 13
+vim .bashrc +13
+```
 
-#### Configuration
-:   
-    ```vim
-    " Prevent vim from creating backups files
-    set nobackup
+```vim title="Configuration"
+" Prevent vim from creating backups files
+set nobackup
 
-    " Set relative line numbers
-    set rnu
+" Set relative line numbers
+set rnu
 
-    " Line wrapping
-    set wrap
+" Line wrapping
+set wrap
 
-    " Mouse support
-    set mouse=a
-    ```
+" Mouse support
+set mouse=a
+```
 
-#### [Search and replace](https://vim.fandom.com/wiki/Search_and_replace)
-:   
 
-    ```vim
-    " Replace foo with bar across all lines, wherever they occur
-    %s/foo/bar/g
-    ```
+```vim title="Search and replace"
+" Replace foo with bar across all lines, wherever they occur
+%s/foo/bar/g
+```
 
-#### Mapping keys
-:   
-    Map ++alt+j++ and ++alt+k++ to move lines of text up or down
-    
-    ```vim
-    nnoremap <A-j> :m .+1<CR>==
-    nnoremap <A-k> :m .-2<CR>==
-    inoremap <A-j> <Esc>:m .+1<CR>==gi
-    inoremap <A-k> <Esc>:m .-2<CR>==gi
-    vnoremap <A-j> :m '>+1<CR>gv=gv
-    vnoremap <A-k> :m '<-2<CR>gv=gv
-    ```
+```vim title="Mapping keys"
+" Map ++alt+j++ and ++alt+k++ to move lines of text up or down
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+```
 
 
 #### Yanking STDOUT 

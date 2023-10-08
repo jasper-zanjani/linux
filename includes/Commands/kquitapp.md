@@ -1,10 +1,9 @@
-Allows you to quit a dbus enabled application. Two options:
+**kquitapp** allows you to quit a dbus enabled application. Two options:
 
-Specify service to be stopped
 ```sh
+# Stop a service
 kquitapp --service
-```
-Specify path to dbus interface 
-```sh
+
+# Specify path to dbus interface 
 kquitapp --path
 ```

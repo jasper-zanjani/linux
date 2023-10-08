@@ -56,6 +56,12 @@
 :   
     --8<-- "includes/Commands/find.md"
 
+#### locate
+:   
+    ```sh title="Install"
+    apt install -y plocate
+    ```
+
 #### mv
 :   
     --8<-- "includes/Commands/mv.md"
