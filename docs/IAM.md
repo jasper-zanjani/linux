@@ -1,13 +1,5 @@
 # IAM
 
-## SSSD
-
---8<-- "includes/Applications/sssd.md"
-
-## LDAP
-
---8<-- "includes/Applications/ldap.md"
-
 ## PAM
 
 --8<-- "includes/Applications/pam.md"
@@ -46,21 +38,19 @@
     dnf install -y sssd-tools
     ```
 
-#### LDAP with TLS authentication
-:   
-
-    The **ldap\_id\_use\_start\_tls** setting enforces [TLS authentication](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/configuring_authentication_and_authorization_in_rhel/configuring-sssd-to-use-ldap-and-require-tls-authentication_configuring-authentication-and-authorization-in-rhel) and is false by default, which poses a security risk.
-    However, setting it to true will only affect LDAP providers (**`id_provider = ldap`**).
-    Active Directory providers are not affected as they use encrypted connections protected by [SASL](https://en.wikipedia.org/wiki/Simple_Authentication_and_Security_Layer) and [GSSAPI](https://en.wikipedia.org/wiki/Generic_Security_Services_Application_Program_Interface).
-
-    This finding is confirmed in a [Red Hat Knowledge Base resolution](https://access.redhat.com/solutions/6565241).
-    
-
 ## Commands
 
 #### authselect
 :   
-    Apparently generates the [**/etc/nsswitch.conf**](#etcnsswitchconf) file.
+    
+    **Authselect** allows configuration of system identity and authentication sources by selecting one of several profiles.
+
+    - **sssd** enables SSSD for systems that use LDAP authentication
+    - **winbind** enables the Winbind utility for systems directly integrated with AD
+    - **nis** ensure compatibility with legacy Network Information Service (NIS) systems
+    - **minimal** serves only local users and groups directly from system files
+
+    Authselect modifies /etc/nsswitch.conf and files in /etc/pam.d.
 
 #### chage
 :   
@@ -83,11 +73,6 @@
     --8<-- "includes/Commands/lastb.sh"
     ```
 
-#### ldapsearch
-:   
-
-    --8<-- "includes/Commands/ldapsearch.md"
-
 #### sudo
 :   
 
@@ -100,12 +85,6 @@
 
     --8<-- "includes/Commands/shadow-utils.md"
 
-#### sssctl
-:   
-
-    ```sh
-    --8<-- "includes/Commands/sssctl.sh"
-    ```
 
 ## Configs
 
@@ -116,11 +95,19 @@
 #### /etc/nsswitch.conf
 :   
     The **Name Service Switch (NSS)** configuration file at **/etc/nsswitch.conf** is known as the service switch file or simply the switch file. 
-    It provides sources in the order they should be consulted.
+    It provides data providers in the order they should be consulted, typically in order of most common use for speed.
 
     - **files** refers to the system's local passwd and group files
-    - **sss** refers to [SSSD](#sssd)
-
+    - **sss** refers to SSSD
+    - **ldap**
+    - **myhostname** systemd host names
+    - **mymachines** systemd machine names
+    - **mdns\***, **mdns\*_minimal** Avahi mDNS/DNS-SD
+    - **resolve** systemd resolved resolver
+    - **systemd** systemd for dynamicr option
+    - **winbind** Samba winbind support
+    - **wins** Samba wins support
+    - **wrapper** wrapper module for testing
 
 
     The **hosts** key determines how hostnames are mapped to IP addresses:
@@ -129,25 +116,25 @@
     # Typical default entry, giving preference to /etc/hosts
     hosts: files dns
 
-    # !UNAVAIL=return here indicates that if DNS is available but a name is not found, the lookup attempt should fail rather than continuing to the next entry (/etc/hosts)
+    # If DNS is available but a name is not found, the lookup attempt should fail rather than continuing to the next entry (/etc/hosts)
     hosts: dns [!UNAVAIL=return] files
     ```
 
     ??? info "Example configs"
 
-        === "Arch"
+        === ":material-arch: Arch"
 
             ```yaml
             --8<-- "includes/Configs/nsswitch.conf-garuda"
             ```
         
-        === "Fedora"
+        === ":material-fedora: Fedora"
 
             ```yaml
             --8<-- "includes/Configs/nsswitch.conf-f38"
             ```
         
-        === "RHEL"
+        === ":material-redhat: RHEL"
 
             ```yaml
             --8<-- "includes/Configs/nsswitch.conf-rhel9"

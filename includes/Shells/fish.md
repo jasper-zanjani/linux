@@ -1,4 +1,4 @@
-Fish [switch statements](https://fishshell.com/docs/current/cmds/case.html) look completely different from bash case statements, with an incompatible syntax.
+**Fish** [switch statements](https://fishshell.com/docs/current/cmds/case.html) look completely different from bash case statements, with an incompatible syntax.
 
 ```sh title="Conditionally setting $PATH:"
 switch "$PATH" # (1)
@@ -27,8 +27,17 @@ case ":${PATH}:" in
 esac
 ```
 
-```sh title="Setting environment variables"
-set -x EDITOR /usr/bin/vim # (1)
+#### Variables
+
+The [**set** keyword](https://fishshell.com/docs/current/cmds/set.html) is used to declare and destroy variables.
+
+```sh
+# Set environment variables 
+# Equivalent to export EDITOR=/usr/bin/vim in bash
+set -x EDITOR /usr/bin/vim # --export
+
+# Unset variable
+set -e EDITOR # --erase
 ```
 
 1. Without **-x** this variable will not be visible to applications.

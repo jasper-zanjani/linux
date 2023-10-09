@@ -1,0 +1,11 @@
+dn: cn=bob,ou=Users,dc=ldap,dc=local
+cn: bob
+gidnumber: 100
+homedirectory: /home/bob
+loginshell: /bin/shell
+objectclass: inetOrgPerson
+objectclass: posixAccount
+sn: jones
+uid: bob
+uidnumber: 4000
+userpassword: Password123

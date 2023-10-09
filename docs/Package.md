@@ -28,7 +28,12 @@
 :   
     --8<-- "includes/Commands/pacman-key.md"
 
+#### rpm
 
---8<-- "includes/Commands/rpm.md"
+    ```sh
+    --8<-- "includes/Commands/rpm.sh>
+    ```
+
+    --8<-- "includes/Commands/rpmkeys.md"
 
 --8<-- "includes/Commands/snap.md"

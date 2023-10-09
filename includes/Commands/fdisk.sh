@@ -30,9 +30,7 @@ t   # Change partition type
     # Enter to accept default selection (the partition just created)
 0b  # Provide hex code for "W95 FAT32"
 
-# Create a swap partition (conventionally 150% of RAM)
-n
-p
+a   # Make partition 1 bootable
 
-+12G
-t
+n   # Create a new partition to take up the rest of the drive.
+    # The default partition type is 83 Linux (EXT4).

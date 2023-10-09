@@ -1,0 +1,21 @@
+# From https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/configuring_authentication_and_authorization_in_rhel/configuring-sssd-to-use-ldap-and-require-tls-authentication_configuring-authentication-and-authorization-in-rhel
+[sssd]
+services = nss, pam, autofs
+domains = DEFAULT
+
+[domain/DEFAULT]
+id_provider = ldap
+autofs_provider = ldap
+auth_provider = ldap
+chpass_provider = ldap
+ldap_uri = ldap://ldap.local
+ldap_search_base = dc=ldap,dc=local
+ldap_id_use_start_tls = True
+cache_credentials = True
+ldap_tls_cacert = /etc/openldap/certs/core-dirsrv.ca.pem
+ldap_tls_reqcert = hard
+# ldap_tls_cacertdir = /etc/openldap/certs
+# ldap_tls_reqcert = allow
+
+[nss]
+homedir_substring = /home

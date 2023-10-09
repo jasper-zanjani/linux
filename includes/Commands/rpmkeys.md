@@ -1,9 +1,7 @@
-#### rpmkeys
-:   
-    Manage RPM keyrings
+**rpmkeys** is used to manage RPM keyrings
 
-    Import a keyring
-    ```sh
-    rpmkeys --import $PUBKEY
-    ```
+```sh
+# Import a keyring
+rpmkeys --import $PUBKEY
+```
 

@@ -1,0 +1,6 @@
+[sssd]
+enable_files_domain = true
+domains = files
+
+[domain/files]
+id_provider=files

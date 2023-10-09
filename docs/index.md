@@ -32,9 +32,10 @@ Kernel **modules** can be loaded, listed, or removed from the running kernel.
 ## Help
 
 
-- Manpages are available using **man**. The manpage index can be regenerated using **mandb** (run as root).
-- [**manweb**](https://github.com/sebastiancarlos/manpdf) is available to browse online manpages.
-- --8<-- "includes/Commands/whereis.md"
+- **man** displays manpages
+    - **mandb** (run as root) regenerates the manpage index
+    - [**manweb**](https://github.com/sebastiancarlos/manpdf) is available to browse online manpages.
+- **whereis** locates the binary, source, and manual pages for a command
 
 ## Security
 

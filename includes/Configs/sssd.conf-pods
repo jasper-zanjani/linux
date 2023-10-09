@@ -1,0 +1,31 @@
+[sssd]
+domains = corp.pods.lcl
+config_file_version = 2
+services = nss, pam
+
+[domain/corp.pods.lcl]
+ad_domain = corp.pods.lcl
+krb5_realm = CORP.PODS.LCL
+realmd_tags = manages-system joined-with-adcli
+cache_credentials = True
+id_provider = ad
+krb5_store_password_if_offline = True
+default_shell = /bin/bash
+ldap_id_mapping = True
+use_fully_qualified_names = False
+fallback_homedir = /home/%u
+access_provider = simple
+ad_hostname = tpapdvlcsdac01.corp.pods.lcl
+dyndns_update = true
+dyndns_refresh_interval = 28800
+dyndns_update_ptr = true
+dyndns_ttl = 3600
+debug_level = 9
+dyndns_iface = ens192
+simple_allow_groups = LinuxAdmin@corp.pods.lcl, IT_Cisco_Privileged@corp.pods.lcl
+[nss]
+filter_groups = root
+filter_users = root
+reconnection_retries = 3
+enum_cache_timeout = 600
+entry_cache_nowait_percentage = 75

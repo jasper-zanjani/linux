@@ -1,1 +1,0 @@
-**whereis** locates the binary, source, and manual pages for a command.

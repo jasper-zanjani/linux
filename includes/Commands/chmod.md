@@ -1,17 +1,14 @@
-#### chmod
-:   
-    === ":material-plus: Add permissions"
+# Add/remove sticky bit
+chmod +t $FILE
+chmod -t $FILE
 
-        ```sh
-        chmod +t $FILE # Sticky bit
-        chmod g+s file # SGID
-        chmod u+s file # SUID
-        ```
+# Add/remove SGID
+chmod g+s $FILE
+chmod g-s $FILE
 
-    === ":material-trash-can: Remove permissions"
+# Add/remove SUID
+chmod u+s $FILE
+chmod u-s $FILE
 
-        ```sh
-        chmod -t $FILE # Sticky bit
-        chmod g-s file # SGID
-        chmod u-s file # SUID
-        ```
+# Assign a permissions octet to a file to make it world-unreadable
+chmod 600 /etc/sssd/sssd.conf

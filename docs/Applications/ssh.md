@@ -101,26 +101,55 @@ Server and client configuration both use the same set of [keywords](https://man.
 
 ### Server configuration
 :   
-    --8<-- "includes/Commands/sshd_config.md"
+
+    ```sh
+    --8<-- "includes/Configs/sshd_config"
+    ```
 
 ## Commands
 
-#### endlessh
-:   
-    --8<-- "includes/Commands/endlessh.md"
+```sh title="ssh"
+# Display available signature algorithms
+ssh -Q PubkeyAcceptedAlgorithms
 
-#### ssh-add
-:   
-    --8<-- "includes/Commands/ssh-add.md"
+# X Forwarding
+ssh -Y user@host
+```
 
-#### ssh-agent
-:   
-    --8<-- "includes/Commands/ssh-agent.md"
+**ssh-keygen** is used to generate public and private authentication key pairs.
 
-#### ssh-copy-id
-:   
-    --8<-- "includes/Commands/ssh-copy-id.md"
+```sh title="ssh-keygen"
+--8<-- "includes/Commands/ssh-keygen.sh"
+```
 
-#### ssh-keygen
-:   
-    --8<-- "includes/Commands/ssh-keygen.md"
+[**ssh-add**](https://www.ssh.com/academy/ssh/add-command) and **ssh-agent** are often used together to manage SSH identities as in the following snippet.
+
+```sh
+eval $(ssh-agent); ssh-add <(cat "$(keyFile.secureFilePath)")
+```
+
+- **ssh-agent** is the OpenSSH authentication agent and a [helper program](https://www.ssh.com/academy/ssh/agent) that keeps track of identity keys and passphrases, allowing them to be used without further interaction, similar in principle to SSO.
+- **ssh-add** adds private key identities to ssh-agent
+When run without arguments, ssh-add adds the private keys found in **~/.ssh**.
+
+Running ssh-agent produces output that is meant to be used with the **eval** command in order to set the environment variables **SSH\_AGENT\_PID** and **SSH\_AUTH\_SOCK**, which are needed by ssh-add.
+
+If only a single process is running, the **-k** option will kill it (although it is possible to fork multiple ssh-agent processes).
+
+```sh
+# Equivalent to kill $SSH_AGENT_PID
+ssh-agent -k 
+```
+
+
+**ssh-copy-id** copies the SSH public key to a specified account's **~/.ssh/authorized_keys** file.
+
+??? info "SSH public key management in Windows"
+
+    In Windows, ssh-copy-id is not available, so a workaround is to simply [pipe the public key](https://www.chrisjhart.com/Windows-10-ssh-copy-id/) over SSH itself.
+
+    ```powershell
+    Get-Content $env:USERPROFILE\.ssh\id_rsa.pub | ssh $SERVER "cat >> .ssh/authorized_keys"
+    ```
+
+

@@ -1,14 +1,14 @@
 # ffmpeg
 
-    ffmpeg is most often used to convert file formats for media from the command-line
+**ffmpeg** is most often used to convert file formats for media from the command-line.
 
-    ```sh title="
-    # Convert mp3 to m4a"
-    ffmpeg -i "$FILE" "${FILE/mp3/m4a}"
+```sh
+# Convert mp3 to m4a"
+ffmpeg -i "$FILE" "${FILE/mp3/m4a}"
 
-    # Convert video mp4 to audio-only mp4 in the working directory
-    ffmpeg -i "$FILE" -vn "$(basename $FILE)"
-    ```
+# Convert video mp4 to audio-only mp4 in the working directory
+ffmpeg -i "$FILE" -vn "$(basename $FILE)"
+```
 
 #### Specify metadata
 :   
@@ -19,6 +19,7 @@
     ```sh
     # Display metadata
     ffmpeg -hide_banner -i $INPUT
+    ffprobe $INPUT
 
     # Add metadata but do not re-encode the input file
     ffmpeg -i $FILE -metadata title=$TITLE -metadata year=$YEAR -codec copy $OUTPUTFILE
@@ -61,3 +62,30 @@
     ```sh
     ffmpeg -f concat -i files -i chapters -map_metadata 1 -c copy compilation.m4a
     ```
+
+#### Codecs
+:   
+
+    ```sh
+    # Display all supported codecs
+    ffmpeg -codecs
+    ```
+
+#### Filters
+:   
+
+    Various [filters](https://ffmpeg.org/ffmpeg-filters.html) exist.
+    They are provided as arguments to **-af**/**-vf**/**-filter** or **-filter\_complex**.
+
+    ```sh
+    # Speech normalization
+    ffmpeg -i $INPUT -af "speechnorm" $OUTPUT
+
+    # For a container that contains more than an audio stream.
+    ffmpeg -i $INPUT -af speechnorm -c:v copy $OUTPUT
+    ```
+
+    More complicated chains of filters, called **filtergraphs**, are specified using a [complicated syntax](https://ffmpeg.org/ffmpeg-filters.html#Filtergraph-syntax-1) within the **filtergraph description**.
+    A filtergraph is a directed graph of connected filters.
+
+    The [**graph2dot**](https://ffmpeg.org/ffmpeg-filters.html#graph2dot) tools is mentioned in ffmpeg documentation as being able to generate a visual representation of the filtergraph description, but it doesn't seem to be available from repos.

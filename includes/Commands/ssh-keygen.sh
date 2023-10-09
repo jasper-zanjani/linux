@@ -1,3 +1,2 @@
-```sh title="Generate host keys"
+# Generate host keys
 sudo ssh-keygen -A
-```

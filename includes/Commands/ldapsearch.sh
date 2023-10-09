@@ -1,8 +1,8 @@
 # Without TLS
-ldapsearch -x -H "ldap://TPAPDVWDC02.corp.pods.lcl" -b "dc=corp,dc=pods,dc=lcl" -D "jzhang@corp" -W "(sAMAccountName=jzhang)"
+ldapsearch -xWD "jzhang@corp" -H "ldap://TPAPDVWDC02.corp.pods.lcl" -b "dc=corp,dc=pods,dc=lcl"  "(sAMAccountName=jzhang)"
 
 # With TLS
-ldapsearch -x -H "ldaps://TPAPDVWDC02.corp.pods.lcl" -b "dc=corp,dc=pods,dc=lcl" -D "jzhang@corp" -W "(sAMAccountName=jzhang)"
+ldapsearch -xWD "jzhang@corp" -H "ldaps://TPAPDVWDC02.corp.pods.lcl" -b "dc=corp,dc=pods,dc=lcl" "(sAMAccountName=jzhang)"
 
 # Specifying SASL/GSSAPI
 ldapsearch -Y GSSAPI -H "ldap://TPAPDVWDC02.corp.pods.lcl" -b "dc=corp,dc=pods,dc=lcl" -D "jzhang@corp" -W "(sAMAccountName=jzhang)"

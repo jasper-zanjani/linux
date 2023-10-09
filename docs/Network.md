@@ -79,11 +79,9 @@ network:
 --8<-- "includes/Tasks/netplan-static.yaml"
 ```
 
-#### netplan
-:   
-    ```sh
-    --8<-- "includes/Commands/netplan.sh"
-    ```
+```sh title="netplan command"
+--8<-- "includes/Commands/netplan.sh"
+```
 
 ## Tasks
 

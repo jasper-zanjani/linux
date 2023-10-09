@@ -1,6 +1,3 @@
-# Name Service Switch configuration file.
-# See nsswitch.conf(5) for details.
-
 passwd: files 
 group: files [SUCCESS=merge] 
 shadow: files 
