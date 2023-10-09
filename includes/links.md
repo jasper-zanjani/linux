@@ -81,7 +81,6 @@
 [cvt]: #cvt '&#10;Calculate VESA CVT mode lines'
 [dar]: Archive#dar 'Backup tool that can make differential and incremental backups&#10;"`dar` manpage". _Ubuntu Manpage Repository_.'
 [date]: #date 'Print the current date and time, specifying a format.&#10;Robbins, Arnold. _UNIX in a Nutshell_ 4th ed (2005): 51'
-[dbus-monitor]: Kernel#dbus-monitor 'Monitor messages going through a D-Bus message bus'
 [dd]: #dd 'Perform multiple operations related to backing up data and creating files. One common use is to make a backup of an entire drive.&#10;Rothwell, William. _CompTIA Linux+ Portable Command Guide_.: 269'
 [declare]: #declare 'Declare variables and manage their attributes&#10;Robbins, Arnold. _Bash Pocket Reference_. O\'Reilly: 2016.: 85'
 [depmod]: Kernel#depmod 'Builds the modules.dep file, which contains module dependencies and is used by `modprobe` to determine which modules need to be loaded&#10;Rothwell, William. _CompTIA Linux+ Portable Command Guide_.: 15'
