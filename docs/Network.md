@@ -1,12 +1,12 @@
---8<-- "includes/Network/abbrs.md"
-
 # Networking
 
-The Linux kernel supports several **packet-filtering**{: #packet-filtering } mechanisms.
+The Linux kernel supports several packet-filtering mechanisms.
 
-- [**Netfilter**](#netfilter) using the venerable [iptables](#iptables) utility
+- [**Netfilter**](#netfilter) also referred to as **iptables** after the venerable [iptables](#iptables) utility
 - **nftables** subsystem, introduced with kernel 3.13 (2014), had been commonly assumed to eventually take the place of iptables. Firewall rules are implemented in an in-kernel VM.
 - **bpfilter** 
+
+## Netfilter
 
 Netfilter is a software firewall and packet filtering framework introduced with Linux 2.4.0 (2001) and controlled by the [iptables](#iptables) command.
 
@@ -79,9 +79,68 @@ network:
 --8<-- "includes/Tasks/netplan-static.yaml"
 ```
 
-```sh title="netplan command"
---8<-- "includes/Commands/netplan.sh"
+#### netplan
+:   
+
+    ```sh title="netplan command"
+    --8<-- "includes/Commands/netplan.sh"
+    ```
+
+
+#### ufw
+:   
+
+    --8<-- "includes/Commands/ufw.md"
+
+
+## ifcfg
+
+Historically, [**ifcfg** (interface configuration) files](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide/sec-configuring_ip_networking_with_ifcg_files) were ini-format files found in **/etc/sysconfig/network-scripts/** in Red Hat distributions.
+They were used to control network interfaces on the legacy "network" service, now part of the network-scripts package, which included the [sysconfig.txt](https://github.com/fedora-sysv/initscripts/blob/master/doc/sysconfig.txt#L416) file which documents the ifcfg file format.
+
+After the introduction of [NetworkManager](#networkmanager), this format survived and was [expanded](https://networkmanager.dev/docs/api/latest/nm-settings-ifcfg-rh.html) with new 
+directives specific to NetworkManager.
+
+By convention, the string value of the DEVICE directive was the suffix of the filename itself.
+
+```ini title="ifcfg-eth0"
+DEVICE=eth0
+BOOTPROTO=dhcp
+ONBOOT=yes
+TYPE=Ethernet
 ```
+
+The nmcli utility exposes a command that can change the configuration backend from ifcfg to a NetworkManager [**keyfile**](#keyfile).
+
+```sh title="Migrate a connection profile"
+nmcli connection migrate eth0
+```
+
+Ifcfg file support was finally removed in [RHEL 9](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/9.0_release_notes/index#overview-major-changes) and [Fedora 36](https://fedoraproject.org/wiki/Changes/NoIfcfgFiles).
+If no ifcfg files are present, the configuration backend that supports them can be removed.
+
+```sh
+dnf remove NetworkManager-initscripts-ifcfg-rh
+```
+
+
+## eBPF
+
+**eBPF** is an extended version of the Berkeley Packet Filter (BPF). 
+It is a sandboxed environment that allows code to be inserted into the running kernel. 
+Kernel functionality must normally be extended by building an entirely new kernel with custom modules or upstream patching of the Linux kernel.
+
+eBPF's architecture includes a JIT compiler that compiles the program's generic bytecode, which means eBPF programs run as efficiently as natively compiled kernel code.
+
+eBPF programs can be bound to kernel events, such as receipt of a packet from the NIC.
+
+**bpftool** is a core eBPF CLI tool.
+
+```sh
+bpftool prog     # Display running eBPF programs
+bpftool map show # Display maps
+```
+
 
 ## Tasks
 
@@ -94,10 +153,16 @@ network:
 
     ```sh
     # wget defaults to file operations in a way that is more natural for downloading
-    wget $url
+    wget $URL
 
     # curl depends on piping and defaults to STDOUT in a manner similar to cat
-    curl -O $url 
+    curl -O $URL 
+    ```
+
+    When downloadable files are accompanied by md5 hashes, their integrity can be verified, as in the case of [ ffmpeg ](https://www.johnvansickle.com/ffmpeg/faq/).
+
+    ```sh hl_lines="4"
+    --8<-- "includes/Commands/md5sum.sh"
     ```
 
 #### Wireguard tunnel
@@ -124,96 +189,66 @@ network:
         ```
 
 
-    Setting a static IP address on Red Hat distributions could involve multiple methods:
-
-    - [nmcli commands](https://linuxhint.com/configure-static-ip-address-fedora/)
-    - [NetworkManager keyfiles](Network/#networkmanager)
-    - [ifcfg files](Network/#ifcfg-files) (prior to distributions downstream to Fedora 36)
-
-
 
 ## Commands
 
---8<--
-includes/Commands/curl.md
-
-includes/Commands/firewall-cmd.md
-
-includes/Commands/ip.md
-
-includes/Commands/iptables.md
-
-includes/Commands/netcat.md
-
-
-
-includes/Commands/nft.md
-
-includes/Commands/nmap.md
-
-includes/Commands/tcpdump.md
-
-includes/Commands/ufw.md
-
-includes/Commands/wg.md
-
-includes/Commands/wget.md
---8<--
-
-
-## Glossary
-
-#### eBPF
+#### curl
 :   
-    eBPF is an extended version of the Berkeley Packet Filter (BPF). 
-    It is a sandboxed environment that allows code to be inserted into the running kernel. 
-    Kernel functionality must normally be extended by building an entirely new kernel with custom modules or upstream patching of the Linux kernel.
-
-    eBPF's architecture includes a JIT compiler that compiles the program's generic bytecode, which means eBPF programs run as efficiently as natively compiled kernel code.
-
-    eBPF programs can be bound to kernel events, such as receipt of a packet from the NIC.
-
-    **bpftool** is a core eBPF CLI tool.
 
     ```sh
-    bpftool prog     # Display running eBPF programs
-    bpftool map show # Display maps
+    --8<-- "includes/Commands/curl.sh"
     ```
 
-
-#### ifcfg
+#### firewall-cmd
 :   
-    Historically, [**ifcfg** (interface configuration) files](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide/sec-configuring_ip_networking_with_ifcg_files) were ini-format files found in **/etc/sysconfig/network-scripts/** in Red Hat distributions.
-    They were used to control network interfaces on the legacy "network" service, now part of the network-scripts package, which included the [sysconfig.txt](https://github.com/fedora-sysv/initscripts/blob/master/doc/sysconfig.txt#L416) file which documents the ifcfg file format.
 
-    After the introduction of [NetworkManager](#networkmanager), this format survived and was [expanded](https://networkmanager.dev/docs/api/latest/nm-settings-ifcfg-rh.html) with new 
-    directives specific to NetworkManager.
-    
-    By convention, the string value of the DEVICE directive was the suffix of the filename itself.
+    --8<-- "includes/Commands/firewall-cmd.md"
 
-    ```ini title="ifcfg-eth0"
-    DEVICE=eth0
-    BOOTPROTO=dhcp
-    ONBOOT=yes
-    TYPE=Ethernet
-    ```
 
-    The nmcli utility exposes a command that can change the configuration backend from ifcfg to a NetworkManager [**keyfile**](#keyfile).
+#### iptables
+:   
 
-    ```sh title="Migrate a connection profile"
-    nmcli connection migrate eth0
-    ```
+    --8<-- "includes/Commands/iptables.md"
 
-    Ifcfg file support was finally removed in [RHEL 9](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/9.0_release_notes/index#overview-major-changes) and [Fedora 36](https://fedoraproject.org/wiki/Changes/NoIfcfgFiles).
-    If no ifcfg files are present, the configuration backend that supports them can be removed.
+#### ip
+:   
+
+    --8<-- "includes/Commands/ip.md"
+
+#### netcat
+:   
+
+    --8<-- "includes/Commands/netcat.md"
+
+#### nft
+:   
+
+    --8<-- "includes/Commands/nft.md"
+
+#### nmap
+:   
+
+    --8<-- "includes/Commands/nmap.md"
+
+#### ss
+:   
 
     ```sh
-    dnf remove NetworkManager-initscripts-ifcfg-rh
+    --8<-- "includes/Commands/ss.sh"
     ```
 
-
-
-
-#### Netfilter
+#### tcpdump
 :   
-    Netfilter is a software firewall and packet filtering framework introduced with Linux 2.4.0 (2001) and controlled by the [iptables](#iptables) command.
+
+    --8<-- "includes/Commands/tcpdump.md"
+
+#### wg
+:   
+
+    --8<-- "includes/Commands/wg.md"
+
+#### wget
+:   
+
+    --8<-- "includes/Commands/wget.md"
+

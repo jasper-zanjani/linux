@@ -1,5 +1,5 @@
-#### nft
-:   
+**nft** is the frontend of the nftables framework for packet filtering.
+
 ```sh
 nft list ruleset
 nft list tables

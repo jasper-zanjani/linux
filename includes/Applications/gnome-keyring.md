@@ -1,4 +1,4 @@
-[GNOME Keyring](https://wiki.gnome.org/action/show/Projects/GnomeKeyring) is a collection of components that store and manage application access to secrets, passwords, keys, and certificates.
+[**GNOME Keyring**](https://wiki.gnome.org/action/show/Projects/GnomeKeyring) is a collection of components that store and manage application access to secrets, passwords, keys, and certificates.
 
 GNOME Keyring can be managed:
 
@@ -8,7 +8,7 @@ GNOME Keyring can be managed:
 
 In order for GNOME Keyring to unlock automatically, it has to be started by PAM.
 
-```
+```sh
 # Add to end of auth block
 auth    optional pam_gnome_keyring.so
 

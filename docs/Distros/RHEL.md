@@ -69,10 +69,6 @@ openssl x509 -text -in /etc/pki/entitlement/9012345678901234567.pem
 :   
     --8<-- "includes/Tasks/vdo.md"
 
-## Kickstart
-
---8<-- "includes/Tasks/kickstart.md"
-
 ## Labs
 
 ### EX200

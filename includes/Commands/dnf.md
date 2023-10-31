@@ -1,103 +1,100 @@
-#### dnf
-:   
-    View history of dnf commands
-    ```sh
-    dnf history
-    dnf history userinstalled # View all packages installed by user
-    ```
+View history of dnf commands
 
-    [**Package groups**](https://docs.fedoraproject.org/en-US/quick-docs/getting-started-with-virtualization/) can be specified using the **group** command or by prefixing the package group name with **@**
+```sh
+dnf history
+dnf history userinstalled # View all packages installed by user
+```
 
-    ```sh
-    dnf group info virtualization
-    dnf info @virtualization
+[**Package groups**](https://docs.fedoraproject.org/en-US/quick-docs/getting-started-with-virtualization/) can be specified using the **group** command or by prefixing the package group name with **@**
 
-    dnf group install virtualization
-    dnf install @virtualization
-    
-    # Include optional packages
-    dnf install --with-optional @virtualization
-    ```
+```sh
+dnf group info virtualization
+dnf info @virtualization
 
-    Remove the configuration backend supporting the use of legacy ifcfg files in NetworkManager.
-    ```sh
-    dnf remove NetworkManager-initscripts-ifcfg-rh
-    ```
+dnf group install virtualization
+dnf install @virtualization
 
-    [**Modules**](https://docs.fedoraproject.org/en-US/modularity/using-modules/) are special package groups representing an application, runtime, or a set of tools. 
-    The [Node.js module](https://nodejs.org/en/download/package-manager/#centos-fedora-and-red-hat-enterprise-linux) allows you to select several **streams** corresponding to major versions.
-    ```sh
-    dnf module install nodejs:12
-    ```
+# Include optional packages
+dnf install --with-optional @virtualization
+```
 
-    Global dnf configuration is stored in either **/etc/yum.conf** or **/etc/dnf.conf**.
+Remove the configuration backend supporting the use of legacy ifcfg files in NetworkManager.
+```sh
+dnf remove NetworkManager-initscripts-ifcfg-rh
+```
 
-    ```ini
-    [main]
-    ; Exclude packages from updates permanently
-    exclude=kernel* php*
-    ; Suppress confirmation
-    assumeyes=True
-    ```
+[**Modules**](https://docs.fedoraproject.org/en-US/modularity/using-modules/) are special package groups representing an application, runtime, or a set of tools. 
+The [Node.js module](https://nodejs.org/en/download/package-manager/#centos-fedora-and-red-hat-enterprise-linux) allows you to select several **streams** corresponding to major versions.
+```sh
+dnf module install nodejs:12
+```
 
-    The configuration can be dumped from the command-line (as root)
-    ```sh
-    dnf config-manager --dump
-    ```
+Global dnf configuration is stored in either **/etc/yum.conf** or **/etc/dnf.conf**.
 
-#### Repos
-:   
-    Repositories are INI files placed in  **/etc/yum.repos.d/**, but they can also be displayed and manipulated from the command-line.
+```ini
+[main]
+; Exclude packages from updates permanently
+exclude=kernel* php*
+; Suppress confirmation
+assumeyes=True
+```
 
-    ```sh title="Repositories"
-    # Display repos
-    dnf repolist # -v
+The configuration can be dumped from the command-line (as root)
+```sh
+dnf config-manager --dump
+```
 
-    # Display enabled repos
-    dnf repolist --enabled
+**Repositories** are INI files placed in  **/etc/yum.repos.d/**, but they can also be displayed and manipulated from the command-line.
 
-    # Display a single repo
-    dnf repoinfo docker-ce-stable
+```sh title="Repositories"
+# Display repos
+dnf repolist # -v
 
-    # Add repo
-    dnf config-manager --add-repo $REPO-URL
-    
-    # Disable repo
-    dnf config-manager --set-disabled $REPO-NAME
+# Display enabled repos
+dnf repolist --enabled
 
-    # Enable repo (in this case an experimental ZFS repo kept disabled by default)
-    dnf config-manager --enable zfs-testing
-    ```
+# Display a single repo
+dnf repoinfo docker-ce-stable
 
-    ```ini title="Example repos"
-    [docker-ce-stable]
-    name=Docker CE Stable - $basearch
-    baseurl=https://download.docker.com/linux/fedora/$releasever/$basearch/stable
-    enabled=1
-    gpgcheck=1
-    gpgkey=https://download.docker.com/linux/fedora/gp
+# Add repo
+dnf config-manager --add-repo $REPO-URL
 
-    [kubernetes]
-    name=Kubernetes
-    baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
-    enabled=1
-    gpgcheck=1
-    repo_gpgcheck=1
-    gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+# Disable repo
+dnf config-manager --set-disabled $REPO-NAME
 
-    [google-cloud-sdk]
-    name=Google Cloud SDK
-    baseurl=https://packages.cloud.google.com/yum/repos/cloud-sdk-el7-x86_64
-    enabled=1
-    gpgcheck=1
-    repo_gpgcheck=0
-    gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
-    ```
+# Enable repo (in this case an experimental ZFS repo kept disabled by default)
+dnf config-manager --enable zfs-testing
+```
 
-    **Modules** are collections of packages that are installed together.
-    They often also have **profiles** available, which are variants of the module: i.e. client, server, common, devel, etc.
-    ```sh
-    dnf module list php
-    dnf module install php:7.4/devel
-    dnf module reset php
-    ```
+```ini title="Example repos"
+[docker-ce-stable]
+name=Docker CE Stable - $basearch
+baseurl=https://download.docker.com/linux/fedora/$releasever/$basearch/stable
+enabled=1
+gpgcheck=1
+gpgkey=https://download.docker.com/linux/fedora/gp
+
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+
+[google-cloud-sdk]
+name=Google Cloud SDK
+baseurl=https://packages.cloud.google.com/yum/repos/cloud-sdk-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=0
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+```
+
+**Modules** are collections of packages that are installed together.
+They often also have **profiles** available, which are variants of the module: i.e. client, server, common, devel, etc.
+```sh
+dnf module list php
+dnf module install php:7.4/devel
+dnf module reset php
+```

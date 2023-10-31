@@ -1,12 +1,21 @@
 #### systemctl
 :   
 
-    ```sh title="Services"
-    # Display all services
+    ```sh title="Inspect unit files"
+    # Display all services of a type
     systemctl list-unit-files --type=service
+    systemctl list-units
+    systemctl list-timers
+    systemctl list-sockets
 
     # Filter unit files by name
     systemctl list-unit-files 'sssd*'
+
+    # Display source code of unit file
+    systemctl cat sssd.service
+
+    # Edit unit file
+    systemctl edit sssd.service
 
     # Configure service to start on boot and start it immediately
     systemctl enable --now $SERVICE

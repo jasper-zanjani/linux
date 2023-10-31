@@ -1,25 +1,23 @@
-#### chown
-:   
-    Change a file or directory's ownership. 
-    
-    To change the user and group owner of a file to `$USER` and `$GROUP`:
+Change a file or directory's ownership. 
 
-    ```sh
-    chown $USER:$GROUP $file
-    ```
+To change the user and group owner of a file to `$USER` and `$GROUP`:
 
-    Recursively grant `$USER` ownership to `$PATH`
-    ```sh
-    chown -R $USER $PATH
-    ```
+```sh
+chown $USER:$GROUP $file
+```
 
-    Use a **reference** file to match the configuration of a particular file
-    ```sh
-    chown -vR --reference=. $PATH
-    ```
+Recursively grant `$USER` ownership to `$PATH`
+```sh
+chown -R $USER $PATH
+```
 
-    `--preserve-root` prevents changes to files in the root directory but only when used together with `--recursive`
-    
-    ```sh
-    chown -cfR --preserve-root $USER 
-    ```
+Use a **reference** file to match the configuration of a particular file
+```sh
+chown -vR --reference=. $PATH
+```
+
+`--preserve-root` prevents changes to files in the root directory but only when used together with `--recursive`
+
+```sh
+chown -cfR --preserve-root $USER 
+```

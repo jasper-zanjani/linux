@@ -1,7 +1,8 @@
+# zsh
 
 #### Key bindings
 
-[++Ctrl+&larr;++ and ++Ctrl+&rarr;++](https://unix.stackexchange.com/questions/58870/ctrl-left-right-arrow-keys-issue) don't appear to work by default:
+[++ctrl+left++ and ++ctrl+right++](https://unix.stackexchange.com/questions/58870/ctrl-left-right-arrow-keys-issue) don't appear to work by default:
 
 ```zsh title=".zshrc"
 bindkey "^[[1;5C" forward-word

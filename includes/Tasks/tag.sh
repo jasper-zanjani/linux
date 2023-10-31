@@ -17,3 +17,6 @@ tag () {
     esac
     shopt -u nocasematch
 }
+# A more useful and less brittle version of this script may be possible using the getopts function
+# to define a named parameter, rather than forcing the first positional argument to be one of 
+# a number of set values.

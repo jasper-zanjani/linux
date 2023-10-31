@@ -59,7 +59,14 @@
 #### locate
 :   
     ```sh title="Install"
+    # Ubuntu
     apt install -y plocate
+
+    # Arch
+    pacman -S mlocate
+
+    # RHEL
+    dnf install -y mlocate
     ```
 
 #### mv

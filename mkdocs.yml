@@ -7,7 +7,7 @@ theme:
   logo: img/logo.png
   palette:
     scheme: slate
-    primary: grey
+    primary: yellow
     accent: yellow
   features:
   # - navigation.tabs         # Render top-level sections as a menubar

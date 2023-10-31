@@ -1,3 +1,5 @@
+# fish
+
 **Fish** [switch statements](https://fishshell.com/docs/current/cmds/case.html) look completely different from bash case statements, with an incompatible syntax.
 
 ```sh title="Conditionally setting $PATH:"
@@ -34,10 +36,12 @@ The [**set** keyword](https://fishshell.com/docs/current/cmds/set.html) is used 
 ```sh
 # Set environment variables 
 # Equivalent to export EDITOR=/usr/bin/vim in bash
-set -x EDITOR /usr/bin/vim # --export
+set -x EDITOR /usr/bin/vim # (1)
+#   --export
 
 # Unset variable
-set -e EDITOR # --erase
+set -e EDITOR 
+#   --erase
 ```
 
 1. Without **-x** this variable will not be visible to applications.
@@ -59,4 +63,14 @@ end
 
 #### String manipulation
 
-Simple string concatenation?
+Strings are manipulated by subcommands to **string**.
+There is no support for traditional bash string manipulation.
+
+```sh
+# Replace a substring using string replace
+set FILE "file.m4a"
+string replace m4a wav $FILE
+# file.wav
+
+
+```

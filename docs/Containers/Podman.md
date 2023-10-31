@@ -50,16 +50,22 @@ Mapped ports can be displayed
 podman port -a
 ```
 
-Output a [SystemD service file](https://docs.podman.io/en/latest/markdown/podman-generate-systemd.1.html) from a container to STDOUT (this must be redirected to a file)
-```sh
-podman generate systemd notes \
-    --restart-policy=always   \
-    --name                    \ # (3)
-    --files                   \ # (2)
-    --new                     \ # (1)
-```
+## Tasks
 
-1. Yield unit files that do not expect containers and pods to exist but rather create them based on their configuration files.
-2. Generate a file with a name beginning with the prefix (which can be set with **--container-prefix** or **--pod-prefix**) and followed by the ID or name (if **--name** is also specified)
-3. In conjunction with **--files**, name the service file after the container and not the ID number.
+#### Service file
+:   
+
+    Output a [SystemD service file](https://docs.podman.io/en/latest/markdown/podman-generate-systemd.1.html) from a container to STDOUT (this must be redirected to a file)
+
+    ```sh
+    podman generate systemd notes \
+        --restart-policy=always   \
+        --name                    \ # (3)
+        --files                   \ # (2)
+        --new                     \ # (1)
+    ```
+
+    1. Yield unit files that do not expect containers and pods to exist but rather create them based on their configuration files.
+    2. Generate a file with a name beginning with the prefix (which can be set with **--container-prefix** or **--pod-prefix**) and followed by the ID or name (if **--name** is also specified)
+    3. In conjunction with **--files**, name the service file after the container and not the ID number.
 
