@@ -101,6 +101,16 @@ In GTK4 you can choose either a theming engine or CSS stylesheets.
     </mime-info>
     ```
 
+#### File browser bookmarks
+:   
+
+    [Bookmarks](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/using_the_desktop_environment_in_rhel_8/managing-bookmarks-in-gnome_using-the-desktop-environment-in-rhel-8) are stored in a file in **~/.config/gtk-3.0/bookmarks**
+
+    ```
+    --8<-- "includes/Configs/bookmarks"
+    ```
+
+
 ## Applications
 
 --8<--
