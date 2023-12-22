@@ -1,55 +1,44 @@
-#### systemctl
-:   
+# Display all services of a type
+systemctl list-unit-files --type=service
+systemctl list-units
+systemctl list-timers
+systemctl list-sockets
 
-    ```sh title="Inspect unit files"
-    # Display all services of a type
-    systemctl list-unit-files --type=service
-    systemctl list-units
-    systemctl list-timers
-    systemctl list-sockets
+# Filter unit files by name
+systemctl list-unit-files 'sssd*'
 
-    # Filter unit files by name
-    systemctl list-unit-files 'sssd*'
+# Display source code of unit file
+systemctl cat sssd.service
 
-    # Display source code of unit file
-    systemctl cat sssd.service
+# Edit unit file
+systemctl edit sssd.service
 
-    # Edit unit file
-    systemctl edit sssd.service
+# Configure service to start on boot and start it immediately
+systemctl enable --now $SERVICE
 
-    # Configure service to start on boot and start it immediately
-    systemctl enable --now $SERVICE
+systemctl status $SERVICE
 
-    systemctl status $SERVICE
-    
-    systemctl is-active $SERVICE 
-    
-    systemctl disable $SERVICE
-    
-    # Prevent service from being started inadvertently by another process
-    systemctl mask $SERVICE
+systemctl is-active $SERVICE 
 
-    systemctl restart $SERVICE
-    ```
+systemctl disable $SERVICE
 
-    ```sh
-    # Boot targets
-    systemctl get-default
-    systemctl set-default graphical.target
-    
-    # Change target
-    systemctl isolate emergency.target
-    
-    # Suspend system
-    systemctl suspend
-    ```
+# Prevent service from being started inadvertently by another process
+systemctl mask $SERVICE
 
-    **--user** specifies the service manager of the calling user.
+systemctl restart $SERVICE
 
-    ```sh
-    # This will create container-notes.service at ~/.config/systemd/user
-    systemctl --user enable --now container-notes.service
+# Boot targets
+systemctl get-default
+systemctl set-default graphical.target
 
-    # Confirm
-    systemctl --user status container-notes.service
-    ```
+# Change target
+systemctl isolate emergency.target
+
+# Suspend system
+systemctl suspend
+
+# Create a user service at ~/.config/systemd/user
+systemctl --user enable --now container-notes.service
+
+# Confirm
+systemctl --user status container-notes.service

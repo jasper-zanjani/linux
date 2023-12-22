@@ -171,22 +171,50 @@ It offers parallel execution, explicit dependencies between services, an escape 
 
 ## Commands
 
---8<--
-includes/Commands/hostnamectl.md
+#### hostnamectl
+:   
 
-includes/Commands/journalctl.md
+    ```sh
+    --8<-- "includes/Commands/hostnamectl.sh"
+    ```
 
-includes/Commands/localectl.md
+#### journalctl
+:   
+    --8<-- "includes/Commands/journalctl.md"
 
-includes/Commands/loginctl.md
 
-includes/Commands/systemctl.md
+#### localectl
+:   
 
-includes/Commands/systemd-analyze.md
+    ```sh
+    --8<-- "includes/Commands/localectl.sh"
+    ```
 
-includes/Commands/systemd-cgls.md
+#### loginctl
+:   
 
-includes/Commands/systemd-delta.md
+    ```sh
+    --8<-- "includes/Commands/loginctl.sh"
+    ```
 
-includes/Commands/timedatectl.md
---8<--
+#### systemctl
+:   
+
+    ```sh
+    --8<-- "includes/Commands/systemctl.sh"
+    ```
+
+#### systemd-analyze
+:   
+
+    ```sh
+    --8<-- "includes/Commands/systemd-analyze.sh"
+    ```
+
+#### systemd-cgls
+:   
+    --8<-- "includes/Commands/systemd-cgls.md"
+
+#### systemd-delta
+:   
+    --8<-- "includes/Commands/systemd-delta.md"

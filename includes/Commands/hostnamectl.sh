@@ -1,6 +1,2 @@
-#### hostnamectl
-:   
-    Permanently change hostname
-    ```sh
-    hostnamectl set-hostname $HOSTNAME
-    ```
+# Permanently change hostname
+hostnamectl set-hostname $HOSTNAME
