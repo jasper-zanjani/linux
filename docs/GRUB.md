@@ -146,3 +146,17 @@ search --no-floppy --set=root -l $LABEL
 ```sh title="update-grub"
 --8<-- "includes/Commands/update-grub.sh"
 ```
+
+#### mkinitcpio
+:   
+    **mkinitcpio** is a bash script used to create an **initial ramdisk** environment, which loads various kernel modules and sets up various things before handing over control to init.
+    This allows encrypted root filesystems and root filesystems on a software RAID array.
+
+    mkinitcpio uses **presets** (.preset files found in **/etc/mkinitcpio.d/**) to generate two images:
+
+    - **default** ramdisk image which follows the directives specified in the configuration
+    - **fallback** ramdisk image, the same as the default, except that the **autodetect** hook is skipped, including a full range of modules which improve support and compatibility
+
+    ```sh
+    --8<-- "includes/Commands/mkinitcpio.sh"
+    ```
