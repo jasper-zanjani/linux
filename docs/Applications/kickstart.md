@@ -88,6 +88,14 @@ It depends on a plaintext kickstart file with a unique syntax that specifies all
     %end
     ```
 
+    Install flatpaks
+
+    ```sh
+    FLATPAKS="app.drey.EarTag com.github.tchx84.Flatseal com.visualstudio.code de.haeckerfelix.Fragments net.ankiweb.Anki org.gnome.DejaDup org.gnome.gThumb org.gnome.TextEditor"
+    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    flatpak install flathub $FLATPAKS -y
+    ```
+
 
 #### pwpolicy
 :   
