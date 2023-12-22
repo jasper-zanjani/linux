@@ -1,5 +1,15 @@
 # Package management
 
+## Tasks
+
+#### Build RPM package
+:   
+    --8<-- "includes/Tasks/build-rpm.md"
+
+#### Build Arch package
+:   
+    --8<-- "includes/Tasks/build-arch.md"
+
 ## Commands
 
 #### apt
