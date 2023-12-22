@@ -28,6 +28,19 @@ setparams 'Install Fedora 38'
 cat /proc/cmdline
 ```
 
+## grub.cfg
+
+```sh title="Fedora 38 grub.cfg"
+--8<-- "includes/Configs/fedora38-grub.cfg"
+```
+
+[**search**](https://www.gnu.org/software/grub/manual/grub/html_node/search.html) is used to find the root file system and accepts a variety of options.
+
+```sh
+# Search by file system label
+search --no-floppy --set=root -l $LABEL
+```
+
 ## Tasks
 
 #### Loading linux
