@@ -185,7 +185,6 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 #### Mouse support
 :   
     ```vim
-
     ```
 
 #### Language definition
@@ -201,3 +200,8 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 
     1. Note that the quantifier specifying at least two instances of the preceding hyphen requires the initial brace to be escaped.
     However, the open angle bracket does not.
+
+
+#### Splits
+:   
+    Panes are referred to as "splits" and are controlled by a variety of [bindings](https://vimtricks.com/p/vim-move-split/).

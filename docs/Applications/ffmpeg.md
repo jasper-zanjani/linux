@@ -3,12 +3,59 @@
 **ffmpeg** is most often used to convert file formats for media from the command-line.
 
 ```sh
-# Convert mp3 to m4a"
+# Convert mp3 to m4a
+ffmpeg -i file.mp3 file.m4a
+
+# Convert file specified in a variable
 ffmpeg -i "$FILE" "${FILE/mp3/m4a}"
 
 # Convert video mp4 to audio-only mp4 in the working directory
 ffmpeg -i "$FILE" -vn "$(basename $FILE)"
 ```
+
+When multiple input files are fed to ffmpeg, they are identified by their 0-based index, reflecting the order of invocation.
+Options generally apply to the next specified file, so order of options is significant and the same option can appear multiple times.
+
+[**Stream specifiers**](https://www.ffmpeg.org/ffmpeg.html#Stream-specifiers-1) are colon-delimited strings that are appended to the option name
+
+```sh
+# Copy all streams without reencoding
+-codec copy
+
+# Select the ac3 codec for the second audio stream
+-codec:a:1 ac3
+```
+
+In [**automatic stream selection**](https://www.ffmpeg.org/ffmpeg.html#Examples), ffmpeg will prioritize the highest resolution for video streams and the highest number of channels for audio streams.
+
+The [**-map**](https://www.ffmpeg.org/ffmpeg.html#Stream-selection) option allows manual control of stream selection.
+When this option is used, only streams exclusively mapped are included in the output file.
+
+```sh
+# Use automatic stream selection for out1.mkv and out2.wav.
+# But out3.mov will contained the user-mapped streams specified (all audio streams from the second input file)
+ffmpeg -i A.avi -i B.mp4 out1.mkv out2.wav -map 1:a -c:a copy out3.mov
+```
+
+#### Adding a thumbnail
+:   
+
+    Adding a thumbnail is based on passing the (undocumented) **attached\_pic** argument to **-disposition**, targeting the image input file with a stream specifier.
+
+    ```sh
+    # Add a thumbnail to an audio stream
+    ffmpeg -i audio.m4a -i image.png -c copy -disposition:v:0 attached_pic output.m4a
+
+    # Due to automatic stream selection, -map must be used if a thumbnail is being added to a 
+    # video stream, because only the highest resolution video stream will be selected otherwise.
+    ffmpeg -i video.mp4 -i audio.m4a -i thumb.png -map 0 -map 1 -map 2 -c copy -disposition:v:1 attached_pic output.mp4
+
+    # From documentation, add thumbnail to a video, re-encoding it as PNG
+    ffmpeg -i in.mp4 -i IMAGE -map 0 -map 1 -c copy -c:v:1 png -disposition:v:1 attached_pic out.mp4
+
+    # Add thumbnail to a file while also running speech normalization on the audio stream
+    ffmpeg -i $FILE -i $THUMBNAIL -af speechnorm -c:v png -disposition:v attached_pic $OUTPUT
+    ```
 
 #### Specify metadata
 :   
@@ -74,11 +121,10 @@ ffmpeg -i "$FILE" -vn "$(basename $FILE)"
 #### Filters
 :   
 
-    Various [filters](https://ffmpeg.org/ffmpeg-filters.html) exist.
-    They are provided as arguments to **-af**/**-vf**/**-filter** or **-filter\_complex**.
+    Various [filters](https://ffmpeg.org/ffmpeg-filters.html) are provided as arguments to **-af**/**-vf**/**-filter** or **-filter\_complex**.
 
     ```sh
-    # Speech normalization
+    # Normalize for speech audio
     ffmpeg -i $INPUT -af "speechnorm" $OUTPUT
 
     # For a container that contains more than an audio stream.
@@ -89,3 +135,4 @@ ffmpeg -i "$FILE" -vn "$(basename $FILE)"
     A filtergraph is a directed graph of connected filters.
 
     The [**graph2dot**](https://ffmpeg.org/ffmpeg-filters.html#graph2dot) tools is mentioned in ffmpeg documentation as being able to generate a visual representation of the filtergraph description, but it doesn't seem to be available from repos.
+

@@ -24,9 +24,9 @@ There are 3 timestamps associated with files in Linux
 
 Numerical arguments can be specified in 3 ways:
 
-- **`+n`** greater than {n} days ago
-- **`-n`** less than {n} days ago
-- **`n`** exactly n days ago
+- **n** exactly n days ago
+- **+n** greater than n days ago
+- **-n** less than n days ago
 
 ```sh
 # Find only files that were modified more than 120 days ago

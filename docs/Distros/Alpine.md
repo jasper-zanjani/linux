@@ -129,12 +129,9 @@ zpool create \
      done)
 
 # Create root system container
-zfs create -o canmount=off -o mountpoint=none \
-    rpool/fedora
-zfs create -o canmount=off -o mountpoint=none \
-    # These options allow encryption, requiring at least 8 characters
-    -o encryption=on -o keylocation=prompt -o keyformat=passphrase \
-    rpool/fedora
+zfs create -o canmount=off -o mountpoint=none rpool/fedora
+# Optionally, allowing encryption
+zfs create -o canmount=off -o mountpoint=none -o encryption=on -o keylocation=prompt -o keyformat=passphrase rpool/fedora
 
 # Create system datasets
 zfs create -o canmount=noauto -o mountpoint=/  rpool/fedora/root

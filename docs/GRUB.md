@@ -116,15 +116,30 @@ search --no-floppy --set=root -l $LABEL
 
     After booting the system, GRUB should be updated and reinstalled:
 
-    Update GRUB config file
     ```sh
+    # Update GRUB config file
     update-grub
-    ```
-    Reinstall GRUB
-    ```sh
+
+    # Reinstall GRUB
     grub-install /dev/sdx
     ```
 
+
+#### Hibernate device not found
+:   
+    In the case of an error mentioning "hibernation device not found" on boot, remove the offending items from **/etc/default/grub** and recreate the initial ramdisk environment and the GRUB menu
+
+    ```sh
+    # Process all presets contained in /etc/mkinitcpio.d
+    mkinitcpio -P 
+             # --allpresets 
+    
+    grub-mkconfig -o /boot/grub/grub.cfg
+    ```
+
+    If only the **resume=** line in the kernel command-line is removed, then the error will read "ERROR: resume :no device specified for hibernation".
+
+    The **resume** hook should also be removed from **/etc/mkinitcpio.conf**
 
 ## Commands
 

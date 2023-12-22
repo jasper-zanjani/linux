@@ -2,7 +2,7 @@
 
 Git is a very complex utility with multiple commands and subcommands and a strong dependency on **version control system** concepts.
 
-The most basic useful command may be **clone** which simply downloads a repository.
+The most basic useful command may be [**git clone**](https://git-scm.com/docs/git-clone) which simply downloads a repository.
 ```sh
 git clone https://gitlab.gnome.org/GNOME/gtk.git
 
@@ -10,13 +10,14 @@ git clone https://gitlab.gnome.org/GNOME/gtk.git
 git clone https://gitlab.gnome.org/GNOME/gtk.git --depth 1 -c http.sslVerify=false
 ```
 
-Add file, located in **\$HOME** to the git repo at **\$PATH**
+A git repository is a directory containing files, changes to which are tracked in discrete units called **commits**.
+In the jargon of git, the contents of the directory are referred to as the **current working tree**.
+Changes made to the repository have to be incorporated into the **commit history** in a multi-step process, starting by **staging** changes, or adding them to the **index** which will be incorporated into the following commit.
 
 ```sh
-git --git-dir=$PATH.git --work-tree=$HOME add file
-```
+# Add file, located in **\$HOME** to the git repo at **\$PATH**
+git --git-dir=$PATH/.git --work-tree=$HOME add $FILE
 
-```sh
 # Update index to include all files in the working tree, including removals
 git add -A # --no-ignore-removal
 
@@ -24,13 +25,10 @@ git add -A # --no-ignore-removal
 git add -u
 ```
 
-See a list of branches. 
-A "*" indicates that branch is checked out.
 ```sh
+# Display branches ("*" indicates that branch is checked out)
 git branch
-```
 
-```sh
 # Display the last commit for each branch
 git branch -v
 
@@ -106,12 +104,10 @@ Combine branches by replaying the changes made on one branch to another
 git rebase
 ```
 
-Add remote repo
 ```sh
+# Add remote repo
 git remote add $REPO $URL
-```
 
-```sh
 # Display URL of remote repo
 git remote get-url $REPO
 
@@ -139,20 +135,17 @@ Remove tracked file from repo
 git rm file
 ```
 
-Stash changes to work-tree
 ```sh
+# Stash changes to work-tree
 git stash
-```
-View stashes in stash stack
-```sh
+
+# View stashes in stash stack
 git stash list
-```
-Apply changes in most recent stash
-```sh
+
+# Apply changes in most recent stash
 git stash apply
-```
-Apply changes in stash `$STASH`
-```sh
+
+# Apply changes in specified stash
 git stash apply stash@$STASH
 ```
 

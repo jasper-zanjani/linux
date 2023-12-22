@@ -21,7 +21,7 @@ theme:
   shortcuts:
     search: 191
 extra_css:
-- style/tooltip-width.css
+- style/annotation-width.css
 
 markdown_extensions:
   - abbr

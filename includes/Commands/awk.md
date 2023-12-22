@@ -6,17 +6,40 @@ awk $OPTIONS $PROGRAM $INPUTFILES
 awk $OPTIONS -f $PROGRAMFILE $INPUTFILES
 ```
 
-awk programs combine **patterns** and **actions**
+Awk programs combine **patterns** and **actions**:
 
-Patterns can be:
+- Patterns can be:
 
-- regular expressions or fixed strings
-- line numbers using builtin variable **`NR`**
-- predefined patterns **`BEGIN`** or **`END`**, whose actions are executed before and after processing any lines of the data file, respectively
+    - regular expressions or fixed strings
+    - line numbers using the builtin variable **NR**
+    - predefined patterns **BEGIN** or **END**, whose actions are executed before and after processing any lines of the data file, respectively
+
+- Actions include the ubiquitous **print** but can also be variable assignments like **stop=1**
 
 Convert ":" to newlines in **$PATH** environment variable
 ```sh
 echo $PATH | awk 'BEGIN {RS=":"} {print}'
+```
+
+```sh
+# Print entire file
+awk '{print}' raven # (1)
+
+# Print only up to (but excluding) the indicated line, using the apparently undocumented variable stop (https://askubuntu.com/questions/1022530/delete-lines-that-come-after-a-line-with-a-specific-pattern-in-shell)
+awk '/\s*Only this and nothing more/ {stop=1} stop==0 {print}' raven # (2)
+```
+
+1. 
+```
+--8<-- "includes/Configs/raven"
+```
+2. 
+``` title="Output"
+Once upon a midnight dreary, while I pondered, weak and weary,
+  Over many a quaint and curious volume of forgotten lore--
+  While I nodded, nearly napping, suddenly there came a tapping,
+  As of some one gently rapping, rapping at my chamber door.
+  "'Tis some visitor," I muttered, "tapping at my chamber door--
 ```
 
 ```sh
@@ -36,40 +59,25 @@ awk '{ print $1 }' list
 # Equivalent to grep MA *
 awk '/MA/' * 
 # awk '/MA/ {print}' *
-```
-`-F` flag is followed by field separator
-```sh
+
+# Define field separator with -F
 awk -F, '/MA/ { print $1 }' list
-```
-pipe output of `free` to `awk` to get free memory and total memory
-```sh
-free -h | awk '/^Mem|/ {print $3 "/" $2}
-```
-pipe output of `sensors` to `awk` to get CPU temperature
-```sh
-sensors | awk '/^temp1/ {print $2}
-```
-replace initial "fake." with "real;" in file `fake_isbn`
-```sh
+
+# replace initial "fake." with "real;" in file `fake_isbn`
 awk 'sub(^fake.,"real;")' fake_isbn
-```
-print all lines
-```sh
+
+# Print all lines
 awk '1 { print }' file
-```
-remove file header
-```sh
+
+# remove file header
 awk 'NR>1' file
-```
-remove file header
-```sh
-awk 'NR>1 { print } file
-```
-print lines in a range
-```sh
+
+# remove file header
+awk 'NR>1 { print }' file
+
+# print lines in a range
 awk 'NR>1 && NR < 4' file
-```
-```sh
+
 # Remove whitespace-only lines
 awk 'NF' file
 
@@ -78,54 +86,41 @@ awk '1' RS='' file
 
 # Extract fields
 awk '{ print $1, $3}' FS=, OFS=, file
-```
-perform column-wise calculations
-```sh
+
+# perform column-wise calculations
 awk '{ SUM=SUM+$1 } END { print SUM }' FS=, OFS=, file
-```
-count the number of nonempty lines
-```sh
+
+# count the number of nonempty lines
 awk '/./ { COUNT+=1 } END { print COUNT }' file
-```
-count the number of nonempty lines
-```sh
+
+# count the number of nonempty lines
 awk 'NF { COUNT+=1 } END { print COUNT }' file
-```
-count the number of nonempty lines
-```sh
+
+# count the number of nonempty lines
 awk '+$1 { COUNT+=1 } END { print COUNT }' file
-```
-Arrays
-```sh
+
+# Arrays
 awk '+$1 { CREDITS[$3]+=$1 } END { for (NAME in CREDITS) print NAME, CREDITS[NAME] }' FS=, file
-```
-Identify duplicate lines
-```sh
+
+# Identify duplicate lines
 awk 'a[$0]++' file
-```
-Remove duplicate lines
-```sh
+
+# Remove duplicate lines
 awk '!a[$0]++' file
-```
-Remove multiple spaces
-```sh
+
+# Remove multiple spaces
 awk '$1=$1' file
-```
-Join lines
-```sh
+
+# Join lines
 awk '{ print $3 }' FS=, ORS=' ' file; echo
-```
-```sh
+
 awk '+$1 { SUM+=$1; NUM+=1 } END { printf("AVG=%f",SUM/NUM); }' FS=, file` | format 
-```
-```sh
+
 awk '+$1 { SUM+=$1; NUM+=1 } END { printf("AVG=%6.1f",SUM/NUM); }' FS=, file
-```
-Convert to uppercase 
-```sh
+
+# Convert to uppercase 
 awk '$3 { print toupper($0); }' file
-```
-```sh
+
 # Change part of a string
 awk '{ $3 = toupper(substr($3,1,1)) substr($3,2) } $3' FS=, OFS=, file
 
