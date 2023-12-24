@@ -48,33 +48,53 @@ set -e EDITOR
 #   --erase
 ```
 
-1. Without **-x** this variable will not be visible to applications.
-```sh title="Bash equivalent"
-export EDITOR=/usr/bin/vim
-```
+#### Command-line arguments
+:   
+    There are two ways of handling command-line arguments and options in fish:
 
-Fish [**for-in loops**](https://fishshell.com/docs/current/cmds/for.html) are concluded with **end**.
+    1. [**argparse**](https://fishshell.com/docs/current/cmds/argparse.html)
+    2. [**fish\_opt**](https://fishshell.com/docs/current/cmds/fish_opt.html)
 
-```sh title="Set metadata in a loop"
-for i in $(exa Godfrey*)
-    echo Processing $i
-    set title $(string replace -r "\(.*mp3$" "" $i) # (1)
-    ffmpeg -i $i -metadata title="$title" -metadata album="Godfrey" -metadata artist="Vlad TV" -codec copy output/$i
-end
-```
+    ```sh title="argparse usage"
+    argparse $OPTION_SPEC -- $argv
+    ``` 
 
-1. [**string replace**](https://fishshell.com/docs/current/cmds/string.html?highlight=string#replace-subcommand) is used here to remove the ending of a filename, including extension.
+    In argparse, functions call the **argparse** keyword providing an **option specification**, strings that define options as well as the options to be parsed (i.e. **$argv**).
+    These are separated by the double hyphen **--**.
 
-#### String manipulation
+    A trivial use case is presented here, where argparse does almost nothing except pass all arguments to the echo statement.
+    However, providing any options produces an error, since they are detected by argparse as unknown.
 
-Strings are manipulated by subcommands to **string**.
-There is no support for traditional bash string manipulation.
+    ```sh title="Hello, World! with argparse"
+    function hw
+        argparse -- $argv
+        or return
+        echo "Hello, $argv!"
+    end
+    ```
 
-```sh
-# Replace a substring using string replace
-set FILE "file.m4a"
-string replace m4a wav $FILE
-# file.wav
+    The option specification itself follows a specific syntax following the pattern `<SHORT_FORM>/<LONG_FORM>`, where the short form and long form of an option are delimited by a slash.
+    In this example, the option spec is appended by **=** to require an argument.
+    The value of the argument is stored in a variable named **`_flag_<SHORT_FORM>`** or **`_flag_<LONG_FORM>`** after the option spec.
+
+    ```sh
+    function hw
+        argparse 'n/name=' -- $argv
+        or return
+        echo "Hello, $_flag_n!" # Alternatively $_flag_name could also be used
+    end
+    ```
+
+    Multiple option specs can be provided in this line.
+
+    Additional options to argparse itself are also available, for example **--min-args/-N** which specifies a minimum number of total arguments.
 
 
-```
+    ```sh
+    # This will raise an error if less than one argument is present.
+    function hw
+        argparse --min-args=1 -- $argv
+        #        -N=1
+        echo "Hello, $argv!"
+    end
+    ```
