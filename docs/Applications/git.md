@@ -50,28 +50,22 @@ git cherry-pick commit
 ```
 
 
-Show commits between January 1 and January 5, 2016
 ```sh
+# Show commits between January 1 and January 5, 2016
 git log --after="2016-01-01" --before="2016-01-05"
+
+# See commits that are on a branch but not on master
+git log $MASTER..$BRANCH
 ```
 
-See commits that are on {branch} but not on {master}
 ```sh
-git log master..branch
-```
-
-Show tracked files
-```sh
+# Show tracked files
 git ls-files
-```
 
-Show tracked files, each line is terminated by a null byte
-```sh
+# Show tracked files, each line is terminated by a null byte
 git ls-files -z
-```
 
-Show tracked files that have been deleted
-```sh
+# Show tracked files that have been deleted
 git ls-files --deleted
 ```
 
@@ -83,20 +77,6 @@ git mv file
 Transfer data from local branch {master} to remote {origin}
 ```sh
 git push -u origin master
-```
-
-To add changes to a commit that is not the most recent, a rebase is necessary. 
-First [stash](#stash) the changes to be added, then initiate a rebase and mark the commit to be edited with `edit` or `e`. 
-Leave the other commits alone, save, and drop back to the stash. 
-Pop the stash (`git stash pop`), which will apply the changes stored in the most recent stash. 
-Now you can stage the changes and commit:
-```sh
-git commit --amend --no-edit
-```
-
-Finally, continue the rebase, rewriting the rest of the commits against the new one.
-```sh
-git rebase --continue
 ```
 
 Combine branches by replaying the changes made on one branch to another

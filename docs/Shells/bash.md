@@ -56,7 +56,7 @@ Hexadecimal literals are prefixed with **0x** and octal numbers begin with **0**
 #### Loops
 :   
 
-    The content of all loops is bracketed between **`do`** and **`done`**
+    The body of all loops is bracketed between **do** and **done**.
 
     ```sh
     for i in {01..07}
@@ -85,11 +85,12 @@ Hexadecimal literals are prefixed with **0x** and octal numbers begin with **0**
 #### Command-line arguments
 :   
 
-    Command-line arguments are available as the positional arguments **`$1`**, **`$2`**, etc. with the script itself being **`$0`**.
-    Handling command-line arguments is conventionally done with the **shift** command in a `while` loop.
+    Command-line arguments are available as the positional arguments **$1**, **$2**, etc. with the script itself being **$0**.
+    Handling command-line arguments is conventionally done with the **shift** command in a while loop.
 
     **getopt** and **argp\_parse** reorder the elements of **argv** by default, but this behavior can be suppressed by setting the **`_POSIX_OPTION_ORDER`** environment variable
 
+    Bash syntax supports a variety of methods to handle command-line arguments.
 
     ```sh title="Validating command-line args"
     # From Sobell p. 548

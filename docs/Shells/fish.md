@@ -1,51 +1,112 @@
 # fish
 
+
+## Control flow
+
+#### if
+:   
+    Like all other control flow blocks in fish, **if** statements are concluded by **end**.
+
+    ```sh
+    if return
+        echo True!
+    end
+
+    if return 1
+        echo True!
+    else
+        echo False!
+    end
+    ```
+
+#### switch
+:   
+    [**Switch statements**](https://fishshell.com/docs/current/cmds/case.html) in fish look completely different from case statements in bash.
+
+    ```sh title="Conditionally setting $PATH:"
+    switch "$PATH" # (1)
+        case "*$HOME/.cargo/bin*" # (2)
+            echo '$PATH already contains $HOME/.cargo/bin' # (3)
+        case '*'
+            set --global PATH $HOME/.cargo/bin $PATH # (4)
+    end # (5)
+    ```
+
+    1. Because the $PATH is rendered as a list delimited by whitespace, without quotes this statement will be expanded to many arguments and will produce an error.
+    2. Double quotes must be used, because with single quotes fish will not expand the $HOME variable.
+    3. I have not found an empty placeholder similar to **pass** in Python which could simply occupy space here. 
+    Without a statement, fish appears to execute the following block by default.
+    4. Environment variables use the [**set**](https://fishshell.com/docs/current/cmds/set.html#cmd-set) keyword.
+    The **--universal** option, which would otherwise make sense here, does not work because $PATH is a global variable.
+    Note that there is no equal sign, only a space separating the variable identifier and value.
+    5. 
+    ```sh title="Bash equivalent"
+    case ":${PATH}:" in
+        *:"$HOME/.cargo/bin":*)
+            ;;
+        *)
+            export PATH="$HOME/.cargo/bin:$PATH"
+            ;;
+    esac
+    ```
+
+#### for-in
+:   
+    Like other blocks in fish, [**for-in loops**](https://fishshell.com/docs/current/cmds/for.html) are concluded with **end**.
+    Unlike bash, the iterator is not surrounded by parentheses, however globbing can be used to handle filenames.
+
+    ```sh title="Set metadata in a loop"
+    for i in Godfrey*
+        echo Processing $i
+        set title $(string replace -r "\(.*mp3$" "" $i) # (1)
+        ffmpeg -i $i -metadata title="$title" -metadata album="Godfrey" -metadata artist="Vlad TV" -codec copy output/$i
+    end
+    ```
+
+    1. [**string replace**](https://fishshell.com/docs/current/cmds/string.html?highlight=string#replace-subcommand) is used here to remove the ending of a filename, including extension.
+
+
+
+## Variables
+:   
+    Similar to bash, variables are derefenced by prefixing **$** to the identifier, but that syntax is not used when assigning values.
+    Unlike bash, the [**set** keyword](https://fishshell.com/docs/current/cmds/set.html) is used to declare and destroy variables.
+
+    ```sh title="Environment variables"
+    set --export EDITOR /usr/bin/vim # (1)
+    #   -x
+
+    # Unset variable
+    set --erase EDITOR 
+    #   -e
+    ```
+
+    1. Without **-x** this variable will not be visible to applications.
+    ```sh title="Bash equivalent"
+    export EDITOR=/usr/bin/vim
+    ```
+
+
+#### String manipulation
+:   
+    Strings are manipulated by subcommands to **string**.
+    There is no support for traditional bash string manipulation.
+
+    ```sh
+    # Replace a substring using string replace
+    set FILE "file.m4a"
+    string replace m4a wav $FILE # (1)
+    ```
+
+    1. 
+    ``` title="Output"
+    file.wav
+    ```
+
+## Functions
+
 ```sh
 --8<-- "includes/Commands/fish.fish"
-```
-
-**Fish** [switch statements](https://fishshell.com/docs/current/cmds/case.html) look completely different from bash case statements, with an incompatible syntax.
-
-```sh title="Conditionally setting $PATH:"
-switch "$PATH" # (1)
-    case "*$HOME/.cargo/bin*" # (2)
-        echo '$PATH already contains $HOME/.cargo/bin' # (3)
-    case '*'
-        set --global PATH $HOME/.cargo/bin $PATH # (4)
-end # (5)
-```
-
-1. Because the $PATH is rendered as a list delimited by whitespace, without quotes this statement will be expanded to many arguments and will produce an error.
-2. Double quotes must be used, because with single quotes fish will not expand the $HOME variable.
-3. I have not found an empty placeholder similar to **pass** in Python which could simply occupy space here. 
-Without a statement, fish appears to execute the following block by default.
-4. Environment variables use the [**set**](https://fishshell.com/docs/current/cmds/set.html#cmd-set) keyword.
-The **--universal** option, which would otherwise make sense here, does not work because $PATH is a global variable.
-Note that there is no equal sign, only a space separating the variable identifier and value.
-5. 
-```sh title="Bash equivalent"
-case ":${PATH}:" in
-    *:"$HOME/.cargo/bin":*)
-        ;;
-    *)
-        export PATH="$HOME/.cargo/bin:$PATH"
-        ;;
-esac
-```
-
-#### Variables
-
-The [**set** keyword](https://fishshell.com/docs/current/cmds/set.html) is used to declare and destroy variables.
-
-```sh
-# Set environment variables 
-# Equivalent to export EDITOR=/usr/bin/vim in bash
-set -x EDITOR /usr/bin/vim # (1)
-#   --export
-
-# Unset variable
-set -e EDITOR 
-#   --erase
 ```
 
 #### Command-line arguments
