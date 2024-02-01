@@ -28,12 +28,23 @@ An escape sequence is composed of an **escape character** (i.e. `\e`, `\033`, `\
 i.e. **`2#`** (binary), **`32#`** (base-32) etc.
 Hexadecimal literals are prefixed with **0x** and octal numbers begin with **0**.
 
+## Functions
+
+```sh
+function hello () { 
+    echo "Hello, ${1:-World}!"
+}
+```
+
+
 ## Tasks
 
 
 #### Configuration
 :   
-    The systemwide config for bash is at **/etc/profile**.
+    The system config for bash is at **/etc/profile**.
+    The user config is at **$HOME/.bashrc**.
+    Some distributions by default also allow additional scripts to be placed in **$HOME/.bashrc.d/**, but these are processed by logic in bashrc.
 
     The **shopt** internal command is used to set (**-s**) or unset (**-u**) various shell settings.
 
