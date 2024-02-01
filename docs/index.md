@@ -32,10 +32,47 @@ Kernel **modules** can be loaded, listed, or removed from the running kernel.
 ## Help
 
 
-- **man** displays manpages
-    - **mandb** (run as root) regenerates the manpage index
-    - [**manweb**](https://github.com/sebastiancarlos/manpdf) is available to browse online manpages.
+- [**man**](#man) displays manpages
+- **mandb** regenerates the manpage index (run as root)
+- [**manweb**](https://github.com/sebastiancarlos/manpdf) is available to browse online manpages.
 - **whereis** locates the binary, source, and manual pages for a command
+
+#### man
+:   
+    **man** is an interface to the system reference manuals, usually located at **/usr/share/man**.
+
+    **MANPAGER** and **PAGER** variables are used as the name of the program used to display the manual page.
+    By default, less is used.
+
+    ```sh
+    # Set bat as the pager for man
+    MANPAGER = 'bat -l man --style=plain'; man $COMMAND
+    ```
+
+    Man page section numbers are provided before the entry on Linux.
+
+    1. Executable programs or shell commands
+    2. System calls (functions provided by the kernel)
+    3. Library calls (functions within program libraries)
+    4. Special files (usually found in /dev)
+    5. File formats and conventions, e.g. /etc/passwd
+    6. Games
+    7. Miscellaneous (including macro packages and conventions), e.g. *man(7)*, *groff(7)*, *man-pages(7)*
+    8. System administration commands (usually only for root)
+    9. Kernel routines [Non standard]
+
+    ```sh title="man"
+    --8<-- "includes/Commands/m/man.sh"
+    ```
+
+## Filesystem Hierarchy Standard
+
+The [**Filesystem Hierarchy Standard (FHS)**](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard) describes the conventions used for the layout of Unix-like systems.
+
+- **/bin**: binaries that need to be available in single-user mode
+- **/etc**: host-specific system-wide configuration files
+- **/usr/bin**: non-essential command binaries for all users
+- **/usr/share**: architecture-independent data
 
 ## Security
 
@@ -58,6 +95,16 @@ FACL permissions will be indicated in a `ls -l` command by the presence of a "+"
 **Acl** is a dependency of `systemd`.
 
 To enable it, add ",acl" to options in `fstab` file, then mount/unmount disk. If enabling FACL on root partition, system has to be rebooted.
+
+
+## Fonts
+
+Fonts are often found at **/usr/share/fonts** as well as **~/.local/share/fonts**.
+
+```sh
+# Rebuild font cache
+fc-cache -f 
+```
 
 
 --8<-- "includes/defs.md"
