@@ -1,11 +1,32 @@
 # fish
 
 
+
+## Commands
+
+- [**math**](https://fishshell.com/docs/current/cmds/math.html)
+- [**random**](https://fishshell.com/docs/current/cmds/random.html)
+- [**string**](https://fishshell.com/docs/current/cmds/string.html)
+
+
+#### type
+:   
+    [**type**](https://fishshell.com/docs/current/cmds/type.html) is a fish builtin that indicates how any argument would be interpreted by the shell.
+    There is also a very similar **bash** builtin.
+
+    ```sh hl_lines="3"
+    # In this example, type is used merely to confirm that the executable exists, somewhere in PATH.
+    --8<-- "includes/Tasks/fish/neofetch.fish"
+    ```
+
+
+
 ## Control flow
 
 #### if
 :   
     Like all other control flow blocks in fish, **if** statements are concluded by **end**.
+    As in bash, it depends on the value returned by a function, so the **test** utility is important.
 
     ```sh
     if return
@@ -73,12 +94,12 @@
     Unlike bash, the [**set** keyword](https://fishshell.com/docs/current/cmds/set.html) is used to declare and destroy variables.
 
     ```sh title="Environment variables"
-    set --export EDITOR /usr/bin/vim # (1)
-    #   -x
+    set -x EDITOR /usr/bin/vim # (1)
+    #   --export
 
     # Unset variable
-    set --erase EDITOR 
-    #   -e
+    set -e EDITOR 
+    #   --erase
     ```
 
     1. Without **-x** this variable will not be visible to applications.
@@ -87,10 +108,26 @@
     ```
 
 
+
+## Functions
+
+```sh
+--8<-- "includes/Commands/f/fish.fish"
+```
+
+
+## Tasks
+
+#### Random sampling
+:   
+    ```sh
+    random choice apple orange banana kiwi
+    ```
+
 #### String manipulation
 :   
-    Strings are manipulated by subcommands to **string**.
-    There is no support for traditional bash string manipulation.
+    Strings are manipulated by subcommands to [**string**](https://fishshell.com/docs/current/cmds/string.html).
+    Bash-style variable substition is not supported..
 
     ```sh
     # Replace a substring using string replace
@@ -99,15 +136,13 @@
     ```
 
     1. 
+    ```sh title="Bash equivalent
+    ${FILE/m4a/wav}
+    ```
     ``` title="Output"
     file.wav
     ```
 
-## Functions
-
-```sh
---8<-- "includes/Commands/fish.fish"
-```
 
 #### Command-line arguments
 :   
@@ -159,3 +194,43 @@
         echo "Hello, $argv!"
     end
     ```
+
+
+#### !$ and !!
+:   
+
+    Tokens can be scrolled using ++alt+up++.
+    But incorporating some of the typical shortcuts from bash like **!!** and **!$** requires [custom handling](https://superuser.com/questions/719531/what-is-the-equivalent-of-bashs-and-in-the-fish-shell). (1)
+    { .annotate }
+
+    1. These functions also appear in the default Garuda fish config. 
+    ```sh
+    --8<-- "includes/Tasks/fish/functions.fish"
+    ```
+
+    ```sh
+    function bind_bang
+        switch (commandline -t)[-1]
+            case "!"
+                commandline -t -- $history[1]
+                commandline -f repaint
+            case "*"
+                commandline -i !
+        end
+    end
+
+    function bind_dollar
+        switch (commandline -t)[-1]
+            case "!"
+                commandline -f backward-delete-char history-token-search-backward
+            case "*"
+                commandline -i '$'
+        end
+    end
+
+    function fish_user_key_bindings
+        bind ! bind_bang
+        bind '$' bind_dollar
+    end
+    ```
+
