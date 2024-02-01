@@ -66,10 +66,7 @@ It depends on a plaintext kickstart file with a unique syntax that specifies all
     Note that packages must exist within the ISO, so minimal or server installation ISOs may not have all packages, and will demand interactive authorization to proceed.
 
     ```sh
-    %packages
-    @^minimal-environment
-    kexec-tools
-    %end
+    --8<-- "includes/Configs/kickstart/packages.cfg"
     ```
 
 
