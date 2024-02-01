@@ -8,6 +8,50 @@ Often these commands are combined by piping from one to the other.
 
 ## Tasks
 
+#### Random sampling
+:   
+    A variety of filters can be used to [sample random lines](https://www.baeldung.com/linux/read-random-line-from-file) from a text file.
+
+    ```sh
+    shuf -n 1 $FILE
+    ```
+
+    In the **fish** shell, the command **random** allows sampling from a list of items provided in-line.
+
+    ```sh
+    random choice apple orange banana kiwi
+    ```
+
+#### employees
+:   
+    ``` title="employees"
+    --8<-- "includes/Output/employees/00"
+    ```
+
+    ```sh title="Display single column"
+    # awk gracefully interprets space as the delimiter by default
+    awk '{print $1}' employees # (1)
+    
+    # Define space as delimiter and first field with cut
+    cut -f1 -d' ' employees
+    ```
+
+    1. 
+    ``` title="Output"
+    --8<-- "includes/Output/employees/01"
+    ```
+
+    ```sh title="Concatenate multiple columns"
+    awk '{print $1, $2}' employees # (1)
+    ```
+
+    1. 
+    ``` title="Output"
+    --8<-- "includes/Output/employees/03"
+    ```
+
+
+
 #### free
 :   
 
@@ -37,7 +81,7 @@ Often these commands are combined by piping from one to the other.
 :   
 
     ``` title="sensors"
-    --8<-- "includes/sensors/00"
+    --8<-- "includes/Output/sensors/00"
     ```
 
     ```sh
@@ -48,13 +92,20 @@ Often these commands are combined by piping from one to the other.
 
     1. 
     ```
-    --8<-- "includes/sensors/01"
+    --8<-- "includes/Output/sensors/01"
+    ```
+
+#### shuf
+:   
+    ```sh
+    --8<-- "includes/Commands/s/shuf.sh"
     ```
 
 #### stat
+:   
 
     ``` title="stat"
-    --8<-- "includes/stat/00"
+    --8<-- "includes/Output/stat/00"
     ```
 
     ```sh hl_lines="3 7"
@@ -115,55 +166,62 @@ Often these commands are combined by piping from one to the other.
 
 #### awk
 :   
-    --8<-- "includes/Commands/awk.md"
+    --8<-- "includes/Commands/a/awk.md"
 
 #### cut
 :   
 
     ```sh
-    --8<-- "includes/Commands/cut.sh"
+    --8<-- "includes/Commands/c/cut.sh"
     ```
 
 #### fzf
 :   
     ```sh
-    --8<-- "includes/Commands/fzf.sh"
+    --8<-- "includes/Commands/f/fzf.sh"
     ```
 
 #### grep
 :   
-    --8<-- "includes/Commands/grep.md"
+    --8<-- "includes/Commands/g/grep.md"
 
 #### head
 :   
     ```sh
-    --8<-- "includes/Commands/head.sh"
+    --8<-- "includes/Commands/h/head.sh"
     ```
 
 #### paste
 :   
     ```sh
-    --8<-- "includes/Commands/paste.sh"
+    --8<-- "includes/Commands/p/paste.sh"
     ```
 
 #### sed
 :   
-    --8<-- "includes/Commands/sed.md"
+    --8<-- "includes/Commands/s/sed.md"
+
+#### sort
+:   
+
+    ```sh
+    --8<-- "includes/Commands/s/sort.sh"
+    ```
 
 #### tail
 :   
     ```sh
-    --8<-- "includes/Commands/tail.sh"
+    --8<-- "includes/Commands/t/tail.sh"
     ```
 
 #### tr
 :   
     ```sh
-    --8<-- "includes/Commands/tr.sh"
+    --8<-- "includes/Commands/t/tr.sh"
     ```
 
 #### watch
 :   
     ```sh
-    --8<-- "includes/Commands/watch.sh"
+    --8<-- "includes/Commands/w/watch.sh"
     ```
