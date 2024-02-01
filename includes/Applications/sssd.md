@@ -50,7 +50,7 @@ A single domain can be configured as one or more of the following providers:
 ## Commands
 
 ```sh title="sssctl"
---8<-- "includes/Commands/sssctl.sh"
+--8<-- "includes/Commands/s/sssctl.sh"
 ```
 
 #### sss\_override

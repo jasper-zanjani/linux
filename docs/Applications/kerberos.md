@@ -12,7 +12,7 @@ Principals, in turn, represent users, servers, or services managed through Kerbe
     ```sh title="kadmin"
     # kadmin.local is run on the kadmin server itself and supports an identical syntax to that of kadmin
     
-    --8<-- "includes/Commands/kadmin.local.sh"
+    --8<-- "includes/Commands/k/kadmin.local.sh"
     ```
 
 

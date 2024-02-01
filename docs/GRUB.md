@@ -149,17 +149,17 @@ search --no-floppy --set=root -l $LABEL
     This is no longer the case and all recent GRUB executables begin with **grub-**.
 
 ```sh title="grub-install"
---8<-- "includes/Commands/grub-install.sh"
+--8<-- "includes/Commands/g/grub-install.sh"
 ```
 
 **grub-mkconfig** (previously **grub2-mkconfig**) is used to create a GRUB config file from the settings defined in **/etc/default/grub**.
 
 ```sh title="grub-mkconfig"
---8<-- "includes/Commands/grub-mkconfig.sh"
+--8<-- "includes/Commands/g/grub-mkconfig.sh"
 ```
 
 ```sh title="update-grub"
---8<-- "includes/Commands/update-grub.sh"
+--8<-- "includes/Commands/u/update-grub.sh"
 ```
 
 #### mkinitcpio
@@ -173,5 +173,5 @@ search --no-floppy --set=root -l $LABEL
     - **fallback** ramdisk image, the same as the default, except that the **autodetect** hook is skipped, including a full range of modules which improve support and compatibility
 
     ```sh
-    --8<-- "includes/Commands/mkinitcpio.sh"
+    --8<-- "includes/Commands/m/mkinitcpio.sh"
     ```

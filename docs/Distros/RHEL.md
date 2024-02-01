@@ -42,7 +42,7 @@ openssl x509 -text -in /etc/pki/entitlement/9012345678901234567.pem
 :   
 
     ```sh
-    --8<-- "includes/Commands/subscription-manager.sh"
+    --8<-- "includes/Commands/s/subscription-manager.sh"
     ```
 
 ## Applications
@@ -283,39 +283,39 @@ openssl x509 -text -in /etc/pki/entitlement/9012345678901234567.pem
 #### dnf
 :   
 
-    --8<-- "includes/Commands/dnf.md"
+    --8<-- "includes/Commands/d/dnf.md"
 
 #### firewall-cmd
 :   
 
-    --8<-- "includes/Commands/firewall-cmd.md"
+    --8<-- "includes/Commands/f/firewall-cmd.md"
 
 #### httpd
 :   
 
-    --8<-- "includes/Commands/httpd.md"
+    --8<-- "includes/Commands/h/httpd.md"
 
 #### podman
 :   
 
-    --8<-- "includes/Commands/podman.md"
+    --8<-- "includes/Commands/p/podman.md"
 
 #### rpm
 :   
 
     ```sh
-    --8<-- "includes/Commands/rpm.sh"
+    --8<-- "includes/Commands/r/rpm.sh"
     ```
 
-    --8<-- "includes/Commands/rpmkeys.md"
+    --8<-- "includes/Commands/r/rpmkeys.md"
 
 #### Stratis
 :   
-    --8<-- "includes/Commands/stratis.md"
+    --8<-- "includes/Commands/s/stratis.md"
 
 
 #### VDO
 :   
 
-    --8<-- "includes/Commands/vdo.md"
+    --8<-- "includes/Commands/v/vdo.md"
 

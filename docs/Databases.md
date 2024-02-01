@@ -67,6 +67,6 @@ This directory can be initialized anywhere, but the default in Red Hat systems i
 
 ## Commands
 
---8<-- "includes/Commands/psql.md"
+--8<-- "includes/Commands/p/psql.md"
 
---8<-- "includes/Commands/sqlite3.md"
+--8<-- "includes/Commands/s/sqlite3.md"

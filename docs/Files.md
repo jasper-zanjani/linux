@@ -30,31 +30,31 @@
 
 #### chage
 :   
-    --8<-- "includes/Commands/chage.md"
+    --8<-- "includes/Commands/c/chage.md"
 
 #### chgrp
 :   
-    --8<-- "includes/Commands/chgrp.md"
+    --8<-- "includes/Commands/c/chgrp.md"
 
 #### chmod
 :   
-    --8<-- "includes/Commands/chmod.md"
+    --8<-- "includes/Commands/c/chmod.md"
 
 #### chown
 :   
-    --8<-- "includes/Commands/chown.md"
+    --8<-- "includes/Commands/c/chown.md"
 
 #### cp
 :   
-    --8<-- "includes/Commands/cp.md"
+    --8<-- "includes/Commands/c/cp.md"
 
 #### du
 :   
-    --8<-- "includes/Commands/du.md"
+    --8<-- "includes/Commands/d/du.md"
 
 #### find
 :   
-    --8<-- "includes/Commands/find.md"
+    --8<-- "includes/Commands/f/find.md"
 
 #### locate
 :   
@@ -71,15 +71,18 @@
 
 #### mv
 :   
-    --8<-- "includes/Commands/mv.md"
+
+    ```sh
+    --8<-- "includes/Commands/m/mv.sh"
+    ```
 
 #### rename
 :   
-    --8<-- "includes/Commands/rename.md"
+    --8<-- "includes/Commands/r/rename.md"
 
 #### rsync
 :   
-    --8<-- "includes/Commands/rsync.md"
+    --8<-- "includes/Commands/r/rsync.md"
 
 ### facl
 
@@ -87,11 +90,11 @@
 
 #### getfacl
 :   
-    --8<-- "includes/Commands/getfacl.md"
+    --8<-- "includes/Commands/g/getfacl.md"
 
 #### setfacl
 :   
-    --8<-- "includes/Commands/setfacl.md"
+    --8<-- "includes/Commands/s/setfacl.md"
 
 ### attr
 
@@ -100,8 +103,8 @@ A family of commands exists to change **file attributes** on Linux file systems.
 
 #### lsattr
 :   
-    --8<-- "includes/Commands/lsattr.md"
+    --8<-- "includes/Commands/l/lsattr.md"
 
 #### chattr
 :   
-    --8<-- "includes/Commands/chattr.md"
+    --8<-- "includes/Commands/c/chattr.md"

@@ -4,11 +4,11 @@
 
 #### sysctl
 :   
-    --8<-- "includes/Commands/sysctl.md"
+    --8<-- "includes/Commands/s/sysctl.md"
 
 #### uname
 :   
-    --8<-- "includes/Commands/uname.md"
+    --8<-- "includes/Commands/u/uname.md"
 
 ### Modules
 
@@ -19,13 +19,13 @@ A family of commands exists to manipulate Linux modules, including:
 - [Wireguard](Networking)
 
 --8<--
-includes/Commands/insmod.md
+includes/Commands/i/insmod.md
 
-includes/Commands/lsmod.md
+includes/Commands/l/lsmod.md
 
-includes/Commands/modinfo.md
+includes/Commands/m/modinfo.md
 
-includes/Commands/modprobe.md
+includes/Commands/m/modprobe.md
 
-includes/Commands/rmmod.md
+includes/Commands/r/rmmod.md
 --8<--

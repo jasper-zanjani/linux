@@ -29,7 +29,7 @@ The **KWallet Manager** and [**GNOME Keyring**](https://wiki.gnome.org/Projects/
 ## Commands
 
 ```sh
---8<-- "includes/Commands/gpg.sh"
+--8<-- "includes/Commands/g/gpg.sh"
 ```
 
 A variety of other applications use GPG in the background.
@@ -37,7 +37,7 @@ A variety of other applications use GPG in the background.
 #### apt-key
 :   
 
-    --8<-- "includes/Commands/apt-key.md"
+    --8<-- "includes/Commands/a/apt-key.md"
 
 
 #### GNOME Keyring
@@ -49,17 +49,17 @@ A variety of other applications use GPG in the background.
 #### pacman-key
 :   
 
-    --8<-- "includes/Commands/pacman-key.md"
+    --8<-- "includes/Commands/p/pacman-key.md"
 
 
 #### rpmkeys
 :   
 
-    --8<-- "includes/Commands/rpmkeys.md"
+    --8<-- "includes/Commands/r/rpmkeys.md"
 
 
 #### pass
 :   
 
-    --8<-- "includes/Commands/pass.md"
+    --8<-- "includes/Commands/p/pass.md"
 

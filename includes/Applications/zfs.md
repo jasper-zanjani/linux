@@ -73,4 +73,4 @@ Special **support classes** of vdev such as spare, cache, log, and special repre
 #### zdb
 :   
 
-    --8<-- "includes/Commands/zdb.md"
+    --8<-- "includes/Commands/z/zdb.md"

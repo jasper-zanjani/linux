@@ -7,5 +7,5 @@
 - **convert**
 
 ```sh
---8<-- "includes/Commands/imagemagick.sh"
+--8<-- "includes/Commands/i/imagemagick.sh"
 ``` 

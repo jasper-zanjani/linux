@@ -24,7 +24,7 @@ GPT sports many advantages over MBR:
 
 ## LVM
 
---8<-- "includes/Commands/lvm.md"
+--8<-- "includes/Commands/l/lvm.md"
 
 ## Btrfs
 
@@ -94,54 +94,54 @@ GPT sports many advantages over MBR:
 :   
 
     ```sh
-    --8<-- "includes/Commands/fallocate.sh"
+    --8<-- "includes/Commands/f/fallocate.sh"
     ```
 
 #### fdisk
 :   
 
     ```sh
-    --8<-- "includes/Commands/fdisk.sh"
+    --8<-- "includes/Commands/f/fdisk.sh"
     ```
 
 #### hdparm
 :   
 
     ```sh
-    --8<-- "includes/Commands/hdparm.sh"
+    --8<-- "includes/Commands/h/hdparm.sh"
     ```
 
 #### losetup
 :   
 
     ```sh
-    --8<-- "includes/Commands/losetup.sh"
+    --8<-- "includes/Commands/l/losetup.sh"
     ```
 
 #### lsblk
 :   
 
     ```sh
-    --8<-- "includes/Commands/lsblk.sh"
+    --8<-- "includes/Commands/l/lsblk.sh"
     ```
 
 #### sfdisk
 :   
 
-    --8<-- "includes/Commands/sfdisk.md"
+    --8<-- "includes/Commands/s/sfdisk.md"
 
 #### shred
 :   
 
     ```sh
-    --8<-- "includes/Commands/shred.sh"
+    --8<-- "includes/Commands/s/shred.sh"
     ```
 
 #### mount
 :   
 
     ```sh
-    --8<-- "includes/Commands/mount.sh"
+    --8<-- "includes/Commands/m/mount.sh"
     ```
 
 

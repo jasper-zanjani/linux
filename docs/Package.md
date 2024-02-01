@@ -14,34 +14,34 @@
 
 #### apt
 :   
-    --8<-- "includes/Commands/apt.md"
+    --8<-- "includes/Commands/a/apt.md"
 
-    --8<-- "includes/Commands/add-apt-repository.md"
+    --8<-- "includes/Commands/a/add-apt-repository.md"
 
-    --8<-- "includes/Commands/apt-key.md"
+    --8<-- "includes/Commands/a/apt-key.md"
 
 #### dnf
 :   
-    --8<-- "includes/Commands/dnf.md"
+    --8<-- "includes/Commands/d/dnf.md"
 
 #### flatpak
 :   
-    --8<-- "includes/Commands/flatpak.md"
+    --8<-- "includes/Commands/f/flatpak.md"
 
 #### pacman
 :   
-    --8<-- "includes/Commands/pacman.md"
+    --8<-- "includes/Commands/p/pacman.md"
 
-    --8<-- "includes/Commands/pacman-key.md"
+    --8<-- "includes/Commands/p/pacman-key.md"
 
 #### rpm
 :   
     ```sh
-    --8<-- "includes/Commands/rpm.sh"
+    --8<-- "includes/Commands/r/rpm.sh"
     ```
 
-    --8<-- "includes/Commands/rpmkeys.md"
+    --8<-- "includes/Commands/r/rpmkeys.md"
 
 #### snap
 :   
-    --8<-- "includes/Commands/snap.md"
+    --8<-- "includes/Commands/s/snap.md"

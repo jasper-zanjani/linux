@@ -51,7 +51,7 @@ This server hosts the phpLDAPadmin web application for management in addition to
 
 ## Commands
 
---8<-- "includes/Commands/ldap.md"
+--8<-- "includes/Commands/l/ldap.md"
 
 #### Client setup
 :   

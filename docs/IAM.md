@@ -56,41 +56,41 @@
 :   
 
     ```sh
-    --8<-- "includes/Commands/chage.sh"
+    --8<-- "includes/Commands/c/chage.sh"
     ```
 
 #### getent
 :   
 
     ```sh
-    --8<-- "includes/Commands/getent.sh"
+    --8<-- "includes/Commands/g/getent.sh"
     ```
 
 #### lastb
 :   
 
     ```sh
-    --8<-- "includes/Commands/lastb.sh"
+    --8<-- "includes/Commands/l/lastb.sh"
     ```
 
 #### sudo
 :   
 
     ```sh
-    --8<-- "includes/Commands/sudo.sh"
+    --8<-- "includes/Commands/s/sudo.sh"
     ```
 
 #### shadow-utils
 :   
 
-    --8<-- "includes/Commands/shadow-utils.md"
+    --8<-- "includes/Commands/s/shadow-utils.md"
 
 
 ## Configs
 
 #### /etc/sudoers
 :   
-    --8<-- "includes/Configs/sudoers.md"
+    --8<-- "includes/Configs/s/sudoers.md"
 
 #### /etc/nsswitch.conf
 :   

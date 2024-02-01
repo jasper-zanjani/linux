@@ -22,7 +22,7 @@ ffmpeg -i $INPUT.m4a
 ```
 
 ```sh
---8<-- "includes/Commands/yt-dlp.sh"
+--8<-- "includes/Commands/y/yt-dlp.sh"
 ```
 
 Metadata can be specified and changed using **--parse-metadata** with a bizarre and poorly documented **FROM:TO** syntax in the argument.
@@ -37,5 +37,5 @@ Furthermore the field names to be written to are actually prefixed with **meta\_
 # Set the album name to the year and month of the upload date (i.e. "2022-03")
 %(upload_date>%Y-%m)s:%(meta_album)s
 
---8<-- "includes/Commands/yt-dlp-metadata.sh"
+--8<-- "includes/Commands/y/yt-dlp-metadata.sh"
 ```

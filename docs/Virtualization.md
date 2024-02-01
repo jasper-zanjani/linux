@@ -168,13 +168,13 @@ grep -E 'svm|vmx' /proc/cpuinfo
 #### qemu-img
 :   
     ```sh
-    --8<-- "includes/Commands/qemu-img.sh"
+    --8<-- "includes/Commands/q/qemu-img.sh"
     ```
 
 #### virt-install
 :   
-    --8<-- "includes/Commands/virt-install.md"
+    --8<-- "includes/Commands/v/virt-install.md"
 
 #### virsh
 :   
-    --8<-- "includes/Commands/virsh.md"
+    --8<-- "includes/Commands/v/virsh.md"

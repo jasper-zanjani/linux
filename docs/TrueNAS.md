@@ -12,7 +12,7 @@ TrueNAS offers a [command-line interface](https://www.truenas.com/docs/scale/sca
 By default it is meant to be launched interactively, but a command can be passed as a (quoted) argument to **-c**/**--command**:
 
 ```sh
---8<-- "includes/Commands/truenas-cli.sh"
+--8<-- "includes/Commands/t/truenas-cli.sh"
 ```
 
 It appears to be closely related to SQLite or a similar CLI interface to a SQL database, since it supports similar directives beginning with a period, i.e. **.mode** to display the output mode (which can be either "table" or "csv").

@@ -119,7 +119,7 @@ ssh -Y user@host
 **ssh-keygen** is used to generate public and private authentication key pairs.
 
 ```sh title="ssh-keygen"
---8<-- "includes/Commands/ssh-keygen.sh"
+--8<-- "includes/Commands/s/ssh-keygen.sh"
 ```
 
 [**ssh-add**](https://www.ssh.com/academy/ssh/add-command) and **ssh-agent** are often used together to manage SSH identities as in the following snippet.

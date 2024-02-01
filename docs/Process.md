@@ -2,12 +2,22 @@
 
 ## Commands
 
---8<--
-includes/Commands/chrt.md
+#### chrt
+:   
 
-includes/Commands/nice.md
+    --8<-- "includes/Commands/c/chrt.md"
 
-includes/Commands/ps.md
+#### nice
+:   
 
-includes/Commands/taskset.md
---8<--
+    --8<-- "includes/Commands/n/nice.md"
+
+#### ps
+:   
+
+    --8<-- "includes/Commands/p/ps.md"
+
+#### taskset
+:   
+
+    --8<-- "includes/Commands/t/taskset.md"

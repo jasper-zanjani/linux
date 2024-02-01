@@ -48,11 +48,11 @@ These files define network interfaces, or **connection profiles** in NetworkMana
 
 #### nmcli
 :   
-    --8<-- "includes/Commands/nmcli.md"
+    --8<-- "includes/Commands/n/nmcli.md"
 
 #### nmtui
 :   
-    --8<-- "includes/Commands/nmtui.md"
+    --8<-- "includes/Commands/n/nmtui.md"
 
 ## Netplan
 
@@ -83,14 +83,14 @@ network:
 :   
 
     ```sh title="netplan command"
-    --8<-- "includes/Commands/netplan.sh"
+    --8<-- "includes/Commands/n/netplan.sh"
     ```
 
 
 #### ufw
 :   
 
-    --8<-- "includes/Commands/ufw.md"
+    --8<-- "includes/Commands/u/ufw.md"
 
 
 ## ifcfg
@@ -162,7 +162,7 @@ bpftool map show # Display maps
     When downloadable files are accompanied by md5 hashes, their integrity can be verified, as in the case of [ ffmpeg ](https://www.johnvansickle.com/ffmpeg/faq/).
 
     ```sh hl_lines="4"
-    --8<-- "includes/Commands/md5sum.sh"
+    --8<-- "includes/Commands/m/md5sum.sh"
     ```
 
 #### Wireguard tunnel
@@ -196,59 +196,59 @@ bpftool map show # Display maps
 :   
 
     ```sh
-    --8<-- "includes/Commands/curl.sh"
+    --8<-- "includes/Commands/c/curl.sh"
     ```
 
 #### firewall-cmd
 :   
 
-    --8<-- "includes/Commands/firewall-cmd.md"
+    --8<-- "includes/Commands/f/firewall-cmd.md"
 
 
 #### iptables
 :   
 
-    --8<-- "includes/Commands/iptables.md"
+    --8<-- "includes/Commands/i/iptables.md"
 
 #### ip
 :   
 
-    --8<-- "includes/Commands/ip.md"
+    --8<-- "includes/Commands/i/ip.md"
 
 #### netcat
 :   
 
-    --8<-- "includes/Commands/netcat.md"
+    --8<-- "includes/Commands/n/netcat.md"
 
 #### nft
 :   
 
-    --8<-- "includes/Commands/nft.md"
+    --8<-- "includes/Commands/n/nft.md"
 
 #### nmap
 :   
 
-    --8<-- "includes/Commands/nmap.md"
+    --8<-- "includes/Commands/n/nmap.md"
 
 #### ss
 :   
 
     ```sh
-    --8<-- "includes/Commands/ss.sh"
+    --8<-- "includes/Commands/s/ss.sh"
     ```
 
 #### tcpdump
 :   
 
-    --8<-- "includes/Commands/tcpdump.md"
+    --8<-- "includes/Commands/t/tcpdump.md"
 
 #### wg
 :   
 
-    --8<-- "includes/Commands/wg.md"
+    --8<-- "includes/Commands/w/wg.md"
 
 #### wget
 :   
 
-    --8<-- "includes/Commands/wget.md"
+    --8<-- "includes/Commands/w/wget.md"
 
