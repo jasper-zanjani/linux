@@ -205,3 +205,11 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 #### Splits
 :   
     Panes are referred to as "splits" and are controlled by a variety of [bindings](https://vimtricks.com/p/vim-move-split/).
+
+#### Tabs
+:   
+    **tabedit** will open a file in a new tab, relative to the working directory from which vim was invoked
+    **tabnext** or **tabn** will navigate to a specified tab number.
+    The motion commands **gt** and **gT** will navigate to the next or previous tabs.
+    Like other motion commands a number can be prepended to the motion to move a greater number of tabs.
+    **tabmove** moves a tab to a specified position number.
