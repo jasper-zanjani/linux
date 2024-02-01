@@ -137,28 +137,36 @@ git stash apply stash@$STASH
     **git config** rovides a frontend to the INI formatted config files typically found within **.git/config** in each repo or, when using **-g**/**--global**, **\$HOME/.gitconfig**.
 
     ```sh title="git config"
-    # Store authentication details in a cache
-    git config --global credential.helper cache # (2)
+    # Store authentication details in a cache (2)
+    git config --global credential.helper cache
 
-    # Set up alias "br" for branch
-    git config --global alias.br branch # (1)
+    # Set up alias "br" for branch (1)
+    git config --global alias.br branch
+
+    # Define a directory as safe (3)
+    git config --global --add safe.directory $PATH
     ```
 
-    1. Equivalent to:
-    ```ini
+    1. 
+    ```ini title=".gitconfig"
     [alias]
-    br = branch
+        br = branch
     ```
-    2. Equivalent to 
-    ```ini
+    2. 
+    ```ini title=".gitconfig"
     [credential]
-    helper = cache
+        helper = cache
+    ```
+    3. 
+    ```ini title=".gitconfig"
+    [safe]
+        directory = $PATH
     ```
 
 
-    Git will automatically append CRLF endings on Windows. 
 
     ```sh
+    # Git will automatically append CRLF endings on Windows. 
     # This setting can be displayed with the following command:
     git config core.autocrlf
 
@@ -217,7 +225,7 @@ git stash apply stash@$STASH
     ```sh
     # Rebase a specified number of commits backward from the current HEAD
     git rebase -i HEAD~4
-              # --interactive
+             # --interactive
 
     # Specify a specific commit's parent
     git rebase -i $COMMIT^
@@ -249,8 +257,8 @@ git stash apply stash@$STASH
     This will rewind $BRANCH to the commit shared by the two branches, then applying all changes made subsequently to $MASTER. 
 
     ```sh
-    git checkout <master>
-    git merge <branch>
+    git checkout $MASTER
+    git merge $BRANCH
     ```
     Now the history will appear as though all changes were made in series, when they were actually made in parallel on separate branches.
     Move the last commit to a new branch
@@ -280,7 +288,7 @@ git stash apply stash@$STASH
 
     ```sh
     git push -f
-    #        --force
+           # --force
     ```
 
     To add changes to the most recent commit, stage changes as normal (including removals), but commit using **--amend** option. 
@@ -300,17 +308,22 @@ git stash apply stash@$STASH
     git commit --amend -m "Adding README"
     ```
 
-    To split up `$COMMIT`
-    ```sh
-    git rebase -i "$COMMIT"^ # Start a rebase at the commit you want to split
-    ```
-    Mark the commit to be split with `edit`. Now reset state to the previous commit
-    ```sh
+    ```sh title="Split up a commit"
+    # Start a rebase at the parent of the commit that will be split
+    git rebase -i "$COMMIT"^ 
+
+    # Mark the commit to be split with `edit`. Now reset state to the previous commit
     git reset HEAD^
-    ```
-    The files are presented unstaged, and can be added to new commits as needed. Finally, finish the rebase
-    ```sh
+
+    # The files are presented unstaged, and can be added to new commits as needed. 
+    # Finally, finish the rebase
     git rebase --continue
+    ```
+
+#### Directory ownership
+
+    ```sh
+    git config --global --add safe.directory $PATH
     ```
 
 #### tig
