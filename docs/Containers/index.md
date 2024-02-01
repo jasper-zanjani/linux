@@ -58,11 +58,11 @@ Spawning a process in a new namespace prevents it from seeing the host's context
 
 #### cgconfig
 :   
-    --8<-- "includes/Commands/cgconfig.md"
+    --8<-- "includes/Commands/c/cgconfig.md"
 
 #### systemd-cgls
 :   
-    --8<-- "includes/Commands/systemd-cgls.md"
+    --8<-- "includes/Commands/s/systemd-cgls.md"
 
 ## Glossary
 

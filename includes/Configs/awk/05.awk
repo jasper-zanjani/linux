@@ -1,0 +1,1 @@
+/Sally/ { print "\t\tHave a nice day, " $1, $2 "!" }

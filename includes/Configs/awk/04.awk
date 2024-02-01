@@ -1,0 +1,1 @@
+{ print "Month: ", $2, "\nYear: ", $7 }
