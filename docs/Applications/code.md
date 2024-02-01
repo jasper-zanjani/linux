@@ -1,30 +1,63 @@
 # VS Code
 
-Code can be folded by placing [markers in comments](https://code.visualstudio.com/docs/editor/codebasics#_folding)
+Configuration file locations:
 
-=== "Markdown"
+| Installation | Path                                                  |
+| ------------ | ----------------------------------------------------- |
+| flatpak      | $HOME/.var/app/com.visualstudio.code/config/Code/User |
 
-    ```md
+
+??? info "config"
+
+    - How did I resolve the bizarre shell accessibility issues with the flatpak install?
+
+## Configuration
+
+#### Appearance
+:   
+
+    ```json title="Disable minimap and bread crumbs"
+    "editor.minimap.enabled": false,
+    "breadcrumbs.enabled": false,
+    ```
+
+    Quick suggestions appears to be a feature of [**Intellisense**](https://code.visualstudio.com/docs/editor/intellisense) which offers spelling suggestions even in
+    plain text files.
+
+    ```json title="Disable quick suggestions"
+    "editor.quickSuggestions": {
+        "other": "off"
+    },
+    ```
+
+    ```json title="Activity bar background"
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#8a6d17"
+    }
+    ```
+
+#### Folding
+:   
+    Code can be folded by placing [markers in comments](https://code.visualstudio.com/docs/editor/codebasics#_folding)
+
+    ```md title="Markdown"
     <!-- #region -->
     ...
     <!-- #endregion -->
     ```
 
-=== "C#"
-
-    ```csharp
+    ```csharp title="C#"
     #region 
     ...
     #endregion
     ```
 
-=== "Python"
-
-    ```python
+    ```python title="Python"
     #region
     ...
     #endregion
     ```
+
 
 [Snippets](https://code.visualstudio.com/docs/editor/userdefinedsnippets)
 
@@ -32,7 +65,7 @@ Code can be folded by placing [markers in comments](https://code.visualstudio.co
 
 | Keyboard shortcut            | Setting                                       | Description                      |
 | ---------------------------- | --------------------------------------------- | -------------------------------- |
-| ++Ctrl+\\++                  | `workbench.action.splitEditor`                | Split Editor                     |
+| ++ctrl+\\++                  | `workbench.action.splitEditor`                | Split Editor                     |
 | ++Ctrl+k+Ctrl+UpArrow++      | `workbench.action.focusAboveGroup`            | View: Focus Above Editor Group   |
 | ++Ctrl+k+Ctrl+RightArrow++   | `workbench.action.focusRightGroup`            | View: Focus Right Editor Group   |
 | ++Ctrl+k+Ctrl+DownArrow++    | `workbench.action.focusBelowGroup`            | View: Focus Below Editor Group   |
@@ -52,24 +85,24 @@ Code can be folded by placing [markers in comments](https://code.visualstudio.co
 | ++Ctrl+j++                   | `workbench.action.togglePanel`                | View: Toggle Panel               |
 | ++Ctrl+b++                   |                                               | View: Toggle Side Bar Visibility |
 
-## Terminal
+#### Terminal
+:   
+    The shells available in the integrated terminal for any OS can be adjusted using **terminal.integrated.profiles**
 
-The shells available in the integrated terminal for any OS can be adjusted using **terminal.integrated.profiles**
+    ```json title="Developer PowerShell for VS 2022"
+    "terminal.integrated.profiles.windows": {
+        "Developer PowerShell for VS 2022": {
+            "source": "PowerShell",
+            "args": ["-NoExit", "-Command","&{Import-Module \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\Microsoft.VisualStudio.DevShell.dll\"; Enter-VsDevShell 1916cd63}"],
+            "icon": "terminal-powershell",
+        }
+    ```
 
-```json title="Developer PowerShell for VS 2022"
-"terminal.integrated.profiles.windows": {
-    "Developer PowerShell for VS 2022": {
-        "source": "PowerShell",
-        "args": ["-NoExit", "-Command","&{Import-Module \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\Microsoft.VisualStudio.DevShell.dll\"; Enter-VsDevShell 1916cd63}"],
-        "icon": "terminal-powershell",
-    }
-```
+    [Fix](https://github.com/flathub/com.visualstudio.code/issues/370) for multiple warnings reading preload-host-spawn-strategy in Flatpak installation
 
-[Fix](https://github.com/flathub/com.visualstudio.code/issues/370) for multiple warnings reading preload-host-spawn-strategy in Flatpak installation
-
-```json
-"terminal.integrated.env.linux": {
-    "LD_PRELOAD": null,
-},
-```
+    ```json
+    "terminal.integrated.env.linux": {
+        "LD_PRELOAD": null,
+    },
+    ```
 
