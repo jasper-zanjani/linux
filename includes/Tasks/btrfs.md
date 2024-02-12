@@ -8,6 +8,8 @@ Several key differences in capabilities between Btrfs and ZFS:
 - Btrfs does not have the ability to allocate specific devices as caches
 - As of 2017, Btrfs implementations of parity raid are not yet ready for production use
 
+
+
 ??? info "Resources"
 
     Unlike ZFS which has a lot of material in written and video form for potential users to learn from, BtrFS appears not to have much available.
@@ -33,34 +35,67 @@ Several key differences in capabilities between Btrfs and ZFS:
     - [Getting started with btrfs for Linux](https://opensource.com/article/20/11/btrfs-linux)
     - [Understanding Linux filesystems: ext4 and beyond](https://opensource.com/article/18/4/ext4-filesystem)
 
+#### Semantics
+
+Btrfs makes distinctions between data **types**:
+
+- **Data** user data
+- **Metadata** and **system data** which are used internally and managed by btrfs itself
+
+Each of these data types can be associated with a different **profile** which describes an allocation policy based on redundancy and replication constraints (roughly analogous to a device topology in ZFS).
+This allows metadata to be made more highly redundant while using a less redundant profile for data.
+
+These data types are analyzed by the [**btrfs filesystem df**](https://btrfs.readthedocs.io/en/latest/btrfs-filesystem.html#subcommand) command.
+
+
+## Tasks
+
 #### Pool management
 :   
 
     ```sh title="Create a storage pool"
-    mkfs.btrfs --data raid0 /dev/sd{a,b,c} # (1)
+    # Create a pool with a RAID0 data and metadata profile
+    mkfs.btrfs -d raid0 -m raid0 /dev/sd{a,b,c}
+
+    # Create a pool with a RAID1 data and metadata profile
+    mkfs.btrfs -d raid1 -m raid1 /dev/sd{a,b,c}
     ```
 
-    1. Valid arguments to **-d**/**--data** include raid0, raid1, raid1c3, raid1c4, raid5, raid6, raid10, single, or dup.
+    **btrfs device** command group manages btrfs devices, and subcommands to this group are used for adding, removing, and replacing devices.
 
-    ```sh title="Add device"
+    ```sh
+    # Add device
     btrfs device add /dev/sde /data
-    btrfs filesystem balance /data
-    ```
+    btrfs balance /data
 
-    ```sh title="Remove device"
+    # Remove device
     btrfs device delete /dev/sdb /data
-    btrfs filesystem balance /data
-    ```
+    btrfs balance /data
 
-    ```sh title="Replace device"
+    # Replace device
     btrfs device add /dev/sdc /data
     btrfs device delete /dev/sdb /data
-    btrfs filesystem balance /data
+    btrfs balance /data
     ```
 
+    ```sh
+    btrfs filesystem show
+
+    # Specify a pool by its mountpoint
+    btrfs filesystem show /data
+    ```
+
+    Unlike ZFS, btrfs pools can be converted from one profile to another.
+    Note that metadata and user data are allocated separately.
+
+    ```sh
+    # Convert a RAID0 pool to RAID1
+    btrfs balance start -dconvert=raid1 -mconvert=raid1 /data
+    ```
 
 #### Filesystem management
 :   
+
     Filesystems in btrfs are equivalent to ZFS datasets except that filesystems can be divided into "subvolumes".
 
     ```sh title="Display subvolumes"
