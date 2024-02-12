@@ -1,5 +1,5 @@
 site/**
 **.bz2
-makefile
 .vscode/**
 **/.nfs*
+.env
