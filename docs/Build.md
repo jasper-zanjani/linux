@@ -55,6 +55,10 @@
 
 ## Utilities
 
+#### make
+:   
+    --8<-- "includes/Commands/m/make.md"
+
 #### objdump
 :   
 
