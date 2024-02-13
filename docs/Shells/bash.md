@@ -39,6 +39,21 @@ function hello () {
 
 ## Tasks
 
+#### Heredocs
+:   
+    **Here documents** (**heredocs**) or **here strings** refer to a method of passing multiline strings to commands in bash.
+
+    ```sh
+    # Type out a block of text that is then saved to a file
+    cat << EOF > hello.sh
+    Hello, World!**xone**
+    EOF
+
+    # <<- ignores leading tabs, allowing the string to be indented in scripts
+    cat <<- EOF > hello.sh
+    Hello, World!
+    EOF
+    ```
 
 #### Configuration
 :   
