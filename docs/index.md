@@ -65,6 +65,14 @@ Kernel **modules** can be loaded, listed, or removed from the running kernel.
     --8<-- "includes/Commands/m/man.sh"
     ```
 
+## Inspection
+
+Various tools are available to provide detailed data on system specifications.
+
+#### lshw
+:   
+    --8<-- "includes/Commands/l/lshw.md"
+
 ## Filesystem Hierarchy Standard
 
 The [**Filesystem Hierarchy Standard (FHS)**](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard) describes the conventions used for the layout of Unix-like systems.

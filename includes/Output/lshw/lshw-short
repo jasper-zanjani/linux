@@ -1,0 +1,115 @@
+H/W path                    Device          Class       Description
+===================================================================
+                                            system      System Product Name (SKU)
+/0                                          bus         ROG STRIX X570-F GAMING
+/0/0                                        memory      64KiB BIOS
+/0/34                                       memory      32GiB System Memory
+/0/34/0                                     memory      [empty]
+/0/34/1                                     memory      [empty]
+/0/34/2                                     memory      32GiB DIMM DDR4 Synchronous Unbuffered (Unregistered) 2666 MHz (0.4 ns)
+/0/34/3                                     memory      [empty]
+/0/37                                       memory      512KiB L1 cache
+/0/38                                       memory      4MiB L2 cache
+/0/39                                       memory      32MiB L3 cache
+/0/3a                                       processor   AMD Ryzen 7 5700X 8-Core Processor
+/0/100                                      bridge      Starship/Matisse Root Complex
+/0/100/0.2                                  generic     Starship/Matisse IOMMU
+/0/100/1.1                                  bridge      Starship/Matisse GPP Bridge
+/0/100/1.1/0                /dev/nvme0      storage     CT500P3PSSD8
+/0/100/1.1/0/0              hwmon1          disk        NVMe disk
+/0/100/1.1/0/2              /dev/ng0n1      disk        NVMe disk
+/0/100/1.1/0/1              /dev/nvme0n1    disk        500GB NVMe disk
+/0/100/1.1/0/1/1                            volume      599MiB Windows FAT volume
+/0/100/1.1/0/1/2            /dev/nvme0n1p2  volume      1GiB EXT4 volume
+/0/100/1.1/0/1/3            /dev/nvme0n1p3  volume      464GiB EFI partition
+/0/100/1.2                                  bridge      Starship/Matisse GPP Bridge
+/0/100/1.2/0                                bridge      Matisse Switch Upstream
+/0/100/1.2/0/1                              bridge      Matisse PCIe GPP Bridge
+/0/100/1.2/0/1/0            /dev/nvme1      storage     CT500P3PSSD8
+/0/100/1.2/0/1/0/0          hwmon0          disk        NVMe disk
+/0/100/1.2/0/1/0/2          /dev/ng1n1      disk        NVMe disk
+/0/100/1.2/0/1/0/1          /dev/nvme1n1    disk        500GB NVMe disk
+/0/100/1.2/0/1/0/1/1        /dev/nvme1n1p1  volume      465GiB EFI partition
+/0/100/1.2/0/4                              bridge      Matisse PCIe GPP Bridge
+/0/100/1.2/0/4/0                            storage     88SE9215 PCIe 2.0 x1 4-port SATA 6 Gb/s Controller
+/0/100/1.2/0/5                              bridge      Matisse PCIe GPP Bridge
+/0/100/1.2/0/5/0            enp6s0          network     I211 Gigabit Network Connection
+/0/100/1.2/0/8                              bridge      Matisse PCIe GPP Bridge
+/0/100/1.2/0/8/0                            generic     Starship/Matisse Reserved SPP
+/0/100/1.2/0/8/0.1                          bus         Matisse USB 3.0 Host Controller
+/0/100/1.2/0/8/0.1/0        usb1            bus         xHCI Host Controller
+/0/100/1.2/0/8/0.1/0/3      input2          input       SONIX USB DEVICE Mouse
+/0/100/1.2/0/8/0.1/0/4                      bus         USB2.0 Hub
+/0/100/1.2/0/8/0.1/0/4/1    card0           multimedia  USB  Live camera: USB  Live cam
+/0/100/1.2/0/8/0.1/0/4/2    card3           multimedia  Blue Microphones Yeti Stereo Microphone Consumer Control
+/0/100/1.2/0/8/0.1/0/4/3                    input       USB Receiver
+/0/100/1.2/0/8/0.1/0/4/3/0  input17         input       Logitech M510
+/0/100/1.2/0/8/0.1/0/4/4                    generic     XBOX ACC
+/0/100/1.2/0/8/0.1/1        usb2            bus         xHCI Host Controller
+/0/100/1.2/0/8/0.1/1/4                      bus         USB3.0 Hub
+/0/100/1.2/0/8/0.3                          bus         Matisse USB 3.0 Host Controller
+/0/100/1.2/0/8/0.3/0        usb3            bus         xHCI Host Controller
+/0/100/1.2/0/8/0.3/0/4                      input       AURA LED Controller
+/0/100/1.2/0/8/0.3/1        usb4            bus         xHCI Host Controller
+/0/100/1.2/0/9                              bridge      Matisse PCIe GPP Bridge
+/0/100/1.2/0/9/0            scsi4           storage     FCH SATA Controller [AHCI mode]
+/0/100/1.2/0/9/0/0          /dev/sda        disk        2TB WDC WD2003FZEX-0
+/0/100/1.2/0/9/0/1          /dev/sdb        disk        2TB ST2000DM001-1ER1
+/0/100/1.2/0/9/0/2          /dev/sdc        disk        1TB WDC WD1001FALS-4
+/0/100/1.2/0/9/0/3          /dev/sdd        disk        1TB WDC WD10EZEX-75W
+/0/100/1.2/0/a                              bridge      Matisse PCIe GPP Bridge
+/0/100/1.2/0/a/0            scsi13          storage     FCH SATA Controller [AHCI mode]
+/0/100/1.2/0/a/0/0.0.0      /dev/sde        disk        1TB TOSHIBA DT01ACA1
+/0/100/3.1                                  bridge      Starship/Matisse GPP Bridge
+/0/100/3.1/0                                bridge      Navi 10 XL Upstream Port of PCI Express Switch
+/0/100/3.1/0/0                              bridge      Navi 10 XL Downstream Port of PCI Express Switch
+/0/100/3.1/0/0/0            /dev/fb0        display     Navi 22 [Radeon RX 6700/6700 XT/6750 XT / 6800M/6850M XT]
+/0/100/3.1/0/0/0.1          card1           multimedia  Navi 21/23 HDMI/DP Audio Controller
+/0/100/3.1/0/0/0.1/0        input20         input       HDA ATI HDMI HDMI/DP,pcm=3
+/0/100/3.1/0/0/0.1/1        input21         input       HDA ATI HDMI HDMI/DP,pcm=7
+/0/100/3.1/0/0/0.1/2        input22         input       HDA ATI HDMI HDMI/DP,pcm=8
+/0/100/3.1/0/0/0.1/3        input23         input       HDA ATI HDMI HDMI/DP,pcm=9
+/0/100/3.1/0/0/0.1/4        input24         input       HDA ATI HDMI HDMI/DP,pcm=10
+/0/100/3.1/0/0/0.1/5        input25         input       HDA ATI HDMI HDMI/DP,pcm=11
+/0/100/7.1                                  bridge      Starship/Matisse Internal PCIe GPP Bridge 0 to bus[E:B]
+/0/100/7.1/0                                generic     Starship/Matisse PCIe Dummy Function
+/0/100/8.1                                  bridge      Starship/Matisse Internal PCIe GPP Bridge 0 to bus[E:B]
+/0/100/8.1/0                                generic     Starship/Matisse Reserved SPP
+/0/100/8.1/0.1                              generic     Starship/Matisse Cryptographic Coprocessor PSPCPP
+/0/100/8.1/0.3                              bus         Matisse USB 3.0 Host Controller
+/0/100/8.1/0.3/0            usb5            bus         xHCI Host Controller
+/0/100/8.1/0.3/1            usb6            bus         xHCI Host Controller
+/0/100/8.1/0.4              card2           multimedia  Starship/Matisse HD Audio Controller
+/0/100/8.1/0.4/0            input26         input       HD-Audio Generic Front Mic
+/0/100/8.1/0.4/1            input27         input       HD-Audio Generic Rear Mic
+/0/100/8.1/0.4/2            input28         input       HD-Audio Generic Line
+/0/100/8.1/0.4/3            input29         input       HD-Audio Generic Line Out Front
+/0/100/8.1/0.4/4            input30         input       HD-Audio Generic Line Out Surround
+/0/100/8.1/0.4/5            input31         input       HD-Audio Generic Line Out CLFE
+/0/100/8.1/0.4/6            input32         input       HD-Audio Generic Front Headphone
+/0/100/14                                   bus         FCH SMBus Controller
+/0/100/14.3                                 bridge      FCH LPC Bridge
+/0/100/14.3/0                               system      PnP device PNP0c01
+/0/100/14.3/1                               system      PnP device PNP0c02
+/0/100/14.3/2                               system      PnP device PNP0b00
+/0/100/14.3/3                               system      PnP device PNP0c02
+/0/100/14.3/4                               system      PnP device PNP0c02
+/0/101                                      bridge      Starship/Matisse PCIe Dummy Host Bridge
+/0/102                                      bridge      Starship/Matisse PCIe Dummy Host Bridge
+/0/103                                      bridge      Starship/Matisse PCIe Dummy Host Bridge
+/0/104                                      bridge      Starship/Matisse PCIe Dummy Host Bridge
+/0/105                                      bridge      Starship/Matisse PCIe Dummy Host Bridge
+/0/106                                      bridge      Starship/Matisse PCIe Dummy Host Bridge
+/0/107                                      bridge      Starship/Matisse PCIe Dummy Host Bridge
+/0/108                                      bridge      Matisse/Vermeer Data Fabric: Device 18h; Function 0
+/0/109                                      bridge      Matisse/Vermeer Data Fabric: Device 18h; Function 1
+/0/10a                                      bridge      Matisse/Vermeer Data Fabric: Device 18h; Function 2
+/0/10b                                      bridge      Matisse/Vermeer Data Fabric: Device 18h; Function 3
+/0/10c                                      bridge      Matisse/Vermeer Data Fabric: Device 18h; Function 4
+/0/10d                                      bridge      Matisse/Vermeer Data Fabric: Device 18h; Function 5
+/0/10e                                      bridge      Matisse/Vermeer Data Fabric: Device 18h; Function 6
+/0/10f                                      bridge      Matisse/Vermeer Data Fabric: Device 18h; Function 7
+/1                          input0          input       Power Button
+/2                          input1          input       Power Button
+/3                          input18         input       PC Speaker
+/4                          input19         input       Eee PC WMI hotkeys
