@@ -1,0 +1,24 @@
+import: 
+- "/home/jasper/.config/alacritty/themes/yaml/challenger_deep.yaml"
+font:
+  size: 18 
+  normal:
+    family: "InconsolataNerdFont"
+selection:
+  save_to_clipboard: true
+window:
+  decorations: "full"
+  decorations_theme_variant: "Dark"
+  title: "Alacritty"
+  padding:
+    x: 20
+    y: 20
+  class:
+    general: "Alacritty"
+    instance: "Alacritty"
+  dimensions:
+    columns: 83
+    lines: 22
+key_bindings:
+- key: F11
+  action: ToggleFullScreen
