@@ -1,0 +1,8 @@
+[nexus-couchdb]
+name = Couchdb - Nexus Repository
+enabled = 1
+gpgcheck = 1
+baseurl = https://$nexussrc/repository/couchdb.el8/ # (1)
+ui_repoid_vars = releasever basearch
+gpgkey = https://$nexussrc/repository/couchdb-artifacts/repo/keys.asc https://$nexussrc/repository/couchdb-artifacts/repo/rpm-package-key.asc
+priority = 1
