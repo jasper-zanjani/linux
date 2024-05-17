@@ -69,9 +69,17 @@ Kernel **modules** can be loaded, listed, or removed from the running kernel.
 
 Various tools are available to provide detailed data on system specifications.
 
-#### lshw
+--8<-- "includes/Commands/l/lscpu.md"
+
+--8<-- "includes/Commands/l/lshw.md"
+
+```sh title="sysbench"
+--8<-- "includes/Commands/s/sysbench.sh"
+```
+
+#### tty
 :   
-    --8<-- "includes/Commands/l/lshw.md"
+    --8<-- "includes/Commands/t/tty.md"
 
 ## Filesystem Hierarchy Standard
 

@@ -1,6 +1,6 @@
-**lshw** is a tool to extract detailed information on the hardware configuration of the machine.
+```sh title="lshw"
+# Extract detailed information on the hardware configuration of the machine.
 
-```sh
 # Display a table of hardware information
 sudo lshw -short # (1)
 
