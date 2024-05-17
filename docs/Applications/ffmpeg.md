@@ -1,5 +1,16 @@
 # ffmpeg
 
+??? info "Installation on Fedora"
+
+    Although a free version of ffmpeg is available in Fedora's repos (as **ffmpeg-free**), it is hamstrung by the lack of proprietary codecs.
+
+    The full ffmpeg must be installed from RPM Fusion repos.
+
+    ```sh
+    sudo dnf swap ffmpeg-free ffmpeg --allowerasing
+    ```
+
+
 **ffmpeg** is most often used to convert file formats for media from the command-line.
 
 ```sh
@@ -118,6 +129,42 @@ ffmpeg -i A.avi -i B.mp4 out1.mkv out2.wav -map 1:a -c:a copy out3.mov
     ffmpeg -codecs
     ```
 
+    Some codecs like libx264 support various [profiles](https://en.wikipedia.org/wiki/Advanced_Video_Coding#Profiles), which can be [selected](https://superuser.com/questions/563997/how-can-i-set-a-h-264-profile-level-with-ffmpeg) from the command-line.
+
+    ```sh
+    # Reencode a media file using a different profile
+    ffmpeg -i $INPUT -c:v h264 -profile:v high
+    ```
+
+    In fact, there can be multiple encoders for any specified codec, which functions as an alias.
+
+    ```sh
+    # Display encoders for H.264 codec
+    ffmpeg -codecs | grep h264 # (1)
+
+    # Display more detailed information about H.264 encoders
+    ffmpeg -h encoder=h264
+    ```
+
+    1. 
+    ``` title="Output"
+    --8<-- "includes/Output/ffmpeg-codecs-grep-h264
+    ```
+
+    ??? info "Codecs"
+
+        **H.264**, or [**Advanced Video Coding**](https://en.wikipedia.org/wiki/Advanced_Video_Coding) (AVC), is one of a line of video compression standards adopted by the International Telecommunications Union.
+
+        [**x264**](https://en.wikipedia.org/wiki/X264) is an open-source library developed by VideoLAN, the developers of VLC.
+
+        [**High Efficiency Video Coding**](https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding) (**HEVC**) also known as H.265 is a video compression standard developed as a collaboration between multiple industries.
+        The first version of the standard was ratified in 2013.
+        Prohibitively expensive licensing fees led to the development of the alternative video coding format AV1 in 2018.
+
+        [**Video Acceleration API**](https://en.wikipedia.org/wiki/Video_Acceleration_API) (**VA-API**) is an open-source API that allows applications like VLC or GStreamer to take advantage of hardware acceleration capabilities.
+        It is implemented by the **libva** library.
+        Historically, it originated as an Intel project to support their [Graphics Media Accelerator (GMA)](https://en.wikipedia.org/wiki/Intel_GMA) series of integrated graphics processors on Unix-like systems.
+
 #### Filters
 :   
 
@@ -136,3 +183,25 @@ ffmpeg -i A.avi -i B.mp4 out1.mkv out2.wav -map 1:a -c:a copy out3.mov
 
     The [**graph2dot**](https://ffmpeg.org/ffmpeg-filters.html#graph2dot) tools is mentioned in ffmpeg documentation as being able to generate a visual representation of the filtergraph description, but it doesn't seem to be available from repos.
 
+    ??? info "Resources"
+
+        <iframe width="1095" height="596" src="https://www.youtube.com/embed/MPV7JXTWPWI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+        ```sh
+        ffmpeg -i $INPUT -af volume=2 $OUTPUT
+
+        # Map left input audio channel to both output channels
+        ffmpeg -i $INPUT -af "channelmap=0-0|0-1" $OUTPUT
+
+        # Specify 640x480 window and position of top left corner
+        ffmpeg -i $INPUT -vf "crop=w=640:h=480:x=100:y=200" $OUTPUT
+
+        # Scale video to new resolution
+        ffmpeg -i $INPUT -vf "scale=w=640:h=480" $OUTPUT
+
+        # Use proportional scaling, providing -1 to one dimension
+        ffmpeg -i $INPUT -vf "scale=w=852:h=-1"
+
+        # Rotate 45° clockwise (angle is specified in radians)
+        ffmpeg -i $INPUT -vf "rotate=45*PI/180" $OUTPU
+        ```
