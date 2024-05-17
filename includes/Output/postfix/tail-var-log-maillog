@@ -1,0 +1,7 @@
+Mar  7 13:14:07 rhel9 postfix/postfix-script[53539]: starting the Postfix mail system
+Mar  7 13:14:08 rhel9 postfix/master[53541]: daemon started -- version 3.5.9, configuration /etc/postfix
+Mar  7 13:14:17 rhel9 postfix/pickup[53542]: 2CD11201FD2F: uid=1000 from=<jasper>
+Mar  7 13:14:17 rhel9 postfix/cleanup[53548]: 2CD11201FD2F: message-id=<20240307181417.2CD11201FD2F@rhel9.localdomain>
+Mar  7 13:14:17 rhel9 postfix/qmgr[53543]: 2CD11201FD2F: from=<jasper@rhel9.localdomain>, size=343, nrcpt=1 (queue active)
+Mar  7 13:14:17 rhel9 postfix/local[53550]: 2CD11201FD2F: to=<jasper@rhel9.localdomain>, orig_to=<jasper>, relay=local, delay=0.32, delays=0.24/0.02/0/0.07, dsn=2.0.0, status=sent (delivered to mailbox)
+Mar  7 13:14:17 rhel9 postfix/qmgr[53543]: 2CD11201FD2F: removed
