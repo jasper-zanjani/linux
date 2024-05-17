@@ -1,6 +1,133 @@
-# Git
+# git
 
 Git is a very complex utility with multiple commands and subcommands and a strong dependency on **version control system** concepts.
+
+=== "add"
+
+    ```sh
+    # Update index to include all files in the working tree, including removals
+    git add -A # --no-ignore-removal
+
+    # Stage all modifications in work-tree, including deletions
+    git add -u
+
+    # Add file, located in **\$HOME** to the git repo at **\$PATH**
+    git --git-dir=$PATH/.git --work-tree=$HOME add $FILE
+    ```
+
+=== "branch"
+
+    ```sh
+    # Display branches ("*" indicates that branch is checked out)
+    git branch
+
+    # Display the last commit for each branch
+    git branch -v
+
+    # Display branches that have not been merged
+    git branch --no-merged
+    ```
+
+=== "checkout"
+
+    ```sh
+    # Discard unstaged uncommitted changes to file
+    git checkout -- file
+
+    # Switch to branch
+    git checkout branch
+    ```
+
+=== "diff"
+
+    ```sh
+    # Displays changes inline in a perhaps more legible way
+    git diff --word-diff
+    ```
+
+=== "log"
+
+    ```sh
+    # Show commits between January 1 and January 5, 2016
+    git log --after="2016-01-01" --before="2016-01-05"
+
+    # See commits that are on a branch but not on master
+    git log $MASTER..$BRANCH
+    ```
+
+=== "ls-files"
+
+    ```sh
+    # Show tracked files
+    git ls-files
+
+    # Show tracked files, each line is terminated by a null byte
+    git ls-files -z
+
+    # Show tracked files that have been deleted
+    git ls-files --deleted
+    ```
+
+=== "mv"
+
+    ```sh
+    # Move or rename a tracked file
+    git mv $FILE $NEWNAME
+    ```
+
+=== "push"
+
+    ```sh
+    # Transfer data from local branch {master} to remote {origin}
+    git push -u origin master
+    ```
+
+=== "remote"
+
+    ```sh
+    # Add remote repo
+    git remote add $REPO $URL
+
+    # Display URL of remote repo
+    git remote get-url $REPO
+
+    # Set url for existing repo
+    git remote set-url $URL $REPO
+    ```
+
+=== "rm"
+
+    ```sh
+    # Remove tracked file from index and delete the file
+    git rm $FILE
+
+    # Remove file from the index but keep the file as-is
+    git rm $FILE --cached
+    ```
+
+=== "stash"
+
+    ```sh
+    # Stash changes to work-tree
+    git stash
+
+    # View stashes in stash stack
+    git stash list
+
+    # Apply changes in most recent stash
+    git stash apply
+
+    # Apply changes in specified stash
+    git stash apply stash@$STASH
+
+    # Delete specified stash
+    git stash drop stash@$STASH
+
+    # Delete all stashes
+    git stash clear
+    ```
+
+---
 
 The most basic useful command may be [**git clone**](https://git-scm.com/docs/git-clone) which simply downloads a repository.
 ```sh
@@ -15,68 +142,8 @@ In the jargon of git, the contents of the directory are referred to as the **cur
 Changes made to the repository have to be incorporated into the **commit history** in a multi-step process, starting by **staging** changes, or adding them to the **index** which will be incorporated into the following commit.
 
 ```sh
-# Add file, located in **\$HOME** to the git repo at **\$PATH**
-git --git-dir=$PATH/.git --work-tree=$HOME add $FILE
-
-# Update index to include all files in the working tree, including removals
-git add -A # --no-ignore-removal
-
-# Stage all modifications in work-tree, including deletions
-git add -u
-```
-
-```sh
-# Display branches ("*" indicates that branch is checked out)
-git branch
-
-# Display the last commit for each branch
-git branch -v
-
-# Display branches that have not been merged
-git branch --no-merged
-```
-
-```sh
-# Discard unstaged uncommitted changes to file
-git checkout -- file
-
-# Switch to branch
-git checkout branch
-```
-
-Apply a single, specific commit from another branch
-```sh
+# Apply a single, specific commit from another branch
 git cherry-pick commit
-```
-
-
-```sh
-# Show commits between January 1 and January 5, 2016
-git log --after="2016-01-01" --before="2016-01-05"
-
-# See commits that are on a branch but not on master
-git log $MASTER..$BRANCH
-```
-
-```sh
-# Show tracked files
-git ls-files
-
-# Show tracked files, each line is terminated by a null byte
-git ls-files -z
-
-# Show tracked files that have been deleted
-git ls-files --deleted
-```
-
-Move or rename a tracked file
-```sh
-git mv file
-```
-
-Transfer data from local branch {master} to remote {origin}
-```sh
-git push -u origin master
 ```
 
 Combine branches by replaying the changes made on one branch to another
@@ -84,49 +151,16 @@ Combine branches by replaying the changes made on one branch to another
 git rebase
 ```
 
+
 ```sh
-# Add remote repo
-git remote add $REPO $URL
-
-# Display URL of remote repo
-git remote get-url $REPO
-
-# Set url for existing repo
-git remote set-url $URL $REPO
-```
-
-Undo unstaged changes since last commit
-```sh
+# Undo unstaged changes since last commit
 git reset --hard
-```
 
-Reset master to state before last commit
-```sh
+# Reset master to state before last commit
 git reset --hard HEAD~
-```
 
-Remove (committed) changes in {commit}
-```sh
-git revert commit
-```
-
-Remove tracked file from repo
-```sh
-git rm file
-```
-
-```sh
-# Stash changes to work-tree
-git stash
-
-# View stashes in stash stack
-git stash list
-
-# Apply changes in most recent stash
-git stash apply
-
-# Apply changes in specified stash
-git stash apply stash@$STASH
+# Remove committed changes
+git revert $COMMIT
 ```
 
 ## Tasks
@@ -134,21 +168,32 @@ git stash apply stash@$STASH
 #### Configuration
 :   
 
-    **git config** rovides a frontend to the INI formatted config files typically found within **.git/config** in each repo or, when using **-g**/**--global**, **\$HOME/.gitconfig**.
+    ??? info "Configs"
+
+        | Type       | Location       |
+        | ---------- | -------------- |
+        | System     | /etc/gitconfig |
+        | Global     | ~/.gitconfig   |
+        | Repository | .git/config    |
+
+    **git config** provides a frontend to the INI formatted config files typically found within **.git/config** in each repo or, when using **-g**/**--global**, **\$HOME/.gitconfig**.
 
     ```sh title="git config"
+    # List all configuration (includes directive in global .gitconfig)
+    git config --list
+
     # Store authentication details in a cache (2)
     git config --global credential.helper cache
 
     # Set up alias "br" for branch (1)
-    git config --global alias.br branch
+    git config --system alias.br branch
 
     # Define a directory as safe (3)
     git config --global --add safe.directory $PATH
     ```
 
     1. 
-    ```ini title=".gitconfig"
+    ```ini title="/etc/gitconfig"
     [alias]
         br = branch
     ```
@@ -172,6 +217,24 @@ git stash apply stash@$STASH
 
     # Disable appending CRLF endings
     git config core.autocrlf false
+    ```
+
+    ```ini title="Conditional configuration"
+    [includeIf "gitdir:~/projects/work/"]
+        path = ~/projects/work/.gitconfig
+    
+    [includeIf "gitdir:~/projects/oss/"]
+        path = ~/projects/oss/.gitconfig
+    ```
+
+#### Aliases
+:   
+
+    ```sh
+    git config --global alias.staash stash --all
+
+    # Run a script
+    git config --global alias.bb !better-branch.sh
     ```
 
 #### Existing codebase
@@ -320,17 +383,22 @@ git stash apply stash@$STASH
     git rebase --continue
     ```
 
-#### Directory ownership
+#### Create upstream repo
+:   
+    Any local directory can be treated as an upstream as long as it is a bare git repository (conventionally with name ending in .git but this doesn't appear to be necessary).
+    Any such local repo can be cloned by using the **--local** option or using the **file://** protocol.
 
     ```sh
-    git config --global --add safe.directory $PATH
+    git clone --local /path/to/upstream.git
+
+    git clone file:///path/to/upstream.git
     ```
 
 #### tig
 :   
     Provides a curses-based browser that allows you to navigate the commits in the current branch. 
-    It is essentially a wrapper around `git log`, and therefore accepts the same arguments that can be passed to it.
-    Tig's config is at **~/.tigrc**.
+    It is essentially a wrapper around **git log**, and therefore accepts the same arguments that can be passed to it.
+    Tig's config is at **$HOME/.tigrc**.
 
     ```sh
     # Browse the commit history for a single file
