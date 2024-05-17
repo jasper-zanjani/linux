@@ -1,3 +1,5 @@
+# Stratis
+
 **Stratis** is an open-source managed pooled storage solution in the vein of ZFS or btrfs.
 
 Stratis block devices can be disks, partitions, LUKS-encrypted volumes, LVM logical volumes, or DM multipath devices.

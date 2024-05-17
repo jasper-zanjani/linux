@@ -1,3 +1,5 @@
+# VDO
+
 **Virtual disk optimizer (VDO)** is a kernel module introduced in RHEL 7.5 that provides data deduplication and compression on block devices.
 
 The physical storage of a VDO volume is divided into a number of **slabs**, which are contiguous regions of the physical space. 

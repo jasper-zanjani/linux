@@ -1,4 +1,4 @@
-# Storage
+# Overview
 
 --8<-- "includes/Admonitions/LVM-Btrfs.md"
 
@@ -11,33 +11,13 @@ GPT sports many advantages over MBR:
 
 - Disks and partitions larger than 2TiB supported, at greater numbers
 
-
-
-
-## NFS
-
---8<-- "includes/Tasks/nfs.md"
-
-## ZFS
-
---8<-- "includes/Applications/zfs.md"
-
-## LVM
-
---8<-- "includes/Commands/l/lvm.md"
-
-## Btrfs
-
---8<-- "includes/Tasks/btrfs.md"
-
-## SMB
-
---8<-- "includes/Tasks/smb.md"
-
 ## Tasks
 
-#### Virtual disks
-:   
+<div class="grid cards" markdown>
+
+-   #### Virtual disks
+
+    ---
 
     ```sh title="Create virtual disks"
     # Create sparse file
@@ -47,39 +27,29 @@ GPT sports many advantages over MBR:
     losetup -f /tmp/disk0           
     ```
 
-#### Formatting
-:   
+-   #### Formatting filesystems
+
+    ---
 
     --8<-- "includes/Tasks/filesystems.md"
 
-#### HDD serial numbers
-:   
+-   #### HDD serial numbers
+
+    ---
 
     ```sh
     --8<-- "includes/Tasks/hdd-serial-numbers.sh"
     ```
 
-#### Autofs
-:   
+-   #### LVM
 
-    --8<-- "includes/Applications/autofs.md"
-
-#### LVM
-:   
+    ---
 
     ```sh title="LVM"
     --8<-- "includes/Tasks/lvm.sh"
     ```
 
-#### VDO
-:   
-
-    --8<-- "includes/Applications/vdo.md"
-
-#### Stratis
-:   
-
-    --8<-- "includes/Applications/stratis.md"
+</div>
 
 #### Arch installation
 :   
@@ -90,60 +60,71 @@ GPT sports many advantages over MBR:
 
 ## Commands
 
-#### fallocate
-:   
+<div class="grid cards" markdown>
+
+-   #### fallocate
+
+    ---
 
     ```sh
     --8<-- "includes/Commands/f/fallocate.sh"
     ```
 
-#### fdisk
-:   
+-   #### hdparm
 
-    ```sh
-    --8<-- "includes/Commands/f/fdisk.sh"
-    ```
-
-#### hdparm
-:   
+    ---
 
     ```sh
     --8<-- "includes/Commands/h/hdparm.sh"
     ```
 
-#### losetup
-:   
+-   #### losetup
+
+    ---
 
     ```sh
     --8<-- "includes/Commands/l/losetup.sh"
     ```
 
-#### lsblk
-:   
+    #### lsblk
+
+    ---
 
     ```sh
     --8<-- "includes/Commands/l/lsblk.sh"
     ```
 
-#### sfdisk
-:   
+    #### mount
 
-    --8<-- "includes/Commands/s/sfdisk.md"
-
-#### shred
-:   
-
-    ```sh
-    --8<-- "includes/Commands/s/shred.sh"
-    ```
-
-#### mount
-:   
+    ---
 
     ```sh
     --8<-- "includes/Commands/m/mount.sh"
     ```
 
+    #### shred
+
+    ---
+
+    ```sh
+    --8<-- "includes/Commands/s/shred.sh"
+    ```
+
+
+-   #### sfdisk
+
+    ---
+
+    --8<-- "includes/Commands/s/sfdisk.md"
+
+
+</div>
+
+#### fdisk
+
+```sh
+--8<-- "includes/Commands/f/fdisk.sh"
+```
 
 ## Configs
 
