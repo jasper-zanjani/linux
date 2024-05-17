@@ -39,3 +39,10 @@ Furthermore the field names to be written to are actually prefixed with **meta\_
 
 --8<-- "includes/Commands/y/yt-dlp-metadata.sh"
 ```
+
+##### Authentication
+
+```sh
+# Use Firefox cookies to authenticate
+yt-dlp https://x.com/nicoledupapill1/status/1669291270320037888 --cookies-from-browser firefox
+```
