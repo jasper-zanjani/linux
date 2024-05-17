@@ -5,7 +5,7 @@ openssl rand -base64 32
 # Download CA certificate from AD
 openssl s_client -connect ldap.tylersguides.com:636 -showcerts < /dev/null
 
-# Generate random password"
+# Generate random password
 openssl rand -base64 32
 
 # Create an RSA private key, providing a password

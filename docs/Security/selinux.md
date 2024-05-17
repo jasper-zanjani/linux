@@ -164,124 +164,114 @@ Similarly,
 | ------------------------- | --------------- | --------------------- |
 | [restorecon](#restorecon) | [chcon](#chcon) | [Contexts](#contexts) |
 
-#### audit2allow
-:   
-    ```sh title="Generate policy module from logs of denied operations"
-    ausearch -c httpd --raw | audit2allow -M my-httpd
-    ```
+<div class="grid" markdown>
+
+```sh title="audit2allow"
+# Generate policy module from logs of denied operations
+ausearch -c httpd --raw | audit2allow -M my-httpd
+```
+
+```sh title="getenforce"
+# Display operating mode of SELinux, i.e.:
+# Enforcing, Permissive, or Disabled
+getenforce
+```
+
+```sh title="getsebool"
+# Display all booleans
+getsebool -a # (1)
+```
+
+1. Alternatively:
+```sh
+semanage bool -l
+```
+
+
+```sh title="restorecon"
+# Restore security context policy
+restorecon -R /web
+```
+
+```sh title="seinfo"
+# List users
+seinfo -u
+```
+
+```sh title="semodule"
+# Install a policy module
+semodule -i my-httpd.pp
+```
+
+```sh title="sestatus"
+sestatus
+```
+
+```sh title="setenforce"
+# Permissive
+setenforce 0 
+
+# Enforcing
+setenforce 1 
+```
+
+
+</div>
 
 #### ausearch
 :   
-    Display events in a date range
-    ```sh
+
+    ```sh title="ausearch"
+    # Display events in a date range
     ausearch --start $STARTDATE --end $ENDDATE
-    ```
 
-    Search events for today for logins of UID 500
-    ```sh
+    # Search events for today for logins of UID 500
     ausearch --start today --loginuid 500
-    ```
 
-    Search for events associated with an executable.
-    ```sh
+    # Search for events associated with an executable.
     ausearch -c httpd --raw
-    ```
 
-    ```sh title="Display recent (10 minutes) events"
+    # Display recent (10 minutes) events
     ausearch -m AVC -ts recent
     ```
 
 #### chcon
 :   
-    Change context of a file to be hosted via httpd
-    ```sh
+
+    ```sh title="chcon"
+    # Change context of a file to be hosted via httpd
     chcon system_u:object_r:httpd_sys_content_t:s0 index.html
-    chcon -t httpd_sys_content_t index.html # (1)
-    ```
 
-    1. Change only the **type** portion of the context.
-
-
-#### getenforce
-:   
-    **getenforce** displays the operating **mode** of SELinux, which can be one of three values:
-
-    - enforcing
-    - permissive
-    - disabled
-
-
-#### getsebool
-:   
-    ```sh title="Display all booleans"
-    getsebool -a # (1)
-    ```
-
-    1. A more descriptive listing of the booleans can be displayed with [**semanage**](#semanage)
-    ```sh
-    semanage bool -l
-    ```
-
-
-#### restorecon
-:   
-    Restore security context policy
-    ```sh
-    restorecon -R /web
-    ```
-
-#### seinfo
-:   
-    ```sh title="List users"
-    seinfo -u
+    # Change only the **type** portion of the context.
+    chcon -t httpd_sys_content_t index.html
     ```
 
 #### semanage
 :   
-    semanage is used to configure certain elements of SELinux policy without requiring modification to or recompilation from policy sources.
+    **semanage** is used to configure certain elements of SELinux policy without requiring modification to or recompilation from policy sources.
 
-    ```sh title="File contexts"
+    ```sh title="semanage"
+    # File contexts
     semanage fcontext -l
     semanage fcontext -a -t httpd_sys_content_t /web 
-    ```
 
-    ```sh title="Port contexts"
+    # Port contexts
     semanage port -l
     semanage port -a -t http_port_t -p tcp 1000
-    ```
 
-    ```sh title="Booleans"
+    # Booleans
     semanage bool -l
-    ```
 
-    Examine the mapping between Linux login names and SELinux users.
-    ```sh
+    # Examine the mapping between Linux login names and SELinux users.
     semanage login -l
-    ```
-
-#### semodule
-:   
-    ```sh title="Install a policy module"
-    semodule -i my-httpd.pp
-    ```
-
-#### sestatus
-:   
-    ```sh
-    sestatus
-    ```
-
-#### setenforce
-:   
-    ```sh
-    setenforce 0 # Permissive
-    setenforce 1 # Enforcing
     ```
 
 #### setsebool
 :   
-    ```sh
-    # Allow SELinux to work with Samba (-P makes the change persistent)
+
+    ```sh title="setsebool"
+    # Allow SELinux to work with Samba 
+    # -P makes the change persistent
     setsebool -P samba_export_all_ro 1
 
     # Allow httpd to serve HTML from home directories
