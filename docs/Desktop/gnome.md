@@ -6,7 +6,7 @@ GTK3 attempted to get away from strong dependency on theming engines by introduc
 This was supposed to make application theming simple and portable.
 In GTK4 you can choose either a theming engine or CSS stylesheets.
 
-GNOME configurations and application settings are stored in **dconf** databases, key-based binary databases in GVDB format.
+GNOME configurations and application settings are stored in **dconf** databases, key-based binary databases optimized for reads in GVDB format (GVariant Database file).
 System database files are located in **/etc/dconf/db**.
 These settings are stored in a tree of **keys**, **children**, and **values** grouped under **schemas** in a way analogous to the Windows Registry.
 
@@ -92,7 +92,19 @@ Direct manipulation of dconf is discouraged, rather users and developers are enc
 
     Note that this will remove any changes to GNOME settings made interactively since the previous compilation (i.e. all changes made to GNOME Settings and Tweaks).
 
+    ??? info "Keyfiles"
 
+        ```ini
+        --8<-- "includes/Configs/dconf/00-configs"
+
+        --8<-- "includes/Configs/dconf/01-shortcuts"
+
+        --8<-- "includes/Configs/dconf/02-dash"
+
+        --8<-- "includes/Configs/dconf/03-mouse"
+
+        --8<-- "includes/Configs/dconf/04-input-sources"
+        ```
 
 #### dconf profile
 :   
