@@ -84,6 +84,11 @@
 :   
     --8<-- "includes/Commands/r/rsync.md"
 
+#### tar
+
+--8<-- "includes/Commands/t/tar.md"
+
+
 ### facl
 
 
