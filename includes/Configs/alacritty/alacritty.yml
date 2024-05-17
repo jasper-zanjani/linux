@@ -1,5 +1,7 @@
 import: 
 - "/home/jasper/.config/alacritty/themes/yaml/challenger_deep.yaml"
+env:
+  TERM: xterm-256color
 font:
   size: 18 
   normal:
