@@ -1,42 +1,11 @@
 # Nginx
 
-**Nginx** ("engine-x") is described as an *event-based reverse proxy server*.
+**Nginx** ("engine-x") is described as an _event-based reverse proxy server_.
 This refers to the fact that it has an asynchronous architecture, unlike its competitors Apache and IIS which create a new blocking thread per connection.
 Nginx is much newer than Apache which started in 1995, although it has seen widespread adoption since 2008, growing mostly at Apache's expense.
 A typical and favored deployment is to place Nginx in the front-end and Apache in the back-end to combine the advantages of both platforms.
 
 Nginx follows the convention of even version numbers being stable and odd numbers being mainline or development.
-
-
-=== ":material-redhat: Red Hat"
-
-    ```sh
-    # /etc/yum.repos.d/nginx.repo
-
-    [nginx]
-    name=nginx repo
-    baseurl=http://nginx.org/packages/centos/7/$basearch/
-    gpgcheck=0
-    enabled=1
-    ```
-    ```sh
-    dnf install nginx
-    ```
-
-=== ":material-ubuntu: Ubuntu"
-
-    ```sh
-    # /etc/apt/sources.list
-
-    deb http://nginx.org/packages/ubuntu/ trusty nginx
-    deb-src http://nginx.org/packages/ubuntu/ trusty nginx
-    ```
-    ```sh
-    curl -fsSL http://nginx.org/keys/nginx_signing.key
-    apt-key add nginx_signing.key
-    apt install nginx
-
-    ```
 
 Depending on installation method and distribution, configurations can exist in various directories.
 A config can be explicitly specified at runtime with `--conf-path`/`-c`.
@@ -48,65 +17,89 @@ Nginx config files contain **directives**:
 
 - **Simple directives** like `listen *:80;` contain a name, multiple optional parameters, and a closing semicolon. 
 Parameters themselves can pass a value after an equal sign, i.e. `backlog=511`.
-- **Context directives** (or simply "contexts", also "block directives") like `events`, `http`, and `server` wrap a group of other directives in a pair of braces and can be nested.
+- **Block** or **context directives** like `events`, `http`, and `server` wrap a group of other directives in a pair of braces and can be nested.
 Most simple directives can only be declared in specific contexts.
 - There is also an implied **main context** which wraps all the contents of the file, and putting a simple directive into the main context means making it a top-level statemtn.
 - Comments can be written using `#`
 
 ## Examples
 
-A very simple representative config that creates an HTTP server listening on port 80 of every network interface, with no HTTP Host specified, from the specified root path:
+<div class="grid cards" markdown>
 
-  ``` nginx title="Default"
-  events {
-  }
+-   #### Default
 
-  http {
-    server {
+    ---
+
+    A very simple representative config that creates an HTTP server listening on port 80 of every network interface, with no HTTP Host specified, from the specified root path:
+
+    ``` nginx
+    events {
     }
-  }
-  ```
 
-  ```nginx title="Expanded with explicit values"
-  user nobody nogroup;
-  worker_processes 1;
-
-  events {
-    worker_connections 512;
-  }
-
-  http {
-    server {
-      listen *:80;
-      server_name "";
-      root /usr/share/nginx/html;
+    http {
+        server {
+        }
     }
-  }
-  ```
+    ```
 
+    With implicit defaults made explicit, this is equivalent to:
 
+    ```nginx
+    user nobody nogroup;
+    worker_processes 1;
 
-``` nginx
-http {
-  server {
-    listen 8080;
-    root /www;
-    
-    location /images {
-      root /;
+    events {
+        worker_connections 512;
     }
-  }
-}
-events { }
-```
+
+    http {
+        server {
+            listen *:80;
+            server_name "";
+            root /usr/share/nginx/html;
+        }
+    }
+    ```
+
+-   #### Default on a container
+
+    ---
+
+    ``` nginx
+    user  nginx;
+    worker_processes  auto;
+
+    error_log  /var/log/nginx/error.log notice;
+    pid        /var/run/nginx.pid;
 
 
-```sh
-nginx -s stop
-nginx -s start
-nginx restart
-```
+    events {
+        worker_connections  1024;
+    }
 
+
+    http {
+        include       /etc/nginx/mime.types;
+        default_type  application/octet-stream;
+
+        log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                        '$status $body_bytes_sent "$http_referer" '
+                        '"$http_user_agent" "$http_x_forwarded_for"';
+
+        access_log  /var/log/nginx/access.log  main;
+
+        sendfile        on;
+        #tcp_nopush     on;
+
+        keepalive_timeout  65;
+
+        #gzip  on;
+
+        include /etc/nginx/conf.d/*.conf;
+    }
+    ```
+
+</div>
 
 ### Reverse proxy
 
@@ -116,17 +109,17 @@ These are linked to by symlinks placed in **/etc/nginx/sites-enabled**.
 
 ``` nginx
 server {
-  listen 80;
-  location / {
-    proxy_pass "http://127.0.0.1:8000";
-  }
+    listen 80;
+    location / {
+        proxy_pass "http://127.0.0.1:8000";
+    }
 }
 ```
 
 The configuration to serve static files placed in the local directory **/path/to/staticfiles** from the URL **/static** is:
 ``` nginx
 location /static/ {
-  root /path/to/staticfiles/
+    root /path/to/staticfiles/
 }
 ```
 
@@ -143,21 +136,54 @@ Some DNS providers like [AWS Route 53](/Cloud/#route-53) randomize the order of 
 
 ```nginx
 http {
-  upstream backend {
-    server 192.0.2.10;
-    server 192.0.2.11;
-  }
-
-  server {
-    listen 80;
-
-    location / {
-      proxy_pass http://backend;
+    upstream backend {
+        server 192.0.2.10;
+        server 192.0.2.11;
     }
-  }
+
+    server {
+        listen 80;
+
+        location / {
+        proxy_pass http://backend;
+        }
+    }
 }
 ```
 
-## 📘 Glossary
+## Tasks
 
---8<-- "includes/nginx-definitions.md"
+<div class="grid cards" markdown>
+
+-   #### Installation
+
+    ---
+
+    === ":material-redhat: Red Hat"
+
+        ```sh title="/etc/yum.repos.d/nginx.repo"
+        [nginx]
+        name=nginx repo
+        baseurl=http://nginx.org/packages/centos/7/$basearch/
+        gpgcheck=0
+        enabled=1
+        ```
+        ```sh
+        dnf install nginx
+        ```
+
+    === ":material-ubuntu: Ubuntu"
+
+        ```sh title="/etc/apt/sources.list"
+        deb http://nginx.org/packages/ubuntu/ trusty nginx
+        deb-src http://nginx.org/packages/ubuntu/ trusty nginx
+        ```
+        ```sh
+        curl -fsSL http://nginx.org/keys/nginx_signing.key
+        apt-key add nginx_signing.key
+        apt install nginx
+
+        ```
+
+</div>
+
