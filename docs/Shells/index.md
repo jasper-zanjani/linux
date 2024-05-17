@@ -2,11 +2,25 @@
 
 Various information about the terminal can be displayed using **stty** and **tput**:
 
-```sh title="stty"
---8<-- "includes/Commands/s/stty.sh"
-```
+<div class="grid cards" markdown>
 
-```sh title="tput"
---8<-- "includes/Commands/t/tput.sh"
-```
+-   #### chsh
+
+    ---
+
+    --8<-- "includes/Commands/c/chsh.md"
+
+-   #### stty
+
+    ---
+
+    --8<-- "includes/Commands/s/stty.md"
+
+-   #### tput
+
+    ---
+
+    --8<-- "includes/Commands/t/tput.md"
+
+</div>
 
