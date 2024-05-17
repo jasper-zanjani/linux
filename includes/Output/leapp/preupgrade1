@@ -1,0 +1,26 @@
+============================================================
+                      REPORT OVERVIEW                       
+============================================================
+
+HIGH and MEDIUM severity reports:
+    1. Packages available in excluded repositories will not be installed
+    2. Leapp detected loaded kernel drivers which are no longer maintained in RHEL 8.
+    3. Difference in Python versions and support in RHEL 8
+    4. Module pam_pkcs11 will be removed from PAM configuration
+    5. chrony using default configuration
+
+Reports summary:
+    Errors:                      0
+    Inhibitors:                  0
+    HIGH severity reports:       3
+    MEDIUM severity reports:     2
+    LOW severity reports:        5
+    INFO severity reports:       4
+
+Before continuing consult the full report:
+    A report has been generated at /var/log/leapp/leapp-report.json
+    A report has been generated at /var/log/leapp/leapp-report.txt
+
+============================================================
+                   END OF REPORT OVERVIEW                   
+============================================================

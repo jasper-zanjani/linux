@@ -1,0 +1,31 @@
+============================================================
+                      REPORT OVERVIEW                       
+============================================================
+
+Upgrade has been inhibited due to the following problems:
+    1. Leapp detected loaded kernel drivers which have been removed in RHEL 8. Upgrade cannot proceed.
+    2. Leapp detected a processor which is no longer supported in RHEL 8. Upgrade cannot proceed.
+    3. Newest installed kernel not in use
+    4. Missing required answers in the answer file
+
+HIGH and MEDIUM severity reports:
+    1. Packages available in excluded repositories will not be installed
+    2. Leapp detected loaded kernel drivers which are no longer maintained in RHEL 8.
+    3. Difference in Python versions and support in RHEL 8
+    4. chrony using default configuration
+
+Reports summary:
+    Errors:                      0
+    Inhibitors:                  4
+    HIGH severity reports:       3
+    MEDIUM severity reports:     1
+    LOW severity reports:        4
+    INFO severity reports:       4
+
+Before continuing consult the full report:
+    A report has been generated at /var/log/leapp/leapp-report.json
+    A report has been generated at /var/log/leapp/leapp-report.txt
+
+============================================================
+                   END OF REPORT OVERVIEW                   
+============================================================

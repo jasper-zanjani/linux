@@ -22,6 +22,11 @@
     CoreOS systems are meant to be **immutable infrastructure**, meaning they are only configured through the provisioning process and not modified in-place. 
     All systems start with a generic OS image, but on first boot it uses a system called **Ignition** to read an **Ignition config** (which is converted from a **Fedora CoreOS Config** file) from the cloud or a remote URL, by which it provisions itself, creating disk partitions, file systems, users, etc.
 
+??? info "EX200 lab"
+
+    ---8<-- "includes/ex200.md"
+
+
 ## Support
 
 Red Hat [Support Cases](https://access.redhat.com/support/cases/) can be opened online.
@@ -44,6 +49,125 @@ openssl x509 -text -in /etc/pki/entitlement/9012345678901234567.pem
     ```sh
     --8<-- "includes/Commands/s/subscription-manager.sh"
     ```
+
+    Subscription manager is used to enable and disable RHEL repositories.
+
+    ```sh
+    # Enable Red Hat Developer Tools repos
+    subscription-manager repos --enable rhel-7-server-devtools-rpms
+    subscription-manager repos --enable rhel-server-rhscl-7-rpms
+
+    # Disable them again
+    subscription-manager repos --disable rhel-7-server-devtools-rpms --disable rhel-server-rhscl-7-rpms
+    ```
+
+## In-place upgrades
+
+Red Hat recommends the use of the **leapp** utility to upgrade to a higher major version [in-place](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/upgrading_from_rhel_7_to_rhel_8/index#performing-the-upgrade-from-rhel-7-to-rhel-8_upgrading-from-rhel-7-to-rhel-8).
+
+
+```sh title="RHEL 7 to RHEL 8"
+# Update packages and reboot
+yum update -y
+shutdown -r 0
+
+# On a fresh install this repo is not enabled
+subscription-manager repos --enable rhel-7-server-extras-rpms
+
+# Install leapp upgrade package (this package apparently doesn't show up in a search)
+yum install -y leapp-upgrade
+
+# Run preupgrade checks
+sudo leapp preupgrade # (1)
+
+# Remove the kernel modules which have bene removed in RHEL 8
+rmmod pata_acpi floppy
+
+# Permit root SSH acces (run as root or use tee)
+echo PermitRootLogin yes >> /etc/ssh/sshd_config
+
+# Confirm removal of the PAM PKCS#11 module in leapp's answerfile
+sudo leapp answer --section remove_pam_pkcs11_module_check.confirm=True
+
+# Confirm all issues are resolved
+sudo leapp preupgrade # (2)
+
+# Run upgrade
+sudo leapp upgrade
+```
+
+1. 
+``` title="Output"
+--8<-- "includes/Output/leapp/preupgrade0"
+```
+2. 
+``` title="Output"
+--8<-- "includes/Output/leapp/preupgrade1"
+```
+
+```sh title="CentOS 7 to Rocky"
+# Install the elevation-release package
+sudo yum install -y http://repo.almalinux.org/elevate/elevate-release-latest-el$(rpm --eval %rhel).noarch.rpm
+
+# Install Leapp migration data packages for Rocky Linux and the upgrade utility
+sudo yum install -y leapp-upgrade leapp-data-rocky
+
+# Run preupgrade checks
+sudo leapp preupgrade
+
+# Remove the pata_acpi kernel module
+sudo rmmod pata_acpi
+
+# Permit root SSH acces (run as root or use tee)
+echo PermitRootLogin yes >> /etc/ssh/sshd_config
+
+# Confirm removal of the PAM PKCS#11 module in leapp's answerfile
+sudo leapp answer --section remove_pam_pkcs11_module_check.confirm=True
+
+# Confirm all issues are resolved
+sudo leapp preupgrade
+
+# Run upgrade
+sudo leapp upgrade
+
+# Reboot the machine
+reboot
+```
+
+On boot, select the option to upgrade initramfs.
+After several more additional reboots, the GRUB entries will reappear.
+
+
+??? info "CPU support"
+
+    Red Hat did not support [processors older than Haswell](https://access.redhat.com/solutions/3665141) on RHEL 8, according to a solution published at the end of 2022.
+
+    For virtual machines and depending on the **CPU Mode**, leapp may complain that the CPU model is not supported for an upgrade to RHEL 8 while running the preupgrade report.
+
+    Leapp checks CPU information against a table of deceprecated hardware found at [/etc/leapp/files/device_driver_deprecation_data.json](https://access.redhat.com/solutions/6984143).
+    
+    Virtual CPU info can be retrieved using the following command.
+    CPU information is checked against the value of the above table's **device\_id** key, which contains a colon-delimited string.
+
+    ```sh
+    # These values correspond to a device_id of "x86_64:intel:6:6"
+    lscpu | grep -E 'Arch|family|Model:' # (1)
+    ```
+
+    1. 
+    ``` title="Output on TrueNAS"
+    # CPU Mode: Custom
+    --8<-- "includes/Output/lscpu/truenas-custom"
+
+    # CPU Mode: Host Model
+    --8<-- "includes/Output/lscpu/truenas-hostmodel"
+
+    # CPU Mode: Host Passthrough
+    --8<-- "includes/Output/lscpu/truenas-passthrough"
+    ```
+
+    The table appears to be installed with the package and can be manually edited.
+
 
 ## Applications
 
@@ -68,215 +192,6 @@ openssl x509 -text -in /etc/pki/entitlement/9012345678901234567.pem
 #### VDO
 :   
     --8<-- "includes/Tasks/vdo.md"
-
-## Labs
-
-### EX200
-
-#### IAM
-:   
-
-    We're going to lay the groundwork here and use these local accounts for all the subsequent tasks. You can write a script to do this, or do it by hand, from the data in the input file for the script. The file contents are:
-
-    ```
-    manny:1010:dba_admin,dba_managers,dba_staff 
-    moe:1011:dba_admin,dba_staff 
-    jack:1012:dba_intern,dba_staff 
-    marcia:1013:it_staff,it_managers 
-    jan:1014:dba_admin,dba_staff 
-    cindy:1015:dba_intern,dba_staff 
-    ```
-
-    Set all user passwords to **dbapass**. 
-    Also, change the users' PRIMARY groups' GID to match their UID. 
-    Don't forget to check their home directories to make sure permisisons are correct!
-
-    Enable the following command aliases:
-
-    - **SOFTWARE**
-    - **SERVICES**
-    - **PROCESSES**
-
-    Add a new command alias named **MESSAGES**:
-    ```sh
-    /bin/tail -f /var/log/messages
-    ```
-    Enable superuser privilages for the following local groups:
-
-    - **dba\_managers**: everything
-    - **dba\_admin**: Command aliases: SOFTWARE, SERVICES, PROCESSES
-    - **dba\_intern**: Command alias: MESSAGES
-
-#### Repos
-:   
-    You'll need to configure three repositories and install some software:
-
-    - RHEL 8 BaseOS:
-
-        - Repository ID: **[rhel-8-baseos-rhui-rpms]**
-        - The mirrorlist is: **https://rhui3.REGION.aws.ce.redhat.com/pulp/mirror/content/dist/rhel8/rhui/$releasever/$basearch/baseos/os**
-        - The GPG key is located at: **/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release**
-        - You will need to add SSL configuration:
-
-        ```ini
-        sslverify=1 
-        sslclientkey=/etc/pki/rhui/content-rhel8.key 
-        sslclientcert=/etc/pki/rhui/product/content-rhel8.crt 
-        sslcacert=/etc/pki/rhui/cdn.redhat.com-chain.crt 
-        ```
-
-    - RHEL 8 AppStream:
-
-        - Repository ID: **[rhel-8-appstream-rhui-rpms]**
-        - The mirrorlist is: **https://rhui3.REGION.aws.ce.redhat.com/pulp/mirror/content/dist/rhel8/rhui/$releasever/$basearch/appstream/os**
-        - The GPG key is located at: **/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release**
-        - You will need to add SSL configuration:
-
-        ```ini
-        sslverify=1
-        sslclientkey=/etc/pki/rhui/content-rhel8.key
-        sslclientcert=/etc/pki/rhui/product/content-rhel8.crt
-        sslcacert=/etc/pki/rhui/cdn.redhat.com-chain.crt
-        ```
-
-    - EPEL:
-
-        - Repository ID: **[epel]**
-        - The baseurl is: **https://download.fedoraproject.org/pub/epel/$releasever/Everything/$basearch**
-
-    Configure the repositories on the first server, then make an archive of the files, securely copy them to the second server, then unarchive the repository files on the second server.
-
-    - Install the default AppStream stream/profile for container-tools
-    - Install the youtube-dl package (from EPEL)
-    - Check for system updates, but don't install them
-
-#### Networking
-:   
-    On the first server, configure the second interface's IPv4/IPv6 addresses using nmtui.
-
-    - IPv4: **10.0.1.20/24**
-    - IPv6: **2002:0a00:0114::/64**
-    - Manual, not Automatic (DHCP) for both interfaces
-    - Only IP addresses, no other fields
-    - Configure only, do not activate
-
-#### Logging
-:   
-    By default, the systemd journal logs to memory in RHEL 8, in the location /run/log/journal. While this works fine, we'd like to make our journals persistent across reboots.
-    Configure the systemd journal logs to be persistent on both servers, logging to **/var/log/journal**.
-
-#### Scheduling
-:   
-    Create one **at** task and one **cron** job on the first server:
-
-    - The at job will create a file containing the string "The at job ran" in the file named **/web/html/at.html**, two minutes from the time you schedule it.
-    - The cron job will append to the **/web/html/cron.html** file every minute, echoing the date to the file.
-
-    These files will be available via the web server on the first server after the "Troubleshoot SELinux issues" objective is completed.
-
-#### Chrony
-:   
-    Time sync is not working on either of our servers. We need to fix that.
-
-    Configure chrony to use the following server:
-    ```
-    server 169.254.169.123 iburst 
-    ```
-    Make sure your work is persistent and check your work!
-
-#### GRUB
-:   
-    On **server1**, make the following changes:
-
-    - Increase the timeout using **`GRUB_TIMEOUT=10`**
-    - Add the following line: **`GRUB_TIMEOUT_STYLE=hidden`**
-    - Add quiet to the end of the **`GRUB_CMDLINE_LINUX`** line
-
-    Validate the changes in **/boot/grub2/grub.cfg**. Do not reboot the server.
-
-#### Storage
-:   
-    On the second server:
-
-    - Create a VDO device with the first unused 5GB device.
-
-        - Name: **web\_storage**
-        - Logical Size: 10GB
-
-    - Use the VDO device as an LVM physical volume. Create the following:
-
-    - Volume Group: **web\_vg**
-
-        - Three 2G Logical Volumes with xfs file systems, mounted persistently at **/mnt/web_storage_{dev,qa,prod}q**:
-
-            - web_storage_dev
-            - web_storage_qa
-            - web_storage_prod
-
-    We need to increase the swap on the second server. We're going to use half of our first unused 2G disk for this additional swap space. Configure the swap space non-destructively and persistently.
-
-    On the second server, using the second 2G disk, create the following:
-
-    - Stratis pool: **appteam**
-    - Stratis file system, mounted persistently at **/mnt/app_storage**: **appfs1**
-
-#### Shares
-:   
-    Configure autofs on the first server to mount the user home directories on the second server at **/export/home**.
-
-    - On the second server, configure a NFS server with the following export:
-
-    ```
-    /home <first_server_private_IP>(rw,sync,no_root_squash)
-    ```
-
-    - On the first server, configure autofs to mount the exported /home directory on the second server at **/export/home**. Change the home directories for our six users (manny|moe|jack|marcia|jan|cindy) to be **`/export/home/<user>`** and test.
-
-
-    On the second server, create a directory at **/home/dba_docs** with:
-
-    - Group ownership: **dba\_staff**
-    - Permissions: **770**, **SGID** and **sticky bits** set
-
-    Create a link in each shared user's home directory to this directory, for easy access.
-
-    Set the following ACLs:
-
-    - Read-only for jack and cindy
-    - Full permissions for marcia
-
-#### Container as service
-:   
-    As the cloud\_user user on the first server, create a persistent systemd container with the following:
-
-    - Image: **registry.access.redhat.com/rhscl/httpd-24-rhel7**
-    - Port mappings: 8080 on the container to 8000 on the host
-    - Persistent storage at **~/web_data**, mounted at **/var/www/html** in the container
-    - Container name: **web\_server**
-
-#### SELinux
-:   
-    The Apache web server on the first server won't start! Investigate this issue, and correct any other SELinux issues related to httpd that you may find.
-
-#### Firewall
-:   
-    Make sure the firewall is installed, enabled and started on both servers. Configure the following services/ports:
-
-    - Server 1:
-
-        - **ssh**
-        - **http**
-        - Port **85** (tcp)
-        - Port **8000** (tcp)
-
-    - Server 2:
-    
-        - **ssh**
-        - **nfs**
-        - **nfs3**
-        - **rpc-bind**
-        - **mountd**
-
 
 ## Commands
 
