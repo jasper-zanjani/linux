@@ -1,4 +1,3 @@
-# Manipulate network devices and virtual interfaces
 # Create new bridge
 ip link add virbr0 type bridge
 

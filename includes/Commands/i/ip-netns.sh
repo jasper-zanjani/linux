@@ -1,8 +1,3 @@
-# The RHEL8: Managing Networking course on Pluralsight by Andrew Mallett introduced the topic of netowrk namespaces 
-# with a very cool scenario. Although the scenario has absolutely no practical benefit, as far as I can tell, 
-# it still offered a chance to play around with the various commands in a synthetic way.
-
-
 # Network namespaces are mounted to /var/run/netns
 ip netns
 

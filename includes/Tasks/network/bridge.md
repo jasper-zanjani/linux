@@ -1,4 +1,8 @@
-A bridge is used to unite two or more network segments, typically used to establish communication channels between VMs, containers, and the host.
+A **bridge** connects one or more network interfaces to create a single network segment.
+Bridges operate at OSI Layer 2, meaning interfaces on bridged segments must share a single subnet.
+Bridges are typically used to establish communication channels between VMs, containers, and the host.
+
+For the purpose of virtual networking, the libvirt server must be connected to the Internet via Ethernet - a [wireless connection cannot be bridged](https://jamielinux.com/docs/libvirt-networking-handbook/bridged-network.html).
 
 Unlike the virtual bridge that Windows uses for WSL2 distributions, the bridge in Linux is strictly L2.
 That is, VMs connecting to the bridge are assigned IPs by the same DHCP server (i.e. the router) in the same subnet as that of the physical hosts.
@@ -14,9 +18,8 @@ ip link set virbr0 up
 ip link delete virbr0
 ```
 
-
-
 Adding an interface to the bridge is done by setting its master.
+
 ```sh
 ip link set enp2s0f0 master virbr0 # (1)
 ```
@@ -26,14 +29,14 @@ ip link set enp2s0f0 master virbr0 # (1)
 ip link set enp2s0f0 nomaster
 ```
 
-
 The iproute2 **bridge** utility can be used to verify the command has taken effect:
+
 ```sh
 bridge link
 ```
 
-This may interrupt network connectivity.
-In this case, the IP address must be removed from the linked interface and assigned to the bridge
+Any addresses assigned to the slaved interface must be reassigned to the bridge.
+
 ```sh
 ip address delete 192.168.1.3 dev enp2s0f0
 ip address add 192.168.1.3 dev virbr0
@@ -43,6 +46,7 @@ The default route in the routing table must also be amended.
 Note this is not the IP address of the interface but rather that of the **gateway**.
 Also note that this gateway must already have its own network segment defined.
 That is, in order for a default route to be defined at least one static route must also be defined, which is the gateway's own local subnet.
+
 ```sh
 ip route delete default
 ip route add default via 192.168.1.1

@@ -16,12 +16,12 @@ By convention, table names are specified in lowercase and chain names in upperca
 Every packet starts at the top of a chain and is matched rule by rule.
 When a match is found the specified action, called the **target**, is triggered: i.e. "DROP" or "ACCEPT".
 
-| Tables | INPUT     | OUTPUT    | FORWARD   | PREROUTING | POSTROUTING |
-| ------ | --------- | --------- | --------- | ---------- | ----------- |
-| filter | ✔&#xfe0f; | ✔&#xfe0f; | ✔&#xfe0f; |            |
-| nat    |           | ✔&#xfe0f; |           | ✔&#xfe0f;  | ✔&#xfe0f;   |
-| mangle | ✔&#xfe0f; | ✔&#xfe0f; | ✔&#xfe0f; | ✔&#xfe0f;  | ✔&#xfe0f;   |
-| raw    |           | ✔&#xfe0f; |           | ✔&#xfe0f;  |
+| Tables | INPUT            | OUTPUT           | FORWARD          | PREROUTING       | POSTROUTING      |
+| ------ | ---------------- | ---------------- | ---------------- | ---------------- | ---------------- |
+| filter | :material-check: | :material-check: | :material-check: |                  |
+| nat    |                  | :material-check: |                  | :material-check: | :material-check: |
+| mangle | :material-check: | :material-check: | :material-check: | :material-check: | :material-check: |
+| raw    |                  | :material-check: |                  | :material-check: |
 
 There are five builtin netfilter **chains**, though user-defined chains are also possible:
 
@@ -46,9 +46,9 @@ It was developed by Red Hat and [released](https://en.wikipedia.org/wiki/Network
 The config file format native to NetworkManager is the ini-format [**keyfile**](https://networkmanager.dev/docs/api/latest/nm-settings-keyfile.html){: #keyfile } stored in **/etc/NetworkManager/system-connections**.
 These files define network interfaces, or **connection profiles** in NetworkManager's terminology.
 
-#### nmcli
-:   
-    --8<-- "includes/Commands/n/nmcli.md"
+### nmcli
+
+--8<-- "includes/Commands/n/nmcli.md"
 
 #### nmtui
 :   
@@ -66,18 +66,30 @@ Ubuntu installations usually come with a single config in this location named **
 These are processed in **lexicographical order** regardless of subdirectory (unless there are multiple files with the same name).
 If a boolean or scalar parameter is defined in more than one config, the last value is assumed. Values that are sequences are concatenated.
 
-```yaml title="Default config"
-# Let NetworkManager manage all devices on this system
-network:
-    version: 2
-    renderer: NetworkManager # (1)
-```
+<div class="grid cards" markdown>
 
-1. This may require the **python3-networkmanager** package to be installed first.
+-   #### Default config
 
-```yaml title="Static IP configuration"
---8<-- "includes/Tasks/netplan-static.yaml"
-```
+    ---
+
+    ```yaml
+    # Let NetworkManager manage all devices on this system
+    network:
+        version: 2
+        renderer: NetworkManager # (1)
+    ```
+
+    1. This may require the **python3-networkmanager** package to be installed first.
+
+-   #### Static IP configuration
+
+    ---
+
+    ```yaml
+    --8<-- "includes/Tasks/netplan-static.yaml"
+    ```
+
+</div>
 
 #### netplan
 :   
@@ -175,20 +187,25 @@ bpftool map show # Display maps
     Static IP configuration varies by the network management toolset and backend presenton a system. 
     Ubuntu systems use [**Netplan**](#netplan) whereas other distributions most commonly use [**Network Manager**](#networkmanager).
 
+    <div class="grid cards" markdown>
     
-    === "Netplan"
+    -   ##### Netplan
+
+        ---
 
         ```yaml
         --8<-- "includes/Tasks/netplan-static.yaml"
         ```
     
-    === "Network Manager"
+    -   ##### Network Manager
+
+        ---
 
         ```ini
         --8<-- "includes/Tasks/networkmanager-static.ini"
         ```
 
-
+    </div>
 
 ## Commands
 
@@ -210,15 +227,13 @@ bpftool map show # Display maps
 
     --8<-- "includes/Commands/i/iptables.md"
 
-#### ip
-:   
+### ip
 
-    --8<-- "includes/Commands/i/ip.md"
+--8<-- "includes/Commands/i/ip.md"
 
-#### netcat
-:   
+### netcat
 
-    --8<-- "includes/Commands/n/netcat.md"
+--8<-- "includes/Commands/n/netcat.md"
 
 #### nft
 :   
