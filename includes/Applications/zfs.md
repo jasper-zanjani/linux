@@ -30,47 +30,88 @@ Special **support classes** of vdev such as spare, cache, log, and special repre
 
 ## Tasks
 
-#### Installation
-:   
+<div class="grid cards" markdown>
 
-    --8<-- "includes/Tasks/zfs-install.md"
+-   #### :material-download:{ .lg .middle } Installation
 
-#### Pool management
-:   
+    ---
 
-    --8<-- "includes/Tasks/zfs-pools.md"
+    === ":material-fedora: Fedora"
 
-#### Device management
-:   
+        --8<-- "includes/Tasks/zfs/zfs-install-fedora.md"
 
-    --8<-- "includes/Tasks/zfs-devices.md"
+    === ":material-arch: Arch"
 
-#### Dataset management
-:   
+        --8<-- "includes/Tasks/zfs/zfs-install-arch.md"
 
-    --8<-- "includes/Tasks/zfs-datasets.md"
+-   #### :material-harddisk:{ .lg .middle } Create pool
 
-#### Volume management
-:   
+    ---
 
-    --8<-- "includes/Tasks/zfs-volumes.md"
+    --8<-- "includes/Tasks/zfs/zfs-pool-create.md"
 
-#### Snapshot management
-:   
+-   #### :material-magnify:{ .lg .middle } Inspect pool
 
-    --8<-- "includes/Tasks/zfs-snapshots.md"
+    ---
 
-#### Migration
-:   
+    --8<-- "includes/Tasks/zfs/zfs-pool-inspect.md"
 
-    --8<-- "includes/Tasks/zfs-migration.md"
+-   #### :material-transfer:{ .lg .middle } Migrating pools
 
-#### IAM
-:   
+    ---
 
-    --8<-- "includes/Tasks/zfs-iam.md
+    --8<-- "includes/Tasks/zfs/zfs-migration.md"
 
-#### zdb
-:   
+-   #### :material-harddisk:{ .lg .middle } Add or remove devices
+
+    ---
+
+    --8<-- "includes/Tasks/zfs/zfs-disk-add.md"
+
+    --8<-- "includes/Tasks/zfs/zfs-disk-remove.md"
+
+-   #### :material-harddisk:{ .lg .middle } Replace device
+
+    ---
+
+    --8<-- "includes/Tasks/zfs/zfs-disk-replace.md"
+
+-   #### :material-harddisk:{ .lg .middle } Move device
+
+    ---
+
+    --8<-- "includes/Tasks/zfs/zfs-disk-move.md"
+
+
+-   #### :material-folder-table:{ .lg .middle } Volumes
+
+    ---
+
+    --8<-- "includes/Tasks/zfs/zfs-volumes.md"
+
+-   #### :material-folder:{ .lg .middle } Handle datasets
+
+    ---
+
+    --8<-- "includes/Tasks/zfs/zfs-datasets.md"
+
+
+-   #### :material-camera:{ .lg .middle } Snapshots
+
+    ---
+
+    --8<-- "includes/Tasks/zfs/zfs-snapshots.md"
+
+-   #### :material-account-key:{ .lg .middle } IAM
+
+    ---
+
+    --8<-- "includes/Tasks/zfs/zfs-iam.md"
+
+    #### zdb
+
+    ---
 
     --8<-- "includes/Commands/z/zdb.md"
+
+</div>
