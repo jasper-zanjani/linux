@@ -27,10 +27,90 @@ This hash is then sent back to the server, which checks the calculation.
 
 Note that the SSH server is named **openssh-server** in Ubuntu repos and the service is named **ssh**, as opposed to **sshd** on Red Hat systems.
 
+## Cryptography
 
+The SSH Transport Layer Protocol or SSH-TRANS refers to the sequence of events that occurs to establish a SSH connection.
+
+The first and most trivial step of the protocol is to agree on a protocol version.
+
+The next step of the protocol is to arrange the basic security properties of SSH as well as the session parameters used to achieve them.
+These parameters are set during the **key exchange**.
+
+
+On RHEL-derivative systems (including Fedora [since Fedora 26](https://fedoraproject.org/wiki/Changes/OpenSSH_Crypto_Policy)), system-wide cryptographic policies are set using the [crypto-policies packages](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/security_hardening/using-the-system-wide-cryptographic-policies_security-hardening).
+This policy overrides settings for a variety of applications, including OpenSSH.
+
+The policy is changed by changing the value ("LEGACY", "DEFAULT", "FUTURE", etc) in the config at **/etc/crypto-policies/config**, then updating the configuration.
+
+```sh
+sudo update-crypto-policies
+```
+
+It is possible to [opt out of system-wide cryptographic policies per application](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/security_hardening/using-the-system-wide-cryptographic-policies_security-hardening#examples-of-opting-out-of-system-wide-crypto-policies_using-the-system-wide-cryptographic-policies) using a variety of techniques.
+
+Apparently a line beginning with **`CRYPTO_POLICY=`** is to be found in the config at **/etc/sysconfig/sshd** on RHEL 8.
+
+
+**Message authentication code** (MAC) algorithms, also known as integrity-checking algorithms, can be specified after the **MACs** keyword in the server configuration.
+
+- **HMAC** (hash-based message authentication code) is a widely used algorithm that combines a cryptographic hash (message digest) with a secret key and that is used in protocols like IPsec, SSL/TLS, and SSH for message integrity verification. HMAC can be based on message digest algorithms such as MD5, SHA1, SHA256, etc.
+- **MD5** was oncely a popular MAC algorithm but is now considered weak due to its vulnerability to collision attacks
+
+```sh
+# Display available message authentication code algorithms
+ssh -Q mac # (1)
+
+# Connect to a server providing a comma-delimited list of MAC algorithms in order of preference
+ssh $SERVER -m $MACS
+```
+
+1. 
+```
+--8<-- "includes/Output/ssh-Q-mac"
+```
+
+Block cipher algorithms (or ciphers) can be specified after the **Ciphers** keyword.
+
+??? info "Naming conventions"
+
+    Nonstandard MAC algorithms are appended with a domain suffix resembling an email address (i.e. "hmac-ripemd160@openssh.com").
+
+    Ciphers use a conventional naming scheme that encodes the algorithm and variable parameters.
+    For example "cast128-12-cbc@ssh.com" refers to the CAST algorithm in 128 bit key length, 12 rounds of encryption, and using the cipher block chaining (CBC) mode of operation.
+    Like nonstandard MAC algorithms, nonstandard ciphers must also have a suffix with a leading @ character indicating the domain that defined the cipher.
+
+
+
+```sh title="Inspect available cryptographic algorithms"
+# Ciphers
+ssh -Q cipher
+
+# Host signature algorithms
+ssh -Q HostbasedAcceptedAlgorithms
+
+ssh -Q HostKeyAlgorithms
+
+# Key exchange algorithms
+ssh -Q KexAlgorithms
+
+# Public key signature authentication algorithms
+ssh -Q PubkeyAcceptedAlgorithms
+```
 
 
 ## Tasks
+
+<div class="grid cards" markdown>
+
+-   #### Connecting to a server
+
+    ---
+
+    ```sh
+    
+    ```
+
+</div>
 
 #### Port forwarding
 :   
@@ -50,6 +130,9 @@ Server and client configuration both use the same set of [keywords](https://man.
 
 ### Client configuration
 :   
+
+    By default, client configurations are stored in each user's **~/.ssh** directory, which also contains public and private key pairs.
+    This directory must have 700 permissions, and importnat files like private keys or known\_hosts must have 600.
 
     ```sh
     Host home
@@ -104,6 +187,11 @@ Server and client configuration both use the same set of [keywords](https://man.
 
     ```sh
     --8<-- "includes/Configs/sshd_config"
+    ```
+
+    ```sh
+    # Check server configuration, outputting settings to STDOUT
+    sshd -T
     ```
 
 ## Commands
