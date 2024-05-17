@@ -6,3 +6,6 @@ shuf -i x-y -r
 
 # Shuffle items separated by newline in file `cards.txt`, displaying only one 
 shuf -n 1 items.txt
+
+# Random dictionary words
+shuf -n 5 /usr/share/dict/words

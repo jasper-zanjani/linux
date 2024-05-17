@@ -22,6 +22,9 @@ awk supports a great range of regex expressions which are accepted as patterns, 
 /^north/ # (3)
 
 /^(no|so)/ # (4)
+
+# 40-hex signature of the type produced by gpg
+/[0-9|A-F]{40}/ # (5)
 ```
 
 1. 
@@ -53,12 +56,21 @@ awk supports a great range of regex expressions which are accepted as patterns, 
 --8<-- "includes/Output/datafile/03"
 ```
 5. 
-``` title="employees"
---8<-- "includes/Output/employees/00"
+```sh
+gpg --dry-run --import --quiet --no-keyring --import-options import-show $KEY \
+```
+``` title="Output" hl_lines="2"
+--8<-- "includes/Output/gpg/keysig"
+```
+```sh hl_lines="1"
+gpg --dry-run --import --quiet --no-keyring --import-options import-show $KEY \
+    | awk '/[0-9|A-F]{40}/ { print $1 }'
 ```
 ``` title="Output"
---8<-- "includes/Output/employees/05"
+--8<-- "includes/Output/gpg/keysig-awk"
 ```
+
+
 
 In fact, the **print** action, which is implied when using regex patterns, must be specified when displaying the entire contents of the file.
 
@@ -368,3 +380,15 @@ The **rand()** function generates a random value between 0 and 1 from the time o
 # Provide a seed
 BEGIN { srand($SEED) } { print rand() }
 ```
+
+??? info "Resources"
+
+    <iframe width="1095" height="596" src="https://www.youtube.com/embed/8q8DHmA9puw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <iframe width="1095" height="596" src="https://www.youtube.com/embed/2eX0scAsYJk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <iframe width="1095" height="596" src="https://www.youtube.com/embed/E5aQxIdjT0M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <iframe width="1095" height="596" src="https://www.youtube.com/embed/jJ02kEETw70" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <iframe width="1095" height="596" src="https://www.youtube.com/embed/PnDzUhmP26c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

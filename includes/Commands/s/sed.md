@@ -26,69 +26,85 @@ Addressing can be done in one of two ways:
 - **Line addressing**, specifying line numbers separated by a comma (e.g. **`3,7p`**)
 - **Context addressing**, using a regular expression enclosed by forward slashes (e.g. `/From:/p`)
 
-```sh title="Line addressing"
-# Display a range of lines: without **-n** to suppress automatic printing of pattern space, each line will be printed twice
-sed -n '1,2p' $FILE
+<div class="grid cards" markdown>
 
-# Do the same thing, this time by automatically printing all pattern space but suppressing from the third line on. $ refers to the last line
-sed '3,$d' $FILE
+-   #### Line addressing
 
-# Prepending ! to the procedure reverses the sense of the command
-sed -n '3,$!p' $FILE
+    ---
 
-# Replace functionality of head command by displaying the first 10 lines, then quitting
-sed 10q $FILE
+    ```sh
+    # Display a range of lines: without **-n** to suppress automatic printing of pattern space, each line will be printed twice
+    sed -n '1,2p' $FILE
 
-# Use -e to precede multiple instructions
-sed -n -e '1,2p' -e '7,9p' -e '$p' $FILE
+    # Do the same thing, this time by automatically printing all pattern space but suppressing from the third line on. $ refers to the last line
+    sed '3,$d' $FILE
 
-# Delete only the second line while printing all others
-sed '2d' $FILE
+    # Prepending ! to the procedure reverses the sense of the command
+    sed -n '3,$!p' $FILE
 
-# Delete a range of lines: from the 2nd through the 3rd
-sed '2,3d' $FILE
-```
+    # Replace functionality of head command by displaying the first 10 lines, then quitting
+    sed 10q $FILE
 
-```sh title="Context addressing"
-# Display only uncommented lines of a configuration
-sed -n '/^[a-z]/p' /etc/ldap.conf
-sed '/^#/d' /etc/locale.gen
+    # Use -e to precede multiple instructions
+    sed -n -e '1,2p' -e '7,9p' -e '$p' $FILE
 
-# Delete a range of lines, from the first occurrence of 'second' to the line with the first occurrence of 'fourth'
-sed '/second/,/fourth/d' myfile
+    # Delete only the second line while printing all others
+    sed '2d' $FILE
 
-# Suppress any line with 'test' in it
-sed '/test/d' myfile
+    # Delete a range of lines: from the 2nd through the 3rd
+    sed '2,3d' $FILE
+    ```
 
-# Equivalent to grep MA *
-sed -n '/MA/p' *
+-   #### Context addressing
 
-# Replace the first instance of pipe with colon and display the first two lines.
-sed 's/|/:/ emp.lst' | head -2
+    ---
 
-# Substitute HTML tags:
-sed 's/<I>/<EM>/g'
+    ```sh title="Context addressing"
+    # Display only uncommented lines of a configuration
+    sed -n '/^[a-z]/p' /etc/ldap.conf
+    sed '/^#/d' /etc/locale.gen
 
-# Replace "director" with "executive director"
-sed 's/director/executive director/' emp.lst
-sed 's/director/executive &/' emp.lst
-sed '/director/s//executive &/' emp.lst
+    # Delete a range of lines, from the first occurrence of 'second' to the line with the first occurrence of 'fourth'
+    sed '/second/,/fourth/d' myfile
 
-# Replace angle brackets with their HTML codes, piped in from a heredoc:
-sed -e 's/</\&lt;/g' -e 's/>/\&gt;/g' << EOF
-```
+    # Suppress any line with 'test' in it
+    sed '/test/d' myfile
 
-```sh title="Piping sed statements together"
-# Take lines beginning with "fake" and remove all instances of "fake.", piping them... remove all parentheses with content and count lines of output (results)
-sed -n '/^fake/s/fake\.//p' * | sed -nr 's/\(.*\)//p' | wc -l
+    # Equivalent to grep MA *
+    sed -n '/MA/p' *
 
-# Take lines of all files in CWD beginning with "fake" and remove all instances of string "fake." Then remove all parentheses with any content within them and print only the top 10 lines
-sed -ne '/^fake/p' * | sed -n 's/fake\.//p' | sed -nr 's/\(.*\)//p' | sed 11q
+    # Replace the first instance of pipe with colon and display the first two lines.
+    sed 's/|/:/ emp.lst' | head -2
 
-# Count the number of pipes replaced by piping output to `cmp`, which will use the `-l` option to output byte numbers of differing values, then counting the lines of output (YUG:456)
-sed 's/|/:/g' emp.lst | cmp -l - emp.lst | wc -l
+    # Substitute HTML tags:
+    sed 's/<I>/<EM>/g'
 
-# Display the top 10 processes by memory or cpu usage.
-ps axch -o cmd,%mem --sort=-%mem | sed 11q
-ps axch -o cmd:15,%cpu --sort=-%cpu | sed 11q
-```
+    # Replace "director" with "executive director"
+    sed 's/director/executive director/' emp.lst
+    sed 's/director/executive &/' emp.lst
+    sed '/director/s//executive &/' emp.lst
+
+    # Replace angle brackets with their HTML codes, piped in from a heredoc:
+    sed -e 's/</\&lt;/g' -e 's/>/\&gt;/g' << EOF
+    ```
+
+-   #### Piping statements together
+
+    ---
+
+    ```sh
+    # Take lines beginning with "fake" and remove all instances of "fake.", piping them... remove all parentheses with content and count lines of output (results)
+    sed -n '/^fake/s/fake\.//p' * | sed -nr 's/\(.*\)//p' | wc -l
+
+    # Take lines of all files in CWD beginning with "fake" and remove all instances of string "fake." Then remove all parentheses with any content within them and print only the top 10 lines
+    sed -ne '/^fake/p' * | sed -n 's/fake\.//p' | sed -nr 's/\(.*\)//p' | sed 11q
+
+    # Count the number of pipes replaced by piping output to `cmp`, which will use the `-l` option to output byte numbers of differing values, then counting the lines of output (YUG:456)
+    sed 's/|/:/g' emp.lst | cmp -l - emp.lst | wc -l
+
+    # Display the top 10 processes by memory or cpu usage.
+    ps axch -o cmd,%mem --sort=-%mem | sed 11q
+    ps axch -o cmd:15,%cpu --sort=-%cpu | sed 11q
+    ```
+
+</div>
