@@ -1,11 +1,22 @@
-RPM packages depend on [**spec** files](https://rpm-packaging-guide.github.io/#hello-world) (1). 
-Running **rpmdev-setuptree** (from the **rpmdevtools** package) builds a tree of directories in $HOME (2) which are used by **rpmbuild** (**rpm-build** package) to build the RPM package and place it in this rpmbuild directory (3).
+RPM packages depend on [**spec** files](https://rpm-packaging-guide.github.io/#hello-world). (1)
 { .annotate }
 
 1. 
 ``` title="Helo, World! spec file"
 --8<-- "includes/Configs/hello-world.spec"
 ```
+
+Spec files use template expressions called **macros**.
+
+[**%{buildroot}**](https://rpm-packaging-guide.github.io/#buildroots) points to the root directory
+
+```sh
+mkdir -p %{buildroot}/usr/bin/
+```
+
+Running **rpmdev-setuptree** (from the **rpmdevtools** package) builds a tree of directories in $HOME (2) which are used by **rpmbuild** (**rpm-build** package) to build the RPM package and place it in this rpmbuild directory (3).
+{ .annotate }
+
 2. 
 ``` title="Directory tree under $HOME"
 rpmbuild
