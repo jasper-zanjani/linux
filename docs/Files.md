@@ -61,6 +61,9 @@
     --8<-- "includes/Commands/l/locate.md"
 
 
+#### mkdir
+:   
+    --8<-- "includes/Commands/m/mkdir.md"
 
 #### mv
 :   
