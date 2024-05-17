@@ -58,16 +58,9 @@
 
 #### locate
 :   
-    ```sh title="Install"
-    # Ubuntu
-    apt install -y plocate
+    --8<-- "includes/Commands/l/locate.md"
 
-    # Arch
-    pacman -S mlocate
 
-    # RHEL
-    dnf install -y mlocate
-    ```
 
 #### mv
 :   
