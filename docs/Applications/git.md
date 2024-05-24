@@ -189,8 +189,8 @@ git revert $COMMIT
     # List all configuration (includes directive in global .gitconfig)
     git config --list
 
-    # Store authentication details in a cache (2)
-    git config --global credential.helper cache
+    # Store authentication details in the credential store (2)
+    git config --global credential.helper store
 
     # Set up alias "br" for branch (1)
     git config --system alias.br branch
@@ -429,3 +429,17 @@ git revert $COMMIT
     # Pipe a list of commit IDs to tig
     git rev-list --author=olaf HEAD | tig show --stdin
     ```
+
+#### Credentials
+:   
+    Once an access token has been generated in a git provider like GitHub, it must be entered as the password.
+
+    If the [**credential store**](https://git-scm.com/docs/git-credential-store) has been enabled, credentials can be stored on-disk.
+
+    ```ini
+    [credential]
+      helper = store
+    ```
+
+    These credentials are stored in plaintext at **~/.git-credentials**.
+    If the token expires and must be changed, this file must be deleted before git will prompt for the new password again.
