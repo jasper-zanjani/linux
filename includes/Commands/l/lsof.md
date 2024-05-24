@@ -1,5 +1,4 @@
-**lsof**{: #lsof }
-:   Show open network connections
-    ```sh
-    sudo lsof -Pni
-    ```
+```sh
+# Show open network connections
+sudo lsof -Pni
+```

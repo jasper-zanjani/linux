@@ -11,6 +11,10 @@ Maybe I could extend the markdown language plugin to incorporate mkdocs and pymd
 
 -->
 
+??? info "Resources"
+
+    - [Damian Conway - More Instantly Better Vim - OSCON 2013](https://youtu.be/aHm36-na4-4)
+
 
 Unlike WYSIWYG editors which optimize input for writing text, vim optimizes for editing it.
 Vim offers a **composable** language for expressing these editing changes whose syntax can be composed into two elements, **operations** and **text objects**, which are analogous to **verbs** and **nouns** in language.
@@ -19,6 +23,12 @@ The framework of understanding vim's syntax as a language appears to date back t
 
 On Unix-derived operating systems the main config file for Vim is placed at **$HOME/.vimrc**.
 On Windows it is placed at **$HOME/\_vimrc**.
+
+## Commands
+
+- **U** uppercase
+- **u** lowercase
+- **~** toggle uppercase/lowercase per character
 
 ## Syntax
 
@@ -38,9 +48,14 @@ There are two kinds of keybindings in Vim
 There are two types of keycodes:
 
 - [**Vim keycodes**](https://vim.fandom.com/wiki/Mapping_fast_keycodes_in_terminal_Vim) which are identifiable as being in angle brackets: `<Space>`, `<Return>`, etc
-- [**Terminal keycodes**](https://wiki.archlinux.org/index.php/Keyboard_input#Identifying_keycodes_in_Xorg) that appear similar to `^[[1;2A`. These may or may not be identifiable with the **keycodes** which the Linux kernel maps to raw keyboard **scancodes**. <sup>[ref][archwiki:Keyboard_input]</sup>
+- [**Terminal keycodes**](https://wiki.archlinux.org/index.php/Keyboard_input#Identifying_keycodes_in_Xorg) that appear similar to `^[[1;2A`. These may or may not be identifiable with the **keycodes** which the Linux kernel maps to raw keyboard **scancodes**.
 
-The **leader** key is used to create more complicated keybindings using any arbitrary keypress, for example using `,` or `<Space>`.
+The **leader** key (++backslash++ by default) is used to create more complicated keybindings using any arbitrary keypress, for example using ++comma++ or ++space++.
+
+```vim
+" Set Leader f to format the document
+nnoremap <Leader>f gg=G
+```
 
 ```vim
 let mapleader = ' '
@@ -52,20 +67,18 @@ let mapleader = ' '
     Autocommands expose an API that allows handling editor events like `BufNewFile`, `BufReadPost`, `BufWritePost`, `BufWinLeave`, and especially to implement functionality specific to filetypes.
 
 
-    Highlight added lines in green and removed lines in red in .diff files [<sup>:material-play:</sup>](https://youtu.be/aHm36-na4-4?t=690 "Damian Conway, \"More Instantly Better Vim\" - OSCON 2013")
 
     ```vim
+    " Highlight added lines in green and removed lines in red in .diff files
     filetype on
-
     augroup PatchDiffHighlight
     autocmd!
     autocmd FileType diff syntax enable
     augroup END
     ```
 
-    Turn syntax highlighting on only for certain filetypes [<sup>:material-play:</sup>](https://youtu.be/aHm36-na4-4?t=690 "Damian Conway, \"More Instantly Better Vim\" - OSCON 2013")
-
     ```vim
+    " Turn syntax highlighting on only for certain filetypes
     augroup PatchDiffHighlight
     autocmd!
     autocmd BufEnter *.patch,*.rej,*.diff syntax enable
@@ -73,13 +86,13 @@ let mapleader = ' '
     ```
 
     ```vim title="Color"
-    ; Change the color of ELEMENT
+    " Change the color of ELEMENT
     highlight ELEMENT ctermfg=COLOR ctermbg=COLOR guifg=#abc123 guibg=#abc123
 
-    ; Select alternative colorschemes
+    " Select alternative colorschemes
     :colo[rscheme] <tab>
 
-    ; Display all available colorschemes
+    " Display all available colorschemes
     :colo <C-d>
 
     " Clear custom color commands
