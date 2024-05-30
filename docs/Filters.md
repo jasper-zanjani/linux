@@ -264,6 +264,15 @@ Often these commands are combined by piping from one to the other.
     --8<-- "includes/Commands/p/paste.sh"
     ```
 
+-   #### pr
+
+    ---
+
+    ```sh
+    # Display the contents of two files side by side.
+    pr -w $COLUMNS -m -t $FILE_LEFT $FILE_RIGHT
+    ```
+
 -   #### sort
 
     ---
