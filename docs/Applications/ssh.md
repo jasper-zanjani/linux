@@ -124,7 +124,21 @@ ssh -Q PubkeyAcceptedAlgorithms
 :   
     --8<-- "includes/Tasks/fail2ban.md"
 
-### Configuration
+#### Login messages
+
+There are two messages that can be displayed to the remote user upon initiating a SSH session: the **banner** and the **message of the day**.
+
+The banner can be suppressed in recent versions of OpenSSH using **-q** or by modifying the **LogLevel**
+
+```sh
+# Suppress the banner
+ssh -q $SERVER
+ssh -o 'LogLevel=QUIET' $SERVER
+```
+
+In order to suppress the message of the day, create an empty file at **~/.hushlogin**
+
+## Configuration
 
 Server and client configuration both use the same set of [keywords](https://man.openbsd.org/ssh_config) that can be defined inline on invocation or in config files.
 
