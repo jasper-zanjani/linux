@@ -1,5 +1,4 @@
 site/**
 **.bz2
-.vscode/**
 **/.nfs*
 .env
