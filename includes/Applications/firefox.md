@@ -19,3 +19,15 @@ This is [apparently due](https://www.reddit.com/r/firefox/comments/w68e0i/issues
 ```sh
 dnf install ffmpeg-free
 ```
+
+#### Developer tools
+
+<div class="grid cards" markdown>
+
+-   #### Network
+
+    ---
+
+    The network tab can be used to retrieve an authorization token from the request header of a logged-in webapp, like [Discord](https://github.com/diamondburned/dissent).
+
+</div>
