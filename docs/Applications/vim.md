@@ -2,14 +2,7 @@
 [Oualline]: http://sci.notbc.org/~weiss/resources/vim/Vim-course/others/vim-1.0.pdf "Oualline, Steve. _The Vim Book_. 2007."
 [https://youtu.be/wlR5gYd6um0]: https://youtu.be/wlR5gYd6um0 "Mastering the Vim Language"
 
-# vim
-
-<!-- 
-
-It would be nice to develop a course about various vim configs and language definitions.
-Maybe I could extend the markdown language plugin to incorporate mkdocs and pymdownx syntax.
-
--->
+# Vim
 
 ??? info "Resources"
 
@@ -100,13 +93,56 @@ let mapleader = ' '
     :hi clear
     ```
 
-
     ```vim
     " Set file format to Unix/DOS
     :set fileformat=unix
     :set fileformat=dos
     ```
 
+    ```vim
+    " Set indentation behavior specific to YAML
+    autocmd FileType yaml setlocal ai ts=2 sw=2 et
+    ```
+
+<div class="grid cards" markdown>
+
+-   #### Colors
+
+    ---
+
+    Element colors are changed using **hi\[light\]**.
+
+    ```vim
+    " Change comments to use the Grey terminal color
+    highlight Comment ctermfg=Grey
+
+    " Change color of whitespace (made visible with list)
+    hi Whitespace ctermfg=DarkGrey
+
+    ```
+
+-   #### Formatting characters
+
+    ---
+
+    ```vim
+    " Toggle visibilty of formatting characters (whitespace, etc)
+    set list!
+
+    " Customize characters displayed to represent classes of formatting characters
+    set listchars=space:·
+    ```
+
+    List characters are governed by the **SpecialKey** highlight group, although other groups like **Whitespace** also appear to work.
+
+    The tilde character used to fill lines at the end of files is its own highlight group, although it usually links to NonText.
+
+    ```vim
+    highlight EndOfBuffer ctermfg=Black
+    ```
+
+
+</div>
 
 #### Completion
 
@@ -116,92 +152,118 @@ let mapleader = ' '
 
 ## Tasks
 
-```sh title="Invocation"
-# Open with cursor at line 13
-vim .bashrc +13
-```
+<div class="grid cards" markdown>
 
-```vim title="Configuration"
-" Prevent vim from creating backups files
-set nobackup
+-   #### Invocation
 
-" Set relative line numbers
-set rnu
+    ---
 
-" Line wrapping
-set wrap
+    ```sh
+    # Open with cursor at line 13
+    vim .bashrc +13
+    ```
 
-" Mouse support
-set mouse=a
-```
+-   #### Search and replace
 
-
-```vim title="Search and replace"
-" Replace foo with bar across all lines, wherever they occur
-%s/foo/bar/g
-```
-
-```vim title="Mapping keys"
-" Map ++alt+j++ and ++alt+k++ to move lines of text up or down
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
-```
-
-
-#### Yanking STDOUT 
-:   
-    To run a shell command from the normal mode command line, you simply run the `!` (["bang"](https://learnvimscriptthehardway.stevelosh.com/chapters/52.html)) command in normal mode.
+    ---
 
     ```vim
-    :!env
+    " Replace foo with bar across all lines, wherever they occur
+    %s/foo/bar/g
+    ```
+
+    ```vim
+    " Turn off search highlighting
+    noh " nohlsearch
+
+    " Clear last used search pattern
+    let @/ = ""
+    ```
+
+
+-   #### Configuration
+
+    ---
+
+    ```vim
+    set nobackup        " Prevent vim from creating backups files
+    set relativenumber  " Set relative line numbers
+    set number          " Set current line number to be displayed
+    set wrap            " Line wrapping
+    set linebreak       " Line wrapping without breaking words
+    set mouse=a         " Mouse support
+    ```
+
+-   #### Mapping keys
+
+    ---
+
+    ```vim
+    " Map ++alt+j++ and ++alt+k++ to move lines of text up or down
+    execute "set <M-j>=\ej"
+    execute "set <M-k>=\ek"
+    nnoremap <A-j> :m .+1<CR>==
+    nnoremap <A-k> :m .-2<CR>==
+    inoremap <A-j> <Esc>:m .+1<CR>==gi
+    inoremap <A-k> <Esc>:m .-2<CR>==gi
+    vnoremap <A-j> :m '>+1<CR>gv=gv
+    vnoremap <A-k> :m '<-2<CR>gv=gv
+    ```
+
+-   #### Yanking STDOUT 
+
+    ---
+
+    To run a shell command from the normal mode command line, you simply run the **!** command (["bang"](https://learnvimscriptthehardway.stevelosh.com/chapters/52.html)) in normal mode.
+
+    ```vim
+    !env
     ```
 
     However to [store the output of that command into a register](https://stackoverflow.com/questions/1694392/vim-store-output-of-external-command-into-a-register), you must run a command like the following, which stores the output of the shell command into the **a** register.
 
     ```vim
-    :let @a = system('env')
+    let @a = system('env')
     ```
     The register signified by **@"** will be placed into the buffer by the **put** command (++p++).
 
     ```vim
-    :let @" = system('env')
+    let @" = system('env')
+
+    " Alternatively
+    put =system('env')
     ```
 
-    Alternatively
+-   #### Yanking to clipboard
 
-    ```vim
-    :put =system('env')
-    ```
+    ---
 
-#### Filetype-associated settings
-:   
-    ```vim title="Set indentation behavior specific to YAML"
-    autocmd FileType yaml setlocal ai ts=2 sw=2 et
-    ```
+    Vi requires the **+clipboard** feature flag for it to integrate with the system keyboard
     
-#### Plugins
-:   
-    Vim 8 supports native loading of plugins (put in **$HOME/.vim/pack/start/**
+    ```vimrc
+    " Check for +clipboard feature flag
+    echo has('clipboard') " => 0
+    ```
+
+-   #### Plugins
+
+    ---
+
+    Vim 8 supports native loading of plugins (put in **$HOME/.vim/pack/start/**)
 
     [vim-plug](https://github.com/junegunn/vim-plug) is a popular plugin manager.
 
 
     Install a plugin to provide [Rust language support](https://github.com/rust-lang/rust.vim)
+
     ```vim
     Plug 'rust-lang/rust.vim'
     ```
 
-#### Mouse support
-:   
-    ```vim
-    ```
+-   #### Language definition
 
-#### Language definition
-:   
+    ---
+
     Syntax highlighting for various languages are stored in **syntax files**, stored in **/usr/share/vim/vim82/syntax**.
 
     Defining highlighting for pymdownx [snippets](https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/?h=snippet#snippets)
@@ -215,14 +277,30 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
     However, the open angle bracket does not.
 
 
-#### Splits
-:   
+-   #### Splits
+
+    ---
+
     Panes are referred to as "splits" and are controlled by a variety of [bindings](https://vimtricks.com/p/vim-move-split/).
 
-#### Tabs
-:   
+-   #### Tabs
+
+    ---
+
     **tabedit** will open a file in a new tab, relative to the working directory from which vim was invoked
     **tabnext** or **tabn** will navigate to a specified tab number.
     The motion commands **gt** and **gT** will navigate to the next or previous tabs.
     Like other motion commands a number can be prepended to the motion to move a greater number of tabs.
     **tabmove** moves a tab to a specified position number.
+
+-   #### Markdown
+
+    ---
+
+    Reformat a section of markdown with [pandoc](https://www.reddit.com/r/vim/comments/10q8f4f/tip_reformat_a_markdown_table/)
+
+    ```sh
+    :'<,'>!pandoc -t commonmark_x
+    ```
+
+</div>

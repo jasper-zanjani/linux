@@ -61,81 +61,96 @@ openssl x509 -text -in /etc/pki/entitlement/9012345678901234567.pem
     subscription-manager repos --disable rhel-7-server-devtools-rpms --disable rhel-server-rhscl-7-rpms
     ```
 
+    ```sh title="Install EPEL"
+    # Enable CodeReady Linux Builder repository
+    subscription-manager repos --enable codeready-builder-for-rhel-9-$(arch)-rpms
+
+    # Install the EPEL RPM
+    dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+    ```
+
 ## In-place upgrades
 
 Red Hat recommends the use of the **leapp** utility to upgrade to a higher major version [in-place](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/upgrading_from_rhel_7_to_rhel_8/index#performing-the-upgrade-from-rhel-7-to-rhel-8_upgrading-from-rhel-7-to-rhel-8).
 
+=== "RHEL 7"
 
-```sh title="RHEL 7 to RHEL 8"
-# Update packages and reboot
-yum update -y
-shutdown -r 0
+    === "RHEL 8"
 
-# On a fresh install this repo is not enabled
-subscription-manager repos --enable rhel-7-server-extras-rpms
+        ```sh
+        # Update packages and reboot
+        yum update -y
+        shutdown -r 0
 
-# Install leapp upgrade package (this package apparently doesn't show up in a search)
-yum install -y leapp-upgrade
+        # On a fresh install this repo is not enabled
+        subscription-manager repos --enable rhel-7-server-extras-rpms
 
-# Run preupgrade checks
-sudo leapp preupgrade # (1)
+        # Install leapp upgrade package (this package apparently doesn't show up in a search)
+        yum install -y leapp-upgrade
 
-# Remove the kernel modules which have bene removed in RHEL 8
-rmmod pata_acpi floppy
+        # Remove the kernel modules which have bene removed in RHEL 8
+        rmmod pata_acpi floppy
 
-# Permit root SSH acces (run as root or use tee)
-echo PermitRootLogin yes >> /etc/ssh/sshd_config
+        # Permit root SSH acces (run as root or use tee)
+        echo PermitRootLogin yes >> /etc/ssh/sshd_config
 
-# Confirm removal of the PAM PKCS#11 module in leapp's answerfile
-sudo leapp answer --section remove_pam_pkcs11_module_check.confirm=True
+        # Run preupgrade checks (must be run once before providing answers)
+        sudo leapp preupgrade # (1)
 
-# Confirm all issues are resolved
-sudo leapp preupgrade # (2)
+        # Confirm removal of the PAM PKCS#11 module in leapp's answerfile
+        sudo leapp answer \
+            --section remove_pam_pkcs11_module_check.confirm=True \
+            --section authselect_check.confirm=True 
 
-# Run upgrade
-sudo leapp upgrade
-```
+        # Confirm all issues are resolved
+        sudo leapp preupgrade # (2)
 
-1. 
-``` title="Output"
---8<-- "includes/Output/leapp/preupgrade0"
-```
-2. 
-``` title="Output"
---8<-- "includes/Output/leapp/preupgrade1"
-```
+        # Run upgrade
+        sudo leapp upgrade
+        ```
 
-```sh title="CentOS 7 to Rocky"
-# Install the elevation-release package
-sudo yum install -y http://repo.almalinux.org/elevate/elevate-release-latest-el$(rpm --eval %rhel).noarch.rpm
+        1. 
+        ``` title="Output"
+        --8<-- "includes/Output/leapp/preupgrade0"
+        ```
+        2. 
+        ``` title="Output"
+        --8<-- "includes/Output/leapp/preupgrade1"
+        ```
 
-# Install Leapp migration data packages for Rocky Linux and the upgrade utility
-sudo yum install -y leapp-upgrade leapp-data-rocky
+    === "Rocky Linux"
 
-# Run preupgrade checks
-sudo leapp preupgrade
+        ```sh
+        # Install the elevation-release package
+        sudo yum install -y http://repo.almalinux.org/elevate/elevate-release-latest-el$(rpm --eval %rhel).noarch.rpm
 
-# Remove the pata_acpi kernel module
-sudo rmmod pata_acpi
+        # Install Leapp migration data packages for Rocky Linux and the upgrade utility
+        sudo yum install -y leapp-upgrade leapp-data-rocky
 
-# Permit root SSH acces (run as root or use tee)
-echo PermitRootLogin yes >> /etc/ssh/sshd_config
+        # Run preupgrade checks
+        sudo leapp preupgrade
 
-# Confirm removal of the PAM PKCS#11 module in leapp's answerfile
-sudo leapp answer --section remove_pam_pkcs11_module_check.confirm=True
+        # Remove the pata_acpi kernel module
+        sudo rmmod pata_acpi
 
-# Confirm all issues are resolved
-sudo leapp preupgrade
+        # Permit root SSH acces (run as root or use tee)
+        echo PermitRootLogin yes >> /etc/ssh/sshd_config
 
-# Run upgrade
-sudo leapp upgrade
+        # Confirm removal of the PAM PKCS#11 module in leapp's answerfile
+        sudo leapp answer --section remove_pam_pkcs11_module_check.confirm=True
 
-# Reboot the machine
-reboot
-```
+        # Confirm all issues are resolved
+        sudo leapp preupgrade
 
-On boot, select the option to upgrade initramfs.
-After several more additional reboots, the GRUB entries will reappear.
+        # Run upgrade
+        sudo leapp upgrade
+
+        # Reboot the machine
+        reboot
+        ```
+
+        On boot, select the option to upgrade initramfs.
+        After several more additional reboots, the GRUB entries will reappear.
 
 
 ??? info "CPU support"

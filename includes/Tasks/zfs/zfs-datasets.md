@@ -33,6 +33,8 @@ zfs set acme:disksource=vendorname
 
 ##### :material-content-copy:{ .lg .middle } Copy
 
+A dataset can be copied using [**zfs clone**](https://docs.oracle.com/cd/E19253-01/819-5461/gbcxz/index.html) (note that the source must be a snapshot).
+
 ```sh
 zfs clone tank/dataset@snapshot tank/newdataset
 ```

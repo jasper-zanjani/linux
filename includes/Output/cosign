@@ -1,0 +1,8 @@
+
+Verification for docker.elastic.co/elasticsearch/elasticsearch:8.14.1 --
+The following checks were performed on each of these signatures:
+  - The cosign claims were validated
+  - Existence of the claims in the transparency log was verified offline
+  - The signatures were verified against the specified public key
+
+[{"critical":{"identity":{"docker-reference":"docker.elastic.co/elasticsearch/elasticsearch"},"image":{"docker-manifest-digest":"sha256:03ee4816f20c429ba83d000a0e202d8beaee5041a6db19bf5c0f892dc96ac236"},"type":"cosign container image signature"},"optional":{"Bundle":{"SignedEntryTimestamp":"MEUCIGCx8RqVllWcu0gx2E6MYUiCzLs5QNJtg13LLCfc9cQPAiEAk50pvYt6DkvtT1AEpMqBy0S5fYAL2WccFHv4U3BywCs=","Payload":{"body":"eyJhcGlWZXJzaW9uIjoiMC4wLjEiLCJraW5kIjoiaGFzaGVkcmVrb3JkIiwic3BlYyI6eyJkYXRhIjp7Imhhc2giOnsiYWxnb3JpdGhtIjoic2hhMjU2IiwidmFsdWUiOiIwNTU0ZTdmNTk1M2MxYzI5YzRhNTc1YmFhZTY3MjM1ODVmYjc2NzcyNTA3MzU1N2JiZjFjMDNkZGUyNDQwYjliIn19LCJzaWduYXR1cmUiOnsiY29udGVudCI6Ik1FWUNJUUNqN08vK21aL0dJYXJGMHZWV0h2NHRPb3dDMzFwQUt6TWQrVnBzYVVhTWxnSWhBTG9QT1g2T0NkSDFFSHBFcjRZOXRGeHE5dUx1enhBM1NNUUU0cWxHL3V4NSIsInB1YmxpY0tleSI6eyJjb250ZW50IjoiTFMwdExTMUNSVWRKVGlCUVZVSk1TVU1nUzBWWkxTMHRMUzBLVFVacmQwVjNXVWhMYjFwSmVtb3dRMEZSV1VsTGIxcEplbW93UkVGUlkwUlJaMEZGY1ZaMlRtUlJkR1JrZEdWdGRtWmpWV1V5VGpCbloxZ3ZjSFJxYVFwRlZYRjRlakp3UkZVM1ZWYzFiVE53WkcxSU1UTnJUVXR3ZURselJqUjJWVFZLVDJVM1ZYSXJSazVJVERkaFlXaE1hbWRIWXpBNGRXUkJQVDBLTFMwdExTMUZUa1FnVUZWQ1RFbERJRXRGV1MwdExTMHRDZz09In19fX0=","integratedTime":1718198274,"logIndex":102013243,"logID":"c0d23d6ad406973f9559f3ba2d1ca01f84147d8ffc5b8445c224f98b9591801d"}},"tag":"8.14.1"}}]

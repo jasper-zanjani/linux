@@ -12,114 +12,154 @@ dnf history
 dnf history userinstalled 
 ```
 
-```sh title="dnf swap"
---8<-- "includes/Commands/d/dnf-swap.sh"
-```
+=== "clean"
 
-The **download** subcommand (provided by the **dnf-plugins-core** package) allows the RPMs to be downloaded without automatic installation.
+    ```sh
+    # Remove cached packages
+    dnf clean packages
 
-```sh title="dnf download"
-dnf download rsync
+    dnf clean all
+    ```
 
-dnf download --source rsync
-```
+=== "copr"
 
-##### Groups
+    Packages in [Copr](https://copr.fedorainfracloud.org/) repositories do not need to follow Fedora Packaging Guidelines.
 
-[**Package groups**](https://docs.fedoraproject.org/en-US/quick-docs/getting-started-with-virtualization/) can be specified using the **group** command.
+    ```sh
+    # Install lazygit
+    dnf copr enable atim/lazygit -y
+    dnf install lazygit
+    ```
 
+=== "download"
 
-```sh title="dnf group"
-dnf group info virtualization # (1)
+    The **download** subcommand (provided by the **dnf-plugins-core** package) allows the RPMs to be downloaded without automatic installation.
 
-dnf group install virtualization
+    ```sh
+    dnf download rsync
 
-# Include optional packages
-dnf group install --with-optional virtualization
-```
+    dnf download --source rsync
+    ```
 
-1. Package groups can also be specified by prefixing the package group name with **@** (only if the group name doesn't have a space in it).
-```sh title="Alternative"
-dnf info @virtualization
+=== "group"
 
-dnf install @virtualization
+    ```sh
+    # Specify package groups with the group command
+    dnf group info virtualization # (1)
 
-dnf install --with-optional @virtualization
-```
+    dnf group install virtualization
 
-Remove the configuration backend supporting the use of legacy ifcfg files in NetworkManager.
+    # Include optional packages
+    dnf group install --with-optional virtualization
+    ```
 
-```sh title="dnf remove"
-dnf remove NetworkManager-initscripts-ifcfg-rh
-```
+    1. Package groups can also be specified by prefixing the package group name with **@** (only if the group name doesn't have a space in it).
 
+    ```sh title="Alternative"
+    dnf info @virtualization
 
+    dnf install @virtualization
 
-## Repositories
+    dnf install --with-optional @virtualization
+    ```
+
+=== "remove"
+
+    ```sh title="dnf remove"
+    # Remove the configuration backend supporting the use of legacy ifcfg files in NetworkManager.
+    dnf remove NetworkManager-initscripts-ifcfg-rh
+    ```
+
+=== "swap"
+
+    ```sh
+    --8<-- "includes/Commands/d/dnf-swap.sh"
+    ```
+
+=== "system-upgrade"
+
+    ```sh
+    --8<-- "includes/Commands/d/dnf-system-upgrade.sh"
+    ```
+---
 
 **Repositories** are INI files placed in  **/etc/yum.repos.d/**, but they can also be displayed and manipulated from the command-line.
 
-```sh title="Repositories"
-# Display repos
-dnf repolist # -v
-
-# Display enabled repos
-dnf repolist --enabled
-
-# Display a single repo
-dnf repoinfo docker-ce-stable
-
-# Add repo
-dnf config-manager --add-repo $REPOURL
-
-# Disable repo
-dnf config-manager --set-disabled $REPONAME
-
-# Enable repo (in this case a preexisting repo kept disabled by default)
-dnf config-manager --enable zfs-testing
-```
-
-#### Example repos
-
 <div class="grid cards" markdown>
 
--   ##### Kubernetes
+-   #### Handle repos
 
     ---
 
-    ```ini
-    --8<-- "includes/Config/dnf/kubernetes.repo"
-    ```
+    ```sh
+    # Display repos
+    dnf repolist # -v
 
--   ##### gcloud CLI
+    # Display enabled repos
+    dnf repolist --enabled
+
+    # Display a single repo
+    dnf repoinfo docker-ce-stable
+
+    # Add repo
+    dnf config-manager --add-repo $REPOURL
+
+    # Disable repo
+    dnf config-manager --set-disabled $REPONAME
+
+    # Enable repo (in this case a preexisting repo kept disabled by default)
+    dnf config-manager --enable zfs-testing
+    ```
 
     ---
 
-    ```
-    --8<-- "includes/Config/dnf/google-cloud-sdk.repo"
-    ```
+    #### GPG key management
+
+    ---
+
+    --8<-- "includes/Commands/d/dnf-gpg.md"
+
+
+-   #### Example repos
+
+    === "Kubernetes"
+
+        ```ini
+        --8<-- "includes/Configs/dnf/kubernetes.repo"
+        ```
+
+    === "gcloud CLI"
+
+        ```ini
+        --8<-- "includes/Configs/dnf/google-cloud-sdk.repo"
+        ```
+
+    Some [yum variables](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/deployment_guide/sec-using_yum_variables) can be used in repository definitions:
+
+    - **$basearch** resolves to the base architecture of the system, equivalent to the output of `uname -m` (i.e. **x86\_64** in most cases)
+    - **$releasever** refers to the release version of RHEL, for example **9Client** or **8Server**
+
+    Custom yum variables can be placed in **/etc/yum/vars**: the variable identifier will follow the filename.
+
+    === "docker"
+
+        ```ini hl_lines="3"
+        --8<-- "includes/Configs/dnf/docker-ce-stable.repo"
+        ```
+
+    === "nexus-couchdb"
+
+        ```ini hl_lines="5 7"
+        --8<-- "includes/Configs/dnf/nexus-couchdb.repo"
+        ```
+
+        1. 
+        ``` title="/etc/yum/vars/nexussrc"
+        nexus01.st.pods.com
+        ```
+
 
 </div>
-
-Some [yum variables](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/deployment_guide/sec-using_yum_variables) can be used in repository definitions:
-
-- **$basearch** resolves to the base architecture of the system, equivalent to the output of `uname -m` (i.e. **x86\_64** in most cases)
-- **$releasever** refers to the release version of RHEL, for example **9Client** or **8Server**
-
-```ini hl_lines="3"
---8<-- "includes/Config/dnf/docker-ce-stable.repo"
-```
-
-Custom yum variables can be placed in **/etc/yum/vars**: the variable identifier will follow the filename.
-
-```ini hl_lines="5 7"
---8<-- "includes/Configs/dnf/nexus-couchdb.repo"
-```
-
-1. 
-``` title="/etc/yum/vars/nexussrc"
-nexus01.st.pods.com
-```
 
 ## Tasks
 
@@ -145,7 +185,10 @@ nexus01.st.pods.com
     dnf config-manager --dump
     ```
 
+
 -   #### Modules
+
+    ---
 
     [**Modules**](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/installing_managing_and_removing_user-space_components/introduction-to-modules_using-appstream) are special package groups representing an application, runtime, or a set of tools that are installed together. 
     These are made available on the AppStream repository on RHEL.
@@ -174,14 +217,6 @@ nexus01.st.pods.com
     nodejs         16             common [d], development, minimal         Javascript runtime      
     ```
 
--   #### Building packages
-
-    ---
-
-    ```sh
-    # Build package dependencies
-    dnf builddep package.spec
-    ```
 
 -   #### System upgrade
 
@@ -190,12 +225,7 @@ nexus01.st.pods.com
     Packages are downloaded into subdirectories of **/var/lib/dnf/system-upgrade**
 
     ```sh
-    dnf system-upgrade download --releasever 38
-
-    dnf system-upgrade reboot
-
-    # Show logs from last upgrade attempt
-    dnf system-upgrade log --number=1
+    --8<-- "includes/Commands/d/dnf-system-upgrade.sh"
     ```
 
     ??? info "system-upgrade plugin"
@@ -206,4 +236,38 @@ nexus01.st.pods.com
         - offline-upgrade
         - offline-distrosync
 
+
+-   #### Others
+
+    ---
+
+    ```sh title="Inspect repos"
+    dnf repolist
+
+    # repoinfo is actually an alias for repolist -v
+    dnf repoinfo $REPO
+    ```
+
+    ```sh title="Building packages"
+    # Build package dependencies
+    dnf builddep package.spec
+    ```
+    ```sh title="Resolve cache problems"
+    # If an error is displayed reading "Failed to synchronize cache for repo"
+    sudo dnf clean all
+    sudo rm -r /var/cache/dnf
+    ```
+
+-   #### rpm
+
+    ---
+
+    ```sh
+    --8<-- "includes/Commands/r/rpm.sh"
+    ```
+
+
+
 </div>
+
+

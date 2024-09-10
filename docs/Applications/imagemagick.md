@@ -9,3 +9,25 @@
 ```sh
 --8<-- "includes/Commands/i/imagemagick.sh"
 ``` 
+
+## Tasks
+
+<div class="grid cards" markdown>
+
+-   #### Transparent background
+
+    ---
+
+    ```sh
+    # Remove background color, replacing it with transparency
+    convert $INPUT -transparent white $OUTPUT
+    ```
+
+    Using **-fuzz** will allow antialiased pixels to be selected.
+
+    ```sh
+    convert $INPUT -fuzz 10% -transparent white $OUTPUT
+    ```
+
+
+</div>

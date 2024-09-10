@@ -7,8 +7,14 @@
 *[MUA]: Mail User Agent: program that allows a user to view mail, such as mutt, pine, printmail, elm, mail, Thunderbird, Evolution, and Eudora
 *[SMB]: Server Message Block
 
-**Berkeley Software Distribution (BSD)**{: #bsd }
-:   
+# Distributions
+
+<div class="grid cards" markdown>
+
+-   #### Berkeley Software Distribution (BSD)
+
+    ---
+
     BSD began in the 70s and was based on AT&T original code. 
     First source distributions required user to purchase a source license from AT&T, since much of the BSD source was derivative of UNIX.
 
@@ -20,8 +26,10 @@
     Ultimately 3 out of the 18,000 files that made up the Network Release 2 distribution were removed, which became known as BSD-lite, released in 1994. 
     This [legal dispute](https://web.archive.org/web/20060315152051/http://www.applelust.com/alust/terminal/archives/terminal041202.shtml) was partly to blame for Linux's rapid ascent in popularity.
 
-#### Distributions
-:   
+-   #### Others
+
+    ----
+
     - **Alpine Linux** is a security-oriented, lightweight Linux distribution used in containers and hardware.
     - **Clear Linux** is a rolling release distro from Intel with a custom package management system based on **bundles**, collections of packages that contain everything an application requires, including dependencies. 
     Clear's update process also has the ability to do **delta downloads**, preserving bandwidth. 
@@ -29,6 +37,10 @@
     - **SUSE**{: #suse }
         - **OpenSUSE Leap** is a rebuild of [SUSE Linux Enterprise Server](#sles), similar to how [CentOS](#centos) was historically a rebuild of RHEL.
         - **SUSE Linux Enterprise Server (SLES)** ("slee") is SUSE's fixed-release distribution of Linux intended for enterprises, and as such is comparable to Red Hat's RHEL.
+
+
+</div>
+
 
 **display manager**{: #display-manager }
 :   
@@ -38,21 +50,6 @@
 :   
     A temporary file system that's loaded into memory when the system boots
 
-#### Pipewire
-:   
-    **Pipewire** is a media server intended to facilitate audio and video handling in Linux as a replacement for [PulseAudio](#pulseaudio) and JACK.
-    It exposes a graph-based processing engine that abstracts audio and video devices.
-
-#### PulseAudio
-:   
-    **PulseAudio** is a sound server for POSIX OSes and a fixture on many Linux distributions.
-
-    PulseAudio is built around **sources** and **sinks** (i.e. devices) connected to **source outputs** and **sink inputs** (streams)
-
-    - **Source** is an input device that produces samples, usually running a thread with its own event loop, generating sample chunks which are posted to all connected source outputs
-    - **Source output** is a recording stream which consumes samples from a source
-    - **Sink** is an output device that consumes samples, usually running a thread with its own event loop mixing sample chunks from connect sink inputs
-    - **Sink input** is a playback stream, connected to a sink and producing samples for it
 
 **qmail**{: #qmail }
 :   

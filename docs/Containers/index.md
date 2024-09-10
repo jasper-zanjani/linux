@@ -1,9 +1,48 @@
-# Containers
+# Overview
 
 Containers run applications in an **isolated namespace**, meaning it only has access to resources that are made available to it by the container runtime.
 **Resource governance** means that a container has access only to a specified number of processor cycles, system memory, and other resources.
 Containers allow applications to be packaged with their dependencies in **container images**, which will run the same regardless of underlying operating system or infrastructure and are downloaded from **container registries** like **Docker Hub**.
 Container registries are not to be confused with **repositories**, which are subcomponents of registries.
+
+<div class="grid cards" markdown>
+
+-   #### [Storage](https://docs.docker.com/storage/)
+
+    ---
+
+    By default, data written at the container layer is not persistent.
+    Persistent data storage is achieved in one of two ways
+
+    - **Volumes** are managed by the runtime and not accessible by other processes.
+    - [**Bind mounts**](https://docs.docker.com/storage/bind-mounts/) can be stored anywhere on the host system.
+    - **tmpfs** refers to mounts that are stored in the host system's memory only and which are not persistent.
+
+    === ":simple-podman: Podman"
+
+        ```sh
+        podman volume create $VOL_NAME
+
+        podman volume ls
+
+        podman volume inspect $VOL_NAME
+
+        podman volume rm $VOL_NAME
+        ```
+
+    === ":simple-docker: Docker"
+
+        ```sh
+        docker volume create $VOL_NAME
+
+        docker volume ls
+
+        docker volume inspect $VOL_NAME
+
+        docker volume rm $VOL_NAME
+        ```
+
+</div>
 
 ## Cgroups
 
@@ -42,9 +81,33 @@ Spawning a process in a new namespace prevents it from seeing the host's context
 
 ## Tasks
 
+<div class="grid cards" markdown>
 
-#### Windows Server
-:   
+-   #### Elasticsearch
+
+    ---
+
+    ```sh
+    # Create a new network
+    docker network create elastic
+    ```
+
+    !!! info "Optional: verify image with [cosign](https://github.com/sigstore/cosign)"
+
+        ```sh
+        wget https://artifacts.elastic.co/cosign.pub
+        cosign verify --key cosign.pub # => (1)
+        ```
+
+        1. 
+        ```
+        --8<-- "includes/Output/cosign"
+        ```
+
+-   #### Windows Server
+
+    ---
+
     Windows Server 2016 supports **Windows Server Containers** and **Hyper-V Containers**, which create a separate copy of the operating system kernel for each container.
     The "Containers" feature must be installed on Windows Server 2016 hosts, and to create Hyper-V containers the Hyper-V role must also be installed (although the Hyper-V management tools are not necessary if VMs are not going to created).
     Windows container hosts need to have Windows installed to C:.
@@ -54,15 +117,32 @@ Spawning a process in a new namespace prevents it from seeing the host's context
     The [Powershell Docker module](https://github.com/microsoft/Docker-PowerShell "PowerShell for Docker") has been deprecated for years.
 
 
+??? info "Container registries"
+
+    - **ghcr.io**: [GitHub Container Registry](https://ghcr.io)
+    - **gcr.io** [Google Cloud Artifact Registry](https://gcr.io)
+    - **mcr.microsoft.com**: [Microsoft Artifact Registry](https://mcr.microsoft.com/)
+
+
+</div>
+
 ## Commands
 
-#### cgconfig
-:   
+<div class="grid cards" markdown>
+
+-   #### cgconfig
+
+    ---
+
     --8<-- "includes/Commands/c/cgconfig.md"
 
-#### systemd-cgls
-:   
+-   #### systemd-cgls
+
+    ---
+
     --8<-- "includes/Commands/s/systemd-cgls.md"
+
+</div>
 
 ## Glossary
 
@@ -76,43 +156,6 @@ Spawning a process in a new namespace prevents it from seeing the host's context
     apiVersion: apps/v1
     ```
 
-#### Dockerfile
-:   
-    A Docker image consists of read-only **layers**, each of which represents an **instruction** that incrementally the changes the image being built up. 
-    Dockerfiles can be used to construct new images using `docker build`.
-    The build process can be optimized by placing multiple commands in the same `RUN` instruction.
-    Dockerfiles are named simply "Dockerfile" with no extension or variation.
-
-    === "Node on Alpine"
-
-        ```dockerfile
-        FROM alpine
-        RUN apk update && apk add nodejs
-        COPY . /app
-        WORKDIR /app
-        CMD ["node","index.js"]
-        ```
-
-    === "Windows Server Nano"
-
-        ```dockerfile
-        FROM microsoft/windowsservercore
-        RUN powershell -command install-windowsfeature dhcp -includemanagementtools
-        RUN powershell -configurationname microsoft.powershell -command add-dhcpserverv4scope -state active -activatepolicies $true -name scopetest -startrange 10.0.0.100 -endrange 10.0.0.200 -subnetmask 255.255.255.0
-        RUN md boot
-        COPY ./bootfile.wim c:/boot/
-        CMD powershell
-        ```
-
-    === "Windows Server Core"
-
-        ```dockerfile
-        FROM microsoft/windowsservercore
-        MAINTAINER @mike_pfeiffer
-        RUN powershell.exe -Command Install-WindowsFeature Web-Server
-        COPY ./websrc c:/inetpub/wwwroot
-        CMD [ "powershell" ]
-        ```
 
 
 **Deployment**{: #deployment } :material-kubernetes:

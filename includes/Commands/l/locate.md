@@ -1,23 +1,24 @@
-Installation
+!!! info "Installation"
 
-=== ":material-ubuntu: Ubuntu"
+    === ":material-redhat: Red Hat"
 
-    ```sh
-    apt install -y plocate
-    ```
-    
-=== ":material-arch: Arch"
+        ```sh
+        dnf install -y mlocate
+        ```
 
-    ```sh
-    pacman -S mlocate
-    ```
+    === ":material-ubuntu: Ubuntu"
 
-=== ":material-redhat: Red Hat"
+        ```sh
+        apt install -y plocate
+        ```
+        
+    === ":material-arch: Arch"
 
-    ```sh
-    dnf install -y mlocate
-    ```
+        ```sh
+        pacman -S mlocate
+        ```
 
-```sh title="Update database"
+```sh
+# Update database
 updatedb
 ```

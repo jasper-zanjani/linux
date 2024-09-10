@@ -1,0 +1,8 @@
+BEGIN-RECORD: 0
+Length: 32
+Type:   Header
+Version: 1
+Flags:   0002 (openpgp)
+created-at: 1708476701
+last-maint: 1708476701
+END-RECORD

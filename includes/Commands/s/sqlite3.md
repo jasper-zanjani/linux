@@ -1,26 +1,29 @@
-#### sqlite3
-:   
-    **sqlite3** is an interactive frontend to the SQLite library.
+**sqlite3** is an interactive frontend to the SQLite library.
 
-    **Meta-commands**, prefixed by **`.`**, can be used to examine database files or perform administrative operations.
+**Meta-commands**, prefixed by **`.`**, can be used to examine database files or perform administrative operations.
 
-    ```sql
-    .databases  -- (1)
-    .tables     -- (2)
-    .show       -- (3)
-    .exit       
-    ```
+```sql
+-- Get usage help for a meta-command
+.help .open
 
-    1. List names and files of attached databases.
-    2. List names of tables matching a given pattern.
-    3. Show the current values for various settings.
+-- Open file
+.open database.db
 
-    Files can be provided on invocation from the command-line or they can be provided after the **.open** meta-command.
-    ```sql
-    .open database.db
-    ```
+-- Open in-memory database
+.open :memory:
 
-    Without providing an argument on invocation, sqlite3 will open an in-memory database by default, which can also be explicitly specified with a meta-command.
-    ```sql
-    .open :memory:
-    ```
+-- List names and files of attached databases.
+.databases
+
+-- List names of tables matching a given pattern.
+.tables
+
+-- Display the CREATE statements used to create the table
+.schema table
+
+-- Show the current values for various settings.
+.show
+
+.exit
+```
+

@@ -1,0 +1,7 @@
+Id Path     Write errors Read errors Flush errors Corruption errors Generation errors
+-- -------- ------------ ----------- ------------ ----------------- -----------------
+ 1 /dev/sdf            0           0            0                 0                 0
+ 2 /dev/sdg            0           0            0                 0                 0
+ 3 /dev/sdh            0           0            0                 0                 0
+ 4 /dev/sdi            0           0            0                 0                 0
+ 5 /dev/sdj            0           5            0                 0                 0

@@ -1,34 +1,20 @@
-*[atime]: access time
-*[mtime]: modify time
-*[ctime]: change time
-
 Search for files in a directory hierarchy
 
 ```sh title="Find all files owned by user"
 find . -user $USER
 ```
 
-**-exec** allows a command to be executed for every foudn file, which has to be terminated with an escaped semicolon, i.e. **`\;`**.
+**-exec** allows a command to be executed over every found file, which has to be terminated with an escaped semicolon, i.e. **`\;`**.
 
-```sh title="Remove whitespace from filenames"
+```sh
+# Remove whitespace from filenames
 find . -type f -name "* *" -exec bash -c 'mv "$0" "${0// /_}"' {} \;
 ```
 
-Find recently modified files/folders
+There are 3 timestamps associated with files in Linux: **atime** (access time), **mtime** (modify time), and **ctime** (change time).
+Numerical arguments can be specified with a plus or minus to indicate greater or less than the given number of days.
 
-There are 3 timestamps associated with files in Linux 
-
-- **atime** "access time": last time file was accessed by a command or application
-- **mtime** "modify time": last time file's contents were modified
-- **ctime** "change time": last time file's attribute was modified 
-
-Numerical arguments can be specified in 3 ways:
-
-- **n** exactly n days ago
-- **+n** greater than n days ago
-- **-n** less than n days ago
-
-```sh
+```sh title="Find recently modified files"
 # Find only files that were modified more than 120 days ago
 find . -type f -mtime +120 -ls
 

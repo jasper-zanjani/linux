@@ -2,19 +2,19 @@
 --8<-- "includes/Commands/p/pacman.sh"
 ```
 
-??? info "pacman query"
+=== "query"
 
     ```sh
     --8<-- "includes/Commands/p/pacman-query.sh"
     ```
 
-??? info "pacman remove"
+=== "remove"
 
     ```sh
     --8<-- "includes/Commands/p/pacman-remove.sh"
     ```
 
-??? info "pacman sync"
+=== "sync"
 
     ```sh
     --8<-- "includes/Commands/p/pacman-sync.sh"

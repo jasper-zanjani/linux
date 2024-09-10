@@ -134,7 +134,7 @@ Field specifiers can be used as arguments to print, and using them alongside str
 
 
 
-##### Predefined variables
+#### Predefined variables
 
 A variety of **predefined variables** exist in awk.
 The number of each record is stored in **NR**, which increments by one after each record is processed.
@@ -223,7 +223,7 @@ Similarly, awk offers input and output **record separators**
 1 RS=''
 ```
 
-##### BEGIN
+#### BEGIN
 
 
 The **BEGIN** block defines instructions that are executed before any records are processed.
@@ -272,7 +272,7 @@ awk '{ print $1, $2, $3, $4, $5, $6, $7 }' OFS=: datafile
 --8<-- "includes/Output/employees2/02"
 ```
 
-##### Calculations
+#### Calculations
 
 ```perl
 # Patterns can also incorporate comparison expressions
@@ -370,7 +370,7 @@ Once upon a midnight dreary, while I pondered, weak and weary,
   "'Tis some visitor," I muttered, "tapping at my chamber door--
 ```
 
-##### [Random number generation](https://docstore.mik.ua/orelly/unix3/sedawk/ch09_01.htm#sedawk-ch-9-sect-1.3)
+#### [Random number generation](https://docstore.mik.ua/orelly/unix3/sedawk/ch09_01.htm#sedawk-ch-9-sect-1.3)
 
 The **rand()** function generates a random value between 0 and 1 from the time of day.
 

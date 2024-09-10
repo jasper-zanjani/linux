@@ -70,7 +70,7 @@
     <iframe width="1095" height="616" src="https://www.youtube.com/embed/ERWVSci3kO0?si=m3ntIYXAxYAvFuVN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     ```
     
--   #### Grids
+-   #### [Grids](https://squidfunk.github.io/mkdocs-material/reference/grids/?h=grids)
 
     ---
 
@@ -96,28 +96,27 @@
 
     ---
 
-    A [custom primary color](https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#custom-colors) can be set by first setting the **primary** palette color to "custom":
+    A [custom primary color](https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#custom-colors) can be set by first setting the **primary** palette color to "custom" and 
+    defining the CSS variable in a custom stylesheet that is referenced in the config under **extra\_css**
 
-    ```yaml
-    theme:
-      palette:
-        primary: custom
-    ```
+    === "mkdocs.yml"
 
-    The CSS variable is then defined in a custom stylesheet:
+        ```yaml
+        theme:
+          palette:
+            primary: custom
+        # ...
+        extra_css:
+        - stylesheets/extra.css
+        ```
 
-    ```css title="docs/stylesheets/extra.css"
-    :root {
-      --md-primary-fg-color:        #311B92;
-    }
-    ```
+    === "docs/stylesheets/extra.css"
 
-    And the stylesheet is referenced in the configuration
-
-    ```yaml title="mkdocs.yml"
-    extra_css:
-    - stylesheets/extra.css
-    ```
+        ```css
+        :root {
+          --md-primary-fg-color:        #311B92;
+        }
+        ```
 
     A [named color scheme](https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#custom-color-schemes) can be created by wrapping the definitions in an attribute selector named after **`[data-mdcolor-scheme="..."]`**:
 
@@ -133,14 +132,18 @@
 
     ---
 
-    ```yaml title="mkdocs.yml"
-    extra_css:
-    - style/annotation-width.css
-    ```
+    === "mkdocs.yml"
 
-    ```css title="docs/style/annotation-width.css"
-    :root { --md-tooltip-width: 600px; }
-    ```
+        ```yaml
+        extra_css:
+        - style/annotation-width.css
+        ```
+
+    === "docs/style/annotation-width.css"
+
+        ```css
+        :root { --md-tooltip-width: 600px; }
+        ```
 
 -   #### Print to PDF
 
@@ -159,13 +162,78 @@
 
     Adding [keyboard keys](https://squidfunk.github.io/mkdocs-material/reference/formatting/?h=key#adding-keyboard-keys) uses [pymdownx shortcodes](https://facelessuser.github.io/pymdown-extensions/extensions/keys/#extendingmodifying-key-map-index).
 
+-   #### LaTeX
+
+    ---
+
+    There are two JavaScript projects that allow use of LaTeX in a mkdocs-material project.
+
+    - [MathJax](https://squidfunk.github.io/mkdocs-material/reference/math/?h=math#mathjax)
+    - [KaTeX](https://squidfunk.github.io/mkdocs-material/reference/math/?h=math#mathjax)
+
+    ```mdd
+    $$
+    \operatorname{ker} f=\{g\in G:f(g)=e_{H}\}{\mbox{.}}
+    $$
+    ```
+
+
+    === "docs/javascripts/mathjax.js"
+
+        ```js
+        markdown_extensions:
+        - pymdownx.arithmatex:
+          generic: true
+
+        extra_javascript:
+        - javascripts/mathjax.js
+        - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+        ```
+
+    === "docs/javascripts/katex.js"
+
+        ```js
+        document$.subscribe(({ body }) => { 
+          renderMathInElement(body, {
+            delimiters: [
+              { left: "$$",  right: "$$",  display: true },
+              { left: "$",   right: "$",   display: false },
+              { left: "\\(", right: "\\)", display: false },
+              { left: "\\[", right: "\\]", display: true }
+            ],
+          })
+        })
+        ```
+
+    === "mkdocs.yml"
+
+        ```yaml
+        markdown_extensions:
+        - pymdownx.arithmatex:
+            generic: true
+
+        # MathJax
+        extra_javascript:
+        - javascripts/mathjax.js
+        - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+        # KaTeX
+        extra_javascript:
+        - javascripts/katex.js
+        - https://unpkg.com/katex@0/dist/katex.min.js
+        - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
+
+        extra_css:
+        - https://unpkg.com/katex@0/dist/katex.min.css
+        ```
+
 </div>
 
 #### Emoji search bar
 
 Cloning the [emoji search bar](https://squidfunk.github.io/mkdocs-material/reference/icons-emojis/) found in the official documentation is not easy.
 
-A [Chinese guy](https://hantang.fun/blog/mkdocs-config-iconsearch/) [figured out](https://github.com/squidfunk/mkdocs-material/discussions/2822) that you have to clone the contents of [**material/overrides/assets**](https://github.com/squidfunk/mkdocs-material/tree/master/material/overrides/assets) from the official repository and then incorporate those files as custom JS and CSS.
+Somebody [figured out](https://github.com/squidfunk/mkdocs-material/discussions/2822) that you have to clone the contents of [**material/overrides/assets**](https://github.com/squidfunk/mkdocs-material/tree/master/material/overrides/assets) from the official repository and then incorporate those files as custom JS and CSS.
 
 ```yaml title="mkdocs.yaml"
 theme:
@@ -177,7 +245,7 @@ extra_css:
   - assets/stylesheets/custom.00c04c01.min.css
 ```
 
-The actual code for the search bar does not play will in grid cards:
+The actual code for the search bar does not play well within [grid cards](#grids):
 
 ```html
 <div class="mdx-iconsearch" data-mdx-component="iconsearch">

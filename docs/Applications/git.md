@@ -443,3 +443,20 @@ git revert $COMMIT
 
     These credentials are stored in plaintext at **~/.git-credentials**.
     If the token expires and must be changed, this file must be deleted before git will prompt for the new password again.
+
+### Applications
+
+A variety of open-source applications are available that seek to ease use of git.
+
+<div class="grid cards" markdown>
+
+-   #### [lazygit](https://github.com/jesseduffield/lazygit)
+
+    ---
+
+    [**Lazygit**](https://github.com/jesseduffield/lazygit) is a modern and colorful TUI application that allows a repository to be managed from the terminal.
+    Individual files are staged with with ++space++ and commits are created with ++c++
+
+    - [Josean Martinez - Lazygit](https://www.youtube.com/watch?v=Ihg37znaiBo)
+
+</div>

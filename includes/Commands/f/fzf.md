@@ -1,6 +1,18 @@
-```sh
---8<-- "includes/Commands/f/fzf.sh"
-```
+<div class="grid cards" markdown>
+
+-   #### Inspect installed packages
+
+    ---
+
+    --8<-- "includes/Commands/f/fzf-packages.md"
+
+-   #### Browse text files
+
+    ---
+
+    --8<-- "includes/Commands/f/fzf-text.md"
+
+</div>
 
 Keybindings are provided by bash scripts in **/usr/share/fzf** which can be sourced by bash, zsh, or fish.
 These files provide several new [keybindings](https://thevaluable.dev/fzf-shell-integration/):

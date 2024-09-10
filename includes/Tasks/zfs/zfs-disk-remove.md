@@ -12,6 +12,7 @@ zpool add tank mirror sdh
 ```
 
 Alternatively, [**zpool detach**](https://openzfs.github.io/openzfs-docs/man/8/zpool-detach.8.html) is used exclusively to remove a mirrored data device.
+Note that any pending disk replacements must have been canceled using zpool detach as well.
 
 ```sh title="Mirrored arrays"
 zpool add tank mirror sde sdf

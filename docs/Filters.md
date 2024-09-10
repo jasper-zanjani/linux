@@ -1,9 +1,12 @@
 # Filters
 
-Many terminal commands exist in the Linux ecosystem that are meant for manipulating and displaying text information. 
+Many of the oldest utilities available in the Linux ecosystem are available for use in the terminal and meant for manipulating and displaying text information. 
 Often these commands are combined by piping from one to the other.
 
+Other potentially interesting tools to use as filters include:
 
+- [**tabiew**](https://github.com/shshemi/tabiew) TUI viewer for CSV files coded in Rust
+- [**miller**](https://github.com/johnkerl/miller) multipurpose utility for viewing name-indexed data, especially CSV and JSON, coded in Go
 
 
 ## Tasks
@@ -215,6 +218,9 @@ Often these commands are combined by piping from one to the other.
 
 ## Commands
 
+### fzf
+
+--8<-- "includes/Commands/f/fzf.md"
 
 ### awk
 
@@ -224,11 +230,9 @@ Often these commands are combined by piping from one to the other.
 
 --8<-- "includes/Commands/s/sed.md"
 
-### others
-
 <div class="grid cards" markdown>
 
--   #### cut
+-   ### cut
 
     ---
 
@@ -236,19 +240,14 @@ Often these commands are combined by piping from one to the other.
     --8<-- "includes/Commands/c/cut.sh"
     ```
 
--   #### fzf
 
-    ---
-
-    --8<-- "includes/Commands/f/fzf.md"
-
--   #### grep
+-   ### grep
 
     ---
 
     --8<-- "includes/Commands/g/grep.md"
 
--   #### head
+-   ### head
 
     ---
 
@@ -256,7 +255,7 @@ Often these commands are combined by piping from one to the other.
     --8<-- "includes/Commands/h/head.sh"
     ```
 
--   #### paste
+-   ### paste
 
     ---
 
@@ -264,7 +263,7 @@ Often these commands are combined by piping from one to the other.
     --8<-- "includes/Commands/p/paste.sh"
     ```
 
--   #### pr
+-   ### pr
 
     ---
 
@@ -273,7 +272,7 @@ Often these commands are combined by piping from one to the other.
     pr -w $COLUMNS -m -t $FILE_LEFT $FILE_RIGHT
     ```
 
--   #### sort
+-   ### sort
 
     ---
 
@@ -281,7 +280,7 @@ Often these commands are combined by piping from one to the other.
     --8<-- "includes/Commands/s/sort.sh"
     ```
 
--   #### tail
+-   ### tail
 
     ---
 
@@ -289,7 +288,7 @@ Often these commands are combined by piping from one to the other.
     --8<-- "includes/Commands/t/tail.sh"
     ```
 
--   #### tr
+-   ### tr
 
     ---
 
@@ -297,7 +296,7 @@ Often these commands are combined by piping from one to the other.
     --8<-- "includes/Commands/t/tr.sh"
     ```
 
--   #### watch
+-   ### watch
 
     ---
 

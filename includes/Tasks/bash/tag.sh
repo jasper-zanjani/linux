@@ -1,6 +1,7 @@
 #!/bin/bash
 tag () {
-    TAG=$1 ; shift # First arg has to be a valid tag name.
+    # First arg has to be a valid tag name.
+    TAG=$1 ; shift 
     shopt -s nocasematch
     case $TAG in
         "amapiano")
@@ -17,6 +18,8 @@ tag () {
     esac
     shopt -u nocasematch
 }
-# A more useful and less brittle version of this script may be possible using the getopts function
-# to define a named parameter, rather than forcing the first positional argument to be one of 
-# a number of set values.
+# A more useful and less brittle version of this 
+# script may be possible using the getopts function
+# to define a named parameter, rather than forcing 
+# the first positional argument to be one of a number 
+# of set values.

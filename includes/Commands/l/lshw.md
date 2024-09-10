@@ -1,4 +1,4 @@
-```sh title="lshw"
+```sh
 # Extract detailed information on the hardware configuration of the machine.
 
 # Display a table of hardware information

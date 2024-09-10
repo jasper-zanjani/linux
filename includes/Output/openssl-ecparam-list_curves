@@ -1,0 +1,13 @@
+  secp224r1 : NIST/SECG curve over a 224 bit prime field
+  secp256k1 : SECG curve over a 256 bit prime field
+  secp384r1 : NIST/SECG curve over a 384 bit prime field
+  secp521r1 : NIST/SECG curve over a 521 bit prime field
+  prime256v1: X9.62/SECG curve over a 256 bit prime field
+  brainpoolP256r1: RFC 5639 curve over a 256 bit prime field
+  brainpoolP256t1: RFC 5639 curve over a 256 bit prime field
+  brainpoolP320r1: RFC 5639 curve over a 320 bit prime field
+  brainpoolP320t1: RFC 5639 curve over a 320 bit prime field
+  brainpoolP384r1: RFC 5639 curve over a 384 bit prime field
+  brainpoolP384t1: RFC 5639 curve over a 384 bit prime field
+  brainpoolP512r1: RFC 5639 curve over a 512 bit prime field
+  brainpoolP512t1: RFC 5639 curve over a 512 bit prime field

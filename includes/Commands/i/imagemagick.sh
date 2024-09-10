@@ -10,3 +10,5 @@ mogrify -resize "1920x1200" -write $FILE1 $FILE2
 
 # Save the output of a command as an image
 neofetch | convert label:@- image.png
+
+convert logo.png -resize 144x144 -background transparent -gravity center -extent 144x144 logo_resized.png

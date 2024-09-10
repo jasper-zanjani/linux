@@ -3,6 +3,9 @@
 Here the second command will display a smaller value for the 21.08 version of the freedesktop Platform runtime, indicating that hard-linked files have not been double-counted.
 
 ```sh
+# Measure size of a specific subdirectory
+du -shc target
+
 du -sh /var/lib/flatpak/runtime/org.freedesktop.Platform/x86_64/21.08
 du -sh /var/lib/flatpak/runtime/org.freedesktop.Platform/x86_64/21.08 /var/lib/flatpak/runtime/org.freedesktop.Platform/x86_64/20.08
 ```

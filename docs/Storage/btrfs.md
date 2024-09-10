@@ -52,16 +52,50 @@ These data types are analyzed by the [**btrfs filesystem df**](https://btrfs.rea
 
 ## Tasks
 
-#### Pool management
-:   
+### Pool management
 
-    ```sh title="Create a storage pool"
+<div class="grid cards" markdown>
+
+-   #### [Create a pool](https://btrfs.readthedocs.io/en/latest/mkfs.btrfs.html)
+
+    ---
+
+    ```sh
     # Create a pool with a RAID0 data and metadata profile
     mkfs.btrfs -d raid0 -m raid0 /dev/sd{a,b,c}
 
     # Create a pool with a RAID1 data and metadata profile
     mkfs.btrfs -d raid1 -m raid1 /dev/sd{a,b,c}
     ```
+
+-   #### [Remove a device](https://btrfs.readthedocs.io/en/latest/btrfs-device.html#remove-device)
+
+    ---
+
+    !!! info "Note"
+
+        This command did not work when I tried it!
+
+    ```sh
+    btrfs device remove /dev/sdg /storage
+    ```
+
+-   #### Monitoring
+
+    ---
+
+    ```sh
+    # -T tabular output
+    btrfs device stats -T /storage # => (1)
+    ```
+
+    1. 
+    ```
+    --8<-- "includes/Output/btrfs/btrfs-device-stats"
+    ```
+
+</div>
+
 
     **btrfs device** command group manages btrfs devices, and subcommands to this group are used for adding, removing, and replacing devices.
 

@@ -1,6 +1,27 @@
 # Overview
 
-A variety of hashing algorithms are available for use to encrypt Linux user passwords (`man 5 crypt` for more information).)
+
+## Cryptography
+
+<div class="grid cards" markdown>
+
+
+-   #### Hashing
+
+    ---
+
+    Cryptographic hashes take arbitrary binary data as input and deterministically produce a fixed-size binary string as output, called the hash value or the message digest.
+    The collision rate is the main metric of hash security, and generally the security of a hash function with a digest size of *n* bits should be about as good as a symmetric cipher with half as many bits.
+
+    Hash functions are sometimes provided alongisde packages as checksums, but in fact this practice provides little to no security because if a package is modified malicious then certainly its hash can be as well.
+    Preferable is the use of digital signatures which can only be produced from a key.
+
+    Hashes are useful to store passwords.
+    They are also used in message authentication codes (MAC) which are used to ensure message integrity of encrypted data.
+
+    A variety of hashing algorithms are available for use to encrypt Linux user passwords (`man 5 crypt` for more information).
+
+</div>
 
 ## Prominent vulnerabilities
 
@@ -18,6 +39,21 @@ A variety of hashing algorithms are available for use to encrypt Linux user pass
     After several years of contributions to the xz project, apparently made in good faith, Jia Tan ultimately became maintainer of the project.
 
     A [timeline](https://research.swtch.com/xz-timeline) has been compiled on the clues left by Jia Tan in the xz project's git commit history as well as various communications.
+
+-   #### Library injection vulnerability
+
+    ---
+
+    Similar to DLL files on Windows systems, **.so** ("shared object") library files on Linux allow code to be shared by various processes. 
+    They are vulnerable to **injection attacks**. 
+
+    One file in particular, **linux-vdso.so.1**, finds and locates other shared libraries and is mapped by the kernel into the address space of every process. 
+    This library-loading mechanism can be exploited through the use of the environment variable **`LD_PRELOAD`**, which is considered the most convenient way to load a shared library in a process at startup. 
+    If defined, this variable is read by the system and the library is loaded [immediately](https://www.networkworld.com/article/3404621/tracking-down-library-injections-on-linux.html) after linux-vdso.so.1 into every process that is run. 
+
+    This attack can be detected using the [**osquery**](https://osquery.io/) tool. 
+    This tool represents the system as a relational database which can then be queried, in particular against the **process\_envs** table.
+
 
 </div>
 
@@ -90,5 +126,6 @@ A variety of hashing algorithms are available for use to encrypt Linux user pass
     # Confirm
     systemctl status falcon-sensor.service
     ```
+
 
 </div>

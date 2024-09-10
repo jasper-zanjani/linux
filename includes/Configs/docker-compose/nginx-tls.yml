@@ -1,0 +1,8 @@
+services:
+  web:
+    image: nginx:latest
+    ports: ["8443:443"]
+    volumes:
+    - ./conf.d:/etc/nginx/conf.d:Z
+    - ./certs:/etc/nginx/certs:Z
+    - ./html:/usr/share/nginx/html:Z

@@ -8,8 +8,12 @@
 
 ## Tasks
 
-#### User management
-:   
+<div class="grid cards" markdown>
+
+
+-   #### User management
+
+    ---
 
     ```sh title="Lock user"
     usermod -L $USER # --lock
@@ -21,8 +25,9 @@
     passwd -u $USER  # --unlock
     ```
 
-#### Groups
-:   
+-   #### Groups
+
+    ---
 
     ```sh title="Display groups of effective user"
     id -Gn
@@ -30,13 +35,17 @@
     ```
 
 
-#### Install SSSD tools
-:   
+-   #### SSSD
+   
+    ---
+
     SSSD utilities like **sssctl** and **authselect** can be installed from the **sssd-tools package**.
 
     ```sh
     dnf install -y sssd-tools
     ```
+
+</div>
 
 ## Commands
 

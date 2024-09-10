@@ -52,3 +52,9 @@ rpmdev-buildtree
 # Build package from spec file
 rpmbuild -ba hello-world.spec
 ```
+
+A RPM package can also be [signed](https://www.redhat.com/sysadmin/rpm-gpg-verify-packages) with the **rpm-sign** package.
+
+```sh
+dnf install -y rpm-sign
+```

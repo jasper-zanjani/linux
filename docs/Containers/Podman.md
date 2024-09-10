@@ -50,10 +50,15 @@ Mapped ports can be displayed
 podman port -a
 ```
 
+
+
 ## Tasks
 
-#### Service file
-:   
+<div class="grid cards" markdown>
+
+-   #### Service file
+
+    ---
 
     Output a [SystemD service file](https://docs.podman.io/en/latest/markdown/podman-generate-systemd.1.html) from a container to STDOUT (this must be redirected to a file)
 
@@ -69,3 +74,5 @@ podman port -a
     2. Generate a file with a name beginning with the prefix (which can be set with **--container-prefix** or **--pod-prefix**) and followed by the ID or name (if **--name** is also specified)
     3. In conjunction with **--files**, name the service file after the container and not the ID number.
 
+
+</div>

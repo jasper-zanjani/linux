@@ -1,3 +1,7 @@
+Firefox 
+
+``
+
 Firefox Reader Mode styling can be customized.
 
 ```css
@@ -23,6 +27,21 @@ dnf install ffmpeg-free
 #### Developer tools
 
 <div class="grid cards" markdown>
+
+-   #### Cookies
+
+    ---
+
+    Firefox will display information about profiles at [about:profiles](about:profiles), and allow easy navigation to the profile directory with a button.
+    On a typical Linux installation this will be under **$HOME/.mozilla/firefox** and each profile folder will have a name beginning with an eight-character alphanumeric string followed by **.default-release** or **.default**.
+
+    Cookies are stored in a sqlite3 database named **cookies.sqlite3** under the profile directory.
+
+    ```sqlite3
+    SELECT * FROM moz_cookies WHERE host LIKE "%google%";
+    ```
+
+    [Cookies.txt](https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/) is a useful extension that allows export of these cookies (for the entire database or for a particular site) to the Netscape text-based format used by other utilities like curl and wget.
 
 -   #### Network
 

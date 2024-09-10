@@ -1,4 +1,4 @@
-**sed** ("Stream-oriented editor") is typically used for applying repetitive edits across all lines of multiple files. 
+**sed** ("stream-oriented editor") is typically used for applying repetitive edits across all lines of multiple files. 
 In particular it is, alongside **awk** one of the two primary commands which accept regular expressions in Unix systems. 
 
 ```sh
@@ -108,3 +108,10 @@ Addressing can be done in one of two ways:
     ```
 
 </div>
+
+```sh
+# Monitor characters sent by terminal according to keypresses
+sed -n l
+
+--8<-- "includes/Tasks/filter/uncommented-lines.sh"
+```

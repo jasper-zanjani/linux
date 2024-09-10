@@ -1,0 +1,45 @@
+BEGIN-RECORD: 0
+Length: 32
+Type:   Header
+Version: 1
+Flags:   0002 (openpgp)
+created-at: 1717705935
+last-maint: 1717705935
+END-RECORD
+BEGIN-RECORD: 1
+Length: 2478
+Type:   OpenPGP
+Version: 1
+Blob-Flags: 0000
+Data-Offset: 126
+Data-Length: 2332
+Unhashed: 20
+Key-Count: 2
+Key-Info-Length: 28
+Key-Fpr[0]: 2596A99EAAB33821893C0A79458CA832957F5868
+Key-Kid-Off[0]: 32
+Key-Kid[0]: 458CA832957F5868
+Key-Flags[0]: 0000
+Key-Fpr[1]: 2F625B3A774B946822EDDBEEB1547A3DDAAF03C6
+Key-Kid-Off[1]: 60
+Key-Kid[1]: B1547A3DDAAF03C6
+Key-Flags[1]: 0000
+Serial-No: none
+Uid-Count: 1
+Uid-Info-Length: 12
+Uid-Off[0]: 670
+Uid-Len[0]: 68
+Uid[0]: "Tailscale Inc. (Package repository signing key) <info@tailscale.com>"
+Uid-Flags[0]: 0000
+Uid-Validity[0]: 0
+Sig-Count: 2
+Sig-Info-Length: 4
+Sig-Expire[0-1]: [not checked]
+Ownertrust: 0
+All-Validity: 0
+Recheck-After: 0
+Latest-Timestamp: 0
+Created-At: 1717705935
+Reserved-Space: 0
+Checksum: fb0b3963d3cde763207a8f309f1b287b4eeabff8 [valid]
+END-RECORD
