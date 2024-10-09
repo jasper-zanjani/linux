@@ -134,94 +134,111 @@ Field specifiers can be used as arguments to print, and using them alongside str
 
 
 
-#### Predefined variables
+### Predefined variables
 
-A variety of **predefined variables** exist in awk.
-The number of each record is stored in **NR**, which increments by one after each record is processed.
-Note that, again, the print statement can be left implied if the whole record is to be displayed.
+<div class="grid cards" markdown>
 
-```perl title="NR variable"
-# Remove header, for example of a CSV file
-NR>1
+-   #### NR
 
-# Top line only
-NR==1
+    The number of each record is stored in **NR**, which increments by one after each record is processed.
+    Note that, again, the print statement can be left implied if the whole record is to be displayed.
 
-# Print lines in a range
-NR>1 && NR < 4
+    ```perl title="NR variable"
+    # Remove header, for example of a CSV file
+    NR>1
 
-# Print line numbers in output. Note that there is no $ prefix!
-{ print NR, $0 }
-```
+    # Top line only
+    NR==1
 
-Less usefully, the number of fields is stored in the **NF** variable, which is updated with each record as it is processed.
+    # Print lines in a range
+    NR>1 && NR < 4
 
-```perl title="NF variable"
-# Remove all whitespace-only lines: while interpreted as a pattern, when NF is 0 it will suppress output.
-NF
+    # Print line numbers in output. Note that there is no $ prefix!
+    { print NR, $0 }
+    ```
 
-{ print $0, NF }
-```
+-   #### NF
 
-How records and fields are delimited is determined by predefined variables as well.
-**FS**, the **input field separator**, can be set from the command-line using **-F**, allowing the delimiter to be specified on Linux-like systems to be conveniently processed, similar to use of the [**cut**](#cut) utility. (1)
-{ .annotate }
+    The number of fields is stored in the **NF** variable, which is updated with each record as it is processed.
 
-1. Note that processing tabular data with variable whitespace between each field, may yet be done more gracefully with awk, since cut does not handle variable spacing well.
-```sh
-cut -d: -f1 /etc/passwd
-```
+    ```perl title="NF variable"
+    # Remove all whitespace-only lines: while interpreted as a pattern, when NF is 0 it will suppress output.
+    NF
 
-```sh title="-F option"
-# Process a colon-delimited file
-awk -F: '{ print }' /etc/passwd
+    { print $0, NF }
+    ```
 
-# Process a CSV
-awk -F, '{ print }' starships.csv
+-   #### FS
 
-# Use a regex to specify more than one field separator at a time
-awk -F'[ :\t]' '/Tom Jones/ { print $1, $2, $3}' employees2 # (1)
-```
+    How records and fields are delimited is determined by predefined variables as well.
+    **FS**, the **input field separator**, can be set from the command-line using **-F**, allowing the delimiter to be specified on Linux-like systems to be conveniently processed, similar to use of the [**cut**](#cut) utility. (1)
+    { .annotate }
 
-1. 
-``` title="employees2"
---8<-- "includes/Output/employees2/00"
-```
-``` title="Output"
---8<-- "includes/Output/employees2/01"
-```
+    1. Note that processing tabular data with variable whitespace between each field, may yet be done more gracefully with awk, since cut does not handle variable spacing well.
+    ```sh
+    cut -d: -f1 /etc/passwd
+    ```
+
+    ```sh title="-F option"
+    # Process a colon-delimited file
+    awk -F: '{ print }' /etc/passwd
+
+    # Process a CSV
+    awk -F, '{ print }' starships.csv
+
+    # Use a regex to specify more than one field separator at a time
+    awk -F'[ :\t]' '/Tom Jones/ { print $1, $2, $3}' employees2 # (1)
+    ```
+
+    1. 
+    ``` title="employees2"
+    --8<-- "includes/Output/employees2/00"
+    ```
+    ``` title="Output"
+    --8<-- "includes/Output/employees2/01"
+    ```
+
+-   #### OFS
+
+    The default **output field separator** is a single space, but it can also be specified by setting a value to the **OFS** predefined variable within the instruction.
+    It is the value of OFS which is interpolated between *print* arguments when delimited with a comma.
+
+    ```perl title="OFS variable"
+    # Compare output
+    { print $3, $2 } # (1)
+    { print $3 $2 } # (2)
+    ```
+
+    1. 
+    ``` title="datafile"
+    --8<-- "includes/Output/datafile/00"
+    ```
+    ``` title="Output"
+    --8<-- "includes/Output/datafile/04"
+    ```
+    2. 
+    ``` title="datafile"
+    --8<-- "includes/Output/datafile/00"
+    ```
+    ``` title="Output"
+    --8<-- "includes/Output/datafile/05"
+    ```
+
+-   #### RS
+
+    Similarly, awk offers input and output **record separators**
+
+    ```perl title="RS variable"
+    # Remove all blank lines
+    1 RS=''
+    ```
+
+</div>
 
 
-The default **output field separator** is a single space, but it can also be specified by setting a value to the **OFS** predefined variable within the instruction.
-It is the value of OFS which is interpolated between *print* arguments when delimited with a comma.
 
-```perl title="OFS variable"
-# Compare output
-{ print $3, $2 } # (1)
-{ print $3 $2 } # (2)
-```
 
-1. 
-``` title="datafile"
---8<-- "includes/Output/datafile/00"
-```
-``` title="Output"
---8<-- "includes/Output/datafile/04"
-```
-2. 
-``` title="datafile"
---8<-- "includes/Output/datafile/00"
-```
-``` title="Output"
---8<-- "includes/Output/datafile/05"
-```
 
-Similarly, awk offers input and output **record separators**
-
-```perl title="RS variable"
-# Remove all blank lines
-1 RS=''
-```
 
 #### BEGIN
 

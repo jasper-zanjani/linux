@@ -179,6 +179,18 @@ not both at the same time.
 
     - [kylechui/nvim-surround](https://github.com/kylechui/nvim-surround)
 
+-   #### Patterns
+
+    ---
+
+    The motion keys form the most common patterns used for actions, acting on the entire line, word, until whitespace, etc.
+
+    The [**operate until pattern**](https://vimtricks.com/p/vimtrick-operate-until-pattern/) allows an action to take place until a given pattern is found.
+
+    - **dtX** delete until character X
+    - **cfX** change until (and including) character X
+    - **d/foo&lt;Enter&gt;** delete until "foo" is found
+
 -   #### Completion
 
     ---

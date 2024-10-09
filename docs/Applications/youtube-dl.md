@@ -1,5 +1,21 @@
 #### yt-dlp
 
+
+```sh
+# Download using Firefox cookies and external downloader
+yt-dlp -o $FILENAME $URL -f 'hls-fastly_skyfire-5632+hls-fastly_skyfire-audio-high-English' # (1)
+    --cookies-from-browser firefox \
+    --external-downloader aria2c \
+    --continue
+```
+
+1. 
+```sh
+FILENAME='Baddies Caribbean 01 - We Outside Tonight.%(ext)s'
+URL="https://www.thezeusnetwork.com/baddies-caribbean/season:1/videos/series-premiere-baddies-caribbean-we-outside-tonight"
+```
+
+
 ```sh
 # Use an external downloader to download a high-quality audio file, saving the thumbnail separately (after converting it to png).
 yt-dlp --external-downloader aria2c -f 140 --write-thumbnail --convert-thumbnails png --embed-metadata $URL

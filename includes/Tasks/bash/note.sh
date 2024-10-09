@@ -9,18 +9,17 @@ note () {
     # Directories
     NOTES_DIR="$HOME""/Documents/git"
     CODING_NOTES_DIR="$NOTES_DIR""/coding"
-    CRYPTO_NOTES="$CRYPTO_NOTES_DIR"
     CRYPTO_NOTES_DIR="$NOTES_DIR""/cryptocurrency"
     DEVOPS_NOTES_DIR="$NOTES_DIR""/devops"
     LINUX_NOTES_DIR="$NOTES_DIR""/linux"
 
     # Notes files
+    CRYPTO_NOTES="$CRYPTO_NOTES_DIR"
     BASH_NOTES="$LINUX_NOTES_DIR""/docs/Shells/bash.md"
     ETH_NOTES=$CRYPTO_NOTES_DIR"/includes/coins/eth.md"
     GUN_NOTES=$NOTES_DIR"/guns/docs/index.md"
     NEOVIM_NOTES="$LINUX_NOTES_DIR""/docs/Applications/nvim.md"
     RUST_NOTES=$CODING_NOTES_DIR"/Rust"
-    SOL_NOTES=$CRYPTO_NOTES_DIR"/includes/coins/sol.md"
     SQLITE_NOTES=$LINUX_NOTES_DIR"/includes/Commands/s/sqlite3.md"
     DB_NOTES=$LINUX_NOTES_DIR"/docs/Databases.md"
 
@@ -44,11 +43,20 @@ note () {
             cd -
             ;;
 
+        cod*)
+            cd $CODING_NOTES_DIR
+            $EDITOR
+            cd -
+            ;;
+
         cry*)
             cd $CRYPTO_NOTES_DIR
             case $2 in 
                 inv*)
                     $EDITOR $CRYPTO_NOTES"/docs/investment.md"
+                    ;;
+                sol)
+                    $EDITOR $CRYPTO_NOTES"/includes/coins/sol.md"
                     ;;
                 ton)
                     $EDITOR $CRYPTO_NOTES"/includes/coins/ton.md"
@@ -63,9 +71,15 @@ note () {
             cd -
             ;;
 
-        cod*)
-            cd $CODING_NOTES_DIR
-            $EDITOR
+        db)
+            cd $LINUX_NOTES_DIR
+            $EDITOR $DB_NOTES
+            cd -
+            ;;
+
+        dev*)
+            cd $DEVOPS_NOTES_DIR
+            $EDITOR $DEVOPS_NOTES_DIR"/docs/index.md" 
             cd -
             ;;
 
@@ -112,29 +126,12 @@ note () {
             cd -
             ;;
 
-        db)
-            cd $LINUX_NOTES_DIR
-            $EDITOR $DB_NOTES
-            cd -
-            ;;
-
-        devops)
-            cd $DEVOPS_NOTES_DIR
-            $EDITOR $DEVOPS_NOTES_DIR"/docs/index.md" 
-            cd -
-            ;;
-
         sql*)
             cd $LINUX_NOTES_DIR
             $EDITOR $SQLITE_NOTES
             cd -
             ;;
 
-        sol)
-            cd $CRYPTO_NOTES_DIR
-            $EDITOR $SOL_NOTES
-            cd -
-            ;;
 
         *)
             echo "Unknown argument"
