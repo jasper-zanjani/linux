@@ -227,6 +227,13 @@
         - https://unpkg.com/katex@0/dist/katex.min.css
         ```
 
+-   #### [Mermaid diagrams](https://squidfunk.github.io/mkdocs-material/reference/diagrams)
+
+    ---
+
+    Material for MkDocs integrates with Mermaid.js, a popular library for drawing diagrams.
+
+
 </div>
 
 #### Emoji search bar
