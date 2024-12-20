@@ -38,3 +38,11 @@ gsettings get org.gnome.settings-daemon.plugins.media-keys custom-keybindings # 
 ['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
 ```
 
+[Disable automatic suspend on GDM](https://www.reddit.com/r/gnome/comments/vx53vm/how_to_disable_automatic_suspend_on_gdm/)
+```sh
+# Log into gdm user with
+machinectl shell gdm@ /bin/bash
+
+# Disable idle timeout
+gsettings set org.gnome.desktop.session idle-delay 0
+```
