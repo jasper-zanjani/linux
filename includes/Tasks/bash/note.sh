@@ -8,9 +8,11 @@ note () {
 
     # Directories
     NOTES_DIR="$HOME""/Documents/git"
+    C_NOTES_DIR="$NOTES_DIR""/c"
     CODING_NOTES_DIR="$NOTES_DIR""/coding"
     CRYPTO_NOTES_DIR="$NOTES_DIR""/cryptocurrency"
     DEVOPS_NOTES_DIR="$NOTES_DIR""/devops"
+    LANG_NOTES_DIR="$NOTES_DIR""/language"
     LINUX_NOTES_DIR="$NOTES_DIR""/linux"
 
     # Notes files
@@ -43,9 +45,15 @@ note () {
             cd -
             ;;
 
+        c)
+            cd $C_NOTES_DIR
+            $EDITOR $C_NOTES_DIR"/docs/index.md"
+            cd -
+            ;;
+
         cod*)
             cd $CODING_NOTES_DIR
-            $EDITOR
+            $EDITOR $CODING_NOTES_DIR"/docs/index.md"
             cd -
             ;;
 
@@ -83,12 +91,30 @@ note () {
             cd -
             ;;
 
+        es)
+            cd $LANG_NOTES_DIR
+            $EDITOR $LANG_NOTES_DIR"/docs/Spanish.md"
+            cd -
+            ;;
+
         eth)
             cd $CRYPTO_NOTES_DIR
             $EDITOR $ETH_NOTES
             ;;
 
-        guns)
+        fedex)
+            cd $NOTES_DIR"/fedex"
+            $EDITOR $NOTES_DIR"/fedex/docs/index.md"
+            cd -
+            ;;
+
+        girl*)
+            cd $NOTES_DIR"/girls"
+            $EDITOR $NOTES_DIR"/girls/docs/index.md"
+            cd -
+            ;;
+
+        gun*)
             cd $NOTES_DIR"/guns"
             $EDITOR $GUN_NOTES
             cd -
@@ -114,8 +140,8 @@ note () {
             ;;
 
         notes)
-            cd $NOTES_DIR
-            $EDITOR $NOTES_DIR"/docs/index.md"
+            cd $NOTES_DIR"/notes"
+            $EDITOR $NOTES_DIR"/notes/docs/index.md"
             cd -
             ;;
 
@@ -123,6 +149,12 @@ note () {
         nvim)
             cd $LINUX_NOTES_DIR
             $EDITOR $NEOVIM_NOTES
+            cd -
+            ;;
+
+        py)
+            cd $CODING_NOTES_DIR
+            $EDITOR $CODING_NOTES_DIR"/docs/Python/index.md"
             cd -
             ;;
 
