@@ -1,138 +1,183 @@
 # git
 
+??? info "Syntax"
+
+    === "add"
+
+        ```sh
+        # Update index to include all files in the working tree, including removals
+        git add -A # --no-ignore-removal
+
+        # Stage all modifications in work-tree, including deletions
+        git add -u
+
+        # Add file, located in **\$HOME** to the git repo at **\$PATH**
+        git --git-dir=$PATH/.git --work-tree=$HOME add $FILE
+        ```
+
+    === "branch"
+
+        ```sh
+        # Display branches ("*" indicates that branch is checked out)
+        git branch
+
+        # Display the last commit for each branch
+        git branch -v
+
+        # Display branches that have not been merged
+        git branch --no-merged
+        ```
+
+    === "checkout"
+
+        ```sh
+        # Discard unstaged uncommitted changes to file
+        git checkout -- file
+
+        # Switch to branch
+        git checkout branch
+        ```
+
+    === "config"
+
+        ```sh title="git config"
+        # List all configuration (includes directive in global .gitconfig)
+        git config --list
+
+        # Store authentication details in the credential store (2)
+        git config --global credential.helper store
+
+        # Set up alias "br" for branch (1)
+        git config --system alias.br branch
+
+        # Define a directory as safe (3)
+        git config --global --add safe.directory $PATH
+        ```
+
+
+        1. 
+        ```ini title="/etc/gitconfig"
+        [alias]
+            br = branch
+        ```
+        2. 
+        ```ini title=".gitconfig"
+        [credential]
+            helper = cache
+        ```
+        3. 
+        ```ini title=".gitconfig"
+        [safe]
+            directory = $PATH
+        ```
+
+        ```sh
+        # Git will automatically append CRLF endings on Windows. 
+        # This setting can be displayed with the following command:
+        git config core.autocrlf
+
+        # Disable appending CRLF endings
+        git config core.autocrlf false
+        ```
+
+    === "diff"
+
+        ```sh
+        # Displays changes inline in a perhaps more legible way
+        git diff --word-diff
+        ```
+
+    === "log"
+
+        ```sh
+        # Show commits between January 1 and January 5, 2016
+        git log --after="2016-01-01" --before="2016-01-05"
+
+        # See commits that are on a branch but not on master
+        git log $MASTER..$BRANCH
+        ```
+
+    === "ls-files"
+
+        ```sh
+        # Show tracked files
+        git ls-files
+
+        # Show tracked files, each line is terminated by a null byte
+        git ls-files -z
+
+        # Show tracked files that have been deleted
+        git ls-files --deleted
+        ```
+
+    === "mv"
+
+        ```sh
+        # Move or rename a tracked file
+        git mv $FILE $NEWNAME
+        ```
+
+    === "push"
+
+        ```sh
+        # Transfer data from local branch {master} to remote {origin}
+        git push -u origin master
+        ```
+
+    === "remote"
+
+        ```sh
+        # Add remote repo
+        git remote add $REPO $URL
+
+        # Display URL of remote repo
+        git remote get-url $REPO
+
+        # Set url for existing repo
+        git remote set-url $URL $REPO
+        ```
+
+    === "rm"
+
+        ```sh
+        # Remove tracked file from index and delete the file
+        git rm $FILE
+
+        # Remove file from the index but keep the file as-is
+        git rm $FILE --cached
+        ```
+
+    === "stash"
+
+        ```sh
+        # Stash all changes to work-tree with no name
+        git stash
+
+        # Stash staged changes, giving it a description using -m
+        git stash -S -m "for Filters"
+        # --staged --message
+
+        # View stashes in stash stack
+        git stash list
+
+        # Apply changes in most recent stash (stash 0)
+        git stash apply
+
+        # Apply changes in specified stash
+        git stash apply 1
+
+        # Delete specified stash
+        git stash drop stash@$STASH
+
+        # Apply stash 0 and delete it
+        git stash pop
+
+        # Delete all stashes
+        git stash clear
+        ```
+
+
 Git is a very complex utility with multiple commands and subcommands and a strong dependency on **version control system** concepts.
-
-=== "add"
-
-    ```sh
-    # Update index to include all files in the working tree, including removals
-    git add -A # --no-ignore-removal
-
-    # Stage all modifications in work-tree, including deletions
-    git add -u
-
-    # Add file, located in **\$HOME** to the git repo at **\$PATH**
-    git --git-dir=$PATH/.git --work-tree=$HOME add $FILE
-    ```
-
-=== "branch"
-
-    ```sh
-    # Display branches ("*" indicates that branch is checked out)
-    git branch
-
-    # Display the last commit for each branch
-    git branch -v
-
-    # Display branches that have not been merged
-    git branch --no-merged
-    ```
-
-=== "checkout"
-
-    ```sh
-    # Discard unstaged uncommitted changes to file
-    git checkout -- file
-
-    # Switch to branch
-    git checkout branch
-    ```
-
-=== "diff"
-
-    ```sh
-    # Displays changes inline in a perhaps more legible way
-    git diff --word-diff
-    ```
-
-=== "log"
-
-    ```sh
-    # Show commits between January 1 and January 5, 2016
-    git log --after="2016-01-01" --before="2016-01-05"
-
-    # See commits that are on a branch but not on master
-    git log $MASTER..$BRANCH
-    ```
-
-=== "ls-files"
-
-    ```sh
-    # Show tracked files
-    git ls-files
-
-    # Show tracked files, each line is terminated by a null byte
-    git ls-files -z
-
-    # Show tracked files that have been deleted
-    git ls-files --deleted
-    ```
-
-=== "mv"
-
-    ```sh
-    # Move or rename a tracked file
-    git mv $FILE $NEWNAME
-    ```
-
-=== "push"
-
-    ```sh
-    # Transfer data from local branch {master} to remote {origin}
-    git push -u origin master
-    ```
-
-=== "remote"
-
-    ```sh
-    # Add remote repo
-    git remote add $REPO $URL
-
-    # Display URL of remote repo
-    git remote get-url $REPO
-
-    # Set url for existing repo
-    git remote set-url $URL $REPO
-    ```
-
-=== "rm"
-
-    ```sh
-    # Remove tracked file from index and delete the file
-    git rm $FILE
-
-    # Remove file from the index but keep the file as-is
-    git rm $FILE --cached
-    ```
-
-=== "stash"
-
-    ```sh
-    # Stash all changes to work-tree with no name
-    git stash
-
-    # Stash staged changes, giving it a description using -m
-    git stash -S -m "for Filters"
-    # --staged --message
-
-    # View stashes in stash stack
-    git stash list
-
-    # Apply changes in most recent stash (stash 0)
-    git stash apply
-
-    # Apply changes in specified stash
-    git stash apply 1
-
-    # Delete specified stash
-    git stash drop stash@$STASH
-
-    # Apply stash 0 and delete it
-    git stash pop
-
-    # Delete all stashes
-    git stash clear
-    ```
 
 ---
 
@@ -185,46 +230,9 @@ git revert $COMMIT
 
     **git config** provides a frontend to the INI formatted config files typically found within **.git/config** in each repo or, when using **-g**/**--global**, **\$HOME/.gitconfig**.
 
-    ```sh title="git config"
-    # List all configuration (includes directive in global .gitconfig)
-    git config --list
-
-    # Store authentication details in the credential store (2)
-    git config --global credential.helper store
-
-    # Set up alias "br" for branch (1)
-    git config --system alias.br branch
-
-    # Define a directory as safe (3)
-    git config --global --add safe.directory $PATH
-    ```
-
-    1. 
-    ```ini title="/etc/gitconfig"
-    [alias]
-        br = branch
-    ```
-    2. 
-    ```ini title=".gitconfig"
-    [credential]
-        helper = cache
-    ```
-    3. 
-    ```ini title=".gitconfig"
-    [safe]
-        directory = $PATH
-    ```
 
 
 
-    ```sh
-    # Git will automatically append CRLF endings on Windows. 
-    # This setting can be displayed with the following command:
-    git config core.autocrlf
-
-    # Disable appending CRLF endings
-    git config core.autocrlf false
-    ```
 
     ```ini title="Conditional configuration"
     [includeIf "gitdir:~/projects/work/"]
@@ -434,15 +442,20 @@ git revert $COMMIT
 :   
     Once an access token has been generated in a git provider like GitHub, it must be entered as the password.
 
-    If the [**credential store**](https://git-scm.com/docs/git-credential-store) has been enabled, credentials can be stored on-disk.
 
-    ```ini
-    [credential]
-      helper = store
-    ```
+    If the [**credential store**](https://git-scm.com/docs/git-credential-store) has been enabled, credentials can be stored on-disk. (1)
+    {: .annotate }
+
+    1. 
+        ```ini title=".gitconfig"
+        [credential]
+          helper = store
+        ```
 
     These credentials are stored in plaintext at **~/.git-credentials**.
     If the token expires and must be changed, this file must be deleted before git will prompt for the new password again.
+
+
 
 ### Applications
 
