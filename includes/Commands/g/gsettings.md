@@ -1,15 +1,14 @@
 **gsettings** is the CLI frontend intended to support changes to GNOME application settings, stored in [dconf](#dconf) databases.
 
-```sh
+
+
+```sh title="Examples"
 # Display path to current background image (when using dark mode)
 gsettings get org.gnome.desktop.background picture-uri-dark
 
 # Watch changes to the given schema's values
 gsettings monitor org.gnome.desktop.background
-```
 
-
-```sh title="Examples"
 # Change function of Caps Lock
 gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier']"
 
@@ -21,10 +20,23 @@ gsettings set org.gtk.Settings.Debug enable-inspector-keybinding true # (2)
 
 # Tweak window bar buttons in GNOME
 gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
+
+# Query the range of valid values for a key
+gsettings query org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type # (3)
 ```
 
 1. Valid sizes include 24, 32, 48, 64, and 96
 2. Can be run with ++ctrl+shift+d++
+3. 
+    ``` title="Output"
+    enum
+    'blank'
+    'suspend'
+    'shutdown'
+    'hibernate'
+    'interactive'
+    'nothing'
+    ```
 
 The key that stores custom keybindings is a **relocatable schema**
 

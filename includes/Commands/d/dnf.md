@@ -1,3 +1,76 @@
+??? info "Syntax"
+
+    === "clean"
+
+        ```sh
+        # Remove cached packages
+        dnf clean packages
+
+        dnf clean all
+        ```
+
+    === "copr"
+
+        Packages in [Copr](https://copr.fedorainfracloud.org/) repositories do not need to follow Fedora Packaging Guidelines.
+
+        ```sh
+        # Install lazygit
+        dnf copr enable atim/lazygit -y
+        dnf install lazygit
+        ```
+
+    === "download"
+
+        The **download** subcommand (provided by the **dnf-plugins-core** package) allows the RPMs to be downloaded without automatic installation.
+
+        ```sh
+        dnf download rsync
+
+        dnf download --source rsync
+        ```
+
+    === "group"
+
+        ```sh
+        # Specify package groups with the group command
+        dnf group info virtualization # (1)
+
+        dnf group install virtualization
+
+        # Include optional packages
+        dnf group install --with-optional virtualization
+        ```
+
+        1. Package groups can also be specified by prefixing the package group name with **@** (only if the group name doesn't have a space in it).
+
+        ```sh title="Alternative"
+        dnf info @virtualization
+
+        dnf install @virtualization
+
+        dnf install --with-optional @virtualization
+        ```
+
+    === "remove"
+
+        ```sh title="dnf remove"
+        # Remove the configuration backend supporting the use of legacy ifcfg files in NetworkManager.
+        dnf remove NetworkManager-initscripts-ifcfg-rh
+        ```
+
+    === "swap"
+
+        ```sh
+        --8<-- "includes/Commands/d/dnf-swap.sh"
+        ```
+
+    === "system-upgrade"
+
+        ```sh
+        --8<-- "includes/Commands/d/dnf-system-upgrade.sh"
+        ```
+
+
 ```sh
 # Install a package, providing confirmation preemptively
 dnf install -y bat
@@ -11,77 +84,6 @@ dnf history
 # View all packages installed by user
 dnf history userinstalled 
 ```
-
-=== "clean"
-
-    ```sh
-    # Remove cached packages
-    dnf clean packages
-
-    dnf clean all
-    ```
-
-=== "copr"
-
-    Packages in [Copr](https://copr.fedorainfracloud.org/) repositories do not need to follow Fedora Packaging Guidelines.
-
-    ```sh
-    # Install lazygit
-    dnf copr enable atim/lazygit -y
-    dnf install lazygit
-    ```
-
-=== "download"
-
-    The **download** subcommand (provided by the **dnf-plugins-core** package) allows the RPMs to be downloaded without automatic installation.
-
-    ```sh
-    dnf download rsync
-
-    dnf download --source rsync
-    ```
-
-=== "group"
-
-    ```sh
-    # Specify package groups with the group command
-    dnf group info virtualization # (1)
-
-    dnf group install virtualization
-
-    # Include optional packages
-    dnf group install --with-optional virtualization
-    ```
-
-    1. Package groups can also be specified by prefixing the package group name with **@** (only if the group name doesn't have a space in it).
-
-    ```sh title="Alternative"
-    dnf info @virtualization
-
-    dnf install @virtualization
-
-    dnf install --with-optional @virtualization
-    ```
-
-=== "remove"
-
-    ```sh title="dnf remove"
-    # Remove the configuration backend supporting the use of legacy ifcfg files in NetworkManager.
-    dnf remove NetworkManager-initscripts-ifcfg-rh
-    ```
-
-=== "swap"
-
-    ```sh
-    --8<-- "includes/Commands/d/dnf-swap.sh"
-    ```
-
-=== "system-upgrade"
-
-    ```sh
-    --8<-- "includes/Commands/d/dnf-system-upgrade.sh"
-    ```
----
 
 **Repositories** are INI files placed in  **/etc/yum.repos.d/**, but they can also be displayed and manipulated from the command-line.
 
