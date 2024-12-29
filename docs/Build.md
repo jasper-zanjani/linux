@@ -1,10 +1,20 @@
 # Building software
 
-#### Toolchain
-:   
+<div class="grid cards" markdown>
+
+-   #### Toolchain
+
+    ---
+
     Different common build tools must be installed, depending on distro
 
-    - :material-fedora: **Fedora**: vim, make, gcc
+    ```sh
+    dnf install make automake gcc kernel-devel
+
+    dnf group install "C Development Tools and Libraries"
+    ```
+
+</div>
 
 ## Tasks
 
@@ -55,18 +65,27 @@
 
 ## Utilities
 
-#### make
-:   
+<div class="grid cards" markdown>
+
+
+-   #### make
+
+    ---
+
     --8<-- "includes/Commands/m/make.md"
 
-#### objdump
-:   
+-   #### objdump
+
+    ---
 
     ```sh
     --8<-- "includes/Commands/o/objdump.sh"
     ```
 
-#### readelf
-:   
+-   #### readelf
+
+    ---
 
     --8<-- "includes/Commands/r/readelf.md"
+
+</div>

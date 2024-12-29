@@ -62,3 +62,13 @@ mkrep
 # Display repositories
 lsrep
 ```
+
+```  
+
+
+```sh
+powermt display dev=all
+lsdev -C
+odmget -q 'name=$DISK' CuDv
+```
+
