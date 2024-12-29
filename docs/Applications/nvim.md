@@ -59,6 +59,12 @@ In insert mode they can be accessed using ++ctrl++++r++.
 
     ---
 
+    ```sh
+    # Start neovim with no configuration
+    nvim --clean
+    ```
+
+
     Settings in Neovim can be defined using **either** Lua or Vimscript configuration files (but not both).
 
     Vim options are set with children of [**vim.opt**](https://neovim.io/doc/user/lua.html#vim.opt) which are set to various values.

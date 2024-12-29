@@ -20,13 +20,10 @@
 
     ```sh
     # Remove background color, replacing it with transparency
-    convert $INPUT -transparent white $OUTPUT
-    ```
+    magick convert $INPUT -transparent white $OUTPUT
 
-    Using **-fuzz** will allow antialiased pixels to be selected.
-
-    ```sh
-    convert $INPUT -fuzz 10% -transparent white $OUTPUT
+    # Fuzz selection to allow antialiased pixels to be selected.
+    magick convert $INPUT -fuzz 10% -transparent white $OUTPUT
     ```
 
 
