@@ -1,6 +1,12 @@
 # Mkdocs Material
 
---8<-- "includes/emoji-search.html"
+!!! info "Emoji"
+
+    Download:
+
+    -   [emoji.aranja.com](https://emoji.aranja.com/)
+    
+    --8<-- "includes/emoji-search.html"
 
 <div class="grid cards" markdown>
 
@@ -92,7 +98,7 @@
     </div>
     ```
 
--   #### Custom colors
+-   #### [Colors](https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/)
 
     ---
 
@@ -127,40 +133,6 @@
       --md-primary-fg-color--dark:  #90030C;
     }
     ```
-
--   #### Annotation width
-
-    ---
-
-    === "mkdocs.yml"
-
-        ```yaml
-        extra_css:
-        - style/annotation-width.css
-        ```
-
-    === "docs/style/annotation-width.css"
-
-        ```css
-        :root { --md-tooltip-width: 600px; }
-        ```
-
--   #### Print to PDF
-
-    ---
-
-    The somewhat outdated [mkdocs-pandoc-plugin](https://lab.gsi.upm.es/docs/mkdocs-material) [Python package](https://pypi.org/project/mkdocs-pandoc-plugin/) can be installed to export to PDF.
-
-    ```yaml title="mkdocs.yml"
-    plugins:
-    - pandoc
-    ```
-
--   #### Keyboard keys
-
-    ---
-
-    Adding [keyboard keys](https://squidfunk.github.io/mkdocs-material/reference/formatting/?h=key#adding-keyboard-keys) uses [pymdownx shortcodes](https://facelessuser.github.io/pymdown-extensions/extensions/keys/#extendingmodifying-key-map-index).
 
 -   #### LaTeX
 
@@ -227,12 +199,43 @@
         - https://unpkg.com/katex@0/dist/katex.min.css
         ```
 
--   #### [Mermaid diagrams](https://squidfunk.github.io/mkdocs-material/reference/diagrams)
+-   #### Annotation width
+
+    === "mkdocs.yml"
+
+        ```yaml
+        extra_css:
+        - style/annotation-width.css
+        ```
+
+    === "docs/style/annotation-width.css"
+
+        ```css
+        :root { --md-tooltip-width: 600px; }
+        ```
 
     ---
 
+    #### Keyboard keys
+
+    Adding [keyboard keys](https://squidfunk.github.io/mkdocs-material/reference/formatting/?h=key#adding-keyboard-keys) uses [pymdownx shortcodes](https://facelessuser.github.io/pymdown-extensions/extensions/keys/#extendingmodifying-key-map-index).
+
+    ---
+
+    #### [Mermaid diagrams](https://squidfunk.github.io/mkdocs-material/reference/diagrams)
+
     Material for MkDocs integrates with Mermaid.js, a popular library for drawing diagrams.
 
+    ---
+
+    #### Print to PDF
+
+    The somewhat outdated [mkdocs-pandoc-plugin](https://lab.gsi.upm.es/docs/mkdocs-material) [Python package](https://pypi.org/project/mkdocs-pandoc-plugin/) can be installed to export to PDF.
+
+    ```yaml title="mkdocs.yml"
+    plugins:
+    - pandoc
+    ```
 
 </div>
 
