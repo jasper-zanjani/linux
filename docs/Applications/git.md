@@ -38,7 +38,19 @@
         git checkout branch
         ```
 
+    === "clone"
+
+        ```sh
+        REPO=https://gitlab.gnome.org/GNOME/gtk.git
+        git clone $REPO
+
+        # The depth of the tree can be specified, and various configuration parameters can be passed with -c
+        git clone $REPO --depth 1 -c http.sslVerify=false
+        ```
+
     === "config"
+
+        **git config** provides a frontend to the INI formatted config files typically found within **.git/config** in each repo or, when using **-g**/**--global**, **$HOME/.gitconfig**.
 
         ```sh title="git config"
         # List all configuration (includes directive in global .gitconfig)
@@ -176,26 +188,31 @@
         git stash clear
         ```
 
+    === ":material-wrench: Config"
+
+        Configuration data can be stored in a variety of locations:
+
+        -   /etc/gitconfig
+        -   $HOME/.gitconfig
+        -   $REPO/.git/config
+        
+        ```ini title="Conditional configuration"
+        [includeIf "gitdir:~/projects/work/"]
+            path = ~/projects/work/.gitconfig
+        
+        [includeIf "gitdir:~/projects/oss/"]
+            path = ~/projects/oss/.gitconfig
+        ```
 
 Git is a very complex utility with multiple commands and subcommands and a strong dependency on **version control system** concepts.
 
----
-
-The most basic useful command may be [**git clone**](https://git-scm.com/docs/git-clone) which simply downloads a repository.
-```sh
-git clone https://gitlab.gnome.org/GNOME/gtk.git
-
-# The depth of the tree can be specified, and various configuration parameters can be passed with -c
-git clone https://gitlab.gnome.org/GNOME/gtk.git --depth 1 -c http.sslVerify=false
-```
-
-A git repository is a directory containing files, changes to which are tracked in discrete units called **commits**.
+A git **repository** is a directory containing files, changes to which are tracked in discrete units called **commits**.
 In the jargon of git, the contents of the directory are referred to as the **current working tree**.
 Changes made to the repository have to be incorporated into the **commit history** in a multi-step process, starting by **staging** changes, or adding them to the **index** which will be incorporated into the following commit.
 
 ```sh
 # Apply a single, specific commit from another branch
-git cherry-pick commit
+git cherry-pick $COMMIT
 ```
 
 Combine branches by replaying the changes made on one branch to another
@@ -216,31 +233,6 @@ git revert $COMMIT
 ```
 
 ## Tasks
-
-#### Configuration
-:   
-
-    ??? info "Configs"
-
-        | Type       | Location       |
-        | ---------- | -------------- |
-        | System     | /etc/gitconfig |
-        | Global     | ~/.gitconfig   |
-        | Repository | .git/config    |
-
-    **git config** provides a frontend to the INI formatted config files typically found within **.git/config** in each repo or, when using **-g**/**--global**, **\$HOME/.gitconfig**.
-
-
-
-
-
-    ```ini title="Conditional configuration"
-    [includeIf "gitdir:~/projects/work/"]
-        path = ~/projects/work/.gitconfig
-    
-    [includeIf "gitdir:~/projects/oss/"]
-        path = ~/projects/oss/.gitconfig
-    ```
 
 #### Aliases
 :   
