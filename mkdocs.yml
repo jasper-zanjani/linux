@@ -3,7 +3,7 @@ site_url: https://jasper-zanjani.github.io/linux
 site_dir: /home/jasper/Documents/mkdocs/linux
 theme:
   name: material
-  favicon: img/favicon.png
+  favicon: img/logo.png
   logo: img/logo.png
   palette:
     scheme: slate

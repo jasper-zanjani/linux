@@ -129,12 +129,17 @@ In insert mode they can be accessed using ++ctrl++++r++.
     Neovim [keymappings](https://neovim.io/doc/user/map.html#mapping) use the [**vim.keymap.set**](https://neovim.io/doc/user/lua.html#_lua-module:-vim.keymap) command.
 
     ```lua
-    vim.keymap.set("n", ";", ":") -- (1)
+    vim.keymap.set("n", ";", ":")
     ```
 
-    1. 
-    ```vimscript
-    nmap ; :
+    Multiple modes are specified by providing a list.
+
+    ```lua
+    -- Use Ctrl-<motion> to navigate between panes
+    vim.keymap.set({ "n", 'i', 'v' }, "<C-h>", "<C-w>h")
+    vim.keymap.set({ "n", 'i', 'v' }, "<C-j>", "<C-w>j")
+    vim.keymap.set({ "n" , 'i', 'v'}, "<C-l>", "<C-w>l")
+    vim.keymap.set({ "n" , 'i', 'v'}, "<C-k>", "<C-w>k")
     ```
 
     ```lua
@@ -328,7 +333,7 @@ In insert mode they can be accessed using ++ctrl++++r++.
 
     Neovim offers an [integrated terminal](http://neovim.io/doc/user/nvim_terminal_emulator.html).
     It is opened with the **:terminal** command, and by entering into insert mode the terminal can be used as normal.
-    Bizarrely, the binding ++ctrl++++bslash+ctrl++++n++ is the sequence that must be pressed to exit terminal mode and to be able to interact with Neovim.
+    Bizarrely, the binding ++ctrl++++backslash+ctrl++++n++ is the sequence that must be pressed to exit terminal mode and to be able to interact with Neovim.
     A sensible alternative keymapping provided in the documentation also illustrates there is a **t** mode for keymappings:
 
     ```lua
@@ -376,3 +381,36 @@ In insert mode they can be accessed using ++ctrl++++r++.
 
 </div>
 
+
+## Modules
+
+#### cmp
+
+**cmp** is used for code completion.
+
+```lua
+local cmp = require'cmp'
+
+cmp.setup({
+    snippet = { ... },
+    sources = { ... },
+    mapping = cmp.mapping.preset.insert({
+        ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+    }),
+})
+```
+
+#### lspconfig
+
+**lspconfig** [:simple-github:](https://github.com/neovim/nvim-lspconfig) provides basic, defuault Neovim LSP client configurations for various LSP servers.
+
+```lua title="rust_analyzer"
+require'lspconfig'.rust_analyzer.setup {
+    settings = {
+        ['rust-analyzer'] = {
+            check = { command = "clippy"; },
+            diagnostics = { enable = true; }
+        }
+    }
+}
+```

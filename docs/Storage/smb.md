@@ -54,22 +54,21 @@ smbclient -L $HOST
 smbclient //$HOST/$USER -U $USER
 ```
 
-On TrueNAS, the option to "Allow Guest Access" should be turned on, unless password-based authentication for specific users is desired.
-Also, the directory must have write permissions enabled to allow uploading.
-```sh
-chmod o+w
-```
-Bizarrely, the ability to navigate into subdirectories appears to depend on the owner execute bit.
-This may have something to do with anonymous guest access.
-```sh
-chmod u+x
-```
+
 
 Permanently mounting a Samba share in /etc/fstab
+
 ```
 //nas/Videos /home/jasper/Videos cifs guest,uid=1000,iocharset=utf8 0 0
 ```
+
 Then mount the fstab file
+
 ```sh
 mount -a
 ```
+
+!!! info "TrueNAS"
+
+    On TrueNAS, the option to "Export Read Only" should be turned off to allow writes.
+    

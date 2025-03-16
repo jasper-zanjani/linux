@@ -1,29 +1,29 @@
 **jq** is used to query JSON documents.
 
 ```sh title="Example JSON data"
-# Azure account data
-az account show | jq # (1)
+# Use object-identifier index to find the value for a specified key
+az account show | jq '.environmentName' # => "AzureCloud"
 
-jq '.environmentName' json # => "AzureCloud"
+# Use the select function to filter by key
+jq '.[] | select( .color == "black")' 3.json # (1)
+
+# select can be combined with 
+ip a -j | jq '.[] | select( .ifname == "enp6s0" ).addr_info.[0].local' -r # => 
 ```
 
 1. 
-```json
-{
-  "environmentName": "AzureCloud",
-  "homeTenantId": "9e5dbd21-d5f1-4ca7-8068-e2c0f8551cc9",
-  "id": "f2acbad6-5760-4f87-ada7-3753382b2b8f",
-  "isDefault": true,
-  "managedByTenants": [],
-  "name": "Pay-As-You-Go",
-  "state": "Enabled",
-  "tenantId": "9e5dbd21-d5f1-4ca7-8068-e2c0f8551cc9",
-  "user": {
-    "name": "jasper.zanjani@outlook.com",
-    "type": "user"
-  }
-}
-```
 
+    ```json title="3.json"
+    --8<-- "includes/Output/jq/3.json"
+    ```
+
+    ```json title="Output"
+    {
+      "color": "black",
+      "value": "#000"
+    }
+    ```
+
+jq's output is colorized by default.
 Colors can be defined by setting the **JQ\_COLORS** environment variable.
 

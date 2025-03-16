@@ -3,29 +3,25 @@
 
 ## Commands
 
-=== ":material-redhat: RHEL"
+#### dnf
 
-    #### dnf
+--8<-- "includes/Commands/d/dnf.md"
 
-    --8<-- "includes/Commands/d/dnf.md"
 
-=== ":material-arch: Arch"
+#### pacman
 
-    #### pacman
+--8<-- "includes/Commands/p/pacman.md"
 
-    --8<-- "includes/Commands/p/pacman.md"
+--8<-- "includes/Commands/p/pacman-key.md"
 
-    --8<-- "includes/Commands/p/pacman-key.md"
 
-=== ":material-ubuntu: Ubuntu"
+#### apt
 
-    #### apt
+--8<-- "includes/Commands/a/apt.md"
 
-    --8<-- "includes/Commands/a/apt.md"
+--8<-- "includes/Commands/a/add-apt-repository.md"
 
-    --8<-- "includes/Commands/a/add-apt-repository.md"
-
-    --8<-- "includes/Commands/a/apt-key.md"
+--8<-- "includes/Commands/a/apt-key.md"
 
 
 #### flatpak

@@ -4,15 +4,34 @@
 For example, **yum** repos and **apt** incorporate APIs and handle GPG keys.
 The **KWallet Manager** and [**GNOME Keyring**](https://wiki.gnome.org/Projects/GnomeKeyring) (Seahorse) applications can also be used to manage GPG keys.
 
-Red Hat derivative distros store public GPG keys in **/etc/pki/rpm-gpg**.
-Ubuntu stores repo keys in **/etc/apt/keyrings**.
-
-
-
-
 ## Tasks
 
 <div class="grid cards" markdown>
+
+-   #### Configuration
+
+    ---
+
+    Public GPG keys are stored in:
+
+    :material-redhat: /etc/pki/rpm-gpg
+
+    :material-ubuntu: /etc/apt/keyrings
+
+-   #### Encrypt and decrypt file
+
+    ---
+
+
+    ```sh
+    # A new, encrypted file will be created with the filename extension .gpg.
+    gpg --encrypt $FILE
+      # -e
+
+    # Cleartext sent to STDOUT
+    gpg --decrypt $FILE.gpg
+      # -d
+    ```
 
 -   #### Create GPG key pair
 
@@ -102,15 +121,6 @@ Ubuntu stores repo keys in **/etc/apt/keyrings**.
             --8<-- "includes/Output/kbxutil/kbxutil-stats1"
             ```
 
-
--   #### Encrypt file
-
-    ---
-
-    ```sh
-    # This will produce $FILE.gpg in the same directory as the cleartext file
-    gpg --encrypt --recipient $RECIPIENT $FILE
-    ```
 
 
 -   #### Get more entropy

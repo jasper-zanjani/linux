@@ -174,6 +174,12 @@ http {
 
     === ":material-ubuntu: Ubuntu"
 
+        Official Ubuntu repositories offer Nginx
+
+        ```sh
+        apt install -y nginx
+        ```
+
         ```sh title="/etc/apt/sources.list"
         deb http://nginx.org/packages/ubuntu/ trusty nginx
         deb-src http://nginx.org/packages/ubuntu/ trusty nginx
@@ -184,6 +190,21 @@ http {
         apt install nginx
 
         ```
+
+-   #### Serve files from home directory
+
+    ---
+
+    Nginx runs using the **www-data** user, so allowing the daemon to serve from a user's home directory entails granting access to the daemon.
+    
+    The only way to do this appears to be to add the www-data user to the user's group.
+    Other file permissions don't appear to affect this behavior.
+
+    ```sh
+    chmod -aG $USER www-data
+    ```
+
+
 
 </div>
 

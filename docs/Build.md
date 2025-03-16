@@ -16,6 +16,53 @@
 
 </div>
 
+!!! info "Core dumps"
+
+    <div class="grid cards" markdown>
+
+    -   
+
+        A core dump or core file is a an image of the process's memory at the time of termination (see `man 5 core`).
+        This image can then be used in a debugger to inspect the state of the program when it crashed. 
+
+
+        ```sh title="kernel.core_pattern"
+        # Define a template used to name core files
+        sysctl -n kernel.core_pattern
+        ```
+
+        The kernel parameter **kernel.core\_pattern** determines the naming of core files.
+        On systems using systemd, core dumps are placed in a location determined by the [systemd-coredump](#systemd-coredump) utility (usually **/var/lib/systemd/coredump**).
+
+
+        ```sh
+        # Maximum core file size
+        ulimit -c
+        ```
+
+
+    -   
+
+        #### coredumpctl
+
+        --8<-- "includes/Commands/c/coredumpctl.md"
+
+        ---
+
+        #### systemd-coredump
+
+        - /etc/systemd/coredump.conf
+
+        #### crash
+
+        The [crash utility](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/managing_monitoring_and_updating_the_kernel/analyzing-a-core-dump_managing-monitoring-and-updating-the-kernel#running-and-exiting-the-crash-utility_analyzing-a-core-dump) is a power tool for analyzing kdump.
+
+        #### kdump
+
+        kdump is a service that provides a [crash dumping mechanism](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/managing_monitoring_and_updating_the_kernel/installing-kdump_managing-monitoring-and-updating-the-kernel#what-is-kdumpinstalling-kdump) and creates a crash dump or a **vmcore** dump file.
+
+    </div>
+
 ## Tasks
 
 #### Binary analysis
@@ -65,14 +112,10 @@
 
 ## Utilities
 
-<div class="grid cards" markdown>
 
+#### make
 
--   #### make
-
-    ---
-
-    --8<-- "includes/Commands/m/make.md"
+--8<-- "includes/Commands/m/make.md"
 
 -   #### objdump
 

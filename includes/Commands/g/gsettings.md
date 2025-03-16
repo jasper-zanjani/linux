@@ -21,6 +21,9 @@ gsettings set org.gtk.Settings.Debug enable-inspector-keybinding true # (2)
 # Tweak window bar buttons in GNOME
 gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
 
+# Disable automatic suspend
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type nothing
+
 # Query the range of valid values for a key
 gsettings query org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type # (3)
 ```
@@ -50,11 +53,3 @@ gsettings get org.gnome.settings-daemon.plugins.media-keys custom-keybindings # 
 ['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
 ```
 
-[Disable automatic suspend on GDM](https://www.reddit.com/r/gnome/comments/vx53vm/how_to_disable_automatic_suspend_on_gdm/)
-```sh
-# Log into gdm user with
-machinectl shell gdm@ /bin/bash
-
-# Disable idle timeout
-gsettings set org.gnome.desktop.session idle-delay 0
-```

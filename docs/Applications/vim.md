@@ -180,6 +180,8 @@ let mapleader = ' '
     let @/ = ""
     ```
 
+    Use ["fightin' one-eyed Kirby"](https://www.youtube.com/watch?v=v2a6Nv7RSd0) `\(.*\)`  and the first capture group `\1` to replace an entire line or to behave like multiline cursor.
+
 
 -   #### Configuration
 
@@ -245,8 +247,10 @@ let mapleader = ' '
     echo has('clipboard') " => 1
     ```
 
-    A selection can be yanked to the clipboard by specifying the `"+` register ++double-quote++++plus++++y++
-    Pasting from the clipboard is done by specifying the same register ++double-quote++++plus++++p++ or with the standard shortcut ++ctrl++++shift++++v++
+    A selection can be yanked to the clipboard by specifying the `"+` register ++double-quote+plus+y++
+    Pasting from the clipboard is done by specifying the same register ++double-quote+plus+p++ or with the standard shortcut ++ctrl+shift+v++
+
+    Text can be pasted into the command-line using ++ctrl+r+plus++ (or ++ctrl+shift+v++).
 
 -   #### Plugins
 
@@ -263,9 +267,14 @@ let mapleader = ' '
     Plug 'rust-lang/rust.vim'
     ```
 
--   #### Language definition
+-   #### Syntax highlighting
 
     ---
+
+    ```vim
+    " Set language manually for an open buffer
+    set syntax=xml
+    ```
 
     Syntax highlighting for various languages are stored in **syntax files**, stored in **/usr/share/vim/vim82/syntax**.
 
@@ -274,6 +283,7 @@ let mapleader = ' '
     ```vim
     syn match markdownPymdownxSnippet '^-\{2,}8<-\{2,} .*' " (1)
     hi def link markdownPymdownxSnippet Error
+
     ```
 
     1. Note that the quantifier specifying at least two instances of the preceding hyphen requires the initial brace to be escaped.
@@ -286,15 +296,19 @@ let mapleader = ' '
 
     Panes are referred to as "splits" and are controlled by a variety of [bindings](https://vimtricks.com/p/vim-move-split/).
 
+    - `sp` or `split` will open a horizontal split (i.e. a split to the top or bottom)
+    - `vs` or `vsplit` will open a vertical split
+    - `vert` will open a help query in a vertical split
+
 -   #### Tabs
 
     ---
 
-    **tabedit** will open a file in a new tab, relative to the working directory from which vim was invoked
-    **tabnext** or **tabn** will navigate to a specified tab number.
-    The motion commands **gt** and **gT** will navigate to the next or previous tabs.
+    - `tabedit` will open a file in a new tab, relative to the working directory from which vim was invoked
+    - `tabn` or `tabnext` will navigate to a specified tab number.
+    - The motion commands `gt` and `gT` will navigate to the next or previous tabs.
     Like other motion commands a number can be prepended to the motion to move a greater number of tabs.
-    **tabmove** moves a tab to a specified position number.
+    - `tabmove` moves a tab to a specified position number.
 
 -   #### Markdown
 

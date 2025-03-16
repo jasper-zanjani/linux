@@ -10,6 +10,7 @@ config () {
             ;;
         cfg)    $EDITOR $HOME"/.bashrc.d/config.sh" ;;
         note)   $EDITOR $HOME"/.bashrc.d/note.sh" ;;
+        pass)   $EDITOR $HOME"/.bashrc.d/pass.rc" ;;
         nvim)
             cd $NVIM_CONFDIR
             case $2 in 

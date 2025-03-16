@@ -140,73 +140,77 @@ In order to suppress the message of the day, create an empty file at **~/.hushlo
 
 ## Configuration
 
-Server and client configuration both use the same set of [keywords](https://man.openbsd.org/ssh_config) that can be defined inline on invocation or in config files.
+Server and client configuration both use the same set of keywords (`man ssh_config`) that can be defined inline on invocation or in config files.
 
 ### Client configuration
-:   
 
-    By default, client configurations are stored in each user's **~/.ssh** directory, which also contains public and private key pairs.
-    This directory must have 700 permissions, and importnat files like private keys or known\_hosts must have 600.
+!!! info "Permissions"
 
-    ```sh
-    Host home
-        HostName 192.168.1.1
-        User root
-        Port 50022
-        SetEnv BAT_THEME=OneHalfLight # (1)
-        LocalForward 8080 localhost:8080 # (2)
-    ```
+    By default, client configurations are stored in **$HOME/.ssh**, which also contains public and private key pairs.
+    This directory must have 700 permissions, and important files like private keys or known\_hosts must have 600.
 
-    1. [**SetEnv**](https://man.openbsd.org/ssh_config#SetEnv) allows environment variables to be set in a remote session. 
-    However, these same environment variables must be explicitly specified in [**AcceptEnv**](https://man.openbsd.org/sshd_config#AcceptEnv) key of the [server configuration](#server-configuration).
-    This entry will set a specific syntax highlighting theme for use on the bat CLI utility.
-    ```sh title="/etc/ssh/sshd_config"
-    AcceptEnv BAT_THEME
-    ```
-    2. The use of [**LocalForward**](https://man.openbsd.org/ssh_config#LocalForward) here is equivalent to the use of the **-L** option at the command-line:
-    ```sh
-    ssh -L 8080:localhost:8080 $SERVER
-    ```
+```sh
+Host home
+    HostName 192.168.1.1
+    User root
+    Port 50022
+    SetEnv BAT_THEME=OneHalfLight # (1)
+    LocalForward 8080 localhost:8080 # (2)
+```
 
-#### Transient servers
-:   
+1. **SetEnv** allows environment variables to be set in a remote session. 
+However, these same environment variables must be explicitly specified in **AcceptEnv** key of the [server configuration](#server-configuration).
+This entry will set a specific syntax highlighting theme for use on the bat CLI utility.
+```sh title="/etc/ssh/sshd_config"
+AcceptEnv BAT_THEME
+```
+2. The use of [**LocalForward**](https://man.openbsd.org/ssh_config#LocalForward) here is equivalent to the use of the **-L** option at the command-line:
+```sh
+ssh -L 8080:localhost:8080 $SERVER
+```
+
+<div class="grid cards" markdown>
+
+
+-   #### Transient servers
+
+    ---
+
     Prevent recording a transient server to the client's known hosts file.
     This is useful when SSHing to many hosts from a single client, say while managing a corporate environment.
 
     ```sh
-    UserKnownHostsFile /dev/null # (1)
-    StrictHostKeyChecking no # (2)
+    UserKnownHostsFile /dev/null
+    StrictHostKeyChecking no
     ```
 
-    1. [**UserKnownHostsFile**](https://man.openbsd.org/ssh_config#UserKnownHostsFile)
-    2. [**StrictHostKeyChecking**](https://man.openbsd.org/ssh_config#StrictHostKeyChecking)
 
-#### Canonical hostname
-:   
-    In [corporate environments with verbose domain names](https://serverfault.com/questions/363055/regular-expression-matching-in-ssh-config), [**canonical hostnames**](https://man.openbsd.org/ssh_config#CanonicalDomains) can be configured to automatically append repetitive domain names ("canonicalize") to destination hosts.
+-   #### Canonical hostname
+
+    ---
+
+    In [corporate environments with verbose domain names](https://serverfault.com/questions/363055/regular-expression-matching-in-ssh-config), **canonical hostnames** can be configured to automatically append repetitive domain names ("canonicalize") to destination hosts.
 
     In this example, any connection made to a hostname beginning with "server" will append "example.com".
 
     ```sh
     Host server*
-        CanonicalDomains example.com # (1)
-        CanonicalizeHostname always # (2)
+        CanonicalDomains example.com
+        CanonicalizeHostname always
     ```
 
-    1. [**CanonicalDomains**](https://man.openbsd.org/ssh_config#CanonicalDomains)
-    2. [**CanonicalizeHostname**](https://man.openbsd.org/ssh_config#CanonicalizeHostname)
+-   #### Server configuration
 
-### Server configuration
-:   
+    ---
 
     ```sh
     --8<-- "includes/Configs/sshd_config"
-    ```
 
-    ```sh
     # Check server configuration, outputting settings to STDOUT
     sshd -T
     ```
+
+</div>
 
 ## Commands
 

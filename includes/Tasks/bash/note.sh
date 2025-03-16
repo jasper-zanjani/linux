@@ -14,6 +14,7 @@ note () {
     DEVOPS_NOTES_DIR="$NOTES_DIR""/devops"
     LANG_NOTES_DIR="$NOTES_DIR""/language"
     LINUX_NOTES_DIR="$NOTES_DIR""/linux"
+    SCRIPTS_DIR="$NOTES_DIR""/scripts"
 
     # Notes files
     CRYPTO_NOTES="$CRYPTO_NOTES_DIR"
@@ -28,14 +29,14 @@ note () {
     case $1 in
 
         ai)
-            cd $NOTES_DIR"/notes"
-            $EDITOR $NOTES_DIR"/notes/docs/Misc/AI.md"
+            cd $NOTES_DIR"/ai"
+            $EDITOR $NOTES_DIR"/ai/docs/index.md"
             cd -
             ;;
 
         az)
             cd $DEVOPS_NOTES_DIR
-            $EDITOR $DEVOPS_NOTES_DIR"/docs/index.md"
+            $EDITOR $DEVOPS_NOTES_DIR"/docs/Cloud/Azure/index.md"
             cd -
             ;;
 
@@ -102,9 +103,9 @@ note () {
             $EDITOR $ETH_NOTES
             ;;
 
-        fedex)
-            cd $NOTES_DIR"/fedex"
-            $EDITOR $NOTES_DIR"/fedex/docs/index.md"
+        f*)
+            cd $NOTES_DIR"/prometheus"
+            $EDITOR $NOTES_DIR"/prometheus/docs/index.md"
             cd -
             ;;
 
@@ -120,6 +121,12 @@ note () {
             cd -
             ;;
 
+        ibm*)
+            cd $DEVOPS_NOTES_DIR
+            $EDITOR $DEVOPS_NOTES_DIR"/docs/Cloud/IBM/index.md"
+            cd -
+            ;;
+
         k*)
             cd $NOTES_DIR"/notes"
             $EDITOR $NOTES_DIR"/notes/docs/Misc/Keyboards.md"
@@ -131,6 +138,10 @@ note () {
             case $2 in 
                 dnf) 
                     $EDITOR $LINUX_NOTES_DIR"/includes/Commands/d/dnf.md"
+                    ;;
+
+                tmux) 
+                    $EDITOR $LINUX_NOTES_DIR"/includes/Commands/t/tmux.md"
                     ;;
                 *)
                     $EDITOR $LINUX_NOTES_DIR
@@ -158,12 +169,33 @@ note () {
             cd -
             ;;
 
+        rs)
+            cd $CODING_NOTES_DIR
+            $EDITOR $CODING_NOTES_DIR"/docs/Rust/index.md"
+            cd -
+            ;;
+
+        scr*)
+            cd $SCRIPTS_DIR
+            $EDITOR $SCRIPTS_DIR"/docs/index.md"
+            cd -
+
+            ;;
+
         sql*)
             cd $LINUX_NOTES_DIR
             $EDITOR $SQLITE_NOTES
             cd -
             ;;
 
+        tmux) 
+            cd $LINUX_NOTES_DIR
+            $EDITOR $LINUX_NOTES_DIR"/includes/Commands/t/tmux.md"
+            cd -
+            ;;
+        *)
+            $EDITOR $LINUX_NOTES_DIR
+            ;;
 
         *)
             echo "Unknown argument"

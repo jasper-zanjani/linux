@@ -1,4 +1,47 @@
-??? info "Syntax"
+<div class="grid cards" markdown>
+
+-   
+
+    === ":material-star:"
+
+        ```sh
+        # Install a package, providing confirmation preemptively
+        dnf install -y bat
+
+        # Find the package providing the given filename
+        dnf provides /usr/bin/bat
+
+        # View history of dnf commands
+        dnf history
+
+        # View all packages installed by user
+        dnf history userinstalled 
+
+        # Enable a repo for just one command
+        dnf --enablerepo=fedora-debuginfo,updates-debuginfo install kernel-debuginfo -y
+        ```
+
+    === "Repos"
+
+        ```sh
+        # Display repos
+        dnf repolist # -v
+
+        # Display enabled repos
+        dnf repolist --enabled
+
+        # Display a single repo
+        dnf repoinfo docker-ce-stable
+
+        # Add repo
+        dnf config-manager --add-repo $REPOURL
+
+        # Disable repo
+        dnf config-manager --set-disabled $REPONAME
+
+        # Enable repo (in this case a preexisting repo kept disabled by default)
+        dnf config-manager --enable zfs-testing
+        ```
 
     === "clean"
 
@@ -70,52 +113,31 @@
         --8<-- "includes/Commands/d/dnf-system-upgrade.sh"
         ```
 
+-   
 
-```sh
-# Install a package, providing confirmation preemptively
-dnf install -y bat
+    Global dnf configuration is stored in either **/etc/yum.conf** or **/etc/dnf.conf**.
 
-# Find the package providing the given filename
-dnf provides /usr/bin/bat
+    ```ini
+    [main]
+    ; Exclude packages from updates permanently
+    exclude=kernel* php*
 
-# View history of dnf commands
-dnf history
+    ; Suppress confirmation
+    assumeyes=True
+    ```
 
-# View all packages installed by user
-dnf history userinstalled 
-```
+    ```sh
+    # Display configuration (run as root)
+    dnf config-manager --dump
+    ```
+
+</div>
 
 **Repositories** are INI files placed in  **/etc/yum.repos.d/**, but they can also be displayed and manipulated from the command-line.
 
 <div class="grid cards" markdown>
 
--   #### Handle repos
-
-    ---
-
-    ```sh
-    # Display repos
-    dnf repolist # -v
-
-    # Display enabled repos
-    dnf repolist --enabled
-
-    # Display a single repo
-    dnf repoinfo docker-ce-stable
-
-    # Add repo
-    dnf config-manager --add-repo $REPOURL
-
-    # Disable repo
-    dnf config-manager --set-disabled $REPONAME
-
-    # Enable repo (in this case a preexisting repo kept disabled by default)
-    dnf config-manager --enable zfs-testing
-    ```
-
-    ---
-
-    #### GPG key management
+-   #### GPG key management
 
     ---
 
@@ -170,22 +192,6 @@ dnf history userinstalled
 -   #### Configuration
 
     ---
-
-    Global dnf configuration is stored in either **/etc/yum.conf** or **/etc/dnf.conf**.
-
-    ```ini
-    [main]
-    ; Exclude packages from updates permanently
-    exclude=kernel* php*
-
-    ; Suppress confirmation
-    assumeyes=True
-    ```
-
-    ```sh
-    # Display configuration (run as root)
-    dnf config-manager --dump
-    ```
 
 
 -   #### Modules

@@ -89,7 +89,7 @@ ffmpeg -i A.avi -i B.mp4 out1.mkv out2.wav -map 1:a -c:a copy out3.mov
     done
     ```
 
-#### Concatenating multiple files
+#### Concatenate files
 :   
     It is possible to combine many files into one.
     The canonical way of doing this is by first assembling a list of filenames.

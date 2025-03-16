@@ -56,6 +56,17 @@ podman port -a
 
 <div class="grid cards" markdown>
 
+-   #### Output
+
+    ---
+
+    `--format` takes a space-delimited list of field names (ref. `man podman-ps`) within mustache syntax
+
+    ```sh
+    # Display only container IDs
+    podman ps --format "{{.ID}}"
+    ```
+
 -   #### Service file
 
     ---

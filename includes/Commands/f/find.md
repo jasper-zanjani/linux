@@ -1,6 +1,10 @@
 Search for files in a directory hierarchy
 
-```sh title="Find all files owned by user"
+```sh
+# Find largest files
+find . -type f -exec du {} \; | sort -rn | head
+
+# Find all files owned by user
 find . -user $USER
 ```
 
