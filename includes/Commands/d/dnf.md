@@ -1,119 +1,131 @@
-<div class="grid cards" markdown>
 
--   
+=== ":material-star:"
 
-    === ":material-star:"
+    ```sh
+    # Install a package, providing confirmation preemptively
+    dnf install -y bat
 
-        ```sh
-        # Install a package, providing confirmation preemptively
-        dnf install -y bat
+    # Find the package providing the given filename
+    dnf provides /usr/bin/bat
 
-        # Find the package providing the given filename
-        dnf provides /usr/bin/bat
+    # View history of dnf commands
+    dnf history
 
-        # View history of dnf commands
-        dnf history
+    # View all packages installed by user
+    dnf history userinstalled 
 
-        # View all packages installed by user
-        dnf history userinstalled 
+    # Enable a repo for just one command
+    dnf --enablerepo=fedora-debuginfo,updates-debuginfo install kernel-debuginfo -y
+    ```
 
-        # Enable a repo for just one command
-        dnf --enablerepo=fedora-debuginfo,updates-debuginfo install kernel-debuginfo -y
-        ```
+=== "Repos"
 
-    === "Repos"
+    ```sh
+    # Display repos
+    dnf repolist # -v
 
-        ```sh
-        # Display repos
-        dnf repolist # -v
+    # Display (enabled) repos
+    dnf repolist
+    
+    # Display disabled repos
+    dnf repolist --disabled
 
-        # Display enabled repos
-        dnf repolist --enabled
+    # Display a single repo
+    dnf repoinfo docker-ce-stable
 
-        # Display a single repo
-        dnf repoinfo docker-ce-stable
+    # Add repo
+    dnf config-manager addrepo $REPOURL
 
-        # Add repo
-        dnf config-manager --add-repo $REPOURL
+    # Install Hashicorp Fedora repo
+    dnf config-manager addrepo --from-repofile=https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
 
-        # Disable repo
-        dnf config-manager --set-disabled $REPONAME
+    # Disable repo
+    dnf config-manager --set-disabled $REPONAME
 
-        # Enable repo (in this case a preexisting repo kept disabled by default)
-        dnf config-manager --enable zfs-testing
-        ```
+    # Enable repo (in this case a preexisting repo kept disabled by default)
+    dnf config-manager --enable zfs-testing
 
-    === "clean"
+    ```
 
-        ```sh
-        # Remove cached packages
-        dnf clean packages
+=== "clean"
 
-        dnf clean all
-        ```
+    ```sh
+    --8<-- "includes/Commands/d/dnf-clean.sh"
+    ```
 
-    === "copr"
+=== "copr"
 
-        Packages in [Copr](https://copr.fedorainfracloud.org/) repositories do not need to follow Fedora Packaging Guidelines.
+    Packages in [Copr](https://copr.fedorainfracloud.org/) repositories do not need to follow Fedora Packaging Guidelines.
 
-        ```sh
-        # Install lazygit
-        dnf copr enable atim/lazygit -y
-        dnf install lazygit
-        ```
+    ```sh
+    # Install lazygit
+    dnf copr enable atim/lazygit -y
+    dnf install lazygit
+    ```
 
-    === "download"
+=== "download"
 
-        The **download** subcommand (provided by the **dnf-plugins-core** package) allows the RPMs to be downloaded without automatic installation.
+    The **download** subcommand (provided by the **dnf-plugins-core** package) allows the RPMs to be downloaded without automatic installation.
 
-        ```sh
-        dnf download rsync
+    ```sh
+    dnf download rsync
 
-        dnf download --source rsync
-        ```
+    dnf download --source rsync
+    ```
 
-    === "group"
+=== "group"
 
-        ```sh
-        # Specify package groups with the group command
-        dnf group info virtualization # (1)
+    ```sh
+    # Specify package groups with the group command
+    dnf group info virtualization # (1)
 
-        dnf group install virtualization
+    dnf group install virtualization
 
-        # Include optional packages
-        dnf group install --with-optional virtualization
-        ```
+    # Include optional packages
+    dnf group install --with-optional virtualization
+    ```
 
-        1. Package groups can also be specified by prefixing the package group name with **@** (only if the group name doesn't have a space in it).
+    1. Package groups can also be specified by prefixing the package group name with **@** (only if the group name doesn't have a space in it).
 
-        ```sh title="Alternative"
-        dnf info @virtualization
+    ```sh title="Alternative"
+    dnf info @virtualization
 
-        dnf install @virtualization
+    dnf install @virtualization
 
-        dnf install --with-optional @virtualization
-        ```
+    dnf install --with-optional @virtualization
+    ```
 
-    === "remove"
+=== "info"
 
-        ```sh title="dnf remove"
-        # Remove the configuration backend supporting the use of legacy ifcfg files in NetworkManager.
-        dnf remove NetworkManager-initscripts-ifcfg-rh
-        ```
+    ```sh
+    --8<-- "includes/Commands/d/dnf-info.sh"
+    ```
 
-    === "swap"
+=== "install"
 
-        ```sh
-        --8<-- "includes/Commands/d/dnf-swap.sh"
-        ```
+    ```sh
+    --8<-- "includes/Commands/d/dnf-install.sh"
+    ```
 
-    === "system-upgrade"
+=== "remove"
 
-        ```sh
-        --8<-- "includes/Commands/d/dnf-system-upgrade.sh"
-        ```
+    ```sh
+    --8<-- "includes/Commands/d/dnf-remove.sh"
+    ```
 
--   
+=== "swap"
+
+    ```sh
+    --8<-- "includes/Commands/d/dnf-swap.sh"
+    ```
+
+=== "system-upgrade"
+
+    ```sh
+    --8<-- "includes/Commands/d/dnf-system-upgrade.sh"
+    ```
+
+=== ":material-tools: config"
 
     Global dnf configuration is stored in either **/etc/yum.conf** or **/etc/dnf.conf**.
 
@@ -131,7 +143,6 @@
     dnf config-manager --dump
     ```
 
-</div>
 
 **Repositories** are INI files placed in  **/etc/yum.repos.d/**, but they can also be displayed and manipulated from the command-line.
 
