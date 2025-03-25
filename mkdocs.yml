@@ -1,6 +1,5 @@
 site_name: Linux
 site_url: https://jasper-zanjani.github.io/linux
-site_dir: /home/jasper/Documents/mkdocs/linux
 theme:
   name: material
   favicon: img/logo.png

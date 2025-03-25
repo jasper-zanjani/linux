@@ -237,6 +237,17 @@
     - pandoc
     ```
 
+    #### [Publication](https://squidfunk.github.io/mkdocs-material/publishing-your-site/)
+
+    ```sh
+    # Publish to Github Pages
+    mkdocs gh-deploy
+
+    # Specify a remote other than "origin"
+    mkdocs gh-deploy -r github
+    ```
+
+
 </div>
 
 #### Emoji search bar

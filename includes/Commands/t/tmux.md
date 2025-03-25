@@ -25,6 +25,7 @@
         - **`<prefix>`** + **`&`** close window
         - **`<prefix>`** + **`n`** next window
         - **`<prefix>`** + **`p`** previous window
+        - **`<prefix>`** + **`,`** rename window
 
 
     Key bindings can be changed with the **bind-key** and **unbind-key** commands.
