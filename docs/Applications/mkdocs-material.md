@@ -220,11 +220,21 @@
 
     Adding [keyboard keys](https://squidfunk.github.io/mkdocs-material/reference/formatting/?h=key#adding-keyboard-keys) uses [pymdownx shortcodes](https://facelessuser.github.io/pymdown-extensions/extensions/keys/#extendingmodifying-key-map-index).
 
+    -   ++double-quote++ `++double-quote++` 
+    -   ++grave++ `++grave++` ("backtick")
+
     ---
 
     #### [Mermaid diagrams](https://squidfunk.github.io/mkdocs-material/reference/diagrams)
 
     Material for MkDocs integrates with Mermaid.js, a popular library for drawing diagrams.
+
+    ``` title="Timeline"
+    %%{ init: {'theme': 'neutral'} }%%
+    timeline
+        2023 : Bla bla
+        2024 : Yada yada
+    ```
 
     ---
 

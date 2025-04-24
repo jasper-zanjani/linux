@@ -12,7 +12,7 @@ uname -r
 uname -a
 ```
 
-The output of **-r**/**--kernel-release** can be used to navigate to some system directories:
+The output of **-r**/**--kernel-release** can be used to navigate to some system directories, such as that of DKMS modules:
 ```sh
 ls /usr/lib/modules/$(uname -r)/kernel
 ```

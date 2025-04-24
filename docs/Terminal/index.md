@@ -28,18 +28,3 @@ that make Linux a machine for productivity.
     ```sh title="tput"
     --8<-- "includes/Commands/t/tput.sh"
     ```
-
-
-
-#### stow
-
---8<-- "includes/Commands/s/stow.md"
-
-
----
-
-#### tmux
-
---8<-- "includes/Commands/t/tmux.md"
-
-

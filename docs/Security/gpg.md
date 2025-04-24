@@ -165,7 +165,7 @@ A variety of other applications use GPG in the background.
 
     ---
 
-    --8<-- "includes/Commands/d/dnf-gpg.md"
+    --8<-- "includes/cmd/dnf/gpg.md"
 
 
 -   #### GNOME Keyring

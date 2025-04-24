@@ -19,7 +19,6 @@ theme:
     - toc.integrate           # Always render table of contents as part of the left navbar
     - content.code.annotate
     - content.code.copy
-    - content.tabs.link
   shortcuts:
     search: 191
 extra_javascript:

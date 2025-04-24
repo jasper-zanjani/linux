@@ -1,5 +1,12 @@
 # GNOME
 
+!!! info "Reference"
+
+    === ":material-keyboard: Keybindings"
+
+        - ++alt++++f7++ Move window
+        - ++alt++++f8++ Resize window
+
 *[BLOB]: Binary Large Object
 
 GTK3 attempted to get away from strong dependency on theming engines by introducing CSS stylesheets.
@@ -141,67 +148,85 @@ Direct manipulation of dconf is discouraged, rather users and developers are enc
 ## Tasks
 
 #### Desktop background
-:   
-    Create a keyfile for the local database in **/etc/dconf/db/local.d/01-background**
 
-    ```ini
-    [org/gnome/desktop/background]
+Create a keyfile for the local database in **/etc/dconf/db/local.d/01-background**
 
-    picture-uri='file:///usr/local/share/backgrounds/wallpaper.jpg'
-    picture-options='scaled'
-    primary-color='000000'
-    secondary-color='FFFFFF'
-    ```
+```ini
+[org/gnome/desktop/background]
+
+picture-uri='file:///usr/local/share/backgrounds/wallpaper.jpg'
+picture-options='scaled'
+primary-color='000000'
+secondary-color='FFFFFF'
+```
 
 #### Custom application shortcut
-:   
-    Custom shortcuts are stored in dconf using a ["relocatable schema"](https://wiki.ubuntu.com/Keybindings) which has three keys: **name**, **command**, and **binding**.
 
-    ```sh
-    gsettings set org.gnome.setting-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0 name 'Terminal'
-    gsettings set org.gnome.setting-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0 binding '<Super>Enter'
-    gsettings set org.gnome.setting-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0 command '/usr/bin/gnome-terminal'
-    ```
+Custom shortcuts are stored in dconf using a ["relocatable schema"](https://wiki.ubuntu.com/Keybindings) which has three keys: **name**, **command**, and **binding**.
 
-    Note that this doesn't seem to work...
+```sh
+gsettings set org.gnome.setting-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0 name 'Terminal'
+
+gsettings set org.gnome.setting-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0 binding '<Super>Enter'
+
+gsettings set org.gnome.setting-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0 command '/usr/bin/gnome-terminal'
+```
+
+Note that this doesn't seem to work...
 
 #### File associations
-:   
-    File associations are stored in **.desktop** files stored in **/usr/share/applications/**. 
-    These INI-format files store all kinds of metadata on installed applications, including names and keywords in all supported languages.
-    Filetypes are stored under the **MimeType** key as semicolon-delimited [MIME Types](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/desktop_migration_and_administration_guide/file_formats).
 
-    ```ini
-    [Desktop Entry]
-    Type=Application
-    MimeType=application/x-newtype
-    Name=My Application 1
-    Exec=myapplication1
-    ```
+File associations are stored in **.desktop** files stored in **/usr/share/applications/**. 
+These INI-format files store all kinds of metadata on installed applications, including names and keywords in all supported languages.
+Filetypes are stored under the **MimeType** key as semicolon-delimited [MIME Types](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/desktop_migration_and_administration_guide/file_formats).
 
-    MIME Type descriptors as stored as XML files stored in **/usr/share/mime/packages/**:
+```ini
+[Desktop Entry]
+Type=Application
+MimeType=application/x-newtype
+Name=My Application 1
+Exec=myapplication1
+```
 
-    ```xml
-    <?xml version="1.0" encoding="UTF-8"?>
-    <mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
-      <mime-type type="application/x-newtype">
-        <comment>new mime type</comment>
-        <glob pattern="*.xyz"/>
-      </mime-type>
-    </mime-info>
-    ```
+MIME Type descriptors as stored as XML files stored in **/usr/share/mime/packages/**:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/x-newtype">
+    <comment>new mime type</comment>
+    <glob pattern="*.xyz"/>
+  </mime-type>
+</mime-info>
+```
 
 #### File browser bookmarks
-:   
 
-    [Bookmarks](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/using_the_desktop_environment_in_rhel_8/managing-bookmarks-in-gnome_using-the-desktop-environment-in-rhel-8) are stored in a file in **~/.config/gtk-3.0/bookmarks**
+[Bookmarks](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/using_the_desktop_environment_in_rhel_8/managing-bookmarks-in-gnome_using-the-desktop-environment-in-rhel-8) are stored in a file in **~/.config/gtk-3.0/bookmarks**
 
-    ```
-    --8<-- "includes/Configs/bookmarks"
-    ```
+```
+--8<-- "includes/Configs/bookmarks"
+```
+
+#### Disable automatic suspend
+
+```sh
+# Login as gdm account
+machinectl shell gdm@ /bin/bash
+
+# Disable automatic suspend
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type nothing
+```
 
 
 ## Applications
+
+
+#### gsettings
+
+--8<-- "includes/Commands/g/gsettings.md"
+
+
 
 #### dconf
 :   
@@ -213,9 +238,6 @@ Direct manipulation of dconf is discouraged, rather users and developers are enc
 :   
     --8<-- "includes/Commands/g/gio.md"
 
-#### gsettings
-:   
-    --8<-- "includes/Commands/g/gsettings.md"
 
 #### notify-send
 :   

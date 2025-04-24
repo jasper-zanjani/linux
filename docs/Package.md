@@ -1,11 +1,8 @@
 # Package management
 
-
-## Commands
-
 #### dnf
 
---8<-- "includes/Commands/d/dnf.md"
+--8<-- "includes/cmd/dnf/info.md"
 
 
 #### pacman

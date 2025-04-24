@@ -147,7 +147,7 @@ let mapleader = ' '
 #### Completion
 
 - [Context-aware completion](https://youtu.be/3TX3kV3TICU?t=1005)
-- [++ctrl+x++ ++ctrl+l++](https://youtu.be/3TX3kV3TICU?t=1260)
+- [++ctrl++++x+ctrl++++l++](https://youtu.be/3TX3kV3TICU?t=1260)
 - [Omni completion ++ctrl+x++ ++ctrl+o++](https://youtu.be/3TX3kV3TICU?t=1350)
 
 ## Tasks
@@ -182,6 +182,8 @@ let mapleader = ' '
 
     Use ["fightin' one-eyed Kirby"](https://www.youtube.com/watch?v=v2a6Nv7RSd0) `\(.*\)`  and the first capture group `\1` to replace an entire line or to behave like multiline cursor.
 
+
+    A visual selection can be yanked and putted into the command-line using ++ctrl++++r+double-quote++
 
 -   #### Configuration
 

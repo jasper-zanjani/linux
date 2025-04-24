@@ -1,0 +1,560 @@
+[
+  {
+    "name": "eastus",
+    "displayName": "East US",
+    "geography": "United States",
+    "type": "Region"
+  },
+  {
+    "name": "southcentralus",
+    "displayName": "South Central US",
+    "geography": "United States",
+    "type": "Region"
+  },
+  {
+    "name": "westus2",
+    "displayName": "West US 2",
+    "geography": "United States",
+    "type": "Region"
+  },
+  {
+    "name": "westus3",
+    "displayName": "West US 3",
+    "geography": "United States",
+    "type": "Region"
+  },
+  {
+    "name": "australiaeast",
+    "displayName": "Australia East",
+    "geography": "Australia",
+    "type": "Region"
+  },
+  {
+    "name": "southeastasia",
+    "displayName": "Southeast Asia",
+    "geography": "Asia Pacific",
+    "type": "Region"
+  },
+  {
+    "name": "northeurope",
+    "displayName": "North Europe",
+    "geography": "Europe",
+    "type": "Region"
+  },
+  {
+    "name": "swedencentral",
+    "displayName": "Sweden Central",
+    "geography": "Sweden",
+    "type": "Region"
+  },
+  {
+    "name": "uksouth",
+    "displayName": "UK South",
+    "geography": "United Kingdom",
+    "type": "Region"
+  },
+  {
+    "name": "westeurope",
+    "displayName": "West Europe",
+    "geography": "Europe",
+    "type": "Region"
+  },
+  {
+    "name": "centralus",
+    "displayName": "Central US",
+    "geography": "United States",
+    "type": "Region"
+  },
+  {
+    "name": "southafricanorth",
+    "displayName": "South Africa North",
+    "geography": "South Africa",
+    "type": "Region"
+  },
+  {
+    "name": "centralindia",
+    "displayName": "Central India",
+    "geography": "India",
+    "type": "Region"
+  },
+  {
+    "name": "eastasia",
+    "displayName": "East Asia",
+    "geography": "Asia Pacific",
+    "type": "Region"
+  },
+  {
+    "name": "indonesiacentral",
+    "displayName": "Indonesia Central",
+    "geography": "Indonesia",
+    "type": "Region"
+  },
+  {
+    "name": "japaneast",
+    "displayName": "Japan East",
+    "geography": "Japan",
+    "type": "Region"
+  },
+  {
+    "name": "japanwest",
+    "displayName": "Japan West",
+    "geography": "Japan",
+    "type": "Region"
+  },
+  {
+    "name": "koreacentral",
+    "displayName": "Korea Central",
+    "geography": "Korea",
+    "type": "Region"
+  },
+  {
+    "name": "newzealandnorth",
+    "displayName": "New Zealand North",
+    "geography": "New Zealand",
+    "type": "Region"
+  },
+  {
+    "name": "canadacentral",
+    "displayName": "Canada Central",
+    "geography": "Canada",
+    "type": "Region"
+  },
+  {
+    "name": "francecentral",
+    "displayName": "France Central",
+    "geography": "France",
+    "type": "Region"
+  },
+  {
+    "name": "germanywestcentral",
+    "displayName": "Germany West Central",
+    "geography": "Germany",
+    "type": "Region"
+  },
+  {
+    "name": "italynorth",
+    "displayName": "Italy North",
+    "geography": "Italy",
+    "type": "Region"
+  },
+  {
+    "name": "norwayeast",
+    "displayName": "Norway East",
+    "geography": "Norway",
+    "type": "Region"
+  },
+  {
+    "name": "polandcentral",
+    "displayName": "Poland Central",
+    "geography": "Poland",
+    "type": "Region"
+  },
+  {
+    "name": "spaincentral",
+    "displayName": "Spain Central",
+    "geography": "Spain",
+    "type": "Region"
+  },
+  {
+    "name": "switzerlandnorth",
+    "displayName": "Switzerland North",
+    "geography": "Switzerland",
+    "type": "Region"
+  },
+  {
+    "name": "mexicocentral",
+    "displayName": "Mexico Central",
+    "geography": "Mexico",
+    "type": "Region"
+  },
+  {
+    "name": "uaenorth",
+    "displayName": "UAE North",
+    "geography": "UAE",
+    "type": "Region"
+  },
+  {
+    "name": "brazilsouth",
+    "displayName": "Brazil South",
+    "geography": "Brazil",
+    "type": "Region"
+  },
+  {
+    "name": "israelcentral",
+    "displayName": "Israel Central",
+    "geography": "Israel",
+    "type": "Region"
+  },
+  {
+    "name": "qatarcentral",
+    "displayName": "Qatar Central",
+    "geography": "Qatar",
+    "type": "Region"
+  },
+  {
+    "name": "centralusstage",
+    "displayName": "Central US (Stage)",
+    "geography": "usa",
+    "type": "Region"
+  },
+  {
+    "name": "eastusstage",
+    "displayName": "East US (Stage)",
+    "geography": "usa",
+    "type": "Region"
+  },
+  {
+    "name": "eastus2stage",
+    "displayName": "East US 2 (Stage)",
+    "geography": "usa",
+    "type": "Region"
+  },
+  {
+    "name": "northcentralusstage",
+    "displayName": "North Central US (Stage)",
+    "geography": "usa",
+    "type": "Region"
+  },
+  {
+    "name": "southcentralusstage",
+    "displayName": "South Central US (Stage)",
+    "geography": "usa",
+    "type": "Region"
+  },
+  {
+    "name": "westusstage",
+    "displayName": "West US (Stage)",
+    "geography": "usa",
+    "type": "Region"
+  },
+  {
+    "name": "westus2stage",
+    "displayName": "West US 2 (Stage)",
+    "geography": "usa",
+    "type": "Region"
+  },
+  {
+    "name": "asia",
+    "displayName": "Asia",
+    "geography": null,
+    "type": "Region"
+  },
+  {
+    "name": "asiapacific",
+    "displayName": "Asia Pacific",
+    "geography": null,
+    "type": "Region"
+  },
+  {
+    "name": "australia",
+    "displayName": "Australia",
+    "geography": null,
+    "type": "Region"
+  },
+  {
+    "name": "brazil",
+    "displayName": "Brazil",
+    "geography": null,
+    "type": "Region"
+  },
+  {
+    "name": "canada",
+    "displayName": "Canada",
+    "geography": null,
+    "type": "Region"
+  },
+  {
+    "name": "europe",
+    "displayName": "Europe",
+    "geography": null,
+    "type": "Region"
+  },
+  {
+    "name": "france",
+    "displayName": "France",
+    "geography": null,
+    "type": "Region"
+  },
+  {
+    "name": "germany",
+    "displayName": "Germany",
+    "geography": null,
+    "type": "Region"
+  },
+  {
+    "name": "global",
+    "displayName": "Global",
+    "geography": null,
+    "type": "Region"
+  },
+  {
+    "name": "india",
+    "displayName": "India",
+    "geography": null,
+    "type": "Region"
+  },
+  {
+    "name": "israel",
+    "displayName": "Israel",
+    "geography": null,
+    "type": "Region"
+  },
+  {
+    "name": "italy",
+    "displayName": "Italy",
+    "geography": null,
+    "type": "Region"
+  },
+  {
+    "name": "japan",
+    "displayName": "Japan",
+    "geography": null,
+    "type": "Region"
+  },
+  {
+    "name": "korea",
+    "displayName": "Korea",
+    "geography": null,
+    "type": "Region"
+  },
+  {
+    "name": "newzealand",
+    "displayName": "New Zealand",
+    "geography": null,
+    "type": "Region"
+  },
+  {
+    "name": "norway",
+    "displayName": "Norway",
+    "geography": null,
+    "type": "Region"
+  },
+  {
+    "name": "poland",
+    "displayName": "Poland",
+    "geography": null,
+    "type": "Region"
+  },
+  {
+    "name": "qatar",
+    "displayName": "Qatar",
+    "geography": null,
+    "type": "Region"
+  },
+  {
+    "name": "singapore",
+    "displayName": "Singapore",
+    "geography": null,
+    "type": "Region"
+  },
+  {
+    "name": "southafrica",
+    "displayName": "South Africa",
+    "geography": null,
+    "type": "Region"
+  },
+  {
+    "name": "sweden",
+    "displayName": "Sweden",
+    "geography": null,
+    "type": "Region"
+  },
+  {
+    "name": "switzerland",
+    "displayName": "Switzerland",
+    "geography": null,
+    "type": "Region"
+  },
+  {
+    "name": "uae",
+    "displayName": "United Arab Emirates",
+    "geography": null,
+    "type": "Region"
+  },
+  {
+    "name": "uk",
+    "displayName": "United Kingdom",
+    "geography": null,
+    "type": "Region"
+  },
+  {
+    "name": "unitedstates",
+    "displayName": "United States",
+    "geography": null,
+    "type": "Region"
+  },
+  {
+    "name": "unitedstateseuap",
+    "displayName": "United States EUAP",
+    "geography": null,
+    "type": "Region"
+  },
+  {
+    "name": "eastasiastage",
+    "displayName": "East Asia (Stage)",
+    "geography": "asia",
+    "type": "Region"
+  },
+  {
+    "name": "southeastasiastage",
+    "displayName": "Southeast Asia (Stage)",
+    "geography": "asia",
+    "type": "Region"
+  },
+  {
+    "name": "brazilus",
+    "displayName": "Brazil US",
+    "geography": "Brazil",
+    "type": "Region"
+  },
+  {
+    "name": "eastus2",
+    "displayName": "East US 2",
+    "geography": "United States",
+    "type": "Region"
+  },
+  {
+    "name": "eastusstg",
+    "displayName": "East US STG",
+    "geography": "Stage (US)",
+    "type": "Region"
+  },
+  {
+    "name": "northcentralus",
+    "displayName": "North Central US",
+    "geography": "United States",
+    "type": "Region"
+  },
+  {
+    "name": "westus",
+    "displayName": "West US",
+    "geography": "United States",
+    "type": "Region"
+  },
+  {
+    "name": "jioindiawest",
+    "displayName": "Jio India West",
+    "geography": "India",
+    "type": "Region"
+  },
+  {
+    "name": "centraluseuap",
+    "displayName": "Central US EUAP",
+    "geography": "Canary (US)",
+    "type": "Region"
+  },
+  {
+    "name": "eastus2euap",
+    "displayName": "East US 2 EUAP",
+    "geography": "Canary (US)",
+    "type": "Region"
+  },
+  {
+    "name": "southcentralusstg",
+    "displayName": "South Central US STG",
+    "geography": "Stage (US)",
+    "type": "Region"
+  },
+  {
+    "name": "westcentralus",
+    "displayName": "West Central US",
+    "geography": "United States",
+    "type": "Region"
+  },
+  {
+    "name": "southafricawest",
+    "displayName": "South Africa West",
+    "geography": "South Africa",
+    "type": "Region"
+  },
+  {
+    "name": "australiacentral",
+    "displayName": "Australia Central",
+    "geography": "Australia",
+    "type": "Region"
+  },
+  {
+    "name": "australiacentral2",
+    "displayName": "Australia Central 2",
+    "geography": "Australia",
+    "type": "Region"
+  },
+  {
+    "name": "australiasoutheast",
+    "displayName": "Australia Southeast",
+    "geography": "Australia",
+    "type": "Region"
+  },
+  {
+    "name": "jioindiacentral",
+    "displayName": "Jio India Central",
+    "geography": "India",
+    "type": "Region"
+  },
+  {
+    "name": "koreasouth",
+    "displayName": "Korea South",
+    "geography": "Korea",
+    "type": "Region"
+  },
+  {
+    "name": "southindia",
+    "displayName": "South India",
+    "geography": "India",
+    "type": "Region"
+  },
+  {
+    "name": "westindia",
+    "displayName": "West India",
+    "geography": "India",
+    "type": "Region"
+  },
+  {
+    "name": "canadaeast",
+    "displayName": "Canada East",
+    "geography": "Canada",
+    "type": "Region"
+  },
+  {
+    "name": "francesouth",
+    "displayName": "France South",
+    "geography": "France",
+    "type": "Region"
+  },
+  {
+    "name": "germanynorth",
+    "displayName": "Germany North",
+    "geography": "Germany",
+    "type": "Region"
+  },
+  {
+    "name": "norwaywest",
+    "displayName": "Norway West",
+    "geography": "Norway",
+    "type": "Region"
+  },
+  {
+    "name": "switzerlandwest",
+    "displayName": "Switzerland West",
+    "geography": "Switzerland",
+    "type": "Region"
+  },
+  {
+    "name": "ukwest",
+    "displayName": "UK West",
+    "geography": "United Kingdom",
+    "type": "Region"
+  },
+  {
+    "name": "uaecentral",
+    "displayName": "UAE Central",
+    "geography": "UAE",
+    "type": "Region"
+  },
+  {
+    "name": "brazilsoutheast",
+    "displayName": "Brazil Southeast",
+    "geography": "Brazil",
+    "type": "Region"
+  }
+]

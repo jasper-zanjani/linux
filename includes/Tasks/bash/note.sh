@@ -31,71 +31,55 @@ note () {
         ai)
             cd $NOTES_DIR"/ai"
             $EDITOR $NOTES_DIR"/ai/docs/index.md"
-            cd -
             ;;
 
         az)
             cd $DEVOPS_NOTES_DIR
             $EDITOR $DEVOPS_NOTES_DIR"/docs/Cloud/Azure/index.md"
-            cd -
             ;;
 
         bash)
             cd $LINUX_NOTES_DIR
             $EDITOR $BASH_NOTES
-            cd -
             ;;
 
         c)
             cd $C_NOTES_DIR
             $EDITOR $C_NOTES_DIR"/docs/index.md"
-            cd -
             ;;
 
         cod*)
             cd $CODING_NOTES_DIR
-            $EDITOR $CODING_NOTES_DIR"/docs/index.md"
-            cd -
+            case $2 in 
+                gtk)    $EDITOR $CODING_NOTES_DIR"/docs/Python/GTK/index.md"    ;;
+                *)      $EDITOR $CODING_NOTES_DIR"/docs/index.md"               ;;
+            esac
             ;;
 
         cry*)
             cd $CRYPTO_NOTES_DIR
             case $2 in 
-                inv*)
-                    $EDITOR $CRYPTO_NOTES"/docs/investment.md"
-                    ;;
-                sol)
-                    $EDITOR $CRYPTO_NOTES"/includes/coins/sol.md"
-                    ;;
-                ton)
-                    $EDITOR $CRYPTO_NOTES"/includes/coins/ton.md"
-                    ;;
-                trx)
-                    $EDITOR $CRYPTO_NOTES"/includes/coins/trx.md"
-                    ;;
-                *)
-                    $EDITOR $CRYPTO_NOTES"/docs/index.md"
-                    ;;
+                inv*)   $EDITOR $CRYPTO_NOTES"/docs/investment.md"              ;;
+                sol)    $EDITOR $CRYPTO_NOTES"/includes/coins/sol.md"           ;;
+                ton)    $EDITOR $CRYPTO_NOTES"/includes/coins/ton.md"           ;;
+                trx)    $EDITOR $CRYPTO_NOTES"/includes/coins/trx.md"           ;;
+                *)      $EDITOR $CRYPTO_NOTES"/docs/index.md"                   ;;
             esac
-            cd -
             ;;
 
         db)
             cd $LINUX_NOTES_DIR
             $EDITOR $DB_NOTES
-            cd -
             ;;
 
         dev*)
             cd $DEVOPS_NOTES_DIR
             $EDITOR $DEVOPS_NOTES_DIR"/docs/index.md" 
-            cd -
             ;;
 
         es)
             cd $LANG_NOTES_DIR
             $EDITOR $LANG_NOTES_DIR"/docs/Spanish.md"
-            cd -
             ;;
 
         eth)
@@ -106,99 +90,78 @@ note () {
         f*)
             cd $NOTES_DIR"/prometheus"
             $EDITOR $NOTES_DIR"/prometheus/docs/index.md"
-            cd -
             ;;
 
         girl*)
             cd $NOTES_DIR"/girls"
             $EDITOR $NOTES_DIR"/girls/docs/index.md"
-            cd -
             ;;
 
         gun*)
             cd $NOTES_DIR"/guns"
             $EDITOR $GUN_NOTES
-            cd -
             ;;
 
         ibm*)
             cd $DEVOPS_NOTES_DIR
             $EDITOR $DEVOPS_NOTES_DIR"/docs/Cloud/IBM/index.md"
-            cd -
             ;;
 
         k*)
             cd $NOTES_DIR"/notes"
             $EDITOR $NOTES_DIR"/notes/docs/Misc/Keyboards.md"
-            cd -
             ;;
 
         lx)
             cd $LINUX_NOTES_DIR
             case $2 in 
-                dnf) 
-                    $EDITOR $LINUX_NOTES_DIR"/includes/Commands/d/dnf.md"
-                    ;;
-
-                tmux) 
-                    $EDITOR $LINUX_NOTES_DIR"/includes/Commands/t/tmux.md"
-                    ;;
-                *)
-                    $EDITOR $LINUX_NOTES_DIR
-                    ;;
+                dnf)    $EDITOR $LINUX_NOTES_DIR"/includes/Commands/d/dnf.md"   ;;
+                tmux)   $EDITOR $LINUX_NOTES_DIR"/includes/Commands/t/tmux.md"  ;;
+                *)      $EDITOR $LINUX_NOTES_DIR                                ;;
             esac
-            cd -
             ;;
 
         notes)
             cd $NOTES_DIR"/notes"
             $EDITOR $NOTES_DIR"/notes/docs/index.md"
-            cd -
             ;;
 
 
         nvim)
             cd $LINUX_NOTES_DIR
             $EDITOR $NEOVIM_NOTES
-            cd -
             ;;
 
         py)
             cd $CODING_NOTES_DIR
             $EDITOR $CODING_NOTES_DIR"/docs/Python/index.md"
-            cd -
             ;;
 
         rs)
             cd $CODING_NOTES_DIR
             $EDITOR $CODING_NOTES_DIR"/docs/Rust/index.md"
-            cd -
             ;;
 
         scr*)
             cd $SCRIPTS_DIR
             $EDITOR $SCRIPTS_DIR"/docs/index.md"
-            cd -
 
             ;;
 
         sql*)
             cd $LINUX_NOTES_DIR
             $EDITOR $SQLITE_NOTES
-            cd -
             ;;
 
         tmux) 
             cd $LINUX_NOTES_DIR
             $EDITOR $LINUX_NOTES_DIR"/includes/Commands/t/tmux.md"
-            cd -
-            ;;
-        *)
-            $EDITOR $LINUX_NOTES_DIR
             ;;
 
         *)
             echo "Unknown argument"
             ;;
     esac
+    echo "Don't forget to commit changes!"
+    git status -s
 }

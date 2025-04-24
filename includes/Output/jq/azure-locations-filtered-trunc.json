@@ -1,0 +1,20 @@
+[
+  {
+    "name": "eastus",
+    "displayName": "East US",
+    "geography": "United States",
+    "type": "Region"
+  },
+  {
+    "name": "southcentralus",
+    "displayName": "South Central US",
+    "geography": "United States",
+    "type": "Region"
+  },
+  {
+    "name": "westus2",
+    "displayName": "West US 2",
+    "geography": "United States",
+    "type": "Region"
+  }
+]

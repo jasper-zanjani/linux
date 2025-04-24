@@ -213,7 +213,7 @@ Red Hat recommends the use of the **leapp** utility to upgrade to a higher major
 #### dnf
 :   
 
-    --8<-- "includes/Commands/d/dnf.md"
+    --8<-- "includes/cmd/dnf/info.md"
 
 #### firewall-cmd
 :   
