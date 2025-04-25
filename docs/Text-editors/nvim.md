@@ -187,6 +187,7 @@ In insert mode they can be accessed using ++ctrl++++r++.
     There are a variety of solutions available for managing package installations.
 
     [junegunn/vim-plug](https://github.com/junegunn/vim-plug)'s main [script file](https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim) must be downloaded to **$HOME/.local/share/nvim/site/autoload**.
+    This must be downloaded separately from the configuration files present in **.config/nvim**.
     Then the vim config must be edited:
 
     ```lua

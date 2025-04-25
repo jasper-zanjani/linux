@@ -50,6 +50,7 @@
             - **`<prefix>`** + **`&`** close window
             - **`<prefix>`** + **`n`** next window
             - **`<prefix>`** + **`p`** previous window
+            - **`<prefix>`** + **`,`** rename window
 
         -   "Sessions"
 

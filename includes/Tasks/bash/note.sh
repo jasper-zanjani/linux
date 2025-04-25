@@ -160,6 +160,7 @@ note () {
 
         *)
             echo "Unknown argument"
+            return 1
             ;;
     esac
     echo "Don't forget to commit changes!"
