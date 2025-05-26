@@ -140,9 +140,9 @@ Direct manipulation of dconf is discouraged, rather users and developers are enc
     GNOME Extensions provide a variety of popular hacks and changes to the Shell.
     They are managed by [gnome-extensions-app](https://gitlab.gnome.org/GNOME/gnome-shell/-/tree/HEAD/subprojects/extensions-app) but they are typically added from the [GNOME Extensions website](https://extensions.gnome.org/) using a browser plugin.
 
-    These extensions are added to **~/.local/share/gnome-shell/extensions**, but many of them can also be made available to all users by installing them using a package manager, in which case they are placed in **/usr/share/gnome-shell/extensions**.
+    These extensions are installed to **$HOME/.local/share/gnome-shell/extensions**, but many of them can also be made available to all users by installing them using a package manager, in which case they are placed in **/usr/share/gnome-shell/extensions**.
 
-    Extensions appear to be mostly JavaScript applications, so they can probably simply be git cloned into the respective directories as well.
+    Extensions are coded in GJS (JavaScript), so they can probably simply be git cloned into the respective directories as well.
 
 
 ## Tasks

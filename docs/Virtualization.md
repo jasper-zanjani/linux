@@ -2,6 +2,18 @@
 
 # Virtualization
 
+!!! info "Install KVM"
+
+    VM acceleration is recommended for tools like [Android Studio](https://developer.android.com/studio/run/emulator-acceleration#accel-vm)
+
+    === ":material-fedora: Fedora"
+
+        > [Fedora Docs - Virtualization](https://docs.fedoraproject.org/en-US/quick-docs/virtualization-getting-started/)
+
+        ```sh
+        dnf group install -y virtualization
+        ```
+
 The typical virtualization stack on Linux is referred to as **QEMU**/**KVM**; both of these are separate technologies.
 
 - **KVM**{: #kvm } is a FreeBSD and Linux kernel module that allows the kernel to function as a hypervisor, first merged into kernel [2.6.20](https://kernelnewbies.org/Linux_2_6_20#Virtualization_support_through_KVM).

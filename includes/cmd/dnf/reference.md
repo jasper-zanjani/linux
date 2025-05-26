@@ -62,6 +62,13 @@
     --8<-- "includes/cmd/dnf/dnf-repolist.sh"
     ```
 
+=== "repoquery"
+
+    ```sh
+    # List files associated with a package
+    dnf repolist -l $PACKAGE
+    ```
+
 === "swap"
 
     ```sh

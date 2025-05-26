@@ -58,3 +58,6 @@ sudo dnf clean all
 sudo rm -r /var/cache/dnf
 ```
 
+```sh title="List files associated with a package"
+dnf repolist -l $PACKAGE
+```

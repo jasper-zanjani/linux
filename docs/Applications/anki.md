@@ -56,4 +56,6 @@ Each Anki user has a subdirectory named after it at this location.
     </pre>
     ```
 
+    Terraform (HCL) syntax highlighting is enabled by a [separate project](https://github.com/highlightjs/highlightjs-terraform) which has fallen out of maintenance.
+
 </div>

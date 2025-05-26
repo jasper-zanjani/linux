@@ -11,9 +11,12 @@ sed $OPTIONS -f $SCRIPT $FILE
 # Suppress automatic printing of pattern space
 sed -n # --quiet , --silent
 
-# Edit the file in-place, but save a backup copy of the original with **$SUFFIX** appended to the filename.
-sed -i=$SUFFIX
+# Edit the file in-place, but save a backup copy of the original with $SUFFIX appended to the filename.
+SUFFIX='.bak'
+sed -i$SUFFIX # (1)
 ```
+
+1. Note that the suffix must be **appended directly** to the letter i as shown: an equal sign will be interpreted as part of the suffix and a space is not acceptable.
 
 Sed instructions are made of two components: 
 

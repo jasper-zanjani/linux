@@ -26,3 +26,15 @@ rpm -e gpg-pubkey-d88e42b4-64f6fad9
 ```
 --8<-- "includes/Output/rpm/rpm-qi"
 ```
+
+#### Examples
+<div class="grid cards" markdown>
+
+-   [Installing Visual Studio Code](https://code.visualstudio.com/docs/setup/linux#_rhel-fedora-and-centos-based-distributions)
+
+    ```sh
+    sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+    ```
+
+</div>
+
