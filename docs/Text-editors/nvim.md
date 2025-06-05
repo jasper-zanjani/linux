@@ -1,9 +1,13 @@
 # Neovim
 
-[Lua guide](https://neovim.io/doc/user/lua-guide.html#lua-guide)
 
-Neovim supports using **init.vim** or **init.lua** as the configuration file, but
+Neovim (1) supports using **init.vim** or **init.lua** as the configuration file, but
 not both at the same time.
+{: .annotate }
+
+1.  
+
+    --8<-- "includes/nvim/callout.md"
 
 !!! info "Ideas"
 

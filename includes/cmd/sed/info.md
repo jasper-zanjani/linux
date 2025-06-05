@@ -107,4 +107,7 @@ sed 's/|/:/g' emp.lst | cmp -l - emp.lst | wc -l
 # Display the top 10 processes by memory or cpu usage.
 ps axch -o cmd,%mem --sort=-%mem | sed 11q
 ps axch -o cmd:15,%cpu --sort=-%cpu | sed 11q
+
+# Search and replace on files
+grep -rl $PATTERN $DIRECTORY | xargs sed -e "s/$PATTERN/$REPLACEMENT/g"
 ```
