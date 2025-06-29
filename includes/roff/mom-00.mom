@@ -1,0 +1,11 @@
+.TITLE      "Test document"
+.SUBTITLE   "Testing out mom syntax"
+.AUTHOR     "Jasper Dgiapusccu"
+.DOCTYPE    DEFAULT
+.COPYSTYLE  FINAL
+.PRINTSTYLE TYPEWRITE
+.START
+.PP
+Lorem ipsum dolor sit amet
+.HEAD "Wagner: Lohengrin to the Ring"
+.SUBHEAD "The Pull Toward Flat Six"

@@ -1,8 +1,3 @@
 # Helix
 
-Helix (1)
-{: .annotate }
-
-1.  === "Resources"
-
-        -   [Luke Pighetti](https://www.youtube.com/@LukePighetti/videos)
+--8<-- "includes/cmd/helix/info.md"

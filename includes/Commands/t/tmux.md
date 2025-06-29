@@ -32,7 +32,7 @@
 
     === ":material-keyboard: keyboard bindings"
 
-        tmux is controlled from an attached command by key combinations preceded by the **prefix** (++ctrl+b++ by default).
+        tmux is controlled from an attached command by key combinations preceded by the **prefix** (++ctrl++++b++ by default or more commonly ++ctrl++++space++).
 
 
         <div class="grid cards" markdown>
@@ -62,6 +62,11 @@
             - **`<prefix>`** + **`$`** rename session
 
         </div>
+
+        There are many [considerations](https://github.com/tmux/tmux/wiki/Modifier-Keys) for tmux keybindings.
+
+        -   Ctrl can only be used with the 32 ASCII control characters: a through z plus `[`, `\`, `]`, `^`, and `-`.
+            In fact other keys are interpreted as these: ++esc++ is equivalent to `C-@`, ++tab++ is `C-i`, and ++enter++ is `C-m`, etc.
             
 Each window can be split into rectangular panes, each of which is a separate ptty.
 A session is a single collection of pseudo terminals and have one or more windows linked to it.

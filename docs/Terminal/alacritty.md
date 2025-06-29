@@ -2,17 +2,18 @@
 
 !!! info "Representative config"
 
-    === "TOML"
+    <div class="grid cards" markdown>
 
-        ```toml
-        --8<-- "includes/Configs/alacritty/alacritty.toml"
-        ```
+    ```toml title="TOML"
+    --8<-- "includes/Configs/alacritty/alacritty.toml"
+    ```
 
-    === "YAML"
 
-        ```yaml
-        --8<-- "includes/Configs/alacritty/alacritty.yml"
-        ```
+    ```yaml title="YAML"
+    --8<-- "includes/Configs/alacritty/alacritty.yml"
+    ```
+
+    </div>
 
 <div class="grid cards" markdown>
 

@@ -2,7 +2,7 @@
 
 !!! info "Reference"
 
-    --8<-- "includes/Commands/b/bash.md"
+    --8<-- "includes/cmd/bash/callout.md"
 
 ## Tasks
 

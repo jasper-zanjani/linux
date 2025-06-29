@@ -19,6 +19,9 @@ gio move /tmp/myfile /tmp/newfile
 
 # Confirm that attribute still exists
 gio info -a 'metadata::*' /tmp/newfile # (1)
+
+# Check for connected MTP devices
+gio mount -li | grep activation
 ```
 
 1. **gio info** appears to have replaced the earlier **gvfs-info**{: #gvfs-info } and **gvfs-mime**{: #gvfs-mime } utilities used to inspect [registered MIME types](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/desktop_migration_and_administration_guide/file_formats).

@@ -41,13 +41,25 @@
 
     Many packages are provided for download alongside SHA256 checksums, for example:
 
-    - [**docker-compose**](https://github.com/docker/compose/releases)
+    -   [docker-compose](https://github.com/docker/compose/releases)
+    -   [act](https://github.com/nektos/act)
 
-    These are checked from the command-line by downloading both the binary as well as the checksum as follows:
+    These are checked from the command-line by downloading both the binary as well as the checksum as follows (note that it is the **checksum file** that is checked, not the original file):
 
     ```sh
-    # docker-compose
-    sha256sum -c docker-compose-linux-x86_64.sha256 # => docker-compose-linux-x86_64: OK
+    sha256sum -c docker-compose-linux-x86_64.sha256 # (1) 
+    ```
+
+    1.  
+
+        ``` title="Output"
+        docker-compose-linux-x86_64: OK
+        ```
+
+    If checksums for multiple releases are provided in the same file (i.e. [act's releases](https://github.com/nektos/act/releases) which provide a checksums.txt) then the `--ignore-missing` option can be added to suppress errors for files that are not present.
+
+    ```sh
+    sha256sum -c --ignore-missing checksums.txt
     ```
 
 -   #### Build packages

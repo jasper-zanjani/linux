@@ -1,0 +1,25 @@
+<beginning of page>
+ GROFF TEST
+=======================================================
+This is a test groff document that can be processed by groff and output as any number of final formats. In this case I am interested in the
+ASCII output for rendering nice-looking README.txt pages.
+ This instruction block is entirely indented by 2 spaces. To generate the text file, run:
+ groff -Tascii example.groff > example.txt
+-------------------------------------------------------
+ This paragraph is indented in the classic literary style of formatting. To do this, apply `.ti 2` --- this will indent the beginning of the
+paragraph but not any subsequent lines.
+-------------------------------------------------------
+Why use Groff?
+ Groff already knows how to do stuff like text filling and justification. It can make centered blocks for
+ quoted text easily. Just apply `.in +6` (indent by 6) and `.ll -6` (reduce line length by 6) to do so. We
+ wouldn't be able to do that without trouble in just Markdown.
+-------------------------------------------------------
+ This paragraph should be right-justified and indented by the way.
+And now we are back to normal.
+A Ruby code block could be numbered with `.nm +1` and `.nf`.
+ 1  class Foo
+ 2   def initialize(str)
+ 3   @str = str
+ 4   end
+ 5  end
+That's all for now.

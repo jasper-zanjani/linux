@@ -1,0 +1,77 @@
+{
+  "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "users": [
+    {
+      "id": 1,
+      "name": "Alice",
+      "email": "alice@example.com",
+      "active": true,
+      "roles": [
+        "editor",
+        "admin"
+      ],
+      "profile": {
+        "joined": "2025-01-15T09:30:00Z",
+        "location": "Zurich"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Bob",
+      "email": "bob@example.com",
+      "active": false,
+      "roles": [
+        "viewer"
+      ],
+      "profile": {
+        "joined": "2024-11-02T14:22:10Z",
+        "location": "Geneva"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Charlie",
+      "email": "charlie@example.com",
+      "active": true,
+      "roles": [
+        "admin"
+      ],
+      "profile": {
+        "joined": "2025-01-15T09:30:00Z",
+        "location": "Zurich"
+      }
+    }
+  ],
+  "issues": [
+    {
+      "id": 101,
+      "title": "Login page error",
+      "state": "open",
+      "comments": 4,
+      "authorId": 1,
+      "labels": [
+        "bug",
+        "high-priority"
+      ],
+      "createdAt": "2025-04-20T12:00:00Z"
+    },
+    {
+      "id": 102,
+      "title": "Add dark mode",
+      "state": "closed",
+      "comments": 2,
+      "authorId": 2,
+      "labels": [
+        "enhancement"
+      ],
+      "createdAt": "2025-03-05T08:45:30Z",
+      "closedAt": "2025-03-10T16:10:00Z"
+    }
+  ],
+  "stats": {
+    "totalUsers": 2,
+    "openIssues": 1,
+    "closedIssues": 1,
+    "lastUpdated": "2025-05-08T07:00:00Z"
+  }
+}

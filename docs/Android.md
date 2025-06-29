@@ -1,7 +1,16 @@
 # Android
 
-MTP devices are mounted to [**/var/run/user/$UID/gvfs**](https://askubuntu.com/questions/342319/where-are-mtp-mounted-devices-located-in-the-filesystem)
+#### MTP
+
+--8<-- "includes/android/mtp.md"
+
+#### Fastboot
+
+--8<-- "includes/android/fastboot.md"
+
 
 ## Tasks
 
 - [Animation speed](https://lifehacker.com/your-android-phone-can-feel-so-much-faster-1850118629)
+
+

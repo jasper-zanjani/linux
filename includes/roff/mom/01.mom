@@ -1,0 +1,14 @@
+.TITLE      "By the Shores of Lake Attica"
+.AUTHOR     "Rosemary Winspeare"
+.DRAFT      2
+.REVISION   39
+\#
+.PRINTSTYLE TYPEWRITE SINGLESPACE
+.COPYSTYLE  DRAFT
+.FAMILY     H
+.PT_SIZE    14
+.LS         14
+.QUAD       LEFT
+.FOOTERS
+.LINEBREAK_CHAR *
+.START

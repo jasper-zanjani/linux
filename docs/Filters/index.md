@@ -216,10 +216,6 @@ ansible --list-hosts -i st/hosts rhel8 |
 --8<-- "includes/Output/ansible-list-hosts/04"
 ```
 
-#### JSON
-
---8<-- "includes/Commands/j/jq.md"
-
 #### diff and patch
 
 --8<-- "includes/Tasks/diff-and-patch.md"

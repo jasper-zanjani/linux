@@ -1,0 +1,81 @@
+<!-- Creator     : groff version 1.23.0 -->
+<!-- CreationDate: Wed Jun 25 23:21:25 2025 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="Content-Style" content="text/css">
+<style type="text/css">
+       p       { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       pre     { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       table   { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       h1      { text-align: center }
+</style>
+<title></title>
+</head>
+<body>
+
+<hr>
+
+
+<p align="center" style="margin-top: 1em">GROFF TEST</p>
+
+
+<p style="margin-top: 1em">=======================================================</p>
+
+<p style="margin-top: 1em">This is a test groff document
+that can be processed by groff and output as any number of
+final formats. In this case I am interested in the ASCII
+output for rendering nice-looking README.txt pages.</p>
+
+<p style="margin-left:4%; margin-top: 1em">This instruction
+block is entirely indented by 2 spaces. To generate the text
+file, run: <br>
+groff -Tascii example.groff &gt; example.txt</p>
+
+
+<p style="margin-top: 1em">-------------------------------------------------------</p>
+
+<p style="margin-top: 1em">This paragraph is indented in
+the classic literary style of formatting. To do this, apply
+&lsquo;.ti 2&lsquo; --- this will indent the beginning of
+the paragraph but not any subsequent lines.</p>
+
+
+<p style="margin-top: 1em">-------------------------------------------------------</p>
+
+<p style="margin-top: 1em">Why use Groff?</p>
+
+<p style="margin-left:11%; margin-top: 1em">Groff already
+knows how to do stuff like text filling and justification.
+It can make centered blocks for quoted text easily. Just
+apply &lsquo;.in +6&lsquo; (indent by 6) and &lsquo;.ll
+-6&lsquo; (reduce line length by 6) to do so. We
+wouldn&rsquo;t be able to do that without trouble in just
+Markdown.</p>
+
+
+<p style="margin-top: 1em">-------------------------------------------------------</p>
+
+<p style="margin-left:22%; margin-top: 1em">This paragraph
+should be right-justified and indented by the way.</p>
+
+<p style="margin-top: 1em">And now we are back to
+normal.</p>
+
+<p style="margin-top: 1em">A Ruby code block could be
+numbered with &lsquo;.nm +1&lsquo; and &lsquo;.nf&lsquo;.
+1</p>
+
+<p style="margin-left:4%; margin-top: 1em">class Foo 2 <br>
+def initialize(str) 3 <br>
+@str = str 4 <br>
+end 5 <br>
+end</p>
+
+<p style="margin-top: 1em">That&rsquo;s all for now.</p>
+<hr>
+</body>
+</html>

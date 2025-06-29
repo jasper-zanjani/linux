@@ -14,7 +14,6 @@ theme:
   # - navigation.tabs.sticky  # Top-level menubar remains visible while scrolling down
   # - navigation.indexes      # Integrate section index pages into sections as overview pages (incompatible with toc.integrate)
     - navigation.sections     # Render sections as groups
-    - navigation.expand       # Expand all collapsible subsections by default
     - toc.integrate           # Always render table of contents as part of the left navbar
     - content.code.annotate
     - content.code.copy

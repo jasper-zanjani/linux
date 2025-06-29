@@ -1,0 +1,6 @@
+.INCLUDE typewritten-header
+SUBJECT:  Simple Memorandum Form
+.ALD 12p
+This is a simple half-sheet memorandum form.  In this form the date is always typed one inch (six blank line spaces) from the top. The subject line is typed on the fourth line space below the date.
+.ALD 12p
+The memorandum is typed in block style.  Note that all lines begin flush with the left margin with a double space (one blank line space) between paragraphs. This style is commonly used for memorandums.
