@@ -291,3 +291,13 @@ The actual code for the search bar does not play well within [grid cards](#grids
   </div>
 </div>
 ```
+
+#### Other tools
+
+<div class="grid cards" markdown>
+
+-   **aha**
+
+    --8<-- "includes/cmd/aha/info.md"
+
+</div>
