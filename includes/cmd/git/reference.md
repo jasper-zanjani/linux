@@ -75,6 +75,12 @@
     --8<-- "includes/cmd/git/git-stash.sh"
     ```
 
+=== "tag"
+
+    ```sh
+    --8<-- "includes/cmd/git/git-tag.sh"
+    ```
+
 === ":material-tools: Configuration"
 
     --8<-- "includes/cmd/git/config.md"
