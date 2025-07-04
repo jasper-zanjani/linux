@@ -1,7 +1,13 @@
-mom is the most recently developed macro package for groff.
+mom ("my own macros") is the most recently developed macro package ("macroset") for groff, developed by Peter Schaffter. (1)
+{: .annotate }
 
-```roff
---8<-- "includes/roff/mom-00.mom"
+1.  **Links**
+
+    -   [Peter Schaffter](https://www.schaffter.ca/)
+    -   mom documentation
+
+```groff
+--8<-- "includes/roff/mom/mom-00.mom"
 ```
 
 The only required macro for a mom document is [`PRINTSTYLE`](https://www.schaffter.ca/mom/momdoc/docprocessing.html#printstyle), which affects the overall appearance of the document.
@@ -27,6 +33,8 @@ By default, no space is inserted between paragraphs, but this can be changed by 
 The topic of vertical space is complicated because mom wants to guarantee perfectly flush bottom margins.
 Vertical space is inserted by using `SP` or `ALD`.
 When these are not respected after the first line of text, you must also use the `RESTORE_SPACE` macro directly before them.
+
+--8<-- "includes/roff/lists.md"
 
 Other files can be included by using [`INCLUDE`](https://www.schaffter.ca/mom/momdoc/docprocessing.html#include).
 Note that the files specified here must be absolute paths or relative to the present working directory at the time of invocation (tilde for $HOME is not interpreted).

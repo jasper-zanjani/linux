@@ -1,3 +1,3 @@
 # roff
 
---8<-- "includes/roff/groff.md"
+--8<-- "includes/cmd/groff/info.md"
