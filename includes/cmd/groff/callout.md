@@ -3,6 +3,7 @@
     -   [GNU groff manual](https://www.gnu.org/software/groff/manual/groff.html#What-Is-groff_003f)
 
     -   [mom macros for GNU troff](http://www.schaffter.ca/mom/mom-01.html)
+
 === "Installation"
 
     ??? info ":material-fedora: Fedora"
@@ -15,7 +16,7 @@
 
 === "History"
 
-    -   roff's predecessor **runoff** was written by Jerry Saltzer for the CTSS operating system, which developed into Multics and for which runoff became the main format for documentation and text processing.
+    -   roff's predecessor [**runoff**](https://en.wikipedia.org/wiki/TYPSET_and_RUNOFF) was written by [Jerry Saltzer](https://en.wikipedia.org/wiki/Jerome_H._Saltzer) for the CTSS operating system, which developed into Multics and for which runoff became the main format for documentation and text processing.
         runoff used a syntax of two-character directives, many of which were inherited by roff.
         The dot prefix originated from the convention of denoting formatting requests to the typesetter in manuscripts (NFI).
 
@@ -25,7 +26,7 @@
 
     -   Mike Lesk developed the ms macro package which was first released in [Version 6 Unix](https://lists.gnu.org/archive/html/groff/2023-04/msg00028.html) (1975) to accommodate typesetting printed documents.
     
-        Despite the fact that roff's originally was created to display man pages, the man macro package actually came later and drew heavy inspiration from the ms macro package.
+        Although roff was originally created to display man pages, the man macro package came later and actually drew heavy inspiration from ms.
 
     -   As commercial Unix fractured and floundered in the 1980s, the Texinfo ecosystem emerged and won the crown in academic typesetting.
         At the same time the PC desktop publishing revolution took hold while the source for a device-agnostic rewrite of roff languished behind Bell Labs's proprietary license.
@@ -35,4 +36,6 @@
         Clark is recognized as a key contributor to SGML which developed in parallel with HTML.
         He is especially recognized for his contributions to the XML standard, also an extension of SGML.
     
+    -   Peter Schaffter began developing the mom macro package in 2002.
+
     -   groff was used with the ms macro package to [typeset](https://rkrishnan.org/posts/2016-03-07-how-is-gopl-typeset.html) _The Go Programming Language_ by Alan Donovan and Brian Kernighan in 2016.

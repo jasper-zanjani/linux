@@ -85,7 +85,9 @@ sed -e 's/</\&lt;/g' -e 's/>/\&gt;/g' << EOF
 # Monitor characters sent by terminal according to keypresses
 sed -n l
 
---8<-- "includes/Tasks/filter/uncommented-lines.sh"
+--8<-- "includes/cmd/sed/uncommented-lines.sh"
+
+--8<-- "includes/cmd/sed/empty-lines.sh"
 ```
 
 Pass filenames from grep to sed for in-place replacement with `-i`

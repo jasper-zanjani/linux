@@ -8,6 +8,57 @@
     
     --8<-- "includes/emoji-search.html"
 
+!!! info "Admonitions"
+
+    <div class="grid cards" markdown>
+
+    !!! note "Note"
+        
+        Lorem ipsum dolor sit amet...
+
+    !!! abstract "Abstract"
+        
+        Lorem ipsum dolor sit amet...
+
+    !!! info "Info"
+        
+        Lorem ipsum dolor sit amet...
+
+    !!! tip "Tip"
+        
+        Lorem ipsum dolor sit amet...
+
+    !!! success "Success"
+        
+        Lorem ipsum dolor sit amet...
+
+    !!! question "Question"
+        
+        Lorem ipsum dolor sit amet...
+
+    !!! warning "Warning"
+        
+        Lorem ipsum dolor sit amet...
+
+    !!! failure "Failure"
+        
+        Lorem ipsum dolor sit amet...
+
+    !!! danger "Danger"
+        
+        Lorem ipsum dolor sit amet...
+
+    !!! bug "Bug"
+        
+        Lorem ipsum dolor sit amet...
+
+    !!! example "Example"
+        
+        Lorem ipsum dolor sit amet...
+
+
+    </div>
+
 
 #### Config
 

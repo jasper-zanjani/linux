@@ -1,3 +1,5 @@
+The **man** macro package (an.tmac) is used for compiling man pages.
+
 ```sh
 INPUT=file.1
 # Output a document to a traditional ASCII man page and view it in the system's man pager.
@@ -5,9 +7,15 @@ groff -man -Tascii $INPUT | $MANPAGER
 
 # man will also interpret this markup
 man ./$INPUT
+
+# Convert markdown to a manpage snippet
+pandoc -t man $MD_FILE
+
+# -s/--standalone creates a "full" file (blank title header)
+pandoc -s -t man $MD_FILE
 ```
 
--   `.TH` title header takes at least five arguments (1)
+-   `.TH` title header, the first command in a man page, takes at least five arguments (1)
     {: .annotate }
 
     1.  
@@ -27,7 +35,7 @@ man ./$INPUT
     1.  
 
         ```man hl_lines="9"
-        --8<-- "includes/roff/03.1"
+        --8<-- "includes/roff/man/03.1"
         ```
 
 
@@ -39,7 +47,7 @@ man ./$INPUT
     1.  
 
         ```man hl_lines="5-7 9-11" title="Relative indent macros"
-        --8<-- "includes/roff/01.1"
+        --8<-- "includes/roff/man/01.1"
         ```
 
 -   `.IP` indents the following line one level and is often used in the **OPTIONS** section (1)
@@ -48,5 +56,5 @@ man ./$INPUT
     1.  
 
         ```man hl_lines="3 5 7" title="IP macro"
-        --8<-- "includes/roff/03.1"
+        --8<-- "includes/roff/man/03.1"
         ```

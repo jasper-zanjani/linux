@@ -10,10 +10,12 @@ theme:
     accent: yellow
   custom_dir: overrides
   features:
+    - navigation.indexes
+    - navigation.prune
   # - navigation.tabs         # Render top-level sections as a menubar
   # - navigation.tabs.sticky  # Top-level menubar remains visible while scrolling down
   # - navigation.indexes      # Integrate section index pages into sections as overview pages (incompatible with toc.integrate)
-    - navigation.sections     # Render sections as groups
+    # - navigation.sections     # Render sections as groups
     - toc.integrate           # Always render table of contents as part of the left navbar
     - content.code.annotate
     - content.code.copy

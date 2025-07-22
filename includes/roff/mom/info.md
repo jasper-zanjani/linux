@@ -6,9 +6,11 @@ mom ("my own macros") is the most recently developed macro package ("macroset") 
     -   [Peter Schaffter](https://www.schaffter.ca/)
     -   mom documentation
 
-```groff
---8<-- "includes/roff/mom/mom-00.mom"
-```
+
+mom documentation makes a distinction between two types of macro:
+
+-   _document formatting_ macros focus on the logical structure of a document.
+-   _typesetting_ macros provide fine-grained control over page layout and design.
 
 The only required macro for a mom document is [`PRINTSTYLE`](https://www.schaffter.ca/mom/momdoc/docprocessing.html#printstyle), which affects the overall appearance of the document.
 
