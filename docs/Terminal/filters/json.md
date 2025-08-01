@@ -1,8 +1,6 @@
 # JSON
 
-<div class="grid cards" markdown>
-
-!!! info "Resources"
+!!! tip "Resources"
 
     === "JSON sources"
 
@@ -28,7 +26,12 @@
 
             --8<-- "includes/cmd/fx/info.md"
 
-</div>
+    === "JMESPath"
+
+        --8<-- "includes/json/jmespath.md"
+
+
+
 
 #### jq
 

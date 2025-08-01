@@ -1,5 +1,3 @@
-**jq** is used to query JSON documents.
-
 ```sh title="Example JSON data"
 # Use object-identifier index to find the value for a specified key
 az account show \
@@ -16,10 +14,6 @@ az account list-locations \
 ip -json a \
 | jq '.[] | select(.ifname=="enp6s0").addr_info.[0].local' -r
 
-# select can be combined with object-identifier index to get very specific information
-ip -j a  \
-| jq -r '.[] | select( .ifname == "enp6s0" ).addr_info.[0].local'
-
 # List locations in the US
 az account list-locations \
 | jq '.[] | select( .metadata.geographyGroup == "US")'
@@ -33,7 +27,6 @@ az account list-locations \
 # as a list.
 az account list-locations \
 | jq '[ .[] | { name: .name, displayName: .displayName, geography: .metadata.geography, type: .type } ]' # (2)
-
 ```
 
 1. 
