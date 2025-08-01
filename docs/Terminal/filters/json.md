@@ -31,8 +31,6 @@
         --8<-- "includes/json/jmespath.md"
 
 
-
-
 #### jq
 
 --8<-- "includes/cmd/jq/info.md"
