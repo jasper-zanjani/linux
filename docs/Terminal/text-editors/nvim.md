@@ -17,6 +17,12 @@ not both at the same time.
 
 --8<-- "includes/cmd/nvim/config.md"
 
+### man pager
+
+```sh
+MANPAGER='nvim +Man!'
+```
+
 #### Keymaps
 
 --8<-- "includes/cmd/nvim/keymaps.md"

@@ -14,7 +14,7 @@
 
 </div>
 
-Keybindings are provided by bash scripts in **/usr/share/fzf** which can be sourced by bash, zsh, or fish.
+Keybindings are provided by bash scripts in **/usr/share/fzf** which can be sourced by bash, zsh, or fish (but not on Ubuntu!).
 These files provide several new [keybindings](https://thevaluable.dev/fzf-shell-integration/):
 
 - ++ctrl+r++ fuzzy find shell command history
