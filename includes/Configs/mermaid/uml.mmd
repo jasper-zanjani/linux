@@ -1,0 +1,39 @@
+classDiagram
+  PIMData *--|> AddressBook
+  PIMData *--|> DateBook
+  AddressBook o--|> Address
+  DateBook o--|> Appointment
+
+  class AddressBook {
+    insertAddress(addr : Address) int
+    eraseAddress(id : int)
+    replaceAddress(addr : Address)
+    getAddress(id : int) Address
+    find()
+    search()
+  }
+
+  class DateBook {
+    insertAppointment(appt : Appointment)
+    eraseAppoint(id : int)
+    replaceAppointment(appt : Appointment)
+    getAppointment(id : int) Appointment
+    find()
+    search()
+  }
+
+  class Address {
+    recordid_ : int
+    lastname_ text string
+    firstname_ text string
+    phone_ : text string
+    address_ : text string
+  }
+
+  class Appointment {
+    recordid_ : int
+    startTime_ : Time
+    endTime_ : Time
+    description_ : text string
+  }
+
