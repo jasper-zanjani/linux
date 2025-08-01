@@ -1,11 +1,79 @@
+AIX commands follow a _verb_-_object_ pattern similar to IBM i commands.
+
+<div class="grid cards" markdown>
+
+-   **Display commands**
+
+    Command | Description
+    --- | ---
+    `lsvg` | list volume groups
+    `lslv` | list logical volumes
+    `lsfs` | list file systems
+    `lsps` | list paging spaces
+    `lsdev` | list devices
+
+-   **Change commands**
+
+    Command | Description
+    --- | ---
+    `chvg` | change volume groups
+    `chlv` | change logical volumes
+    `chfs` | change file systems
+    `chps` | change paging spaces
+    `chdev` | change devices
+
+-   **Remove commands**
+
+    Command | Description
+    --- | ---
+    `rmvg` | remove volume groups
+    `rmlv` | remove logical volumes
+    `rmfs` | remove file systems
+    `rmps` | remove paging spaces
+    `rmdev` | remove devices
+
+</div>
+
+
 Use [oslevel](https://www.ibm.com/docs/en/aix/7.2?topic=o-oslevel-command) to check AIX version information of a running system, including base operating system, technology level, and service pack.
 
-```sh title="Check AIX version"
+```sh title="System information"
+# Only major version
+uname -v    # => 7
+
+# Display detailed version information
 oslevel     # => 7.2.0.0
 oslevel -s  # => 7200-05-08-2420 (1)
 
-# Displays only major version
-uname -v    # => 7
+# Create the whatis database
+catman -w
+
+# Get help with a command
+whatis catman
+
+# Display a brief help message for new users
+help
+
+# Display machine type
+uname -M
+
+# Display system information
+prtconf
+
+# Display name and parameters of LPARs
+lparstat -i
+
+# Display status of all subsystems
+lssrc -a
+
+# Similar to Linux top command
+topas
+
+# Monitor system load interactively
+nmon
+
+# List devices
+lsdev
 ```
 
 1. 
@@ -14,79 +82,18 @@ uname -v    # => 7
     -   **08** service pack
     -   **2420** build sequence identifier, used to determine valid technology levels and service packs that can be applied to the current level (20th week of the year 2024)
 
----
+--8<-- "includes/aix/storage.md"
 
-Get help with man, just like Linux.
 
-```sh
-# Create the whatis database
-catman -w
-```
+--8<-- "includes/aix/network.md"
 
----
+```sh title="Installed software"
+# List installed filesets (software packages)
+lslpp -L
 
-```sh
-# Display a brief help message for new users
-help
+# List installed iFixes
+emgr -l
 
-# Display machine type
-uname -M
-
-# Provide much more detailed system information
-prtconf
-```
-
-Some commands like lshwres are actually HMC utilities.
-
----
-
-**/etc/filesystems** contains information for automatically loaded mountpoints (similar to /etc/fstab).
-
-```sh
-# Display filesystems in terms of GB
-df -g # (1)
-```
-
-1.  
-
-    ``` title="All AIX servers will contain the following filesystems"
-    Filesystem    GB blocks      Free %Used    Iused %Iused Mounted on
-    /dev/hd4           0.09      0.05   50%     3024    22% /
-    /dev/hd2           2.38      0.29   88%    42248    37% /usr
-    /dev/hd9var        0.19      0.15   19%      922     3% /var
-    /dev/hd3           0.25      0.25    2%       39     1% /tmp
-    /dev/hd1           0.03      0.03    2%        7     1% /home
-    /dev/hd11admin     0.12      0.12    1%        5     1% /admin
-    /proc                 -         -    -        -      - /proc
-    /dev/hd10opt       0.81      0.06   93%    11526    42% /opt
-    ```
-
-AIX uses LVM which is similar to its Linux cousin only in principle.
-In AIX LVM, physical volumes form volume groups, which are then divided into **Physical Partitions** (PP).
-Each PP in turn points to a **Logical Partition**.
-Logical Volumes (LV) are then mounted across logical partitions.
-This architecture is credited for AIX's flexibility in terms of managing storage.
-
-```sh
-# Display physical volumes
-lspv 
-
-# Display volume groups
-lsvg
-
-# Display details of a volume group
-lsvg rootvg
-
-# Display mounted filesystems that belong to a specified volume group
-lsvgfs rootvg
-```
-
-Use [chdev](https://www.ibm.com/docs/en/aix/7.2?topic=c-chdev-command) to convert a disk device to a physical volume by assigning it a PVID.
-
-```sh
-# Assign PVID
-chdev -l hdisk0 -a pv=yes
-
-# Clear PVID
-chdev -l hdisk0 -a pv=clear
+# List system errors and events
+errpt -a
 ```

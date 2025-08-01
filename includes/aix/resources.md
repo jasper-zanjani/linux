@@ -10,3 +10,9 @@
 
     - [7.3](https://www.ibm.com/docs/en/aix/7.3)
     - [7.2](https://www.ibm.com/docs/en/aix/7.2)
+
+---
+
+POWER10 Functional Simulator
+
+-   [User Guide :material-pdf:](https://public.dhe.ibm.com/software/server/powerfuncsim/p10/docs/dd20/v12/Power10_FunSim_UG_v12_pub.pdf)

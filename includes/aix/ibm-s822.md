@@ -1,0 +1,5 @@
+-   [Docs](https://www.ibm.com/docs/en/power8/8001-22C)
+    -   [IBM Power System S822 Technical Overview and Introduction :material-pdf:](https://www.redbooks.ibm.com/redpapers/pdfs/redp5102.pdf)
+-   Items
+    -   [IBM Power S822](https://www.ebay.com/itm/376398415239) 400
+    -   [IBM Power S822](https://www.ebay.com/itm/277259051990) 500
