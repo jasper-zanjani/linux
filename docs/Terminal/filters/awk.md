@@ -1,3 +1,3 @@
 # awk
 
---8<-- "includes/Commands/a/awk.md"
+--8<-- "includes/cmd/awk/info.md"

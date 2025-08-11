@@ -140,154 +140,29 @@ Field specifiers can be used as arguments to print, and using them alongside str
 
 -   #### NR
 
-    The number of each record is stored in **NR**, which increments by one after each record is processed.
-    Note that, again, the print statement can be left implied if the whole record is to be displayed.
-
-    ```perl title="NR variable"
-    # Remove header, for example of a CSV file
-    NR>1
-
-    # Top line only
-    NR==1
-
-    # Print lines in a range
-    NR>1 && NR < 4
-
-    # Print line numbers in output. Note that there is no $ prefix!
-    { print NR, $0 }
-    ```
+    --8<-- "includes/cmd/awk/NR.md"
 
 -   #### NF
 
-    The number of fields is stored in the **NF** variable, which is updated with each record as it is processed.
-
-    ```perl title="NF variable"
-    # Remove all whitespace-only lines: while interpreted as a pattern, when NF is 0 it will suppress output.
-    NF
-
-    { print $0, NF }
-    ```
+    --8<-- "includes/cmd/awk/NF.md"
 
 -   #### FS
 
-    How records and fields are delimited is determined by predefined variables as well.
-    **FS**, the **input field separator**, can be set from the command-line using **-F**, allowing the delimiter to be specified on Linux-like systems to be conveniently processed, similar to use of the [**cut**](#cut) utility. (1)
-    { .annotate }
-
-    1. Note that processing tabular data with variable whitespace between each field, may yet be done more gracefully with awk, since cut does not handle variable spacing well.
-    ```sh
-    cut -d: -f1 /etc/passwd
-    ```
-
-    ```sh title="-F option"
-    # Process a colon-delimited file
-    awk -F: '{ print }' /etc/passwd
-
-    # Process a CSV
-    awk -F, '{ print }' starships.csv
-
-    # Use a regex to specify more than one field separator at a time
-    awk -F'[ :\t]' '/Tom Jones/ { print $1, $2, $3}' employees2 # (1)
-    ```
-
-    1. 
-    ``` title="employees2"
-    --8<-- "includes/Output/employees2/00"
-    ```
-    ``` title="Output"
-    --8<-- "includes/Output/employees2/01"
-    ```
+    --8<-- "includes/cmd/awk/FS.md"
 
 -   #### OFS
 
-    The default **output field separator** is a single space, but it can also be specified by setting a value to the **OFS** predefined variable within the instruction.
-    It is the value of OFS which is interpolated between *print* arguments when delimited with a comma.
-
-    ```perl title="OFS variable"
-    # Compare output
-    { print $3, $2 } # (1)
-    { print $3 $2 } # (2)
-    ```
-
-    1. 
-    ``` title="datafile"
-    --8<-- "includes/Output/datafile/00"
-    ```
-    ``` title="Output"
-    --8<-- "includes/Output/datafile/04"
-    ```
-    2. 
-    ``` title="datafile"
-    --8<-- "includes/Output/datafile/00"
-    ```
-    ``` title="Output"
-    --8<-- "includes/Output/datafile/05"
-    ```
+    --8<-- "includes/cmd/awk/OFS.md"
 
 -   #### RS
 
-    Similarly, awk offers input and output **record separators**
-
-    ```perl title="RS variable"
-    # Remove all blank lines
-    1 RS=''
-    ```
+    --8<-- "includes/cmd/awk/RS.md"
 
 </div>
 
-
-
-
-
-
 #### BEGIN
 
-
-The **BEGIN** block defines instructions that are executed before any records are processed.
-Variables like FS, OFS, etc. can be set within a BEGIN block.
-
-```perl title="BEGIN block"
-# Insert header to output
-BEGIN { print "Name:Number:DOB:Salary" } { print } # (1)
-
-# Interpret colon as record separator
-BEGIN { RS=":" } { print }
-```
-
-1. 
-``` title="employees2"
---8<-- "includes/Output/employees2/00"
-```
-``` title="Output"
---8<-- "includes/Output/employees2/03"
-```
-
-Variables can also be defined after - but not before - the instruction sent to the awk invocation.
-
-```sh title="OFS variable"
-# Specify FS as well as a pattern (2)
-awk 'BEGIN { FS=":" } /Mary/ { print $1 }' employees2
-awk '/Mary/ { print $1 }' FS=: employees2
-
-# Convert a tabular file to a colon-delimited file (1)
-awk 'BEGIN { OFS=":" } { print $1, $2, $3, $4, $5, $6, $7 }' datafile
-awk '{ print $1, $2, $3, $4, $5, $6, $7 }' OFS=: datafile
-```
-
-1. 
-``` title="datafile"
---8<-- "includes/Output/datafile/00"
-```
-``` title="Output"
---8<-- "includes/Output/datafile/06"
-```
-2. 
-``` title="employees2"
---8<-- "includes/Output/employees2/00"
-```
-``` title="Output"
---8<-- "includes/Output/employees2/02"
-```
+--8<-- "includes/cmd/awk/BEGIN.md"
 
 #### Calculations
 
