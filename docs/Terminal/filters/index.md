@@ -47,6 +47,25 @@
 
     </div>
 
+??? example "Examples"
+
+    **Retrieve value from config file**
+
+    For example on Ubuntu 24.04 (Noble Numbat) these will output "noble"
+
+    <div class="grid cards" markdown>
+
+    ```sh title="grep"
+    grep -oP '(?<=UBUNTU_CODENAME=).*' /etc/os-release
+    ```
+
+    ```sh title="awk"
+    awk 'BEGIN {FS="="} /UBUNTU_CODENAME/ {print $2}'
+    ```
+
+
+    </div>
+
 Many of the oldest utilities available in the Linux ecosystem are available for use in the terminal and meant for manipulating and displaying text information. 
 Often these commands are combined by piping from one to the other.
 
