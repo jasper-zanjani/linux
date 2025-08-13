@@ -66,6 +66,52 @@
                 OPENSSLDIR: "/usr/lib/ssl"
                 ```
 
+#### Adding certificate to CA store
+
+When using TLS/SSL behind a proxy, it is often necessary to add a certificate to the Certificate Authority (CA) store.
+This is because the proxy or corporate firewall is intercepting and re-signing TLS/SSL traffic with a self-signed certificate.
+
+This is the case when, for example downloading binaries from Github with tools like wget (1) or using some Azure CLI commands (2).
+{: .annotate }
+
+1.  ``` title="Output"
+    ERROR: cannot verify release-assets.githubusercontent.com's certificate, issued by ‘CN=Cisco Umbrella Secondary SubCA nyc-SG,O=Cisco’:
+      Unable to locally verify the issuer's authority.
+    To connect to release-assets.githubusercontent.com insecurely, use `--no-check-certificate'.
+    ```
+
+2.  ``` title="Output"
+    HTTPSConnectionPool(host='login.microsoftonline.com', port=443): Max retries exceeded with url: /c6b6caf6-be06-4f0b-9273-394412dc2ab7/oauth2/v2.0/token (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1010)')))
+    Certificate verification failed. This typically happens when using Azure CLI behind a proxy that intercepts traffic with a self-signed certificate. Please add this certificate to the trusted CA bundle. More info: https://learn.microsoft.com/cli/azure/use-cli-effectively#work-behind-a-proxy.
+    ```
+
+In this case it is necessary to add the certificate to the trust store.
+
+=== ":material-fedora: Fedora"
+
+    In Fedora, new certificates can be installed to a certificate store in one of two ways:
+
+    By using [`trust anchor`](https://docs.fedoraproject.org/en-US/quick-docs/using-shared-system-certificates/#_adding_new_certificates)
+
+    ```sh
+    sudo trust anchor $CERT_PATH
+    ```
+
+=== ":material-ubuntu: Ubuntu"
+
+    On Ubuntu the CA store is located at [**/etc/ssl/certs**](https://documentation.ubuntu.com/server/how-to/security/install-a-root-ca-certificate-in-the-trust-store/).
+
+    ```sh
+    sudo apt install -y ca-certificates
+
+    # Add certificate to local certificates directory
+    sudo cp $CERT /usr/local/share/ca-certificates
+
+    # Add certificate to trust store
+    sudo update-ca-certificates
+    ```
+
+
 #### PKI certchain
 
 The same algorithm must be used to generate the CA and server keys.
