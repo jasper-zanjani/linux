@@ -2,27 +2,50 @@
 
     === "dgst"
 
-        --8<-- "includes/cmd/openssl/openssl-dgst.md"
+        **dgst** computes hashes and can also sign and verify signatures.
+
+        ```sh
+        --8<-- "includes/cmd/openssl/dgst.sh"
+        ```
 
     === "ecparam"
 
-        --8<-- "includes/cmd/openssl/openssl-ecparam.md"
+        ```sh
+        --8<-- "includes/cmd/openssl/ecparam.sh"
+        ```
+
+        1. 
+        ```
+        --8<-- "includes/Output/openssl-ecparam-list_curves"
+        ```
 
     === "enc"
 
-        --8<-- "includes/cmd/openssl/openssl-enc.md"
+        ```sh
+        --8<-- "includes/cmd/openssl/enc.sh"
+        ```
 
     === "genpkey"
 
+        A variety of algorithms are available to create the key as well as to optionally encrypt it.
+
+        ```sh
         --8<-- "includes/cmd/openssl/openssl-genpkey.md"
+        ```
 
     === "genrsa"
 
-        --8<-- "includes/cmd/openssl/openssl-genrsa.md"
+        ```sh
+        --8<-- "includes/cmd/openssl/genrsa.sh"
+        ```
 
     === "pkcs12"
 
-        --8<-- "includes/cmd/openssl/openssl-pkcs12.md"
+        A PKCS#12 certificate can be created with **-export**, without which the command will attempt to parse.
+
+        ```sh
+        --8<-- "includes/cmd/openssl/pkcs12.sh"
+        ```
 
     === "rand"
 
@@ -33,7 +56,7 @@
 
     === "req"
 
-        --8<-- "includes/cmd/openssl/openssl-req.md"
+        --8<-- "includes/cmd/openssl/req.md"
 
     === "s_client"
 
@@ -47,7 +70,7 @@
 
     === "x509"
 
-        --8<-- "includes/cmd/openssl/openssl-x509.md"
+        --8<-- "includes/cmd/openssl/x509.md"
 
     === "version"
 
