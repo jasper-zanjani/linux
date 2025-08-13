@@ -26,6 +26,10 @@
 
             --8<-- "includes/cmd/fx/info.md"
 
+        -   
+
+            [**mlr**](https://github.com/johnkerl/miller)
+
     === "JMESPath"
 
         --8<-- "includes/json/jmespath.md"

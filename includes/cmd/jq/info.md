@@ -1,55 +1,44 @@
-```sh title="Example JSON data"
-# Use object-identifier index to find the value for a specified key
-az account show \
-| jq '.environmentName' # => "AzureCloud"
+jq's output is colorized by default, but colors can be defined by setting the `JQ_COLORS` environment variable.
 
-# Use the select function to filter by key
-jq '.[] | select(.color=="black")' 3.json # (1)
+!!! info
 
-# Display object whose name key matches the provided value
-az account list-locations \
-| jq '.[] | select(.name=="southcentralusstg")'
+    All values for `QUERY` provided below can be passed to jq as follows:
 
-# select can be combined with object-identifier syntax to drill down to a single needed value
-ip -json a \
-| jq '.[] | select(.ifname=="enp6s0").addr_info.[0].local' -r
+    ```sh
+    jq "$QUERY"
+    ```
 
-# List locations in the US
-az account list-locations \
-| jq '.[] | select( .metadata.geographyGroup == "US")'
+The _object-identifier index_ can be used to retrieve the value of a specific key.
 
-# Display the named location
-az account list-locations \
-| jq '.[] | select ( .name == "eastus" )'
-
-# Create a new JSON document, filtering the results to show only specified keys.
-# Note that the entire directive is wrapped in brackets so that the output is correctly formatted
-# as a list.
-az account list-locations \
-| jq '[ .[] | { name: .name, displayName: .displayName, geography: .metadata.geography, type: .type } ]' # (2)
+```sh
+QUERY='.environmentName'
 ```
 
-1. 
+The `select` function can be used to filter a list by a key's value
 
-    ```json title="Input"
-    --8<-- "includes/Output/jq/3.json"
-    ```
-    ```json title="Output"
-    {
-      "color": "black",
-      "value": "#000"
-    }
-    ```
+```sh
+QUERY='.[] | select(.name=="southcentralusstg")'
+```
 
-2.  
+`select` can be combined with object-identifier syntax to drill down to a single needed value
 
-    ```json title="Input"
-    --8<-- "includes/Output/jq/azure-locations-trunc.json"
-    ```
-    ```json title="Output"
-    --8<-- "includes/Output/jq/azure-locations-filtered-trunc.json"
-    ```
+```sh
+QUERY='.[] | select(.metadata.geographyGroup == "US")'
+QUERY='.[] | select(.ifname=="enp6s0").addr_info.[0].local'
+```
 
-jq's output is colorized by default.
-Colors can be defined by setting the **JQ\_COLORS** environment variable.
+jq can create simplified JSON documents by filtering keys.
+
+```sh
+QUERY='[ .[] | { name: .name, displayName: .displayName, geography: .metadata.geography, type: .type } ]'
+QUERY='.images[]
+  | select( .specifications.operatingSystem=="aix")
+  | {name: name, image: .imageID }'
+```
+
+This simplified document can be passed to a tool like mlr for terminal output.
+
+```sh
+jq "$QUERY" images-catalog.json | mlr --ijson --opprint cat
+```
 
