@@ -1,4 +1,0 @@
--   [IBM 720](https://www.ebay.com/itm/406088710824) being sold for parts only 775
--   [IBM Power S922](https://www.ebay.com/itm/267311726632) 2500
--   [IBM Power S814](https://www.ebay.com/itm/176970880126) 430
--   [IBM Power S914](https://www.ebay.com/itm/126055102309) 1700
