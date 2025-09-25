@@ -21,3 +21,19 @@ pvcreate /dev/loop0
 
 
 </div>
+
+
+#### Expanding striped data storage
+
+```sh
+# Examine output of mount to determine LV and VG of mountpoint
+sudo mount
+
+# Check for striping
+lvs -o+lv_layout,stripes
+
+# Display LUN numbers which will correspond to Azure disk LUNs
+ls -alF /dev/disk/azure/scsi1
+
+lvextend -i $STRIPES -I $STRIPESIZE
+```
