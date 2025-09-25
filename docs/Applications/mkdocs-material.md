@@ -1,4 +1,4 @@
-# Mkdocs Material
+# [Mkdocs Material](https://squidfunk.github.io/mkdocs-material/)
 
 ??? info "Emoji search"
 
