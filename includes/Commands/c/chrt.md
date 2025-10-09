@@ -1,6 +1,4 @@
-#### chrt
-:   
-    Lower the priority of tasks relative to others
-    ```sh
-    chrt -o
-    ```
+```sh
+# Lower the priority of tasks relative to others
+chrt -o
+```
