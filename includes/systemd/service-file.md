@@ -14,3 +14,11 @@ ExecStart=/usr/bin/docker start notes
 WantedBy=multi-user.target
 ```
 
+Unit files may include a number of `Condition...` and `Assert...` settings which can place conditions on the running of unit files. (1)
+{: .annotate }
+
+1.  The highlighted line will disable the SSH server if a file exists at the specified path.
+
+    ```ini title="ssh.service on Chrome OS" hl_lines="5"
+    --8<-- "includes/systemd/ssh.service-chromeos"
+    ```
