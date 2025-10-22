@@ -57,6 +57,12 @@
     --8<-- "includes/cmd/git/git-push.sh"
     ```
 
+=== "rebase"
+
+    ```sh
+    --8<-- "includes/cmd/git/git-rebase.sh"
+    ```
+
 === "remote"
 
     ```sh

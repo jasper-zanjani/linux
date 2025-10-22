@@ -14,7 +14,7 @@ git rebase -i HEAD~4
 git rebase -i $COMMIT^
 ```
 
-Now the default text editor will open (1) showing the selected commits (most recent first), each preceded by the **pick** command.
+Now the default text editor (specified by \$VISUAL or \$GIT_EDITOR) will open (1) showing the selected commits (most recent first), each preceded by the **pick** command.
 Underneath this list is a comment block showing various commands that can replace pick, depending on the change needed to be done. 
 { .annotate }
 

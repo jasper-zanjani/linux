@@ -1,21 +1,12 @@
 Sometimes many commits are made to resolve a single issue and can be combined into a single commit for brevity. 
-In the parlance of git these should be "squashed". To squash the last 4 commits, first begin the rebasing process:
+In the parlance of git these should be "squashed". To squash the last 4 commits, first begin the rebasing process.
 
 ```sh
-# Without an argument, git will attempt 'to edit all commits made locally since the last push to the remote repository.
-git rebase -i
-
-# Specify the four most recent commits
 git rebase -i HEAD~4
 ```
 
-This will open a text editor that displays the last four where you will have to select what to do with each of the 4 commits. Most recent commits are at the bottom, and at least the top (oldest) commit has to remain "pick" in order to squash the others.
-The repo will have to be force-pushed once these changes have been made. 
-
-```sh
-git push -f
-       # --force
-```
+This will open a text editor that displays the last four commits (from oldest to newest), allowing you to speicfy what to do with each.
+Multiple commits can be marked with "squash", although the topmost (oldest) commit must remain "pick".
 
 To add changes to the most recent commit, stage changes as normal (including removals), but commit using **--amend** option. 
 This will present an editor, allowing you to edit the commit message, if necessary.
@@ -45,3 +36,5 @@ git reset HEAD^
 # Finally, finish the rebase
 git rebase --continue
 ```
+
+The repo will have to be force-pushed once these changes have been made. 
