@@ -23,3 +23,16 @@
 **Commands**
 
 --8<-- "includes/cmd/task/info.md"
+
+--- 
+
+**Configuration**
+
+-   **$HOME/.taskrc**
+
+By default, taskwarrior outputs with a background set for alternating rows.
+This can be disabled as follows:
+
+```sh title=".taskrc"
+color.alternate=none
+```
