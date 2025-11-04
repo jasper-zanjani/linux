@@ -99,7 +99,7 @@
 
 #### /etc/sudoers
 :   
-    --8<-- "includes/Configs/s/sudoers.md"
+    --8<-- "includes/sudoers/info.md"
 
 #### /etc/nsswitch.conf
 :   
