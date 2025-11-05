@@ -2,21 +2,36 @@
 
 There are several clustering solutions available.
 
-## Pacemaker
+<div class="grid cards" markdown>
 
-!!! tip "Commands"
+-   #### Pacemaker
 
-    === "cibadmin"
+    !!! tip "Commands"
 
-        --8<-- "includes/cmd/pacemaker/cibadmin.md"
+        === "cibadmin"
 
-    === "crm_mon"
+            --8<-- "includes/cmd/pacemaker/cibadmin.md"
 
-        --8<-- "includes/cmd/pacemaker/crm_mon.md
+        === "crm_mon"
 
-    === "pcs"
+            --8<-- "includes/cmd/pacemaker/crm_mon.md"
 
-        --8<-- "includes/cmd/pacemaker/pcs.md"
+        === "pcs"
 
---8<-- "includes/pacemaker/info.md"
+            --8<-- "includes/cmd/pacemaker/pcs.md"
 
+    --8<-- "includes/pacemaker/info.md"
+
+-   #### Clusterware
+
+    !!! tip "Commands"
+
+        === "crsctl"
+
+            --8<-- "includes/cmd/crsctl/info.md"
+
+        === "flashgrid-cluster"
+
+            --8<-- "includes/cmd/flashgrid-cluster/info.md"
+
+</div>
