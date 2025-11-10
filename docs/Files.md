@@ -1,113 +1,65 @@
 # Files
 
-<div class="grid cards" markdown>
+!!! tip "Commands"
 
--   #### File permissions
+    === "File names"
 
-    ---
+        -  **basename**
+        -  **dirname**
+        -  **realpath**
 
-    --8<-- "includes/Commands/c/chown.md"
+    === "chattr"
 
-    --8<-- "includes/Commands/c/chgrp.md"
+        --8<-- "includes/cmd/chattr/info.md"
 
-    --8<-- "includes/Commands/c/chmod.md"
+    === "chgrp"
 
+        --8<-- "includes/cmd/chgrp/info.md"
 
--   #### File attributes
+    === "chmod"
 
-    ---
+        --8<-- "includes/cmd/chmod/info.md"
 
-    A family of commands exists to change **file attributes** on Linux file systems.
+    === "chown"
 
-    --8<-- "includes/Commands/c/chattr.md"
+        --8<-- "includes/cmd/chown/info.md"
 
-    When the **set-group-ID** bit for a directory is set, all files *created* therein are assigned to the directory's group and not to the file owner's default group.
-    
-    This is intended to facilitate file sharing.
-    In this scenario, users are assigned to a group, and the group is assigned to shared directories with the SGID bit set.
+    === "du"
 
-    The **set-user-ID** bit allows a file to be *executed* with the privileges of the file's owner.
+        --8<-- "includes/Commands/d/du.md"
 
-    When the **sticky bit** is set on a directory, only root, the directory owner and the owner of a file can remove files in that directory.
+    === "find"
 
--   #### FACL
+        --8<-- "includes/Commands/f/find.md"
 
-    ---
+    === "locate"
 
-    **Filesystem access control lists (FACL)** allow you to grant permissions to more than one group, i.e. in cases where more than one department of a corporation needs access to the same files.  
-    They are made up of _access control entries_ (ACE). 
-    FACL permissions will be indicated in a `ls -l` command by the presence of a "+" appended to the file permissions. 
-    **Acl** is a dependency of `systemd`.
+        --8<-- "includes/Commands/l/locate.md"
 
-    To enable it, add ",acl" to options in `fstab` file, then mount/unmount disk. If enabling FACL on root partition, system has to be rebooted.
+    === "mkdir"
 
-    --8<-- "includes/Commands/s/setfacl.md"
+        --8<-- "includes/Commands/m/mkdir.md"
 
+    === "mv"
 
--   #### FHS
+        ```sh
+        --8<-- "includes/Commands/m/mv.sh"
+        ```
 
-    ---
+    === "tar"
 
-    The [**Filesystem Hierarchy Standard**](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard) describes the conventions used for the layout of Unix-like systems.
+        --8<-- "includes/Commands/t/tar.md"
 
-    - **/bin**: binaries that need to be available in single-user mode
-    - **/etc**: host-specific system-wide configuration files
-    - **/usr/bin**: non-essential command binaries for all users
-    - **/usr/share**: architecture-independent data
+    === "rename"
 
-</div>
+        --8<-- "includes/Commands/r/rename.md"
 
-## Commands
+    === "rsync"
 
-<div class="grid cards" markdown>
+        --8<-- "includes/Commands/r/rsync.md"
 
 
--   #### du
 
-    ---
+--8<-- "includes/files/facl.md"
 
-    --8<-- "includes/Commands/d/du.md"
 
--   #### find
-
-    ---
-
-    --8<-- "includes/Commands/f/find.md"
-
--   #### locate
-
-    ---
-
-    --8<-- "includes/Commands/l/locate.md"
-
--   #### mkdir
-
-    ---
-
-    --8<-- "includes/Commands/m/mkdir.md"
-
--   #### mv
-
-    ---
-
-    ```sh
-    --8<-- "includes/Commands/m/mv.sh"
-    ```
-
--   #### rename
-
-    ---
-
-    --8<-- "includes/Commands/r/rename.md"
-
--   #### rsync
-
-    ---
-
-    --8<-- "includes/Commands/r/rsync.md"
-
--   #### tar
-
-    --8<-- "includes/Commands/t/tar.md"
-
-</div>
