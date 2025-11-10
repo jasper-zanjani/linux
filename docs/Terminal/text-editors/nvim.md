@@ -2,7 +2,7 @@
 
 !!! info "To-do"
 
-    --8<-- "includes/cmd/nvim/todo.md"
+    --8<-- "includes/nvim/todo.md"
 
 Neovim (1) supports using **init.vim** or **init.lua** as the configuration file, but
 not both at the same time.
@@ -10,12 +10,12 @@ not both at the same time.
 
 1.  
 
-    --8<-- "includes/cmd/nvim/callout.md"
+    --8<-- "includes/nvim/callout.md"
 
 
 #### Configuration
 
---8<-- "includes/cmd/nvim/config.md"
+--8<-- "includes/nvim/config.md"
 
 ### man pager
 
@@ -25,44 +25,41 @@ MANPAGER='nvim +Man!'
 
 #### Keymaps
 
---8<-- "includes/cmd/nvim/keymaps.md"
+--8<-- "includes/nvim/keymaps.md"
 
 #### Copying and pasting
 
---8<-- "includes/cmd/nvim/copy-paste.md"
+--8<-- "includes/nvim/copy-paste.md"
 
 #### Terminal
 
---8<-- "includes/cmd/nvim/terminal.md"
+--8<-- "includes/nvim/terminal.md"
 
 #### Patterns
 
---8<-- "includes/cmd/nvim/patterns.md"
+--8<-- "includes/nvim/patterns.md"
 
 #### Error handling
 
---8<-- "includes/cmd/nvim/error.md"
+--8<-- "includes/nvim/error.md"
 
 #### Syntax highlighting
 
---8<-- "includes/cmd/nvim/syntax-highlighting.md"
+--8<-- "includes/nvim/syntax-highlighting.md"
 
-#### Buffers
-
---8<-- "includes/cmd/nvim/buffers.md"
 
 #### Marks
 
---8<-- "includes/cmd/nvim/marks.md"
+--8<-- "includes/nvim/marks.md"
 
 ## Plugins
 
---8<-- "includes/cmd/nvim/plugins.md"
+--8<-- "includes/nvim/plugins.md"
 
 #### cmp
 
---8<-- "includes/cmd/nvim/cmp.md"
+--8<-- "includes/nvim/cmp.md"
 
 #### lspconfig
 
---8<-- "includes/cmd/nvim/lspconfig.md"
+--8<-- "includes/nvim/lspconfig.md"

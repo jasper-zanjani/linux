@@ -1,7 +1,8 @@
-
 # Vim
 
 --8<-- "includes/vim/info.md"
+
+--8<-- "includes/vim/buffers.md"
 
 ## Syntax
 

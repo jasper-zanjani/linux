@@ -1,7 +1,9 @@
 Autocommands expose an API that allows handling editor events like `BufNewFile`, `BufReadPost`, `BufWritePost`, `BufWinLeave`, and especially to implement functionality specific to filetypes. (1)
 {: .annotate }
 
-1.  
+1.  **References**
+
+    -   [Forget plugins! Neovim IDE features with autocmds](https://www.youtube.com/watch?v=v36vLiFVOXY)
 
     ```vim
     --8<-- "includes/vim/autocmd-diff.vim"
