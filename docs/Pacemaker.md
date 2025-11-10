@@ -1,10 +1,8 @@
 # Pacemaker
 
-Pacemaker is a high-availability cluster resource manager.
-It is often used with Corosync Cluster engine or Linux-HA Heartbeat.
-Pacemaker originated in 2004 as a project under [Linux-HA](https://en.wikipedia.org/wiki/Linux-HA) until it was spun off.
+--8<-- "includes/pacemaker/info.md"
 
-- Pacemaker is composed of [multiple daemons](https://clusterlabs.org/projects/pacemaker/doc/2.1/Clusters_from_Scratch/html/intro.html#pacemaker-architecture)
+## Commands
 
 <div class="grid cards" markdown>
 
@@ -12,6 +10,25 @@ Pacemaker originated in 2004 as a project under [Linux-HA](https://en.wikipedia.
 
     ---
 
-    --8<-- "includes/Commands/p/pcs.md"
+    --8<-- "includes/cmd/pacemaker/pcs.md"
+
+-   #### crm\_mon
+
+    ---
+
+    --8<-- "includes/cmd/pacemaker/crm_mon.md
+
+
+-   #### cibadmin
+
+    ---
+
+    --8<-- "includes/cmd/pacemaker/cibadmin.md"
 
 </div>
+
+## Tasks
+
+#### Inspection
+
+--8<-- "includes/pacemaker/tasks/inspect.md"
