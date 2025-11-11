@@ -1,6 +1,8 @@
-```makefile
---8<-- "includes/Configs/make/mkdocs.mk"
-```
+!!! example 
+
+    ```makefile title="Makefile used with mkdocs"
+    --8<-- "includes/cmd/make/mkdocs.make"
+    ```
 
 A **makefile** provides Make with the information it needs to build artifacts from source code.
 Makefiles specify **rules** which specify a series of cmmands in order to build a **target** file.
@@ -38,10 +40,7 @@ Phony targets do not list dependencies after the colon and so will never run if 
 The most common phony target is clean.
 
 ```makefile
-.PHONY: clean
-
-clean:
-	rm *.o
+--8<-- "includes/cmd/make/clean.make"
 ```
 
 ##### Configure, Make, Make Install
@@ -74,18 +73,7 @@ make altinstall
 In [this example](https://subscription.packtpub.com/book/programming/9781838646554/1/ch01lvl1sec06/using-a-makefile-to-compile-and-link-a-program), **hw.o** is produced from **hw.cpp** first because it is a dependency of the executable **hw**.
 
 ```makefile
-CC = g++
-
-all: hw
-
-hw: hw.o
-	${CC} -o hw hw.o
-
-hw.o: hw.cpp
-	${CC} -c hw.cpp
-
-clean:
-	rm *.o
+--8<-- "includes/cmd/make/cpp.make"
 ```
 
 
