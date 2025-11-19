@@ -58,8 +58,6 @@ file /bin/ls
 ldd /bin/ls
 ```
 
-
-
 ELF **program headers** ("phdrs") are what describe segments within a binary and are necessary for program loading.
 
 **Segments** are understood by the kernel during load time and describe the memory layout of an executable on disk.
@@ -86,7 +84,11 @@ readelf -l /bin/ls
 
 #### Core dumps
 
-!!! tip "Utilities"
+A _core dump_ or core file (1) is a an image of the process's memory at the time of termination (see `man 5 core`).
+This image can then be used in a debugger to inspect the state of the program when it crashed. 
+{: .annotate }
+
+1.  **Utilities**
 
     === "coredumpctl"
 
@@ -104,10 +106,6 @@ readelf -l /bin/ls
     === "kdump"
 
         kdump is a service that provides a [crash dumping mechanism](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/managing_monitoring_and_updating_the_kernel/installing-kdump_managing-monitoring-and-updating-the-kernel#what-is-kdumpinstalling-kdump) and creates a crash dump or a **vmcore** dump file.
-
-A core dump or core file is a an image of the process's memory at the time of termination (see `man 5 core`).
-This image can then be used in a debugger to inspect the state of the program when it crashed. 
-
 
 ```sh title="kernel.core_pattern"
 # Define a template used to name core files
