@@ -14,6 +14,10 @@
     --8<-- "includes/cmd/podman/podman-run.sh"
     ```
 
+    The **Z** option is necessary on SELinux systems (RHEL and derivatives) when mounting volumes and tells podman to label the content with a private unshared label.
+    On systems running SELinux, rootless containers must be explicitly allowed to access bind mounts.
+    Containerized processes are not allowed to access files without a SELinux label.
+
 === "ps"
 
     `--format` takes a space-delimited list of field names (ref. `man podman-ps`) within mustache syntax

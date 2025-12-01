@@ -1,6 +1,9 @@
-# LXD
+LXC was acquired by Canonical recently and appears to be the preferred container runtime on Ubuntu.
+{: .annotate }
 
-LXD was acquired by Canonical recently and appears to be the preferred container runtime on Ubuntu.
+1.  
+
+    --8<-- "includes/lxc/callout.md"
 
 ```sh
 # Add user to lxd group
