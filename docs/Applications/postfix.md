@@ -1,5 +1,7 @@
 # Postfix
 
+--8<-- "includes/postfix/info.md"
+
 ## Tasks
 
 #### Installation
