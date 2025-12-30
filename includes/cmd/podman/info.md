@@ -1,6 +1,20 @@
-```sh
---8<-- "includes/cmd/podman/podman-run.sh"
-```
+!!! tip "podman"
+
+    === ":material-star: Common"
+
+        ```sh
+        --8<-- "includes/cmd/podman/podman-run.sh"
+        ```
+
+    === "port"
+
+        ```sh
+        # Display mapped ports
+        podman port $CONTAINER
+        ```
+
+
+
 
 With few exceptions, **podman** (1) exposes a command-line API that closely imitates that of Docker.
 {: .annotate }
@@ -21,6 +35,10 @@ With few exceptions, **podman** (1) exposes a command-line API that closely imit
 The **Z** option is necessary on SELinux systems (RHEL and derivatives) when mounting volumes and tells podman to label the content with a private unshared label.
 On systems running SELinux, rootless containers must be explicitly allowed to access bind mounts.
 Containerized processes are not allowed to access files without a SELinux label.
+
+#### Namespaces
+
+--8<-- "includes/cmd/podman/userns.md"
 
 ## Tasks
 
