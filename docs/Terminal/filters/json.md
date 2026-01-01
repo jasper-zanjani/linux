@@ -38,3 +38,7 @@
 #### jq
 
 --8<-- "includes/cmd/jq/info.md"
+
+#### qo
+
+--8<-- "includes/cmd/qo/info.md"
