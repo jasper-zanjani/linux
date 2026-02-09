@@ -62,11 +62,14 @@
     Authselect modifies /etc/nsswitch.conf and files in /etc/pam.d.
 
 #### chage
-:   
 
-    ```sh
-    --8<-- "includes/Commands/c/chage.sh"
-    ```
+??? tip "date"
+
+    --8<-- "includes/cmd/date/info.md"
+
+```sh
+--8<-- "includes/Commands/c/chage.sh"
+```
 
 #### getent
 :   
