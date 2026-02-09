@@ -1,14 +1,10 @@
 # imagemagick
 
-**imagemagick** is a suite of command-line utilities: 
+!!! tip "geometry"
 
-- **identify** used to describe the format and characteristics of image files
-- **mogrify** used to modify images in various ways, including resizing, cropping, applying filters, etc.
-- **convert**
+    --8<-- "includes/cmd/magick/geometry.md"
 
-```sh
---8<-- "includes/Commands/i/imagemagick.sh"
-``` 
+--8<-- "includes/cmd/magick/info.md"
 
 ## Tasks
 
