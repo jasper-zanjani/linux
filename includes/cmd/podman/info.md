@@ -13,6 +13,18 @@
         podman port $CONTAINER
         ```
 
+    === "pull"
+
+        ```sh
+        --8<-- "includes/cmd/podman/podman-pull-kustainer.sh"
+        ```
+
+    === "run"
+
+        ```sh
+        --8<-- "includes/cmd/podman/podman-run-kustainer.sh"
+        ```
+
 
 
 
