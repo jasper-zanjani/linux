@@ -11,8 +11,11 @@ $( ... )
 # Variable substitution
 ${ ... }
 
-# String substitution
+# String substitution (first match only)
 ${STRING/SEARCH/REPLACE}
+
+# Global string substition (all matches)
+${STRING//SEARCH/REPLACE}
 
 # Variable slicing
 ${VAR:START:SIZE}

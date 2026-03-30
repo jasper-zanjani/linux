@@ -36,6 +36,10 @@
 
         --8<-- "includes/Commands/l/locate.md"
 
+    === "ln"
+
+        --8<-- "includes/cmd/ln/info.md"
+
     === "ls"
 
         --8<-- "includes/cmd/ls/info.md"
