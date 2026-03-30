@@ -1,3 +1,9 @@
 # Helix
 
---8<-- "includes/cmd/helix/info.md"
+!!! tip
+
+    **[Migrating from vim](https://github.com/helix-editor/helix/wiki/Migrating-from-Vim)**
+
+    --8<-- "includes/helix/qrg.md"
+
+ --8<-- "includes/helix/info.md"

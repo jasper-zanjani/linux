@@ -1,25 +1,12 @@
-=== "Resources"
+**References**
 
-    -   [Luke Pighetti](https://www.youtube.com/@LukePighetti/videos)
+-   [Documentation](https://docs.helix-editor.com/title-page.html)
+-   [Luke Pighetti](https://www.youtube.com/@LukePighetti/videos)
 
-    **Vs. Vim**
+**Configuration**
 
-    --8<-- "includes/cmd/helix/qrg.md"
+--8<-- "includes/helix/config.md"
 
-    **Unique features**
+**Keybindings**
 
-    -  [Autojump](https://felix-knorr.net/posts/2025-03-16-helix-review.html) `gw`
- 
-    -   Tree sitter based code navigation, allowing "mark-around" motions:
-
-      -  `map` mark around paragraph
-
-    -  However, Helix lacks marks.
-
-    -   `<space>s` symbol picker
-    -   `<space>r` rename
-    -   `gr` list all references for symbol under cursor
-    -   
-
-
-
+--8<-- "includes/helix/keybindings.md"
