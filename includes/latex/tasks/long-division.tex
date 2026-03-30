@@ -1,0 +1,9 @@
+\documentclass{article}
+
+\newcommand\longdiv[2]{%
+  $\strut#1$\kern.25em\smash{\raise.3ex\hbox{$\big)$}}$\mkern-8mu
+        \overline{\enspace\strut#2}$}
+
+\begin{document}
+\longdiv{56}{3678}\quad\longdiv{3}{37678}
+\end{document}

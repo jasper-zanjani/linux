@@ -1,0 +1,14 @@
+\documentclass{article}
+\usepackage{fontspec}
+\setmainfont{Roboto}
+\newfontfamily\ralewayfont{Raleway}
+
+\begin{document}
+
+{\ralewayfont This text is in Raleway.}
+This text is not in Raleway because the usage above took place within a scope.
+\ralewayfont{This text is in Raleway.}
+However so is this! Because the declaration still takes effect until...
+\rmfamily we reset family.
+
+\end{document}

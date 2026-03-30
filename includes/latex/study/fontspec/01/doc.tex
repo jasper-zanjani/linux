@@ -1,0 +1,19 @@
+\documentclass{article}
+\usepackage{fontspec}
+
+% Raleway font
+\newfontfamily\ralewayfont{Raleway}
+
+% Custom macro
+\newcommand{\resumesection}[1]{%
+  {\noindent
+  \ralewayfont
+  \Large
+  \bfseries #1
+  \par}}
+
+\begin{document}
+\resumesection{Lorem ipsum}
+\input{lorem}
+\end{document}
+

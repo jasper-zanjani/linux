@@ -1,4 +1,42 @@
+!!! example
+
+    === "Custom"
+
+        This is a simple example of a class definition that contains only a single custom macro.
+
+        <div class="grid cards" markdown>
+
+        ```latex title="fontspec/02/doc.tex"
+        --8<-- "includes/latex/study/fontspec/02/doc.tex"
+        ```
+
+        ```latex title="fontspec/02/resume.cls"
+        --8<-- "includes/latex/study/fontspec/02/resume.cls"
+        ```
+
+        </div>
+
+    === "Predefined"
+
+        <div class="grid cards" markdown>
+
+        -   **Article**
+
+            --8<-- "includes/latex/classes/article.md"
+
+        -   **Exam**
+
+            --8<-- "includes/latex/classes/exam.md"
+
+        </div>
+  
 Formatting defaults are specified in a Latex [**class**](https://www.overleaf.com/learn/latex/How_to_write_a_LaTeX_class_file_and_design_your_own_CV_(Part_1)), which is typically defined in a class file (ending in **.cls**).
+
+The first line in a LaTeX document is the `\documentclass` command which defines the class or type of document.
+
+```latex
+--8<-- "includes/latex/tasks/basic.tex"
+```
 
 This will attempt to load **my_cv.cls** which will output in the default article style.
 
