@@ -1,8 +1,17 @@
-!!! example 
+!!! example "Examples"
 
-    ```makefile title="Makefile used with mkdocs"
+    <div class="grid cards" markdown>
+
+    ```makefile title="mkdocs"
     --8<-- "includes/cmd/make/mkdocs.make"
     ```
+
+    ```makefile title="pygobject"
+    # Note $$ for literal dollar sign
+    --8<-- "includes/cmd/make/pygobject.make"
+    ```
+
+    </div>
 
 A **makefile** (1) provides Make with the information it needs to build artifacts from source code.
 {: .annotate }
