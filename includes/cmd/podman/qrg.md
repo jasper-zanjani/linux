@@ -34,4 +34,13 @@
 
     # Alias to registry.access.redhat.com/rhscl/httpd-24-rhel7
     podman pull rhscl/httpd-24-rhel7
+
+    # Azure Data Explorer Kusto emulator
+    podman pull mcr.microsoft.com/azure/dataexplorer/kustainer-linux:latest
+    ```
+
+=== ":material-star: run"
+
+    ```sh
+    --8<-- "includes/cmd/podman/podman-run.sh"
     ```

@@ -1,6 +1,6 @@
-**Commands**
+**Installation**
 
---8<-- "includes/cmd/podman/reference.md"
+--8<-- "includes/cmd/podman/tasks/install.md"
 
 **Directories**
 

@@ -1,3 +1,3 @@
 # podman
 
---8<-- "includes/podman/info.md"
+--8<-- "includes/cmd/podman/info.md"
