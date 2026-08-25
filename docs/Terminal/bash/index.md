@@ -4,7 +4,3 @@
 
     --8<-- "includes/cmd/bash/callout.md"
 
-## Tasks
-
-
-#### Escape sequences
