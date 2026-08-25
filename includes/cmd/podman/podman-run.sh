@@ -1,16 +1,23 @@
-# Nginx
-podman run -d -v=$HOME/notes/site:/usr/share/nginx/html:Z -p=8080:80 nginx
+podman run nginx \
+       --detach \
+       --publish 8080:80 \
+       --volume $HOST_VOL:/usr/share/nginx/html:Z
 
-# Grist
-podman run -d -v $MOUNT:/persist:Z -p 8484:8484 --name grist grist
+podman run grist \
+       -d \
+       -p 8484:8484 \
+       -v $HOST_VOL:/persist:Z grist
 
-# Apache
-podman run -d -v=$HOME/notes/site:/usr/local/apache2/htdocs:Z -p=8080:80 httpd-24
+podman run httpd-24 -d -p 8080:80 -v=$PATH:/usr/local/apache2/htdocs:Z  
 
-# Azure Cosmos DB emulator
-podman pull mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator:vnext-preview
-podman run -d -p 8081:8081 -p 1234:1234 azure-cosmos-emulator:vnext-preview
+podman run mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator:vnext-preview \
+       -d -p 8081:8081 -p 1234:1234
 
-# Azure Data Explorer Kusto emulator (the environment variable is required)
-podman pull mcr.microsoft.com/azure/dataexplorer/kustainer-linux:latest
-podman run -v $HOME/kustodata:/kustodata:Z -e ACCEPT_EULA=Y -p 8080:8080 kustainer-linux
+podman run mcr.microsoft.com/azure/dataexplorer/kustainer-linux:latest \
+       -p 8080:8080 \
+       -e ACCEPT_EULA=Y \
+       -v $HOST_VOL:/kustodata:Z 
+
+podman run docker.io/jellyfin/jellyfin:latest \
+       -d -p 8096:8096/tcp -p 7359:7359/udp \
+       --mount type=bind,source=$HOST_VOL:/media
