@@ -64,3 +64,9 @@ Search and replace is done by editing multiple selections simultaneously.
 5. Exit multiple selection mode with ++esc++ or `,`
 
 Selections can also be sent to external command-line tools like sed with `|`
+
+**Appearance**
+
+vim           | hx  |   |
+---           | --- |   |
+`colorscheme` | `theme`
