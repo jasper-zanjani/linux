@@ -7,11 +7,21 @@ markdown_extensions:
 
 Keep in mind that the filename of the audio will be appended to the route of the current page.
 
-```html 
+<div class="grid cards" markdown>
+
+```html title="Audio"
 <audio controls="controls">
     <source type="audio/mp4" src="gabriela.m4a">
 </audio>
 ```
+
+```html title="Video"
+<video controls>
+    <source src="/media/video.mp4"></source>
+</video>
+```
+
+</div>
 
 Embedding YouTube clips involves the use of iframes.
 Note that this snippet has the correct width and height set for use in a mkdocs-material website.
