@@ -61,36 +61,74 @@ Dockerfiles can be used to construct new images using `docker build`.
 The build process can be optimized by placing multiple commands in the same `RUN` instruction.
 Dockerfiles are named simply "Dockerfile" with no extension or variation.
 
-=== "Node on Alpine"
+!!! example
 
-    ```dockerfile
-    FROM alpine
-    RUN apk update && apk add nodejs
-    COPY . /app
-    WORKDIR /app
-    CMD ["node","index.js"]
-    ```
+    === "Runpod serverless example"
 
-=== "Windows Server Nano"
+        ```dockerfile
+        FROM python:3.10-slim
 
-    ```dockerfile
-    FROM microsoft/windowsservercore
-    RUN powershell -command install-windowsfeature dhcp -includemanagementtools
-    RUN powershell -configurationname microsoft.powershell -command add-dhcpserverv4scope -state active -activatepolicies $true -name scopetest -startrange 10.0.0.100 -endrange 10.0.0.200 -subnetmask 255.255.255.0
-    RUN md boot
-    COPY ./bootfile.wim c:/boot/
-    CMD powershell
-    ```
+        WORKDIR /
 
-=== "Windows Server Core"
+        # Install dependencies
+        RUN pip install --no-cache-dir runpod
 
-    ```dockerfile
-    FROM microsoft/windowsservercore
-    MAINTAINER @mike_pfeiffer
-    RUN powershell.exe -Command Install-WindowsFeature Web-Server
-    COPY ./websrc c:/inetpub/wwwroot
-    CMD [ "powershell" ]
-    ```
+        # Copy your handler file
+        COPY handler.py /
+
+        # Start the container
+        CMD ["python3", "-u", "handler.py"]
+        ```
+
+    === "Node on Alpine"
+
+        ```dockerfile
+        FROM alpine
+
+        RUN apk update && apk add nodejs
+
+        COPY . /app
+
+        WORKDIR /app
+
+        CMD ["node","index.js"]
+        ```
+
+    === "Windows Server Nano"
+
+        ```dockerfile
+        FROM microsoft/windowsservercore
+
+        RUN powershell -command install-windowsfeature dhcp -includemanagementtools
+        RUN powershell \
+            -configurationname microsoft.powershell \
+            -command add-dhcpserverv4scope \
+            -state active \
+            -activatepolicies $true \
+            -name scopetest \
+            -startrange 10.0.0.100 \
+            -endrange 10.0.0.200 \
+            -subnetmask 255.255.255.0
+        RUN md boot
+
+        COPY ./bootfile.wim c:/boot/
+
+        CMD powershell
+        ```
+
+    === "Windows Server Core"
+
+        ```dockerfile
+        FROM microsoft/windowsservercore
+
+        MAINTAINER @mike_pfeiffer
+
+        RUN powershell.exe -Command Install-WindowsFeature Web-Server
+
+        COPY ./websrc c:/inetpub/wwwroot
+
+        CMD [ "powershell" ]
+        ```
 
 
 
