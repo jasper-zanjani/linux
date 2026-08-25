@@ -136,29 +136,25 @@ Field specifiers can be used as arguments to print, and using them alongside str
 
 ### Predefined variables
 
-<div class="grid cards" markdown>
-
--   #### NR
+=== "NR"
 
     --8<-- "includes/cmd/awk/NR.md"
 
--   #### NF
+=== "NF"
 
     --8<-- "includes/cmd/awk/NF.md"
 
--   #### FS
+=== "FS"
 
     --8<-- "includes/cmd/awk/FS.md"
 
--   #### OFS
+=== "OFS"
 
     --8<-- "includes/cmd/awk/OFS.md"
 
--   #### RS
-
+=== "RS"
+    
     --8<-- "includes/cmd/awk/RS.md"
-
-</div>
 
 #### BEGIN
 
