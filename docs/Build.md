@@ -10,6 +10,10 @@
         --8<-- "includes/cmd/objdump/objdump.sh"
         ```
 
+    === "pkg-config"
+
+        --8<-- "includes/cmd/pkg-config/pkg-config.md"
+
     === "readelf"
 
         --8<-- "includes/Commands/r/readelf.md"
