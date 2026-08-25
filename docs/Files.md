@@ -26,7 +26,7 @@
 
     === "du"
 
-        --8<-- "includes/Commands/d/du.md"
+        --8<-- "includes/cmd/du/info.md"
 
     === "find"
 
