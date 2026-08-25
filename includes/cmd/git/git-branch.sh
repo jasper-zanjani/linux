@@ -1,6 +1,9 @@
 # Display branches ("*" indicates that branch is checked out)
 git branch
 
+# Create a new branch
+git branch $BRANCH_NAME
+
 # Display the last commit for each branch
 git branch -v
 
