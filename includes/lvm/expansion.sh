@@ -9,3 +9,6 @@ vgextend $VG $PV
 
 # Resize logical volume to take all free space on volume group
 lvextend -l +100%FREE $VG/$LV
+
+# When confronted with error message "Couldn't create temporary archive name"
+lvextend --size +2G --autobackup n rootvg/rootlv
