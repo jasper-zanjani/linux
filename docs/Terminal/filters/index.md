@@ -72,7 +72,7 @@ Often these commands are combined by piping from one to the other.
 Other potentially interesting tools to use as filters include:
 
 - [**tabiew**](https://github.com/shshemi/tabiew) TUI viewer for CSV files coded in Rust
-- [**miller**](https://github.com/johnkerl/miller) multipurpose utility for viewing name-indexed data, especially CSV and JSON, coded in Go
+- [**miller**](https://github.com/johnkerl/miller) multipurpose utility for viewing name-indexed data, especially CSV and JSON, coded in Go ([tutorial](https://www.ict4g.net/adolfo/notes/data-analysis/miller-quick-tutorial.html))
 
 
 ## Tasks
