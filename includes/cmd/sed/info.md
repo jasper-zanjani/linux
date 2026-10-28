@@ -88,6 +88,8 @@ sed -n l
 --8<-- "includes/cmd/sed/uncommented-lines.sh"
 
 --8<-- "includes/cmd/sed/empty-lines.sh"
+
+--8<-- "includes/cmd/sed/title-case.sh"
 ```
 
 Pass filenames from grep to sed for in-place replacement with `-i`
