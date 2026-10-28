@@ -4,6 +4,8 @@ The most common SNMP implementation on Linux is Net-SNMP and its daemon snmpd.
 There are three parts to the SNMP architecture:
 
 - Manager
+- Agent
+- MIB/OID database: the hierarchy of managed objects that the manager can query
 
 The Net-SNMP agent's configuration file is usually at **/etc/snmp/snmpd.conf**.
 
