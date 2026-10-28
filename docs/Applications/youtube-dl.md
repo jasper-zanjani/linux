@@ -1,19 +1,19 @@
 #### yt-dlp
 
+!!! tip "Representative usage"
 
-```sh
-# Download using Firefox cookies and external downloader
-yt-dlp -o $FILENAME $URL -f 'hls-fastly_skyfire-5632+hls-fastly_skyfire-audio-high-English' # (1)
-    --cookies-from-browser firefox \
-    --external-downloader aria2c \
-    --continue
-```
+    Download using Firefox cookies and external downloader
 
-1. 
-```sh
-FILENAME='Baddies Caribbean 01 - We Outside Tonight.%(ext)s'
-URL="https://www.thezeusnetwork.com/baddies-caribbean/season:1/videos/series-premiere-baddies-caribbean-we-outside-tonight"
-```
+    ```sh
+    FILENAME='Baddies Caribbean 01 - We Outside Tonight.%(ext)s'
+    FORMAT='hls-fastly_skyfire-5632+hls-fastly_skyfire-audio-high-English'
+    URL="https://www.thezeusnetwork.com/baddies-caribbean/season:1/videos/series-premiere-baddies-caribbean-we-outside-tonight"
+
+    yt-dlp -o $FILENAME $URL -f $FORMAT
+        --cookies-from-browser firefox \
+        --external-downloader aria2c \
+        --continue
+    ```
 
 
 ```sh
@@ -61,4 +61,13 @@ Furthermore the field names to be written to are actually prefixed with **meta\_
 ```sh
 # Use Firefox cookies to authenticate
 yt-dlp https://x.com/nicoledupapill1/status/1669291270320037888 --cookies-from-browser firefox
+```
+
+##### Streaming
+
+Some sites do not have a dedicated site extractor, meaning they are not natively supported by yt-dlp.
+However, using a browser to extract the direct stream link to copy the **m3u8** URL allows the feed to be captured if they use HLS (HTTP Live Streaming).
+
+```sh
+yt-dlp --downloader ffmpeg --hls-use-mpegts $M3U8_URL
 ```
