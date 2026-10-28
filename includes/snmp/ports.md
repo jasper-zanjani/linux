@@ -1,0 +1,2 @@
+- 161/UDP: used for general SNMP queries, polling, and responses
+- 162/UDP: used for unsolicitied notifications, including **traps** and **informs** sent from an SNMP agent to the collector.

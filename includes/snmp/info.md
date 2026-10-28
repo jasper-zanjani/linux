@@ -25,8 +25,6 @@ snmpwalk -v2c -c public $SERVER_IP 1.3.6.1.2.1.1
 snmpget -v2c -c public $SERVER_IP sysName.0
 ```
 
-SNMPv3 users can be granted access using traditional access control or VACM configuration.
-
 If any data is received other than "Timeout: No Response", then the community string is valid.
 
 ```conf
