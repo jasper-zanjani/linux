@@ -28,3 +28,6 @@ yt-dlp --extractor-descriptions
 
 # Use aria2 to enhance download speed
 yt-dlp --external-downloader aria2c
+
+# Take a channel's entire feed and export to JSON (-j)
+yt-dlp --flat-playlist --dump-json $URL > output.json

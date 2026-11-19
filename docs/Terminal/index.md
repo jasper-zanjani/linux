@@ -28,3 +28,7 @@ that make Linux a machine for productivity.
     ```sh title="tput"
     --8<-- "includes/Commands/t/tput.sh"
     ```
+
+#### date
+
+--8<-- "includes/cmd/date/info.md"

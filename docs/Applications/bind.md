@@ -19,9 +19,7 @@ OPTIONS="-4 -u bind"
 BIND configs have a unique syntax that make heavy use of the semicolon.
 The main config is at **/etc/named.conf** on Arch and RHEL systems and at **/etc/bind/named.conf** on Ubuntu.
 
-A **DNS zone** is a database with resource records for a specific sub-tree in the domain space.
-
-A DNS zone requires a [**start of authority (SOA)** record](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/managing_networking_infrastructure_services/assembly_setting-up-and-configuring-a-bind-dns-server_networking-infrastructure-services).
+A DNS zone requires a [**start of authority (SOA)** record](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/managing_networking_infrastructure_services/assembly_setting-up-and-configuring-a-bind-dns-server_networking-infrastructure-services). (1)
 For readability, admins typically break the record apart into lines with comments describing each field following a semicolon.
 
 ``` title="Representative SOA record"
@@ -32,6 +30,7 @@ For readability, admins typically break the record apart into lines with comment
                           3d         ; expire time
                           3h )       ; minimum TTL
 ```
+
 
 Allow recursive queries from trusted clients
 

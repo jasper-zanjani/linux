@@ -1,4 +1,4 @@
-# Neovim
+# nvim
 
 !!! info "To-do"
 
