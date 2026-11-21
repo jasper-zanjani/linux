@@ -12,3 +12,6 @@ git branch --no-merged
 
 # Set upstream branch
 git branch -u $REMOTE_REPO/$BRANCH
+
+# Rename master branch to main
+git branch --move master main

@@ -1,8 +1,4 @@
-??? info "Command reference"
-
-    --8<-- "includes/cmd/git/reference.md"
-
-Git (1) is a very complex utility with multiple commands and subcommands and a strong dependency on **version control system** concepts.
+Git (1) is the preeminent **version control system**.
 {: .annotate }
 
 1.  
@@ -23,6 +19,9 @@ Combine branches by replaying the changes made on one branch to another
 git rebase
 ```
 
+### Tasks
+
+#### Undoing changes
 
 ```sh
 # Undo unstaged changes since last commit
@@ -35,3 +34,40 @@ git reset --hard HEAD~
 git revert $COMMIT
 ```
 
+#### Set aliases
+
+--8<-- "includes/cmd/git/tasks/aliases.md"
+
+#### Convert existing codebase into repo
+
+--8<-- "includes/cmd/git/tasks/init.md"
+
+#### Split changes into multiple commits
+
+--8<-- "includes/cmd/git/tasks/split.md"
+
+#### Rewrite history
+
+--8<-- "includes/cmd/git/tasks/rebase.md"
+
+#### Squash commits
+
+--8<-- "includes/cmd/git/tasks/squash.md"
+
+#### Create upstream repo
+
+--8<-- "includes/cmd/git/tasks/upstream.md"
+
+#### Credential management
+
+--8<-- "includes/cmd/git/tasks/creds.md"
+
+#### Renaming
+
+```sh title="Rename branch"
+git branch --move master main
+```
+
+```sh title="Rename remote repo"
+git remote rename origin local
+```
