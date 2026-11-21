@@ -1,4 +1,4 @@
-```sh
+```sh title="dnf group"
 # Specify package groups with the group command
 dnf group info virtualization # (1)
 

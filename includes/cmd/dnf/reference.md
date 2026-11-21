@@ -1,81 +1,81 @@
-=== "clean"
+=== ":material-star: Common"
 
     ```sh
-    --8<-- "includes/cmd/dnf/dnf-clean.sh"
-    ```
+    sudo dnf upgrade -y
 
-=== "config-manager"
-
-    ```sh
-    --8<-- "includes/cmd/dnf/dnf-config-manager.sh"
-    ```
-
-=== "copr"
-
-    --8<-- "includes/cmd/dnf/dnf-copr.md"
-
-=== "download"
-    
-    --8<-- "includes/cmd/dnf/dnf-download.md"
-
-=== "group"
-
-    --8<-- "includes/cmd/dnf/dnf-group.md"
-
-=== "history"
-
-    ```sh
-    --8<-- "includes/cmd/dnf/dnf-history.sh"
-    ```
-
-=== "install"
-
-    ```sh
-    --8<-- "includes/cmd/dnf/dnf-install.sh"
-    ```
-
-=== "module"
-
-    --8<-- "includes/cmd/dnf/dnf-module.md"
-
-=== "offline"
-
-    ```sh
+    # Upgrading version
+    --8<-- "includes/cmd/dnf/dnf-system-upgrade.sh"
     --8<-- "includes/cmd/dnf/dnf-offline.sh"
     ```
 
-=== "provides"
+=== "c"
 
-    ```sh
+    ```sh title="dnf clean"
+    --8<-- "includes/cmd/dnf/dnf-clean.sh"
+    ```
+
+    ```sh title="dnf config-manager"
+    --8<-- "includes/cmd/dnf/dnf-config-manager.sh"
+    ```
+
+    --8<-- "includes/cmd/dnf/dnf-copr.md"
+
+=== "d"
+    
+    --8<-- "includes/cmd/dnf/dnf-download.md"
+
+=== "g"
+
+    --8<-- "includes/cmd/dnf/dnf-group.md"
+
+=== "h"
+
+    ```sh title="dnf history"
+    --8<-- "includes/cmd/dnf/dnf-history.sh"
+    ```
+
+=== "i"
+
+    ```sh title="dnf install"
+    --8<-- "includes/cmd/dnf/dnf-install.sh"
+    ```
+
+=== "m"
+
+    --8<-- "includes/cmd/dnf/dnf-module.md"
+
+=== "o"
+
+    ```sh title="dnf offline"
+    --8<-- "includes/cmd/dnf/dnf-offline.sh"
+    ```
+
+=== "p"
+
+    ```sh title="dnf provides"
     --8<-- "includes/cmd/dnf/dnf-provides.sh"
     ```
 
-=== "remove"
+=== "r"
 
     ```sh title="dnf remove"
     --8<-- "includes/cmd/dnf/dnf-remove.sh"
     ```
 
-=== "repolist"
-
-    ```sh
+    ```sh title="dnf repolist"
     --8<-- "includes/cmd/dnf/dnf-repolist.sh"
     ```
 
-=== "repoquery"
-
-    ```sh
+    ```sh title="dnf repoquery"
     # List files associated with a package
     dnf repolist -l $PACKAGE
     ```
 
-=== "swap"
+=== "s"
 
-    ```sh
+    ```sh title="dnf swap"
     --8<-- "includes/cmd/dnf/dnf-swap.sh"
     ```
-
-=== "system-upgrade"
 
     --8<-- "includes/cmd/dnf/dnf-system-upgrade.md"
 

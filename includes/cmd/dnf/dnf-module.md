@@ -3,7 +3,7 @@ These are made available on the AppStream repository on RHEL.
 
 Modules are made available by **stream**, or version, and by **profile**, or purpose (i.e. client, server, common, devel, etc).
 
-```sh
+```sh title="dnf module"
 # Display available streams and profiles of the nodejs module
 dnf module list nodejs # (1)
 
